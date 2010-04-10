@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<Map name="Hopetown">
+    <!--
+        Sector with Sector ID and name
+        it is strongly recommended to use a somewhat sequential enumeration
+        i.e sequences like 1,2,3,5... but not like 1, 2, 64.000.000.000.000
+
+        the ID is used for Events (for exemple SectorChange) NOT the Irrlich internal scene id
+
+        the name is used for displaying ingame
+    -->
+	<Sector id="1" name="Taverne">
+		<Terrain scaleX="40" scaleY="2" scaleZ="40" smoothing="25">
+			<Hightmap>terrain-heightmap.bmp</Hightmap>
+			<Texture>Kapitel_1-1/terrain-texture.jpg</Texture>
+			<Detailtexture>Kapitel_1-1/detailmap3.jpg</Detailtexture>
+
+			<Grass density="800">
+				<Grassmap>Kapitel_1-1/terrain-grassmap.png</Grassmap>
+				<Texture>Kapitel_1-1/grass.png</Texture>
+				<Wind strength="30" regularity="3" />
+			</Grass>
+
+            <Passable_Surface>
+                <Triangle X1="" Z1="" X2="" Z2="" X3="" Z3="" />
+            </Passable_Surface>
+		</Terrain>
+
+
+
+		<Event type="SectorChange">
+			<Trigger Type="Enter" Actor="Player">
+				<Box X1="" Y1="" Z1="" X2="" Y2="" Z2="" />
+			</Trigger>
+			<Effect>
+				<EntyPoint SectorID="" X="" Y="" Z="" />
+			</Effect>
+		</Event type="SectorChange">
+
+        <Object type="MapObject" ID="">
+            <Mesh></Mesh>
+            <Texture></Texture>
+            <Position X="" Y="" Z="" />
+            <Rotation X="" Y="" Z="" />
+        </Object>
+
+		<NPC>
+
+		</NPC>
+	</Sector>
+
+</Map>
