@@ -16,7 +16,7 @@ class Exporter {
 public:
 	Exporter(Game* game);
 	virtual ~Exporter();
-	void init(irr::IrrlichtDevice* device);
+	void init();
 };
 
 #endif /* EXPORTER_H_ */

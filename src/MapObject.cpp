@@ -7,8 +7,12 @@
 
 #include "MapObject.h"
 
-MapObject::MapObject():Object(NULL,NULL) {
-	// TODO Auto-generated constructor stub
+MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,game) {
+
+
+}
+
+MapObject::MapObject(Sector* s,Game* game):Object(s,game) {
 
 }
 

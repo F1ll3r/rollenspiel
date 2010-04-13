@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<Map Name="Hopetown">
+    <!--
+        the ID is used for Game Events NOT the Irrlich internal scene id
+
+        the name is used for displaying ingame
+    -->
+	<Sector ID="1" Name="Taverne">
+		<Terrain ScaleX="40" ScaleY="2" ScaleZ="40" Smoothing="25">
+			<Hightmap Value="content/Kapitel_1/terrain-heightmap.bmp" />
+			<Texture Value="content/Kapitel_1/terrain-texture.jpg" />
+			<Detailtexture Value="content/Kapitel_1/detailmap3.jpg" />
+
+			<Grass density="800">
+				<Grassmap Value="content/Kapitel_1/terrain-grassmap.png" />
+				<Texture Value="content/Kapitel_1/grass.png" />
+				<Wind Strength="30" Regularity="3" />
+			</Grass>
+
+			<Passable_Surface>
+				<Triangle X1="" Z1="" X2="" Z2="" X3="" Z3="" />
+			</Passable_Surface>
+		</Terrain>
+
+			<!--
+			Trigger:
+				type:
+					-Enter:     actor enters a polygon
+					-Leave:       "   leaves "    "
+					-attack:    somone attacks actor
+					-talk:	    player says sothing to actor
+					-dies:      character actor dies
+					-Meta: 	    this Trigger is supposed to be triggert by other Events
+                                and can be use to implement boolen algebra with events
+				actor:
+					an ID or one of the following keywords:
+						-Enemy
+						-Player
+
+			Effect:
+				type:
+					-SectorChange:
+					-damage:
+					-heal:
+					-trigger:       triggers metatrigger
+					-move:
+					-rotate:
+					-talk:
+
+
+			-->
+        <Event>
+			<Trigger Type="Enter" Actor="Player">
+				<Box X1="" Y1="" Z1="" X2="" Y2="" Z2="" />
+			</Trigger>
+			<Effect Type="SectorChange">
+				<EntyPoint SectorID="" X="" Y="" Z="" />
+			</Effect>
+		</Event>
+
+		<Object Type="MapObject" ID="">
+			<Mesh Value="" />
+			<Texture  Value="" />
+			<Position X="" Y="" Z="" />
+			<Rotation X="" Y="" Z="" />
+			<Scale X="1" Y="1" Z="1" />
+		</Object>
+
+
+        <!--
+            Team:
+                0 Non
+                1 Player
+                2 standartEnemy
+        -->
+
+
+		<NPC Type="Monster" Name="Wilder Hund">
+			<Mesh Value="" />
+			<Texture  Value="" />
+			<Position X="" Y="" Z="" />
+			<Rotation X="" Y="" Z="" />
+			<Team ID="2" />
+		</NPC>
+
+		<Dealer Name="Hugos Eisenwaren">
+            <Health Max="100" Current="100">
+            <ExchangeRate Sell="1.2" Buy="0.7">
+			<Mesh Value="" />
+			<Texture Value="" />
+			<Position X="" Y="" Z="" />
+			<Rotation X="" Y="" Z="" />
+			<Team ID="1" />
+            <Inventory>
+                <Weapon Class="baton" Name="Kurtzschwert">
+                    <Image Value="" />
+                    <Mesh Value="" />
+                    <Texture  Value="" />
+                    <Position X="0" Y="0" Z="0" />
+                    <Rotation X="0" Y="0" Z="0" />
+                    <Damage Value="12" />
+                    <Speed Value="1" />
+                    <Cost Value="40" />
+                </Weapon>
+            </Inventory>
+            <AI>
+                <Talk>
+                    <Context ID="1">
+                        <Text>Hallo Feund mein Name ist Hugo. Wie kann ich dir helfen?</Text>
+                        <Reply id="1">
+                            <Text>Zeig mir was du im Angebot hast!</Text>
+                            <Effect Type="talk">
+                                <OpenTrade />
+                            </Effect>
+                        <Reply>
+                        <Reply id="2">
+                            <Text>cu</Text>
+                            <Effect type="talk">
+                                <Exit />
+                            </Effect>
+                        <Reply>
+                    </Context>
+                </Talk>
+            </AI>
+		</Dealer>
+
+		<Player>
+            <Health Max="100" Current="100">
+            <Mesh Value="" />
+			<Texture Value="" />
+			<Position X="" Y="" Z="" />
+			<Rotation X="" Y="" Z="" />
+            <Inventory>
+                <Weapon class="baton" name="Kurtzschwert">
+                    <Image Value="" />
+                    <Mesh Value="" />
+                    <Texture  Value="" />
+                    <Position X="0" Y="0" Z="0" />
+                    <Rotation X="0" Y="0" Z="0" />
+                    <Damage Value="12" />
+                    <Speed Value="1" />
+                    <Cost Value="40" />
+                </Weapon>
+            </Inventory>
+		</Player>
+	</Sector>
+</Map>

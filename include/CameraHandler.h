@@ -16,7 +16,7 @@ class CameraHandler {
 public:
 	CameraHandler(Game* game);
 	virtual ~CameraHandler();
-	void init(irr::IrrlichtDevice* device);
+	void init();
 };
 
 #endif /* CAMERAHANDLER_H_ */

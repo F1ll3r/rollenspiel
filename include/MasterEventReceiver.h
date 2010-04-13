@@ -21,10 +21,10 @@ class MasterEventReceiver : public irr::IEventReceiver{
 	irr::IrrlichtDevice* device;
 	Game_Context context;
 public:
-	MasterEventReceiver(Game* game, UserInterface* ui, CameraHandler* cam);
+	MasterEventReceiver(Game* game);
 	virtual ~MasterEventReceiver();
 
-	void init(irr::IrrlichtDevice* device);
+	void init();
 	void registerplayer(Player* player);
 
 	bool OnEvent(const irr::SEvent& event);

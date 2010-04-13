@@ -13,7 +13,7 @@
 
 class Dealer : public NPC{
 public:
-	Dealer(Game* game);
+	Dealer(Sector* s,Game* game);
 	virtual ~Dealer();
 };
 

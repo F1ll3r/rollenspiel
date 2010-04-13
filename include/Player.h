@@ -14,7 +14,7 @@
 
 class Player : public Character, public irr::IEventReceiver {
 public:
-	Player(Game* game);
+	Player(Sector*s,Game* game);
 	virtual ~Player();
 
 	bool OnEvent(const irr::SEvent& event);

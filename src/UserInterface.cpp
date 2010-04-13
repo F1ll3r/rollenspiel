@@ -19,8 +19,8 @@ UserInterface::~UserInterface() {
 }
 
 
-void UserInterface::init(irr::IrrlichtDevice* device){
-	this->device = device;
+void UserInterface::init(){
+	this->device = game->getIrrlichtDevice();
 	guienv = device->getGUIEnvironment();
 
 	mainButtons.push_back(

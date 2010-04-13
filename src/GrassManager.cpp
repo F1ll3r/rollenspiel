@@ -7,11 +7,16 @@
 
 #include "GrassManager.h"
 
-GrassManager::GrassManager() {
+GrassManager::GrassManager(Sector* s,Game* game,irr::io::IXMLReader* xml) {
 	// TODO Auto-generated constructor stub
 
 }
 
 GrassManager::~GrassManager() {
 	// TODO Auto-generated destructor stub
+}
+
+
+void GrassManager::create(irr::scene::ITerrainSceneNode* t){
+
 }

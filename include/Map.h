@@ -11,20 +11,19 @@
 #include "GlobalSettings.h"
 #include "irrTypes.h"
 #include "irrArray.h"
+#include <map>
 
 class Map {
-	irr::core::array<Sector*> 	sectors;
+	std::map<irr::s32,Sector*> 	sectors;
 	Game* 						game;
 	irr::IrrlichtDevice* 		device;
 
 	GameEventManager* 			gvm;
 
-
-	Sector* getSector(irr::u32 id, irr::u32 start, irr::u32 end);
-	void insertSector(Sector* s,irr::u32 start, irr::u32 end);
+	std::map<irr::s32,Object*>	database;
 
 public:
-	Map(Game* game,irr::IrrlichtDevice* device,GameEventManager* gvm);
+	Map(Game* game);
 	virtual ~Map();
 
 	irr::c8* getName();
@@ -32,6 +31,8 @@ public:
 
 	void load(irr::c8* file);
 	Sector* getSector(irr::u32 id);
+
+	Player* getPlayer();
 
 };
 

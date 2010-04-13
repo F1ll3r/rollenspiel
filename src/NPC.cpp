@@ -7,7 +7,7 @@
 
 #include "NPC.h"
 
-NPC::NPC(Game* game):Character(game) {
+NPC::NPC(Sector* s,Game* game):Character(s,game) {
 	// TODO Auto-generated constructor stub
 
 }

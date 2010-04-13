@@ -11,10 +11,10 @@
 #include "Player.h"
 #include "Game.h"
 
-MasterEventReceiver::MasterEventReceiver(Game* game, UserInterface* ui, CameraHandler* cam) {
+MasterEventReceiver::MasterEventReceiver(Game* game) {
 	this->game = game;
-	this->ui = ui;
-	this->cam = cam;
+	this->ui = NULL;
+	this->cam = NULL;
 
 }
 
@@ -22,8 +22,10 @@ MasterEventReceiver::~MasterEventReceiver() {
 	// TODO Auto-generated destructor stub
 }
 
-void MasterEventReceiver::init(irr::IrrlichtDevice* device){
-	this->device = device;
+void MasterEventReceiver::init(){
+	this->device = game->getIrrlichtDevice();
+	this->ui = game->getUserInterface();
+	this->cam = game->getCameraHandler();
 }
 
 bool MasterEventReceiver::OnEvent(const irr::SEvent& event){

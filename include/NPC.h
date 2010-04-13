@@ -13,7 +13,7 @@
 
 class NPC : public Character{
 public:
-	NPC(Game* game);
+	NPC(Sector* s,Game* game);
 	virtual ~NPC();
 };
 
