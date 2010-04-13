@@ -4,7 +4,7 @@
  *  Created on: 03.04.2010
  *      Author: Max
  */
-
+ //Test
 #include "AI.h"
 #include "NPC.h"
 #include "Sector.h"
