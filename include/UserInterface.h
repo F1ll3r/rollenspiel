@@ -45,7 +45,7 @@ class UserInterface : public irr::IEventReceiver{
 public:
 	UserInterface(Game* game);
 	virtual ~UserInterface();
-	void init(irr::IrrlichtDevice* device);
+	void init();
 	void draw();
 
 	void switchContext(Game_Context context);

@@ -7,7 +7,7 @@
 
 #include "Dealer.h"
 
-Dealer::Dealer(Game* game) :NPC(game) {
+Dealer::Dealer(Sector* s,Game* game) :NPC(s,game) {
 	// TODO Auto-generated constructor stub
 
 }

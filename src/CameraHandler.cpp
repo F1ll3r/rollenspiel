@@ -18,6 +18,6 @@ CameraHandler::~CameraHandler() {
 }
 
 
-void CameraHandler::init(irr::IrrlichtDevice* device){
-	this->device = device;
+void CameraHandler::init(){
+	this->device = game->getIrrlichtDevice();
 }

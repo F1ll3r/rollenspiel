@@ -30,7 +30,7 @@ struct Settings{
 	bool						fullscreen;
 	bool						vsync;
 
-	//! 0 grass off 100 full grass
+	//! 0 grass off; 100 full grass
 	irr::u32					grass;
 
 	//!	BILINEAR, TRILINEAR or ANISOTROPIC

@@ -29,8 +29,8 @@ Game::Game() {
 	drawer 			= 	new Drawer(this);
 	ui 				= 	new UserInterface(this);
 
-	gameeventmgr 	= 	new GameEventManager(this,drawer);
-	mastereventmgr	= 	new MasterEventReceiver(this,ui,camerahandler);
+	gameeventmgr 	= 	new GameEventManager(this);
+	mastereventmgr	= 	new MasterEventReceiver(this);
 
 	device 			= 	NULL;
 	driver 			= 	NULL;
@@ -55,7 +55,7 @@ Settings* readSettings(){
 	s->fullscreen = false;
 	s->grass = 100;
 	s->vsync = false;
-	s->resolution = irr::core::dimension2du(1600,900);
+	s->resolution = irr::core::dimension2du(1152,864);
 	return s;
 }
 
@@ -116,24 +116,30 @@ void Game::init( int argc, const char* argv[] ){
 	driver = device->getVideoDriver();
 	scenemgr = device->getSceneManager();
 
-	drawer->init(device);
+	drawer->init();
 
 	switchContext(Context_Loadung_Screen);
-	ui->init(device);
+	ui->init();
 	drawer->drawLoadingScreen();
+	drawer->processLoadingScreen(0,L"init");
 
-	importer->init(device);
-	exporter->init(device);
+	importer->init();
+	exporter->init();
 
-	mastereventmgr->init(device);
-	camerahandler->init(device);
+	mastereventmgr->init();
+	camerahandler->init();
 
 	device->setEventReceiver(mastereventmgr);
 
-
+	irr::core::stringw str;
 
 	//TODO: do some cashing
-	device->sleep(1500);
+	for(int i = 0; i<1000;i++){
+		device->sleep(2);
+		str = L"init";
+		str += i;
+		drawer->processLoadingScreen(0.1,str.c_str());
+	}
 }
 
 
@@ -147,6 +153,7 @@ int Game::run(){
 			break;
 
 		case Context_Game_Run:
+
 			break;
 
 		case Context_Main_Menu:
@@ -170,20 +177,16 @@ int Game::run(){
 
 
 void Game::startGame(){
-	map = new Map(this,device,gameeventmgr);
-	map->load("Kapitel_1-1.map");
-
-	player = new Player(this);
+	drawer->resetProcess();
+	drawer->drawLoadingScreen();
+	map = new Map(this);
+	importer->load("content/Kapitel_1.map");
+	player = map->getPlayer();
 
 }
 
 
 void Game::load(irr::c8* savegame){
-
-}
-
-
-void Game::save(irr::c8* file){
 
 }
 
@@ -212,6 +215,7 @@ Settings Game::getSettings(){
 
 
 void Game::setSettings(Settings s){
+	// TODO: do real settings setting xD
 	*settings = s;
 }
 

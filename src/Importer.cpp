@@ -7,6 +7,7 @@
 
 #include "Importer.h"
 #include "Game.h"
+#include "Map.h"
 
 Importer::Importer(Game* game) {
 		this->game = game;
@@ -18,6 +19,10 @@ Importer::~Importer() {
 }
 
 
-void Importer::init(irr::IrrlichtDevice* device){
-	this->device = device;
+void Importer::init(){
+	this->device = game->getIrrlichtDevice();
+}
+
+void Importer::load(irr::c8* file){
+	game->getMap()->load(file);
 }

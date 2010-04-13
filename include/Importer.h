@@ -16,7 +16,8 @@ class Importer {
 public:
 	Importer(Game* game);
 	virtual ~Importer();
-	void init(irr::IrrlichtDevice* device);
+	void init();
+	void load(irr::c8* file);
 };
 
 #endif /* IMPORTER_H_ */

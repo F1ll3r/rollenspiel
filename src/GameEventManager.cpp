@@ -9,9 +9,9 @@
 #include "Game.h"
 #include "Drawer.h"
 
-GameEventManager::GameEventManager(Game* game,Drawer* drawer) {
+GameEventManager::GameEventManager(Game* game) {
 	this->game 	 = game;
-	this->drawer = drawer;
+	this->drawer = game->getDrawer();
 
 }
 

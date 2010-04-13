@@ -18,6 +18,6 @@ Exporter::~Exporter() {
 }
 
 
-void Exporter::init(irr::IrrlichtDevice* device){
-	this->device = device;
+void Exporter::init(){
+	this->device = game->getIrrlichtDevice();
 }

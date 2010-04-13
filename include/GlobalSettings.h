@@ -34,10 +34,13 @@ class Weapon;
 class Armor;
 class GameEventManager;
 class MapObject;
+class TerrainMapObject;
 class GrassManager;
 class Object;
 class MasterEventReceiver;
 class UserInterface;
+class GameEvent;
+class GameTrigger;
 struct Settings;
 
 

@@ -16,17 +16,18 @@
 
 class Sector {
 	irr::core::array<Object*> 	objects;
-	irr::core::array<irr::scene::ISceneNode*>
-								nodes;
+//	irr::core::array<irr::scene::ISceneNode*>
+//								nodes;
+	TerrainMapObject * 			terrain;
+
 	irr::u32					id;
 	irr::core::stringw			name;
 
 	irr::IrrlichtDevice* 		device;
 	GameEventManager* 			gvm;
 
-	void parseTerrain(irr::io::IXMLReader* xml);
 
-	void parseGrass(irr::io::IXMLReader* xml);
+
 
 	void parsePassable_Surface(irr::io::IXMLReader* xml);
 
@@ -37,7 +38,7 @@ class Sector {
 	void parseNPC(irr::io::IXMLReader* xml);
 
 public:
-	Sector(irr::io::IXMLReader* xml,irr::IrrlichtDevice* device,GameEventManager* gvm);
+	Sector(Game* game,irr::io::IXMLReader* xml);
 	virtual ~Sector();
 
 

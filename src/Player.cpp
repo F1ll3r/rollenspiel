@@ -8,7 +8,7 @@
 #include "Player.h"
 #include "Character.h"
 
-Player::Player(Game* game):Character(game) {
+Player::Player(Sector*s,Game* game):Character(s,game) {
 
 }
 
