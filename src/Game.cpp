@@ -63,6 +63,7 @@ Settings* readSettings(){
 void parseArgs(Settings* s,int argc, const char* argv[]){
 	for(int i=0;i<argc;i++){
 		if(strlen(argv[i]) < 2  || argv[i][0] != '-'){
+			printf("Error: Wrong arguments");
 			exit(666);
 		}
 		switch(argv[i][1]){
@@ -89,6 +90,7 @@ void parseArgs(Settings* s,int argc, const char* argv[]){
 			break;
 
 		default:
+			printf("Error: Wrong arguments");
 			exit(666);
 		}
 	}
@@ -107,9 +109,7 @@ void Game::init( int argc, const char* argv[] ){
 							false,
 							settings->vsync);
 
-#ifdef __debug__
-	assert(device != NULL);
-#endif
+	My_Assert(device != NULL);
 
 	device->setWindowCaption(L"NoNameGame");
 
@@ -134,11 +134,11 @@ void Game::init( int argc, const char* argv[] ){
 	irr::core::stringw str;
 
 	//TODO: do some cashing
-	for(int i = 0; i<1000;i++){
+	for(int i = 0; i<100;i++){
 		device->sleep(2);
 		str = L"init";
 		str += i;
-		drawer->processLoadingScreen(0.1,str.c_str());
+		drawer->processLoadingScreen(1,str.c_str());
 	}
 }
 
@@ -153,6 +153,15 @@ int Game::run(){
 			break;
 
 		case Context_Game_Run:
+			gameeventmgr->triggerRunEvent();
+			gameeventmgr->run();
+
+			driver->beginScene(true, true);
+			scenemgr->drawAll();
+			gameeventmgr->triggerDrawEvent();
+			drawer->draw();
+			ui->draw();
+			driver->endScene();
 
 			break;
 
@@ -163,11 +172,9 @@ int Game::run(){
 			driver->endScene();
 			break;
 
-#ifdef __debug__
 		default:
 			printf("Unknown context");
-			assert(0);
-#endif
+			My_Assert(0);
 		}
 		device->yield();
 	}
@@ -182,6 +189,7 @@ void Game::startGame(){
 	map = new Map(this);
 	importer->load("content/Kapitel_1.map");
 	player = map->getPlayer();
+	switchContext(Context_Game_Run);
 
 }
 

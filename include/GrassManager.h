@@ -13,10 +13,20 @@
 #include "ITerrainSceneNode.h"
 
 class GrassManager {
+
+	Sector* 				s;
+	Game* 					game;
+	irr::core::stringw		texture;
+	irr::core::stringw		grassmap;
+	irr::f32 				density;
+	irr::f32				windstrength;
+	irr::f32				windregularity;
+
 public:
 	GrassManager(Sector* s,Game* game,irr::io::IXMLReader* xml);
 	virtual ~GrassManager();
 	void run();
+
 
 	void create(irr::scene::ITerrainSceneNode* t);
 };

@@ -16,8 +16,7 @@
 
 class Sector {
 	irr::core::array<Object*> 	objects;
-//	irr::core::array<irr::scene::ISceneNode*>
-//								nodes;
+
 	TerrainMapObject * 			terrain;
 
 	irr::u32					id;
@@ -26,16 +25,6 @@ class Sector {
 	irr::IrrlichtDevice* 		device;
 	GameEventManager* 			gvm;
 
-
-
-
-	void parsePassable_Surface(irr::io::IXMLReader* xml);
-
-	void parseEvent(irr::io::IXMLReader* xml);
-
-	void parseObject(irr::io::IXMLReader* xml);
-
-	void parseNPC(irr::io::IXMLReader* xml);
 
 public:
 	Sector(Game* game,irr::io::IXMLReader* xml);
@@ -46,7 +35,8 @@ public:
 		return id;
 	}
 
-	irr::core::vector3df getTerrainScale();
+	irr::scene::ITriangleSelector* getTerrainTriangleSelector();
+	irr::scene::ITriangleSelector* getCollisionTriangleSelector();
 
 
 };

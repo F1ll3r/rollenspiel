@@ -76,9 +76,7 @@ void UserInterface::draw(){
 
 bool UserInterface::OnEvent(const irr::SEvent& event){
 
-#ifdef __debug__
-	assert(event.EventType == irr::EET_GUI_EVENT);
-#endif
+	My_Assert(event.EventType == irr::EET_GUI_EVENT);
 
 	if(event.GUIEvent.EventType == irr::gui::EGET_BUTTON_CLICKED){
 		switch (event.GUIEvent.Caller->getID()) {
@@ -109,11 +107,11 @@ bool UserInterface::OnEvent(const irr::SEvent& event){
 				mainButtons[UI_Button_Main_Load	  - 100]->setEnabled(true);
 				mainButtons[UI_Button_Main_Exit	  - 100]->setEnabled(true);
 				break;
-#ifdef __debug__
+
 			default:
 				printf("Unknown button");
-				assert(0);
-#endif
+				My_Assert(0);
+
 		}
 
 	}
