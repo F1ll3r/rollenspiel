@@ -51,23 +51,6 @@ Sector::Sector(Game* game,irr::io::IXMLReader* xml) {
 }
 
 
-void parsePassable_Surface(irr::io::IXMLReader* xml){
-
-}
-
-void Sector::parseEvent(irr::io::IXMLReader* xml){
-
-}
-
-void Sector::parseObject(irr::io::IXMLReader* xml){
-
-}
-
-void Sector::parseNPC(irr::io::IXMLReader* xml){
-
-}
-
-
 
 Sector::~Sector() {
 	// TODO Auto-generated destructor stub
