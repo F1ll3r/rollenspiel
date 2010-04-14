@@ -13,6 +13,7 @@
 #include "IXMLReader.h"
 #include "irrArray.h"
 #include "irrString.h"
+#include "ITriangleSelector.h"
 
 class Sector {
 	irr::core::array<Object*> 	objects;
