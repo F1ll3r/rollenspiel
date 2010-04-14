@@ -26,12 +26,12 @@ Map::~Map() {
 
 void Map::load(irr::c8* file){
 	irr::io::IXMLReader* xml = device->getFileSystem()->createXMLReader(file);
-#ifdef __debug__
+
 	if(!xml){
 		printf("file not found");
-		assert(0);
+		My_Assert(0);
 	}
-#endif
+
 	while(xml->read()){
 		switch (xml->getNodeType()) {
 			case irr::io::EXN_ELEMENT:

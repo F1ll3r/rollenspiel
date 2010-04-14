@@ -21,7 +21,7 @@ public:
 	TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml);
 	virtual ~TerrainMapObject();
 
-	void parseGrass(irr::io::IXMLReader* xml);
+	void parsePassable_Surface(irr::io::IXMLReader* xml);
 
 
 	virtual void remove();

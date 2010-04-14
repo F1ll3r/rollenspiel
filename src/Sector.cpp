@@ -25,16 +25,18 @@ Sector::Sector(Game* game,irr::io::IXMLReader* xml) {
 					if(wcscmp(xml->getNodeName(),L"Terrain") == 0){
 						terrain = new TerrainMapObject(this,game,xml);
 					}else if(wcscmp(xml->getNodeName(),L"Event") == 0){
-						parseEvent(xml);
-					}else if(wcscmp(xml->getNodeName(),L"Object") == 0){
-						parseObject(xml);
+
+					}else if(wcscmp(xml->getNodeName(),L"MapObject") == 0){
+
 					}else if(wcscmp(xml->getNodeName(),L"NPC") == 0){
-						parseNPC(xml);
+
+					}else if(wcscmp(xml->getNodeName(),L"Dealer") == 0){
+
+					}else if(wcscmp(xml->getNodeName(),L"Player") == 0){
+
 					}else{
-#ifdef __debug__
 						wprintf(L"Corrupt XML-file. Unexpected Node <%s>", xml->getNodeName());
-						assert(0);
-#endif
+						My_Assert(0);
 					}
 				break;
 			case  irr::io::EXN_ELEMENT_END:

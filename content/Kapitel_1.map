@@ -11,7 +11,7 @@
 			<Texture Value="content/Kapitel_1/terrain-texture.jpg" />
 			<Detailtexture Value="content/Kapitel_1/detailmap3.jpg" />
 
-			<Grass density="800">
+			<Grass Density="800">
 				<Grassmap Value="content/Kapitel_1/terrain-grassmap.png" />
 				<Texture Value="content/Kapitel_1/grass.png" />
 				<Wind Strength="30" Regularity="3" />
@@ -25,11 +25,12 @@
 			<!--
 			Trigger:
 				type:
+                    -Time
 					-Enter:     actor enters a polygon
 					-Leave:       "   leaves "    "
-					-attack:    somone attacks actor
-					-talk:	    player says sothing to actor
-					-dies:      character actor dies
+					-Attack:    somone attacks actor
+					-Talk:	    player says sothing to actor
+					-Dies:      character actor dies
 					-Meta: 	    this Trigger is supposed to be triggert by other Events
                                 and can be use to implement boolen algebra with events
 				actor:
@@ -40,12 +41,12 @@
 			Effect:
 				type:
 					-SectorChange:
-					-damage:
-					-heal:
-					-trigger:       triggers metatrigger
-					-move:
-					-rotate:
-					-talk:
+					-Damage:
+					-Heal:
+					-Trigger:       triggers metatrigger
+					-Move:
+					-Rotate:
+					-Talk:
 
 
 			-->
@@ -58,13 +59,13 @@
 			</Effect>
 		</Event>
 
-		<Object Type="MapObject" ID="">
+		<MapObject>
 			<Mesh Value="" />
 			<Texture  Value="" />
 			<Position X="" Y="" Z="" />
 			<Rotation X="" Y="" Z="" />
 			<Scale X="1" Y="1" Z="1" />
-		</Object>
+		</MapObject>
 
 
         <!--

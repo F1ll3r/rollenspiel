@@ -3,18 +3,23 @@
 #define __GLOBAL_SETTINGS_H_INCLUDED__
 
 
-#if( !defined __debug__ && !defined __release__)
+#if( !defined __debug__ && !defined __release__ )
     #error "please define __debug__ or __release__"
 #endif
 
-#if( defined __debug__ && defined __release__)
+#if( defined __debug__ && defined __release__ )
     #error "please define __debug__ or __release__ but not both"
 #endif
 
-#ifdef __debug__
+#if( defined __debug__ && defined __linux )
+	#define My_Assert(x) if(!(x)) asm("int $3")
 	#include <stdio.h>
+#else
+	#include <stdio.h>
+	#define My_Assert(x) assert(x)
 	#include <assert.h>
 #endif
+
 
 
 class Game;

@@ -12,8 +12,8 @@
 #include "irrArray.h"
 
 class GameEventManager {
-	Game* game;
-	Drawer* drawer;
+	Game* 		game;
+	Drawer* 	drawer;
 public:
 	GameEventManager(Game* game);
 	virtual ~GameEventManager();

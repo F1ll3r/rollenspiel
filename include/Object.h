@@ -29,6 +29,7 @@ protected:
 public:
 	Object(Sector* s,Game* game);
 	virtual ~Object();
+
 	virtual irr::core::vector3df getPosition();
 	virtual irr::core::vector3df getAbsolutePosition();
 
@@ -39,12 +40,13 @@ public:
 
 	virtual void setRotation(irr::core::vector3df);
 
+	//! removes Object from Game and irrlicht
 	virtual void remove() = 0;
 
-
+	//! asks Object to handle the GameEvent
 	virtual void handleEvent(GameEvent* e) {}
 
-
+	//!returns irrlicht scenenode
 	virtual irr::scene::ISceneNode* getNode() = 0;
 
 	//! returns the ID used for GameEventMgmt this may or may not
