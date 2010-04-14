@@ -50,7 +50,7 @@ Settings* readSettings(){
 	//TODO: Getting settings from file
 	Settings* s = new Settings();
 	s->anti_aliasing = 8;
-	s->deth = 32;
+	s->depth = 32;
 	s->filtering = irr::video::EMF_ANISOTROPIC_FILTER;
 	s->fullscreen = false;
 	s->grass = 100;
@@ -74,7 +74,7 @@ void parseArgs(Settings* s,int argc, const char* argv[]){
 			s->resolution.Height = atoi(argv[i]+2);
 			break;
 		case 'd':
-			s->deth = atoi(argv[i]+2);
+			s->depth = atoi(argv[i]+2);
 			break;
 		case 'f':
 			s->fullscreen = true;
@@ -104,7 +104,7 @@ void Game::init( int argc, const char* argv[] ){
 
 	device = createDevice  (video::EDT_OPENGL,
 							settings->resolution,
-							settings->deth,
+							settings->depth,
 							settings->fullscreen,
 							false,
 							settings->vsync);

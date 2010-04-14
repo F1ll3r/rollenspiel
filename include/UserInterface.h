@@ -21,7 +21,16 @@ enum UI_Button_Main{
 
 enum UI_GUI_Element_Options{
 	UI_GUI_Element_Apply =200,
-	UI_GUI_Element_Close
+	UI_GUI_Element_Close,
+	UI_GUI_Element_Save,
+	UI_GUI_Element_Resolution,
+	UI_GUI_Element_Depth,
+	UI_GUI_Element_Fullscreen,
+	UI_GUI_Element_Vsync,
+	UI_GUI_Element_Grass,
+	UI_GUI_Element_Grass_Text,
+	UI_GUI_Element_Filtering,
+	UI_GUI_Element_Anti_Aliasing
 
 };
 

@@ -46,6 +46,15 @@ void UserInterface::init(){
 	options->getCloseButton()->remove();
 
 	optionsElements.push_back(
+			guienv->addScrollBar(true,irr::core::rect<irr::s32>(300,50,500,70),
+					options, UI_GUI_Element_Grass));
+	optionsElements.push_back(
+				guienv->addStaticText(L"000",irr::core::rect<irr::s32>(300,30,500,50),
+						false,false,options,UI_GUI_Element_Grass_Text));
+	optionsElements.push_back(
+			guienv->addButton  (irr::core::rect<irr::s32>(290,320,400,340),
+					options,UI_GUI_Element_Resolution,L"Test",L" changes"));
+	optionsElements.push_back(
 			guienv->addButton  (irr::core::rect<irr::s32>(290,320,380,340),
 					options,UI_GUI_Element_Apply,L"Apply",L"Apply changes"));
 
@@ -99,7 +108,25 @@ bool UserInterface::OnEvent(const irr::SEvent& event){
 				break;
 
 			case UI_GUI_Element_Apply:
+				break;
+			case UI_GUI_Element_Resolution:
+				break;
+			case UI_GUI_Element_Depth:
+				break;
+			case UI_GUI_Element_Fullscreen:
+				break;
+			case UI_GUI_Element_Vsync:
+				break;
+			case UI_GUI_Element_Grass:
+				break;
+			case UI_GUI_Element_Filtering:
+				break;
+			case UI_GUI_Element_Anti_Aliasing:
+				break;
+			case UI_GUI_Element_Save:
 				// TODO: save
+				break;
+
 			case UI_GUI_Element_Close:
 				drawOptions = false;
 				mainButtons[UI_Button_Main_New	  - 100]->setEnabled(true);
@@ -114,6 +141,18 @@ bool UserInterface::OnEvent(const irr::SEvent& event){
 
 		}
 
+	}
+	if(event.GUIEvent.EventType == irr::gui::EGET_SCROLL_BAR_CHANGED){
+		switch (event.GUIEvent.Caller->getID()) {
+		case UI_GUI_Element_Grass:
+			//irr::gui::* b = options->getElementFromId(UI_GUI_Element_Grass);
+			//irr::gui::IGUIElement* a = options->getElementFromId(UI_GUI_Element_Grass_Text);
+			//a->setText(b->getPos());
+			//optionsElements.
+			//Change Text with nummber
+			break;
+
+		}
 	}
 
 	return false;

@@ -26,7 +26,7 @@ struct Settings{
 	irr::core::dimension2du		resolution;
 
 	//! 16 or 32
-	irr::u32					deth;
+	irr::u32					depth;
 	bool						fullscreen;
 	bool						vsync;
 
