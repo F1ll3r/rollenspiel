@@ -32,6 +32,9 @@ bool MasterEventReceiver::OnEvent(const irr::SEvent& event){
 	if(event.EventType == irr::EET_GUI_EVENT){
 		if(ui) ui->OnEvent(event);
 	}
+	if(event.EventType == irr::EET_MOUSE_INPUT_EVENT){
+		if(ui) cam->OnEvent(event);
+	}
 	return false;
 }
 
