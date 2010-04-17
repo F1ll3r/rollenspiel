@@ -19,3 +19,11 @@ MapObject::MapObject(Sector* s,Game* game):Object(s,game) {
 MapObject::~MapObject() {
 	// TODO Auto-generated destructor stub
 }
+
+irr::u32 MapObject::getID(){
+
+}
+
+void MapObject::remove(){
+
+}

@@ -1,4 +1,4 @@
-µ/*
+/*
  * MapObject.h
  *
  *  Created on: 03.04.2010
@@ -23,6 +23,9 @@ public:
 	virtual irr::scene::ISceneNode* getNode(){
 		return node;
 	}
+
+	irr::u32 getID();
+	void remove();
 
 };
 
