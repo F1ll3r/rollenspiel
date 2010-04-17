@@ -12,6 +12,7 @@
 #include "irrString.h"
 #include "TerrainMapObject.h"
 #include "Game.h"
+#include "GameEventManager.h"
 
 Sector::Sector(Game* game,irr::io::IXMLReader* xml) {
 	terrain = NULL;
@@ -25,9 +26,9 @@ Sector::Sector(Game* game,irr::io::IXMLReader* xml) {
 					if(wcscmp(xml->getNodeName(),L"Terrain") == 0){
 						terrain = new TerrainMapObject(this,game,xml);
 					}else if(wcscmp(xml->getNodeName(),L"Event") == 0){
-
+						game->getGameEventManager()->parseEvent(xml);
 					}else if(wcscmp(xml->getNodeName(),L"MapObject") == 0){
-
+						objects.push_back( new MapObject(this,game,xml));
 					}else if(wcscmp(xml->getNodeName(),L"NPC") == 0){
 
 					}else if(wcscmp(xml->getNodeName(),L"Dealer") == 0){

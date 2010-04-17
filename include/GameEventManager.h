@@ -10,6 +10,7 @@
 
 #include "GlobalSettings.h"
 #include "irrArray.h"
+#include "IXMLReader.h"
 
 class GameEventManager {
 	Game* 		game;
@@ -21,6 +22,8 @@ public:
 	void triggerRunEvent();
 	void run();
 	void triggerDrawEvent();
+
+	void parseEvent(irr::io::IXMLReader* xml);
 
 	void handleTrigger(GameTrigger* t);
 

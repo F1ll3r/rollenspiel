@@ -31,6 +31,24 @@ void GameEventManager::triggerDrawEvent(){
 
 }
 
+void GameEventManager::parseEvent(irr::io::IXMLReader* xml){
+
+	while(xml->read()){
+		switch (xml->getNodeType()) {
+			case irr::io::EXN_ELEMENT:
+
+				break;
+			case  irr::io::EXN_ELEMENT_END:
+				if(wcscmp(xml->getNodeName(),L"Event") == 0)
+					return;
+				break;
+			default:
+				break;
+		}
+
+	}
+}
+
 void GameEventManager::handleTrigger(GameTrigger* t){
 
 }

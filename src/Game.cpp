@@ -223,6 +223,7 @@ Settings Game::getSettings(){
 
 
 void Game::setSettings(Settings s){
+	My_Assert(context == Context_Main_Menu);
 	// TODO: do real settings setting xD
 	*settings = s;
 }
