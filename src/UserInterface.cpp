@@ -162,44 +162,14 @@ bool UserInterface::OnEvent(const irr::SEvent& event){
 			mainButtons[UI_Button_Main_Exit	  - 100]->setEnabled(false);
 			break;
 
+		case UI_GUI_Element_Apply:{
+			Settings s;
 
-		case UI_GUI_Element_Resolution:
-			break;
-		case UI_GUI_Element_Depth:
-			break;
-		case UI_GUI_Element_Fullscreen:
-			break;
-		case UI_GUI_Element_Vsync:
-			break;
-		case UI_GUI_Element_Grass:
-			break;
-		case UI_GUI_Element_Filtering:
-			break;
-		case UI_GUI_Element_Anti_Aliasing:
-			break;
-		case UI_GUI_Element_Save:
-			// TODO: save
-			break;
-		case UI_GUI_Element_Apply:
-			/*Settings s;
-
-				irr::gui::IGUIElement *a = options->getElementFromId(UI_GUI_Element_Resolution);
-				if(dynamic_cast<irr::gui::IGUIComboBox*>(a)){
-					irr::gui::IGUIComboBox* b = dynamic_cast<irr::gui::IGUIComboBox*>(a);
-					switch(b->getSelected()){
-						case 0: //1024 x 768
-							//s.resolution = irr::core::dimension2du;
-
-							break;
-						default:
-
-							break;
-					}
-				}
-				game->setSettings(s);
-			 */
+			//s.resolution = this->getSelectedResolution(options);
+			game->setSettings(s);
 
 
+		}
 		case UI_GUI_Element_Close:
 			drawOptions = false;
 			mainButtons[UI_Button_Main_New	  - 100]->setEnabled(true);
@@ -233,6 +203,53 @@ bool UserInterface::OnEvent(const irr::SEvent& event){
 	}
 
 	return false;
+}
+
+irr::core::dimension2du getSelectedResolution(irr::gui::IGUIWindow* options){
+	irr::core::dimension2du s;
+	if(options->getElementFromId(UI_GUI_Element_Resolution))
+	{
+		irr::gui::IGUIElement *a = options->getElementFromId(UI_GUI_Element_Resolution);
+		if(dynamic_cast<irr::gui::IGUIComboBox*>(a)){
+			irr::gui::IGUIComboBox* b = dynamic_cast<irr::gui::IGUIComboBox*>(a);
+
+			if(wcscmp(b->getItem(b->getSelected()),L"1024 x 768")== 0)
+			{
+				s.set(1024,768);
+			}
+			else if(wcscmp(b->getItem(b->getSelected()),L"1152 x 864")== 0){
+				s.set(1152,864);
+			}
+			else if(wcscmp(b->getItem(b->getSelected()),L"1280 x 720")== 0){
+				s.set(1280,720);
+			}
+			else if(wcscmp(b->getItem(b->getSelected()),L"1280 x 800")== 0){
+				s.set(1280,800);
+			}
+			else if(wcscmp(b->getItem(b->getSelected()),L"1440 x 900")== 0){
+				s.set(1440,900);
+			}
+			else if(wcscmp(b->getItem(b->getSelected()),L"1600 x 900")== 0){
+				s.set(1600,900);
+			}
+			else if(wcscmp(b->getItem(b->getSelected()),L"1280 x 960")== 0){
+				s.set(1280,960);
+			}
+			else if(wcscmp(b->getItem(b->getSelected()),L"1600 x 1200")== 0){
+				s.set(1600,1200);
+			}
+			else if(wcscmp(b->getItem(b->getSelected()),L"1600 x 900")== 0){
+				s.set(1600,900);
+			}
+			else if(wcscmp(b->getItem(b->getSelected()),L"1920 x 1080")== 0){
+				s.set(1920,1080);
+			}
+			else{
+				printf("Cannot read usersettings (Resolution)");
+			}
+		}
+	}
+	return s;
 }
 
 

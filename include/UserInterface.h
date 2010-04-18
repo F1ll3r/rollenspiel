@@ -53,6 +53,8 @@ class UserInterface : public irr::IEventReceiver{
 	irr::gui::IGUIWindow* 		options;
 
 	bool						drawOptions;
+private:
+	irr::core::dimension2du getSelectedResolution(irr::gui::IGUIWindow* options);
 
 public:
 	UserInterface(Game* game);
