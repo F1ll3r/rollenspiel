@@ -54,11 +54,11 @@ Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 				break;
 			case  irr::io::EXN_ELEMENT_END:
 				if(wcscmp(xml->getNodeName(),L"Player") == 0){
-					wprintf(L"%s",mesh.c_str());
 					irr::scene::IAnimatedMesh* m =
 							device->getSceneManager()->getMesh(mesh.c_str());
 					My_Assert(m);
-					node = device->getSceneManager()->addAnimatedMeshSceneNode(m,0,1,pos,rot,scale);
+					node = device->getSceneManager()
+							->addAnimatedMeshSceneNode(m,0,1,pos,rot,scale);
 
 					My_Assert(node);
 					return;
