@@ -28,9 +28,20 @@ void CameraHandler::init(){
 	this->device = game->getIrrlichtDevice();
 	irrcam = device->getSceneManager()->addCameraSceneNode();
 	irrcam->setFarValue(12000);
+	lasttime = device->getTimer()->getTime();
 }
 
 void CameraHandler::run(){
+	irr::core::position2d<irr::s32> curpos = device->getCursorControl()->getPosition();
+
+	irr::f32 timedelta = lasttime - device->getTimer()->getTime();
+
+	if(curpos.X < 1){
+		alpha -= timedelta/10;
+	}else if(curpos.X > (irr::s32) device->getVideoDriver()->getScreenSize().Width - 1){
+		alpha += timedelta/10;
+	}
+
 	irr::core::vector3df	absolutcamvec;
 	absolutcamvec.X = distence * sinf(alpha);
 	absolutcamvec.Y = hight;

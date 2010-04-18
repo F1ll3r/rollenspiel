@@ -5,7 +5,11 @@
 
         the name is used for displaying ingame
     -->
+
 	<Sector ID="1" Name="Taverne">
+
+        <Loading_Screen points="0" text="Erzeuge Terrain" />
+
 		<Terrain ScaleX="40" ScaleY="2" ScaleZ="40" Smoothing="25">
 			<Hightmap Value="content/Kapitel_1/terrain-heightmap.bmp" />
 			<Texture Value="content/Kapitel_1/terrain-texture.jpg" />
@@ -50,6 +54,8 @@
 
 
 			-->
+        <Loading_Screen points="10" text="Parse Events" />
+
         <Event>
 			<Trigger Type="Enter" Actor="Player">
 				<Box X1="" Y1="" Z1="" X2="" Y2="" Z2="" />
@@ -58,6 +64,8 @@
 				<EntyPoint SectorID="" X="" Y="" Z="" />
 			</Effect>
 		</Event>
+
+		<Loading_Screen points="0.5" text="Lade Objekte" />
 
 		<MapObject>
 			<Mesh Value="" />
@@ -75,6 +83,8 @@
                 2 standartEnemy
         -->
 
+
+        <Loading_Screen points="10.5" text="Erzeuge NPC" />
 
 		<NPC Type="Monster" Name="Wilder Hund">
 			<Mesh Value="" />
@@ -124,6 +134,8 @@
                 </Talk>
             </AI>
 		</Dealer>
+
+		<Loading_Screen points="10.5" text="Erzeuge Spieler" />
 
 		<Player>
             <Health Max="100" Current="100">

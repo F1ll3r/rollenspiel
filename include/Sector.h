@@ -36,6 +36,8 @@ public:
 		return id;
 	}
 
+
+
 	irr::scene::ITriangleSelector* getTerrainTriangleSelector();
 	irr::scene::ITriangleSelector* getCollisionTriangleSelector();
 

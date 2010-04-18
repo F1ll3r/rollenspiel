@@ -185,12 +185,12 @@ int Game::run(){
 
 void Game::startGame(){
 	drawer->resetProcess();
+	drawer->processLoadingScreen(0,L"");
 	drawer->drawLoadingScreen();
 	map = new Map(this);
 	importer->load("content/Kapitel_1.map");
 	player = map->getPlayer();
 	switchContext(Context_Game_Run);
-
 }
 
 
