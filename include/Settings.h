@@ -33,7 +33,7 @@ struct Settings{
 	//! 0 grass off; 100 full grass
 	irr::u32					grass;
 
-	//!	BILINEAR, TRILINEAR or ANISOTROPIC
+	//! NON, BILINEAR, TRILINEAR or ANISOTROPIC
 	irr::video::E_MATERIAL_FLAG	filtering;
 	irr::u32					anti_aliasing;
 };

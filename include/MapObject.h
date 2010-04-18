@@ -24,7 +24,7 @@ public:
 		return node;
 	}
 
-	irr::u32 getID();
+	irr::s32 getID();
 	void remove();
 
 };

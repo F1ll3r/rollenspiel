@@ -1,12 +1,19 @@
 <?xml version="1.0"?>
 <Map Name="Hopetown">
     <!--
-        the ID is used for Game Events NOT the Irrlich internal scene id
+        the ID is used for Game Events and in some cases as the Irrlich internal scene id
+        Zero ( 0 ) is not a valid ID it is more the lack of one and will course the engine to dynamicly allocate one.
+        do not use ID grater than 65536
 
         the name is used for displaying ingame
     -->
+
 	<Sector ID="1" Name="Taverne">
-		<Terrain ScaleX="40" ScaleY="2" ScaleZ="40" Smoothing="25">
+
+        <Loading_Screen points="0" text="Erzeuge Terrain" />
+
+		<Terrain Smoothing="25">
+            <Scale X="40" Y="2" Z="40" />
 			<Hightmap Value="content/Kapitel_1/terrain-heightmap.bmp" />
 			<Texture Value="content/Kapitel_1/terrain-texture.jpg" />
 			<Detailtexture Value="content/Kapitel_1/detailmap3.jpg" />
@@ -50,6 +57,8 @@
 
 
 			-->
+        <Loading_Screen points="10" text="Parse Events" />
+
         <Event>
 			<Trigger Type="Enter" Actor="Player">
 				<Box X1="" Y1="" Z1="" X2="" Y2="" Z2="" />
@@ -58,6 +67,8 @@
 				<EntyPoint SectorID="" X="" Y="" Z="" />
 			</Effect>
 		</Event>
+
+		<Loading_Screen points="0.5" text="Lade Objekte" />
 
 		<MapObject>
 			<Mesh Value="" />
@@ -75,6 +86,8 @@
                 2 standartEnemy
         -->
 
+
+        <Loading_Screen points="10.5" text="Erzeuge NPC" />
 
 		<NPC Type="Monster" Name="Wilder Hund">
 			<Mesh Value="" />
@@ -125,12 +138,15 @@
             </AI>
 		</Dealer>
 
+		<Loading_Screen points="10.5" text="Erzeuge Spieler" />
+
 		<Player>
             <Health Max="100" Current="100">
-            <Mesh Value="" />
-			<Texture Value="" />
-			<Position X="" Y="" Z="" />
-			<Rotation X="" Y="" Z="" />
+            <Mesh Value="content/ninja.b3d" />
+<!--			<Texture Value="" />-->
+            <Scale X="4" Y="4" Z="4" />
+			<Position X="10" Y="100" Z="10" />
+			<Rotation X="0" Y="0" Z="0" />
             <Inventory>
                 <Weapon class="baton" name="Kurtzschwert">
                     <Image Value="" />
@@ -144,5 +160,7 @@
                 </Weapon>
             </Inventory>
 		</Player>
+
+		<Loading_Screen points="10" text="Done!" />
 	</Sector>
 </Map>

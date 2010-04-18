@@ -19,6 +19,10 @@ public:
 	virtual ~Player();
 
 	bool OnEvent(const irr::SEvent& event);
+
+	irr::s32 getID(){
+		return 1;
+	}
 };
 
 #endif /* PLAYER_H_ */

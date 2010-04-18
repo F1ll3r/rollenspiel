@@ -10,6 +10,7 @@
 #include "ICameraSceneNode.h"
 #include "irrMath.h"
 #include "irrlicht.h"
+#include "Player.h"
 
 CameraHandler::CameraHandler(Game* game) {
 	this->game 	= game;
@@ -28,15 +29,35 @@ void CameraHandler::init(){
 	this->device = game->getIrrlichtDevice();
 	irrcam = device->getSceneManager()->addCameraSceneNode();
 	irrcam->setFarValue(12000);
+	lasttime = device->getTimer()->getTime();
 }
 
 void CameraHandler::run(){
-	irr::core::vector3df	absolutcamvec;
-	absolutcamvec.X = distence * sinf(alpha);
-	absolutcamvec.Y = hight;
-	absolutcamvec.Z = distence * cosf(alpha);
+	irr::core::position2d<irr::s32> curpos = device->getCursorControl()->getPosition();
 
-	irrcam->setPosition(absolutcamvec);
+	irr::f32 timedelta = device->getTimer()->getTime() - lasttime;
+	lasttime = device->getTimer()->getTime();
+
+	if(curpos.X < 1){
+		alpha -= timedelta/1000;
+	}else if(curpos.X > (irr::s32) device->getVideoDriver()->getScreenSize().Width - 1){
+		alpha += timedelta/1000;
+	}
+
+	if(alpha > 2 * irr::core::PI){
+		alpha -= 2 * irr::core::PI;
+	}else if(alpha < 0){
+		alpha += 2 * irr::core::PI;
+	}
+
+
+
+	camvac.X = distence * sinf(alpha);
+	camvac.Y = hight;
+	camvac.Z = distence * cosf(alpha);
+
+	irrcam->setPosition(camvac + game->getPlayer()->getPosition());
+	irrcam->setTarget(game->getPlayer()->getPosition());
 
 }
 

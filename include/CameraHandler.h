@@ -19,6 +19,9 @@ class CameraHandler : public irr::IEventReceiver {
 	irr::f32						hight;
 	irr::f32						alpha;
 	irr::scene::ICameraSceneNode*	irrcam;
+
+	irr::u32						lasttime;
+
 public:
 	CameraHandler(Game* game);
 	virtual ~CameraHandler();

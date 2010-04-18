@@ -155,6 +155,7 @@ int Game::run(){
 		case Context_Game_Run:
 			gameeventmgr->triggerRunEvent();
 			gameeventmgr->run();
+			camerahandler->run();
 
 			driver->beginScene(true, true);
 			scenemgr->drawAll();
@@ -185,12 +186,12 @@ int Game::run(){
 
 void Game::startGame(){
 	drawer->resetProcess();
+	drawer->processLoadingScreen(0,L"");
 	drawer->drawLoadingScreen();
 	map = new Map(this);
 	importer->load("content/Kapitel_1.map");
 	player = map->getPlayer();
 	switchContext(Context_Game_Run);
-
 }
 
 

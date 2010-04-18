@@ -9,6 +9,7 @@
 #define OBJECT_H_
 
 #include "GlobalSettings.h"
+#include "IXMLWriter.h"
 
 
 enum Onject_Type{
@@ -40,6 +41,9 @@ public:
 
 	virtual void setRotation(irr::core::vector3df);
 
+	//! writeOut all data describing this Object into XML
+	virtual void writeOut(irr::io::IXMLWriter* xml){}
+
 	//! removes Object from Game and irrlicht
 	virtual void remove() = 0;
 
@@ -51,7 +55,7 @@ public:
 
 	//! returns the ID used for GameEventMgmt this may or may not
 	//! be equal to getNode()->getID()
-	virtual irr::u32 getID() = 0;
+	virtual irr::s32 getID() = 0;
 
 	virtual Onject_Type getType(){
 		return Type_Unknown;
