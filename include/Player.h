@@ -14,6 +14,7 @@
 
 class Player : public Character, public irr::IEventReceiver {
 public:
+	Player(Sector* s,Game* game,irr::io::IXMLReader* xml);
 	Player(Sector*s,Game* game);
 	virtual ~Player();
 

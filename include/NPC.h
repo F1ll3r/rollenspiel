@@ -13,6 +13,7 @@
 
 class NPC : public Character{
 public:
+	NPC(Sector* s,Game* game,irr::io::IXMLReader* xml);
 	NPC(Sector* s,Game* game);
 	virtual ~NPC();
 };

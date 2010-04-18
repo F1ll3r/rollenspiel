@@ -85,8 +85,8 @@
 		</NPC>
 
 		<Dealer Name="Hugos Eisenwaren">
-            <Health Max="100" Current="100">
-            <ExchangeRate Sell="1.2" Buy="0.7">
+            <Health Max="100" Current="100" />
+            <ExchangeRate Sell="1.2" Buy="0.7" />
 			<Mesh Value="" />
 			<Texture Value="" />
 			<Position X="" Y="" Z="" />
@@ -113,13 +113,13 @@
                             <Effect Type="talk">
                                 <OpenTrade />
                             </Effect>
-                        <Reply>
+                        </Reply>
                         <Reply id="2">
                             <Text>cu</Text>
                             <Effect type="talk">
                                 <Exit />
                             </Effect>
-                        <Reply>
+                        </Reply>
                     </Context>
                 </Talk>
             </AI>

@@ -13,6 +13,7 @@
 
 class Dealer : public NPC{
 public:
+	Dealer(Sector* s,Game* game,irr::io::IXMLReader* xml);
 	Dealer(Sector* s,Game* game);
 	virtual ~Dealer();
 };

@@ -60,6 +60,8 @@ TerrainMapObject::TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml
 								irr::core::vector3df(0.0f,0.0f,0.0f),
 								scale,irr::video::SColor(255,255,255,255),
 								5,irr::scene::ETPS_17,smoothing);
+
+					node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 					// TODO throw exception on error
 					if(gm)
 						gm->create(dynamic_cast<irr::scene::ITerrainSceneNode*>(node));
