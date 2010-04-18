@@ -17,14 +17,14 @@
 
 TerrainMapObject::TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml)
 										:Object(s,game) {
-	irr::s32    smoothing = 0;
+	irr::s32    			smoothing = xml->getAttributeValueAsInt(L"smoothing");
 	irr::core::vector3df 	scale;
 	irr::core::stringw		hightmap;
 	irr::core::stringw		texture;
 	irr::core::stringw		detailtexture;
 	gm = NULL;
 
-	smoothing = xml->getAttributeValueAsInt(L"smoothing");
+
 	while(xml->read()){
 		switch (xml->getNodeType()) {
 			case irr::io::EXN_ELEMENT:
@@ -60,6 +60,9 @@ TerrainMapObject::TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml
 								irr::core::vector3df(0.0f,0.0f,0.0f),
 								scale,irr::video::SColor(255,255,255,255),
 								5,irr::scene::ETPS_17,smoothing);
+					node->setMaterialTexture(0,
+							game->getVideoDriver()->getTexture());
+					node->setMaterialTexture(1, driver->getTexture(s->getDetailMap()));
 
 					node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 					// TODO throw exception on error
