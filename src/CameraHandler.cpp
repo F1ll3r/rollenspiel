@@ -63,7 +63,8 @@ void CameraHandler::run(){
 
 bool CameraHandler::OnEvent(const irr::SEvent& event){
 	if(event.EventType == irr::EET_MOUSE_INPUT_EVENT){
-
+		hight += event.MouseInput.Wheel*2;
+		distence += event.MouseInput.Wheel*2;
 	}
 	return false;
 }

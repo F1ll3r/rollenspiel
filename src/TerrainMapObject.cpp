@@ -60,10 +60,13 @@ TerrainMapObject::TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml
 								irr::core::vector3df(0.0f,0.0f,0.0f),
 								scale,irr::video::SColor(255,255,255,255),
 								5,irr::scene::ETPS_17,smoothing);
+
 					node->setMaterialTexture(0,
 							game->getVideoDriver()->getTexture(texture));
 					node->setMaterialTexture(1,
 							game->getVideoDriver()->getTexture(detailtexture));
+
+					((irr::scene::ITerrainSceneNode*) node)->scaleTexture(1.0f, 20.0f);
 
 					node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 					// TODO throw exception on error
