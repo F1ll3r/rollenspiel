@@ -35,13 +35,21 @@ void CameraHandler::init(){
 void CameraHandler::run(){
 	irr::core::position2d<irr::s32> curpos = device->getCursorControl()->getPosition();
 
-	irr::f32 timedelta = lasttime - device->getTimer()->getTime();
+	irr::f32 timedelta = device->getTimer()->getTime() - lasttime;
+	lasttime = device->getTimer()->getTime();
 
 	if(curpos.X < 1){
-		alpha -= timedelta/10;
+		alpha -= timedelta/1000;
 	}else if(curpos.X > (irr::s32) device->getVideoDriver()->getScreenSize().Width - 1){
-		alpha += timedelta/10;
+		alpha += timedelta/1000;
 	}
+
+	if(alpha > 2 * irr::core::PI){
+		alpha -= 2 * irr::core::PI;
+	}else if(alpha < 0){
+		alpha += 2 * irr::core::PI;
+	}
+
 
 
 	camvac.X = distence * sinf(alpha);
@@ -49,6 +57,7 @@ void CameraHandler::run(){
 	camvac.Z = distence * cosf(alpha);
 
 	irrcam->setPosition(camvac + game->getPlayer()->getPosition());
+	irrcam->setTarget(game->getPlayer()->getPosition());
 
 }
 

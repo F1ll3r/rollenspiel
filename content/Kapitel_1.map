@@ -144,6 +144,7 @@
             <Health Max="100" Current="100">
             <Mesh Value="content/ninja.b3d" />
 <!--			<Texture Value="" />-->
+            <Scale X="4" Y="4" Z="4" />
 			<Position X="10" Y="100" Z="10" />
 			<Rotation X="0" Y="0" Z="0" />
             <Inventory>

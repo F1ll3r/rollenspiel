@@ -11,8 +11,8 @@
 #include "Game.h"
 
 Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
-	irr::core::stringc		mesh;
-	irr::core::stringc		texture;
+	irr::core::stringw		mesh;
+	irr::core::stringw		texture;
 	irr::core::vector3df	pos;
 	irr::core::vector3df	rot;
 	irr::core::vector3df	scale;
@@ -22,10 +22,10 @@ Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 		switch (xml->getNodeType()) {
 			case irr::io::EXN_ELEMENT:
 				if(wcscmp(xml->getNodeName(),L"Mesh") == 0){
-					mesh = xml->getAttributeValue(L"value");
+					mesh = xml->getAttributeValue(L"Value");
 
 				}else if(wcscmp(xml->getNodeName(),L"Texture") == 0){
-					texture = xml->getAttributeValue(L"value");
+					texture = xml->getAttributeValue(L"Value");
 
 				}else if(wcscmp(xml->getNodeName(),L"Position") == 0){
 					pos.X = xml->getAttributeValueAsFloat(L"X");
@@ -54,6 +54,7 @@ Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 				break;
 			case  irr::io::EXN_ELEMENT_END:
 				if(wcscmp(xml->getNodeName(),L"Player") == 0){
+					wprintf(L"%s",mesh.c_str());
 					irr::scene::IAnimatedMesh* m =
 							device->getSceneManager()->getMesh(mesh.c_str());
 					My_Assert(m);
