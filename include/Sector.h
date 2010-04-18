@@ -16,15 +16,18 @@
 #include "ITriangleSelector.h"
 
 class Sector {
-	irr::core::array<Object*> 	objects;
 
-	TerrainMapObject * 			terrain;
+	TerrainMapObject * 				terrain;
 
-	irr::u32					id;
-	irr::core::stringw			name;
+	irr::u32						id;
+	irr::core::stringw				name;
 
-	irr::IrrlichtDevice* 		device;
-	GameEventManager* 			gvm;
+	irr::IrrlichtDevice* 			device;
+	GameEventManager* 				gvm;
+	Map*							map;
+
+	irr::scene::ITriangleSelector*	terraintriangles;
+	irr::scene::ITriangleSelector*	collisiontriangles;
 
 
 public:

@@ -11,6 +11,7 @@
 #include "IFileSystem.h"
 #include "Sector.h"
 #include "Game.h"
+#include "Player.h"
 
 Map::Map(Game* game) {
 	this->game = game;
@@ -52,6 +53,8 @@ Sector* Map::getSector(irr::u32 id){
 }
 
 Player* Map::getPlayer(){
-
+	Player* p = dynamic_cast<Player*>(getObject(1));
+	My_Assert(p);
+	return p;
 }
 

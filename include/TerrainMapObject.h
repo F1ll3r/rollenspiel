@@ -14,14 +14,18 @@
 #include "ITerrainSceneNode.h"
 #include "CGrassPatchSceneNode.h"
 
-class TerrainMapObject: public MapObject {
-	GrassManager * gm;
-
+class TerrainMapObject: public Object {
+	GrassManager * 					gm;
+	irr::scene::ISceneNode*			node;
 public:
 	TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml);
 	virtual ~TerrainMapObject();
 
 	void parsePassable_Surface(irr::io::IXMLReader* xml);
+
+	virtual irr::scene::ISceneNode* getNode(){
+			return node;
+		}
 
 
 	virtual void remove();
@@ -29,7 +33,7 @@ public:
 
 	//! returns the ID used for GameEventMgmt this may or may not
 	//! be equal to getNode()->getID()
-	virtual irr::u32 getID();
+	virtual irr::s32 getID();
 };
 
 #endif /* TERRAINMAPOBJECT_H_ */

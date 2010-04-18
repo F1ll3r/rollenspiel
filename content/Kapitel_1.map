@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <Map Name="Hopetown">
     <!--
-        the ID is used for Game Events NOT the Irrlich internal scene id
+        the ID is used for Game Events and in some cases as the Irrlich internal scene id
+        Zero ( 0 ) is not a valid ID it is more the lack of one and will course the engine to dynamicly allocate one.
+        do not use ID grater than 65536
 
         the name is used for displaying ingame
     -->
@@ -10,7 +12,8 @@
 
         <Loading_Screen points="0" text="Erzeuge Terrain" />
 
-		<Terrain ScaleX="40" ScaleY="2" ScaleZ="40" Smoothing="25">
+		<Terrain Smoothing="25">
+            <Scale X="40" Y="2" Z="40" />
 			<Hightmap Value="content/Kapitel_1/terrain-heightmap.bmp" />
 			<Texture Value="content/Kapitel_1/terrain-texture.jpg" />
 			<Detailtexture Value="content/Kapitel_1/detailmap3.jpg" />
@@ -139,10 +142,10 @@
 
 		<Player>
             <Health Max="100" Current="100">
-            <Mesh Value="" />
-			<Texture Value="" />
-			<Position X="" Y="" Z="" />
-			<Rotation X="" Y="" Z="" />
+            <Mesh Value="content/ninja.b3d" />
+<!--			<Texture Value="" />-->
+			<Position X="10" Y="100" Z="10" />
+			<Rotation X="0" Y="0" Z="0" />
             <Inventory>
                 <Weapon class="baton" name="Kurtzschwert">
                     <Image Value="" />
@@ -156,5 +159,7 @@
                 </Weapon>
             </Inventory>
 		</Player>
+
+		<Loading_Screen points="10" text="Done!" />
 	</Sector>
 </Map>

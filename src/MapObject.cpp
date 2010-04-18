@@ -45,7 +45,7 @@ MapObject::~MapObject() {
 	// TODO Auto-generated destructor stub
 }
 
-irr::u32 MapObject::getID(){
+irr::s32 MapObject::getID(){
 
 }
 

@@ -16,18 +16,13 @@
 
 
 TerrainMapObject::TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml)
-										:MapObject(s,game) {
+										:Object(s,game) {
 	irr::s32    smoothing = 0;
 	irr::core::vector3df 	scale;
 	irr::core::stringw		hightmap;
 	irr::core::stringw		texture;
 	irr::core::stringw		detailtexture;
 	gm = NULL;
-
-	scale = irr::core::vector3df(	xml->getAttributeValueAsFloat(L"scaleX"),
-									xml->getAttributeValueAsFloat(L"scaleX"),
-									xml->getAttributeValueAsFloat(L"scaleX")
-								);
 
 	smoothing = xml->getAttributeValueAsInt(L"smoothing");
 	while(xml->read()){
@@ -38,6 +33,11 @@ TerrainMapObject::TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml
 
 					}else if(wcscmp(xml->getNodeName(),L"Texture") == 0){
 						texture = xml->getAttributeValue(L"Value");
+
+					}else if(wcscmp(xml->getNodeName(),L"Scale") == 0){
+						scale.X = xml->getAttributeValueAsFloat(L"X");
+						scale.Y = xml->getAttributeValueAsFloat(L"Y");
+						scale.Z = xml->getAttributeValueAsFloat(L"Z");
 
 					}else if(wcscmp(xml->getNodeName(),L"Detailtexture") == 0){
 						detailtexture = xml->getAttributeValue(L"Value");
@@ -113,7 +113,7 @@ void TerrainMapObject::remove(){
 
 //! returns the ID used for GameEventMgmt this may or may not
 //! be equal to getNode()->getID()
-irr::u32 TerrainMapObject::getID(){
+irr::s32 TerrainMapObject::getID(){
 	//TODO: write real code
-	return 0xffeeff;
+	return 0;
 }

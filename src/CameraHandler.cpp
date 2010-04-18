@@ -10,6 +10,7 @@
 #include "ICameraSceneNode.h"
 #include "irrMath.h"
 #include "irrlicht.h"
+#include "Player.h"
 
 CameraHandler::CameraHandler(Game* game) {
 	this->game 	= game;
@@ -42,12 +43,12 @@ void CameraHandler::run(){
 		alpha += timedelta/10;
 	}
 
-	irr::core::vector3df	absolutcamvec;
-	absolutcamvec.X = distence * sinf(alpha);
-	absolutcamvec.Y = hight;
-	absolutcamvec.Z = distence * cosf(alpha);
 
-	irrcam->setPosition(absolutcamvec);
+	camvac.X = distence * sinf(alpha);
+	camvac.Y = hight;
+	camvac.Z = distence * cosf(alpha);
+
+	irrcam->setPosition(camvac + game->getPlayer()->getPosition());
 
 }
 

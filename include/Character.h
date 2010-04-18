@@ -15,7 +15,12 @@
 #include "irrString.h"
 
 class Character : public Object{
-	Game* game;
+protected:
+	Game*							game;
+	irr::scene::ISceneNode*			node;
+
+	void parsInventory(irr::io::IXMLReader* xml);
+
 public:
 	Character(Sector* s,Game* game);
 	virtual ~Character();
@@ -27,7 +32,7 @@ public:
 
 	//! returns the ID used for GameEventMgmt this may or may not
 	//! be equal to getNode()->getID()
-	virtual irr::u32 getID();
+	virtual irr::s32 getID();
 };
 
 #endif /* CHARACTER_H_ */
