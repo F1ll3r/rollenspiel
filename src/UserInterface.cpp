@@ -73,6 +73,22 @@ void UserInterface::init(){
 			else My_Assert(0);
 
 	optionsElements.push_back(
+			guienv->addCheckBox(false,irr::core::rect<irr::s32>(20,280,40,300),
+						options,UI_GUI_Element_Fullscreen,L"Fullscreen"));
+	optionsElements.push_back(
+				guienv->addCheckBox(false,irr::core::rect<irr::s32>(20,320,40,340),
+						options,UI_GUI_Element_Vsync,L"Vsync"));
+
+	irr::gui::IGUIComboBox *combotmp = guienv->addComboBox(irr::core::rect<irr::s32>(250,4,350,23),
+						options, UI_GUI_Element_Filtering);
+	optionsElements.push_back(combotmp);
+				combotmp->addItem(L"No filtering");
+				combotmp->addItem(L"Bilinear");
+				combotmp->addItem(L"Trilinear");
+				combotmp->addItem(L"Anisotropic");
+				combotmp->addItem(L"Isotropic");
+
+	optionsElements.push_back(
 			guienv->addButton  (irr::core::rect<irr::s32>(290,320,380,340),
 					options,UI_GUI_Element_Apply,L"Apply",L"Apply changes"));
 
