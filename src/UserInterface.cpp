@@ -76,20 +76,20 @@ void UserInterface::init(){
 			guienv->addCheckBox(false,irr::core::rect<irr::s32>(20,240,40,260),
 					options,UI_GUI_Element_Depth,L"Depth"));
 	optionsElements.push_back(
-				guienv->addStaticText(L"16 Bit Mode (Standard 32)",irr::core::rect<irr::s32>(40,240,200,260),
-						false,false,options,UI_GUI_Element_Depth_Text));
+			guienv->addStaticText(L"16 Bit Mode (Standard 32)",irr::core::rect<irr::s32>(40,240,200,260),
+					false,false,options,UI_GUI_Element_Depth_Text));
 	optionsElements.push_back(
 			guienv->addCheckBox(false,irr::core::rect<irr::s32>(20,280,40,300),
 					options,UI_GUI_Element_Fullscreen,L"Fullscreen"));
 	optionsElements.push_back(
-				guienv->addStaticText(L"Fullscreen",irr::core::rect<irr::s32>(40,280,200,300),
-						false,false,options,UI_GUI_Element_Fullscreen_Text));
+			guienv->addStaticText(L"Fullscreen",irr::core::rect<irr::s32>(40,280,200,300),
+					false,false,options,UI_GUI_Element_Fullscreen_Text));
 	optionsElements.push_back(
 			guienv->addCheckBox(false,irr::core::rect<irr::s32>(20,320,40,340),
 					options,UI_GUI_Element_Vsync,L"Vsync"));
 	optionsElements.push_back(
-				guienv->addStaticText(L"Vsync",irr::core::rect<irr::s32>(40,320,200,340),
-						false,false,options,UI_GUI_Element_Vsync_Text));
+			guienv->addStaticText(L"Vsync",irr::core::rect<irr::s32>(40,320,200,340),
+					false,false,options,UI_GUI_Element_Vsync_Text));
 
 	irr::gui::IGUIComboBox *combotmp = guienv->addComboBox(irr::core::rect<irr::s32>(20,60,120,80),
 			options, UI_GUI_Element_Filtering);
