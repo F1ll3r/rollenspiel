@@ -16,7 +16,7 @@
             <Scale X="40" Y="2" Z="40" />
 			<Hightmap Value="content/Kapitel_1/terrain-heightmap.bmp" />
 			<Texture Value="content/Kapitel_1/terrain-texture.jpg" />
-			<Detailtexture Value="content/Kapitel_1/detailmap3.jpg" />
+			<Detailtexture Value="content/Kapitel_1/detailtex.jpg" />
 
 			<Grass Density="800">
 				<Grassmap Value="content/Kapitel_1/terrain-grassmap.png" />
@@ -71,14 +71,14 @@
 		<Loading_Screen points="0.5" text="Lade Objekte" />
 
 		<MapObject>
-			<Mesh Value="a3dtree.3ds" />
+			<Mesh Value="content/a3dtree.3ds" />
 			<Position X="1000" Y="0" Z="1000" />
 			<Rotation X="0" Y="0" Z="0" />
 			<Scale X="1" Y="1" Z="1" />
 		</MapObject>
 
         <MapObject>
-			<Mesh Value="a3dtree.3ds" />
+			<Mesh Value="content/a3dtree.3ds" />
 			<Position X="2000" Y="100" Z="2000" />
 			<Rotation X="" Y="" Z="" />
 			<Scale X="1" Y="1" Z="1" />

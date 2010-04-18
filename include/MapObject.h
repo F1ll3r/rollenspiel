@@ -14,14 +14,14 @@
 
 class MapObject : public Object{
 protected:
-	irr::scene::ISceneNode*			node;
+	irr::scene::IAnimatedMeshSceneNode*			node;
 public:
 	MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml);
 	MapObject(Sector* s,Game* game);
 	virtual ~MapObject();
 
 	virtual irr::scene::ISceneNode* getNode(){
-		return node;
+		return (irr::scene::ISceneNode*)node;
 	}
 
 	irr::s32 getID();
