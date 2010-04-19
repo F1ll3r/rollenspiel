@@ -61,6 +61,7 @@ Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 							->addAnimatedMeshSceneNode(m,0,1,pos,rot,scale);
 
 					My_Assert(node);
+					node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 					return;
 				}
 				break;

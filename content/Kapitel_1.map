@@ -29,6 +29,11 @@
 			</Passable_Surface>
 		</Terrain>
 
+		<Light>
+            <AmbientLight R="0.5" G="0.5" B="0.5" />
+            <LightSource R="1" G="1" B="1" X="1000" Y="10000" Z="1000" R="10000000" />
+		</Light>
+
 			<!--
 			Trigger:
 				type:
@@ -80,7 +85,7 @@
         <MapObject>
 			<Mesh Value="content/a3dtree.3ds" />
 			<Position X="2000" Y="100" Z="2000" />
-			<Rotation X="" Y="" Z="" />
+			<Rotation X="10" Y="10" Z="10" />
 			<Scale X="1" Y="1" Z="1" />
 		</MapObject>
 
@@ -150,8 +155,8 @@
             <Health Max="100" Current="100">
             <Mesh Value="content/ninja.b3d" />
 <!--			<Texture Value="" />-->
-            <Scale X="4" Y="4" Z="4" />
-			<Position X="10" Y="100" Z="10" />
+            <Scale X="8" Y="8" Z="8" />
+			<Position X="100" Y="110" Z="100" />
 			<Rotation X="0" Y="0" Z="0" />
             <Inventory>
                 <Weapon class="baton" name="Kurtzschwert">

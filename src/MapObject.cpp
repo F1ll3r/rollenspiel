@@ -9,6 +9,7 @@
 #include "IrrlichtDevice.h"
 #include "ISceneManager.h"
 #include "Game.h"
+#include "IAnimatedMeshSceneNode.h"
 
 MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,game) {
 	irr::core::stringw		mesh;
@@ -56,6 +57,7 @@ MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,gam
 					My_Assert(m);
 					node = device->getSceneManager()
 							->addAnimatedMeshSceneNode(m,0,1,pos,rot,scale);
+					node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 
 					My_Assert(node);
 

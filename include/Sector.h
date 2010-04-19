@@ -29,6 +29,8 @@ class Sector {
 	irr::scene::ITriangleSelector*	terraintriangles;
 	irr::scene::ITriangleSelector*	collisiontriangles;
 
+	void parseLight(irr::io::IXMLReader* xml);
+
 
 public:
 	Sector(Game* game,irr::io::IXMLReader* xml);

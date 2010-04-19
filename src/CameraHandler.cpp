@@ -15,8 +15,8 @@
 CameraHandler::CameraHandler(Game* game) {
 	this->game 	= game;
 	irrcam		= NULL;
-	distence 	= 40;
-	hight 		= 75;
+	distence 	= 120;
+	hight 		= 150;
 	alpha 		= 0;
 }
 
@@ -39,9 +39,9 @@ void CameraHandler::run(){
 	lasttime = device->getTimer()->getTime();
 
 	if(curpos.X < 1){
-		alpha -= timedelta/1000;
+		alpha -= timedelta/700;
 	}else if(curpos.X > (irr::s32) device->getVideoDriver()->getScreenSize().Width - 1){
-		alpha += timedelta/1000;
+		alpha += timedelta/700;
 	}
 
 	if(alpha > 2 * irr::core::PI){
@@ -63,8 +63,8 @@ void CameraHandler::run(){
 
 bool CameraHandler::OnEvent(const irr::SEvent& event){
 	if(event.EventType == irr::EET_MOUSE_INPUT_EVENT){
-		hight += event.MouseInput.Wheel*2;
-		distence += event.MouseInput.Wheel*2;
+		hight += event.MouseInput.Wheel*5;
+		distence += event.MouseInput.Wheel*3;
 	}
 	return false;
 }
