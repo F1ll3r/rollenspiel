@@ -76,10 +76,6 @@ MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,gam
 	}
 }
 
-MapObject::MapObject(Sector* s,Game* game):Object(s,game) {
-
-}
-
 MapObject::~MapObject() {
 	// TODO Auto-generated destructor stub
 }

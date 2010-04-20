@@ -18,6 +18,7 @@
 #include "Player.h"
 #include "Drawer.h"
 #include "Map.h"
+#include "LightObject.h"
 
 
 Sector::Sector(Game* game,irr::io::IXMLReader* xml) {
@@ -49,6 +50,17 @@ Sector::Sector(Game* game,irr::io::IXMLReader* xml) {
 					}else if(wcscmp(xml->getNodeName(),L"MapObject") == 0){
 						map->addObject( new MapObject(this,game,xml));
 
+					}else if(wcscmp(xml->getNodeName(),L"LightObject") == 0){
+						map->addObject( new LightObject(this,game,xml));
+
+					}else if(wcscmp(xml->getNodeName(),L"AmbientLight") == 0){
+						device->getSceneManager()->setAmbientLight(
+								irr::video::SColorf(
+										xml->getAttributeValueAsFloat(L"R"),
+										xml->getAttributeValueAsFloat(L"G"),
+										xml->getAttributeValueAsFloat(L"B")
+								));
+
 					}else if(wcscmp(xml->getNodeName(),L"NPC") == 0){
 						map->addObject( new NPC(this,game,xml));
 
@@ -57,9 +69,6 @@ Sector::Sector(Game* game,irr::io::IXMLReader* xml) {
 
 					}else if(wcscmp(xml->getNodeName(),L"Player") == 0){
 						map->addObject( new Player(this,game,xml));
-
-					}else if(wcscmp(xml->getNodeName(),L"Light") == 0){
-						parseLight(xml);
 
 					}else{
 						wprintf(L"Corrupt XML-file. Unexpected Node <%s>", xml->getNodeName());
@@ -78,41 +87,6 @@ Sector::Sector(Game* game,irr::io::IXMLReader* xml) {
 }
 
 
-void Sector::parseLight(irr::io::IXMLReader* xml){
-	while(xml->read()){
-		switch (xml->getNodeType()) {
-			case irr::io::EXN_ELEMENT:
-				if(wcscmp(xml->getNodeName(),L"AmbientLight") == 0){
-					device->getSceneManager()->setAmbientLight(
-							irr::video::SColorf(
-									xml->getAttributeValueAsFloat(L"R"),
-									xml->getAttributeValueAsFloat(L"G"),
-									xml->getAttributeValueAsFloat(L"B")
-							));
-
-				}else if(wcscmp(xml->getNodeName(),L"LightSource") == 0){
-					device->getSceneManager()->addLightSceneNode(0,
-									irr::core::vector3df(
-											xml->getAttributeValueAsFloat(L"X"),
-											xml->getAttributeValueAsFloat(L"Y"),
-											xml->getAttributeValueAsFloat(L"Z")),
-									irr::video::SColorf(
-											xml->getAttributeValueAsFloat(L"R"),
-											xml->getAttributeValueAsFloat(L"G"),
-											xml->getAttributeValueAsFloat(L"B")
-									),xml->getAttributeValueAsFloat(L"Radius"));
-				}
-				break;
-			case  irr::io::EXN_ELEMENT_END:
-				if(wcscmp(xml->getNodeName(),L"Light") == 0)
-					return;
-				break;
-			default:
-				break;
-		}
-
-	}
-}
 
 
 Sector::~Sector() {

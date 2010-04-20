@@ -54,6 +54,7 @@ class MasterEventReceiver;
 class UserInterface;
 class GameEvent;
 class GameTrigger;
+class LightObject;
 struct Settings;
 
 
@@ -93,6 +94,7 @@ namespace irr{
 		class IMesh;
 		class IMeshSceneNode;
 		class ICameraSceneNode;
+		class ILightSceneNode;
 	}
 
 	namespace gui{
