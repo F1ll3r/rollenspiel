@@ -9,7 +9,7 @@
 #include "Game.h"
 
 Character::Character(Sector* s,Game* game) :Object(s,game){
-
+	ai = NULL;
 }
 
 Character::~Character() {
@@ -41,10 +41,4 @@ void Character::remove(){
 
 irr::scene::ISceneNode* Character::getNode(){
 	return node;
-}
-
-//! returns the ID used for GameEventMgmt this may or may not
-//! be equal to getNode()->getID()
-irr::s32 Character::getID(){
-
 }

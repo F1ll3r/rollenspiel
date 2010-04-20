@@ -44,6 +44,9 @@ Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 
 				}else if(wcscmp(xml->getNodeName(),L"Health") == 0){
 
+				}else if(wcscmp(xml->getNodeName(),L"AI") == 0){
+					My_Assert(ai==NULL);
+					ai = new AI(this,s,game,xml);
 				}else if(wcscmp(xml->getNodeName(),L"Inventory") == 0){
 					parsInventory(xml);
 
@@ -61,7 +64,8 @@ Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 							->addAnimatedMeshSceneNode(m,0,1,pos,rot,scale);
 
 					My_Assert(node);
-					node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+					//node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+					((irr::scene::IAnimatedMeshSceneNode*)node)->addShadowVolumeSceneNode();
 					return;
 				}
 				break;

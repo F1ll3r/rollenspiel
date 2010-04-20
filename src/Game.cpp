@@ -106,7 +106,7 @@ void Game::init( int argc, const char* argv[] ){
 							settings->resolution,
 							settings->depth,
 							settings->fullscreen,
-							false,
+							true,
 							settings->vsync);
 
 	My_Assert(device != NULL);
@@ -115,6 +115,8 @@ void Game::init( int argc, const char* argv[] ){
 
 	driver = device->getVideoDriver();
 	scenemgr = device->getSceneManager();
+
+	scenemgr->setAmbientLight(irr::video::SColorf(0.5,0.5,0.5));
 
 	drawer->init();
 

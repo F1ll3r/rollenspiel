@@ -44,6 +44,7 @@ public:
 
 
 	irr::scene::ITriangleSelector* getTerrainTriangleSelector();
+	irr::scene::ITriangleSelector* getGroundTriangleSelector();
 	irr::scene::ITriangleSelector* getCollisionTriangleSelector();
 
 

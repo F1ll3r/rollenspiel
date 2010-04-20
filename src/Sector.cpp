@@ -31,7 +31,9 @@ Sector::Sector(Game* game,irr::io::IXMLReader* xml) {
 		switch (xml->getNodeType()) {
 			case irr::io::EXN_ELEMENT:
 					if(wcscmp(xml->getNodeName(),L"Terrain") == 0){
+						My_Assert(terrain ==  NULL);
 						terrain = new TerrainMapObject(this,game,xml);
+
 
 					}else if(wcscmp(xml->getNodeName(),L"Loading_Screen") == 0){
 
@@ -39,7 +41,7 @@ Sector::Sector(Game* game,irr::io::IXMLReader* xml) {
 									xml->getAttributeValueAsFloat(L"points")
 									,xml->getAttributeValue(L"text"));
 
-						game->getIrrlichtDevice()->sleep(100);
+						game->getIrrlichtDevice()->sleep(150);
 
 					}else if(wcscmp(xml->getNodeName(),L"Event") == 0){
 						game->getGameEventManager()->parseEvent(xml);
@@ -81,7 +83,7 @@ void Sector::parseLight(irr::io::IXMLReader* xml){
 		switch (xml->getNodeType()) {
 			case irr::io::EXN_ELEMENT:
 				if(wcscmp(xml->getNodeName(),L"AmbientLight") == 0){
-					device->getVideoDriver()->setAmbientLight(
+					device->getSceneManager()->setAmbientLight(
 							irr::video::SColorf(
 									xml->getAttributeValueAsFloat(L"R"),
 									xml->getAttributeValueAsFloat(L"G"),
@@ -98,7 +100,7 @@ void Sector::parseLight(irr::io::IXMLReader* xml){
 											xml->getAttributeValueAsFloat(L"R"),
 											xml->getAttributeValueAsFloat(L"G"),
 											xml->getAttributeValueAsFloat(L"B")
-									),xml->getAttributeValueAsFloat(L"R"));
+									),xml->getAttributeValueAsFloat(L"Radius"));
 				}
 				break;
 			case  irr::io::EXN_ELEMENT_END:
@@ -116,3 +118,23 @@ void Sector::parseLight(irr::io::IXMLReader* xml){
 Sector::~Sector() {
 	// TODO Auto-generated destructor stub
 }
+
+irr::scene::ITriangleSelector* Sector::getTerrainTriangleSelector(){
+	if(terrain == NULL){
+		return NULL;
+	}
+	return terrain->getNode()->getTriangleSelector();
+}
+
+
+irr::scene::ITriangleSelector* Sector::getGroundTriangleSelector(){
+
+}
+
+
+irr::scene::ITriangleSelector* Sector::getCollisionTriangleSelector(){
+
+
+}
+
+

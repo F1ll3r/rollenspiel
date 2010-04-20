@@ -8,7 +8,7 @@
 
 
 #if( defined __release__ && !defined __debug__ )
-#define __debug__
+	#define __debug__
 #endif
 
 
@@ -20,11 +20,10 @@
     #error "please define __debug__ or __release__ but not both"
 #endif
 
+#include <stdio.h>
 #if( defined __debug__ && defined __linux )
 	#define My_Assert(x) if(!(x)) asm("int $3")
-	#include <stdio.h>
 #else
-	#include <stdio.h>
 	#define My_Assert(x) assert(x)
 	#include <assert.h>
 #endif

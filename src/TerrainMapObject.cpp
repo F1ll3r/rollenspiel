@@ -68,12 +68,17 @@ TerrainMapObject::TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml
 
 					((irr::scene::ITerrainSceneNode*) node)->scaleTexture(1.0f, 20.0f);
 
-					node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+					//node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 					node->setMaterialType(irr::video::EMT_DETAIL_MAP);
 					//node->setMaterialType(irr::video::EMT_SOLID);
 					// TODO throw exception on error
+
+					irr::scene::ITriangleSelector* sel = game->getSceneManager()->createTerrainTriangleSelector(
+							((irr::scene::ITerrainSceneNode*) node));
+					node->setTriangleSelector(sel);
+
 					if(gm)
-						gm->create(dynamic_cast<irr::scene::ITerrainSceneNode*>(node));
+						gm->create((irr::scene::ITerrainSceneNode*) node);
 					return;
 					}
 				break;

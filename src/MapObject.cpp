@@ -10,6 +10,7 @@
 #include "ISceneManager.h"
 #include "Game.h"
 #include "IAnimatedMeshSceneNode.h"
+#include "Map.h"
 
 MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,game) {
 	irr::core::stringw		mesh;
@@ -18,6 +19,9 @@ MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,gam
 	irr::core::vector3df	rot;
 	irr::core::vector3df	scale;
 	irr::IrrlichtDevice*	device = game->getIrrlichtDevice();
+
+	id	= xml->getAttributeValueAsInt(L"ID");
+	id	= game->getMap()->getFreeID();
 
 	while(xml->read()){
 		switch (xml->getNodeType()) {
@@ -81,7 +85,7 @@ MapObject::~MapObject() {
 }
 
 irr::s32 MapObject::getID(){
-
+	return id;
 }
 
 void MapObject::remove(){
