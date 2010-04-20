@@ -19,7 +19,7 @@ class Sector {
 
 	TerrainMapObject * 				terrain;
 
-	irr::u32						id;
+	irr::s32						id;
 	irr::core::stringw				name;
 
 	irr::IrrlichtDevice* 			device;
@@ -37,7 +37,7 @@ public:
 	virtual ~Sector();
 
 
-	inline irr::u32 getSectorID(){
+	inline irr::s32 getSectorID(){
 		return id;
 	}
 

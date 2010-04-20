@@ -68,11 +68,12 @@ public:
 
 	irr::s32 getFreeID(){
 		srand(device->getTimer()->getRealTime());
-#if ((RAND_MAX+RAND_MAX+DYNAMIC_ID_RANGE_START) > DYNAMIC_ID_RANGE_END)
-	#error	Dude! Wat!
-#endif
 		while(true){
+#if ((RAND_MAX+RAND_MAX+DYNAMIC_ID_RANGE_START) > DYNAMIC_ID_RANGE_END)
+			irr::s32 r = rand()%(DYNAMIC_ID_RANGE_END-DYNAMIC_ID_RANGE_START) + DYNAMIC_ID_RANGE_START;
+#else
 			irr::s32 r = rand() + rand() + DYNAMIC_ID_RANGE_START;
+#endif
 			if(!containsObject(r)){
 				return r;
 			}

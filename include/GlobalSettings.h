@@ -3,6 +3,15 @@
 #define __GLOBAL_SETTINGS_H_INCLUDED__
 
 
+//#define __debug__
+//#define __release__
+
+
+#if( defined __release__ && !defined __debug__ )
+#define __debug__
+#endif
+
+
 #if( !defined __debug__ && !defined __release__ )
     #error "please define __debug__ or __release__"
 #endif
