@@ -12,6 +12,7 @@
 #include "IEventReceiver.h"
 #include "irrArray.h"
 
+
 enum UI_Button_Main{
 	UI_Button_Main_New = 100,
 	UI_Button_Main_Options,
@@ -33,8 +34,8 @@ enum UI_GUI_Element_Options{
 	UI_GUI_Element_Grass,
 	UI_GUI_Element_Grass_Text,
 	UI_GUI_Element_Filtering,
-	UI_GUI_Element_Anti_Aliasing
-
+	UI_GUI_Element_Anti_Aliasing,
+	UI_GUI_Element_Shadow
 };
 
 class UserInterface : public irr::IEventReceiver{
@@ -54,7 +55,10 @@ class UserInterface : public irr::IEventReceiver{
 
 	bool						drawOptions;
 private:
-	irr::core::dimension2du getSelectedResolution(irr::gui::IGUIWindow* options);
+	void CreateOptions();
+	void CreateMainMenu();
+	irr::gui::IGUIComboBox* getComboBoxFromId(UI_GUI_Element_Options ID);
+	irr::core::dimension2du getSelectedResolution();
 
 public:
 	UserInterface(Game* game);

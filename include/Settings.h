@@ -32,6 +32,7 @@ struct Settings{
 
 	//! 0 grass off; 100 full grass
 	irr::u32					grass;
+	bool						shadow;
 
 	//! NON, BILINEAR, TRILINEAR or ANISOTROPIC
 	irr::video::E_MATERIAL_FLAG	filtering;

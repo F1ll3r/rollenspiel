@@ -100,6 +100,7 @@ namespace irr{
 		class IGUIWindow;
 		class IGUIElement;
 		class IGUIButton;
+		class IGUIComboBox;
 	}
 }
 
