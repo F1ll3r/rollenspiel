@@ -8,11 +8,13 @@
 #include "GameEventManager.h"
 #include "Game.h"
 #include "Drawer.h"
+#include "Object.h"
+#include "IrrlichtDevice.h"
+#include "GameEvent.h"
 
 GameEventManager::GameEventManager(Game* game) {
 	this->game 	 = game;
 	this->drawer = game->getDrawer();
-
 }
 
 GameEventManager::~GameEventManager() {
@@ -20,7 +22,12 @@ GameEventManager::~GameEventManager() {
 }
 
 void GameEventManager::triggerRunEvent(){
-
+	std::map<irr::s32,Object*>::iterator i = runMap.begin();
+	irr::s32 dtime = (irr::s32)game->getIrrlichtDevice()->getTimer()->getTime() - lasttime;
+	for(;i != runMap.end();i++){
+		i->second->handleEvent(new RunGameEvent(dtime));
+	}
+	lasttime = (irr::s32)game->getIrrlichtDevice()->getTimer()->getTime();
 }
 
 void GameEventManager::run(){
@@ -56,3 +63,12 @@ void GameEventManager::handleTrigger(GameTrigger* t){
 void GameEventManager::registerTrigger(GameTrigger* t, irr::core::array<GameEvent*> e){
 
 }
+
+void GameEventManager::registerForRunEvent(Object* o){
+	runMap.insert(std::pair<irr::s32,Object*>(o->getID(),o));
+}
+
+void GameEventManager::registerForDrawEvent(Object* o){
+
+}
+

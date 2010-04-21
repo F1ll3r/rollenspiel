@@ -15,3 +15,12 @@ GameEvent::GameEvent() {
 GameEvent::~GameEvent() {
 	// TODO Auto-generated destructor stub
 }
+
+
+RunGameEvent::~RunGameEvent(){
+
+}
+
+Game_Event_Type RunGameEvent::getEventType(){
+	return Game_Event_Type_Run;
+}

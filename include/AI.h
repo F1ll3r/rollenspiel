@@ -20,6 +20,26 @@ enum AI_Animation{
 	AI_Animation_Count
 };
 
+class Animation;
+
+
+class AI {
+	std::map<irr::core::stringw,Animation*>		animations[AI_Animation_Count];
+	Character* 									character;
+	Sector* 									sector;
+
+	void parseAnimaton(irr::io::IXMLReader* xml);
+public:
+	AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml);
+	virtual ~AI();
+
+	const Animation* getAnimation(AI_Animation Class,const wchar_t* type);
+
+	void run(irr::s32 dtime);
+	void walkCharacterTo();
+
+};
+
 
 class Animation{
 	irr::s32			sFrame;
@@ -55,18 +75,6 @@ public:
 	bool getLoop() const {
 		return loop;
 	}
-
-};
-
-
-class AI {
-	std::map<irr::core::stringw,Animation*>		animations[AI_Animation_Count];
-	void parseAnimaton(irr::io::IXMLReader* xml);
-public:
-	AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml);
-	virtual ~AI();
-
-	const Animation* getAnimation(AI_Animation Class,const wchar_t* type);
 
 };
 

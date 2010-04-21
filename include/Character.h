@@ -30,6 +30,9 @@ public:
 
 	virtual void remove();
 
+	//! asks Object to handle the GameEvent
+	virtual void handleEvent(GameEvent* e);
+
 
 	virtual irr::scene::ISceneNode* getNode();
 };

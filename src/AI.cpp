@@ -48,7 +48,7 @@ void AI::parseAnimaton(irr::io::IXMLReader* xml){
 								std::pair<irr::core::stringw,Animation*>(anim->getType(),anim)
 							);
 
-				}else if(wcscmp(xml->getNodeName(),L"Walk") == 0){
+				}else if(wcscmp(xml->getNodeName(),L"Idle") == 0){
 
 					Animation* anim = new Animation(
 									xml->getAttributeValueAsInt(L"SFrame"),
@@ -81,5 +81,9 @@ AI::~AI() {
 
 const Animation* AI::getAnimation(AI_Animation Class,const wchar_t* type){
 	return animations[Class][type];
+}
+
+void AI::run(irr::s32 dtime){
+
 }
 

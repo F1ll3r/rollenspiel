@@ -7,9 +7,12 @@
 
 #include "Character.h"
 #include "Game.h"
+#include "GameEvent.h"
+#include "GameEventManager.h"
 
 Character::Character(Sector* s,Game* game) :Object(s,game){
 	ai = NULL;
+	//game->getGameEventManager()->registerForRunEvent(this);
 }
 
 Character::~Character() {
@@ -38,6 +41,11 @@ void Character::remove(){
 
 }
 
+void Character::handleEvent(GameEvent* e){
+	if(e->getEventType() == Game_Event_Type_Run){
+		if(ai) ai->run(((RunGameEvent*)e)->getDeltaTime());
+	}
+}
 
 irr::scene::ISceneNode* Character::getNode(){
 	return node;
