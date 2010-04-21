@@ -1,1 +1,1 @@
-READMETEXT!!EInzELFELFLEF!!
+Everything in src and include, but irrlicht, is licensed under Beerware license.

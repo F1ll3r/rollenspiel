@@ -10,7 +10,7 @@
 
 #include "GlobalSettings.h"
 #include "IXMLReader.h"
-#include <map.h>
+#include <map>
 #include "irrString.h"
 
 enum AI_Animation{

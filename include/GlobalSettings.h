@@ -28,6 +28,10 @@
 	#include <assert.h>
 #endif
 
+#ifdef __linux
+	#define wcscmpi wcscasecmp
+#endif
+
 
 
 class Game;
