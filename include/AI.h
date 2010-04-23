@@ -20,6 +20,7 @@ enum AI_Animation{
 	AI_Animation_Count
 };
 
+
 class Animation;
 
 
@@ -36,7 +37,7 @@ public:
 	const Animation* getAnimation(AI_Animation Class,const wchar_t* type);
 
 	void run(irr::s32 dtime);
-	void walkCharacterTo();
+	void walkCharacterTo(const irr::core::vector3df& v);
 
 };
 

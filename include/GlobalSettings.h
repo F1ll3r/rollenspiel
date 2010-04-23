@@ -3,11 +3,19 @@
 #define __GLOBAL_SETTINGS_H_INCLUDED__
 
 
+
+//! Uncommented the line below to use debug settings explicitly
 //#define __debug__
+
+//! Uncommented the line below to use release settings
 //#define __release__
 
+//! Uncommented this if you want to couse the debugger to stop on failed Assertions
+//! atm only for Linux
+//#define STOP_ON_ERROR
 
-#if( defined __release__ && !defined __debug__ )
+//! if you choose neither the macro below will set debug
+#if( !defined __release__ && !defined __debug__ )
 	#define __debug__
 #endif
 
@@ -16,12 +24,14 @@
     #error "please define __debug__ or __release__"
 #endif
 
+
 #if( defined __debug__ && defined __release__ )
     #error "please define __debug__ or __release__ but not both"
 #endif
 
+
 #include <stdio.h>
-#if( defined __debug__ && defined __linux )
+#if( defined __debug__ && defined __linux && STOP_ON_ERROR)
 	#define My_Assert(x) if(!(x)) asm("int $3")
 #else
 	#define My_Assert(x) assert(x)
@@ -31,7 +41,6 @@
 #ifdef __linux
 	#define wcscmpi wcscasecmp
 #endif
-
 
 
 class Game;
