@@ -13,6 +13,7 @@
 #include <map>
 #include "irrString.h"
 
+
 enum AI_Animation{
 	AI_Animation_Walk = 0,
 	AI_Animation_Idle,
@@ -25,9 +26,23 @@ class Animation;
 
 
 class AI {
+
 	std::map<irr::core::stringw,Animation*>		animations[AI_Animation_Count];
+
+	Game*										game;
 	Character* 									character;
 	Sector* 									sector;
+
+
+	//! struct used to bottle up the data determining the state of
+	//! the character controlled by this AI
+	struct {
+		bool 					iswalking;
+		irr::core::vector3df	target;
+		const Animation*		animation;
+		irr::core::vector3df	lastpos;
+	}state;
+
 
 	void parseAnimaton(irr::io::IXMLReader* xml);
 public:

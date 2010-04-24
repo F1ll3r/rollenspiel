@@ -17,6 +17,8 @@ class Drawer {
 	irr::f32 				process;
 	irr::video::ITexture* 	loadscreen;
 	irr::core::stringw 		msg;
+	bool					debuginfo;
+	wchar_t*				debugtext;
 public:
 	Drawer(Game* game);
 	virtual ~Drawer();
@@ -29,6 +31,7 @@ public:
 	//! Adds p percentage to the loading screen
 	//!		(more than 100 has no effect)
 	//! and displays msg or if msg is Null displays the old message
+	//! update == true will course a call of drawLoadingScreen()
 	void processLoadingScreen(irr::f32 p,const wchar_t* msg,bool update = true);
 
 	//! This function is intended to be called by game->run()
@@ -40,9 +43,17 @@ public:
 		return process;
 	}
 
-
+	//! sets loadingbar back to 0%
 	void resetProcess(){
 		process = 0;
+	}
+
+	bool getDrawDebugInfo(){
+		return debuginfo;
+	}
+
+	void getDrawDebugInfo(bool b){
+		debuginfo = b;
 	}
 };
 

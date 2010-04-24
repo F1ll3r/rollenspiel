@@ -8,11 +8,9 @@
 #include "Character.h"
 #include "Game.h"
 #include "GameEvent.h"
-#include "GameEventManager.h"
 
 Character::Character(Sector* s,Game* game) :Object(s,game){
 	ai = NULL;
-	//game->getGameEventManager()->registerForRunEvent(this);
 }
 
 Character::~Character() {

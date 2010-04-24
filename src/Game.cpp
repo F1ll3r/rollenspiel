@@ -193,6 +193,7 @@ void Game::startGame(){
 	map = new Map(this);
 	importer->load("content/Kapitel_1.map");
 	player = map->getPlayer();
+	mastereventmgr->setPlayer(player);
 	switchContext(Context_Game_Run);
 }
 

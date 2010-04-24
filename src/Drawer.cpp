@@ -8,10 +8,21 @@
 #include "Drawer.h"
 #include "Game.h"
 #include "irrlicht.h"
+#include "Player.h"
+#include "Map.h"
 
 Drawer::Drawer(Game* game) {
 	this->game = game;
 	loadscreen = NULL;
+
+	//! default in debug settings is drawing of debuginfo
+	//! whilst is release is not
+#ifdef __debug__
+	debuginfo = true;
+#else
+	debuginfo = false;
+#endif
+	debugtext = new wchar_t[255];
 }
 
 
@@ -75,5 +86,38 @@ void Drawer::processLoadingScreen(irr::f32 p,const wchar_t* msg,bool update){
 
 
 void Drawer::draw(){
+	switch (game->getContext()) {
+		case Context_Game_Run:{
+			if(debuginfo){
+				irr::core::vector3df ppos = game->getPlayer()->getAbsolutePosition();
+				irr::core::vector3df prot = game->getPlayer()->getRotation();
+
+
+				swprintf(debugtext,L"FPS: %i\n"
+									"Tri: %i\n"
+									"Obj: %i\n"
+									"Driver: %ls\n"
+									"Player:\n"
+									"Pos: %.2f %.2f %.2f\n"
+									"Rot: %.2f %.2f %.2f",
+									device->getVideoDriver()->getFPS(),
+									device->getVideoDriver()->getPrimitiveCountDrawn(),
+									game->getMap()->getObjectCount(),
+									device->getVideoDriver()->getName(),
+									ppos.X,ppos.Y,ppos.Z,
+									prot.X,prot.Y,prot.Z);
+
+				irr::gui::IGUIStaticText* text = device->getGUIEnvironment()->
+						addStaticText(debugtext,irr::core::recti(0,0,150,150));
+
+				text->setOverrideColor(irr::video::SColor(255,255,255,255));
+				text->draw();
+				text->remove();
+			}
+		}
+			break;
+		default:
+			break;
+	}
 
 }

@@ -31,6 +31,11 @@ public:
 
 	void switchContext(Game_Context context);
 	Game_Context getContext();
+
+	void setPlayer(Player* p){
+		player = p;
+	}
+
 };
 
 #endif /* MASTEREVENTHANDLER_H_ */

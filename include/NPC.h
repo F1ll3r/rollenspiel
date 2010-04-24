@@ -18,7 +18,7 @@ public:
 	virtual ~NPC();
 
 	irr::s32 getID(){
-		return -1;
+		return 666;
 	}
 };
 

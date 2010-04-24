@@ -9,6 +9,9 @@
 #include "Character.h"
 #include "irrlicht.h"
 #include "Game.h"
+#include "GameEvent.h"
+#include "GameEventManager.h"
+#include "Sector.h"
 
 Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 	irr::core::stringw		mesh;
@@ -17,6 +20,8 @@ Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 	irr::core::vector3df	rot;
 	irr::core::vector3df	scale;
 	irr::IrrlichtDevice*	device = game->getIrrlichtDevice();
+
+	game->getGameEventManager()->registerForRunEvent(this);
 
 	while(xml->read()){
 		switch (xml->getNodeType()) {
@@ -77,14 +82,73 @@ Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 
 }
 
+
 Player::Player(Sector*s,Game* game):Character(s,game) {
 
 }
+
 
 Player::~Player() {
 	// TODO Auto-generated destructor stub
 }
 
+
 bool Player::OnEvent(const irr::SEvent& event){
-	return false;
+//	if(event.MouseInput.Event == irr::EMIE_LMOUSE_PRESSED_DOWN){
+//		irrEventSate.leftmouse = true;
+//		irr::scene::ISceneCollisionManager* collisionManager = game->getSceneManager()->getSceneCollisionManager();
+//		irr::core::line3d<float> line  = collisionManager->getRayFromScreenCoordinates(
+//				 game->getIrrlichtDevice()->getCursorControl()->getPosition(),
+//				 game->getSceneManager()->getActiveCamera()
+//			);
+//
+//		irr::core::vector3df tmpv;
+//		irr::core::triangle3df tmpt;
+//		const irr::scene::ISceneNode* tmpn = NULL;
+//
+//		printf("motherfuckingHeadshot");
+//
+//		if(collisionManager->getCollisionPoint(line,sector->getTerrainTriangleSelector(),tmpv,tmpt,tmpn)){
+//
+//			printf("motherfuckingHeadshot");
+//
+//			ai->walkCharacterTo(tmpv);
+//
+//			printf("motherfuckingHeadshot");
+//
+//			irr::scene::IVolumeLightSceneNode * n = game->getSceneManager()->addVolumeLightSceneNode(0, -1,
+//							32,                              // Subdivisions on U axis
+//							32,                              // Subdivisions on V axis
+//							irr::video::SColor(0, 255, 255, 255), // foot color
+//							irr::video::SColor(0, 0, 0, 0));      // tail color
+//
+//			if (n)
+//			{
+//				n->setScale(irr::core::vector3df(56.0f, 56.0f, 56.0f));
+//				n->setPosition(irr::core::vector3df(-120,50,40));
+//
+//				// load textures for animation
+//				irr::core::array<irr::video::ITexture*> textures;
+//				for (irr::s32 g=7; g > 0; --g)
+//				{
+//					irr::core::stringc tmp;
+//					tmp = "content/portal";
+//					tmp += g;
+//					tmp += ".bmp";
+//					irr::video::ITexture* t = game->getVideoDriver()->getTexture( tmp.c_str() );
+//					textures.push_back(t);
+//				}
+//
+//				// create texture animator
+//				irr::scene::ISceneNodeAnimator* glow = game->getSceneManager()->createTextureAnimator(textures, 150);
+//
+//				// add the animator
+//				n->addAnimator(glow);
+//
+//				// drop the animator because it was created with a create() function
+//				glow->drop();
+//			}
+//		}
+//	}
+//	return false;
 }

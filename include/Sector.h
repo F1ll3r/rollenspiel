@@ -26,7 +26,7 @@ class Sector {
 	GameEventManager* 				gvm;
 	Map*							map;
 
-	irr::scene::ITriangleSelector*	terraintriangles;
+	irr::scene::ITriangleSelector*	groundtriangles;
 	irr::scene::ITriangleSelector*	collisiontriangles;
 
 

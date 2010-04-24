@@ -15,6 +15,7 @@ MasterEventReceiver::MasterEventReceiver(Game* game) {
 	this->game = game;
 	this->ui = NULL;
 	this->cam = NULL;
+	this->player = NULL;
 
 }
 
@@ -35,11 +36,16 @@ bool MasterEventReceiver::OnEvent(const irr::SEvent& event){
 	if(event.EventType == irr::EET_MOUSE_INPUT_EVENT){
 		if(ui) cam->OnEvent(event);
 	}
+	if(event.EventType == irr::EET_MOUSE_INPUT_EVENT){
+		if(player) player->OnEvent(event);
+	}
+
 	return false;
 }
 
 void MasterEventReceiver::switchContext(Game_Context context){
 	this->context = context;
+
 }
 
 

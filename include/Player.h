@@ -13,6 +13,12 @@
 #include "IEventReceiver.h"
 
 class Player : public Character, public irr::IEventReceiver {
+
+	struct {
+		bool				leftmouse;
+		irr::s32			timer;
+	}irrEventSate;
+
 public:
 	Player(Sector* s,Game* game,irr::io::IXMLReader* xml);
 	Player(Sector*s,Game* game);
@@ -20,7 +26,7 @@ public:
 
 	bool OnEvent(const irr::SEvent& event);
 
-	irr::s32 getID(){
+	virtual irr::s32 getID(){
 		return 1;
 	}
 };

@@ -9,8 +9,15 @@
 #include "NPC.h"
 #include "Sector.h"
 #include "GameEventManager.h"
+#include "irrlicht.h"
+#include "Game.h"
 
 AI::AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml) {
+	state.iswalking = false;
+	this->game = game;
+	this->sector = s;
+	this->character = c;
+
 	while(xml->read()){
 		switch (xml->getNodeType()) {
 			case irr::io::EXN_ELEMENT:
@@ -84,6 +91,32 @@ const Animation* AI::getAnimation(AI_Animation Class,const wchar_t* type){
 }
 
 void AI::run(irr::s32 dtime){
+	if(state.iswalking){
+		irr::scene::ISceneCollisionManager* collisionManager = game->getSceneManager()->getSceneCollisionManager();
+		irr::core::line3d<float> line(character->getAbsolutePosition() + irr::core::vector3df(0,2,0),character->getAbsolutePosition() - irr::core::vector3df(0,10,0));
+
+		irr::core::vector3df tmpv;
+		irr::core::triangle3df tmpt;
+		const irr::scene::ISceneNode* tmpn = NULL;
+
+
+		//! TODO: do additional checking if new pos is legal
+		//! TODO: check against Ground Triangles
+		if(collisionManager->getCollisionPoint(line,sector->getTerrainTriangleSelector(),tmpv,tmpt,tmpn)){
+			character->setPosition(tmpv);
+		}else{
+			character->setPosition(state.lastpos);
+		}
+		state.lastpos = character->getAbsolutePosition();
+		//moveto(tmpv);
+	}
+}
+
+void AI::walkCharacterTo(const irr::core::vector3df& v){
+	state.iswalking = true;
+	state.target = v;
+	const Animation* anim = getAnimation(AI_Animation_Walk,L"Normal");
+	((irr::scene::IAnimatedMeshSceneNode*)character->getNode())->setFrameLoop(anim->getStartFrame(),anim->getEndFrame());
 
 }
 

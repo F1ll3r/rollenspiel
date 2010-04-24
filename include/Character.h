@@ -35,6 +35,15 @@ public:
 
 
 	virtual irr::scene::ISceneNode* getNode();
+
+	//! returns the ID used for GameEventMgmt this may or may not
+	//! be equal to getNode()->getID()
+	virtual irr::s32 getID() = 0;
+
+	irr::f32 getSpeed(){
+		//! TODO: implement this
+		return 1.0;
+	}
 };
 
 #endif /* CHARACTER_H_ */

@@ -33,7 +33,7 @@
 
 
         <AmbientLight R="0.71" G="0.71" B="0.61" />
-        <LightObject R="1" G="1" B="1" X="100" Y="100" Z="100" Radius="100000" />
+        <LightObject R="1" G="1" B="1" X="100" Y="1000" Z="100" Radius="100000" />
 
 
 			<!--
@@ -102,54 +102,54 @@
 
         <Loading_Screen points="10.5" text="Erzeuge NPC" />
 
-		<NPC Type="Monster" Name="Wilder Hund">
-			<Mesh Value="" />
-			<Texture  Value="" />
-			<Position X="" Y="" Z="" />
-			<Rotation X="" Y="" Z="" />
-			<Team ID="2" />
-		</NPC>
+<!--		<NPC Type="Monster" Name="Wilder Hund">-->
+<!--			<Mesh Value="" />-->
+<!--			<Texture  Value="" />-->
+<!--			<Position X="" Y="" Z="" />-->
+<!--			<Rotation X="" Y="" Z="" />-->
+<!--			<Team ID="2" />-->
+<!--		</NPC>-->
 
-		<Dealer Name="Hugos Eisenwaren">
-            <Health Max="100" Current="100" />
-            <ExchangeRate Sell="1.2" Buy="0.7" />
-			<Mesh Value="" />
-			<Texture Value="" />
-			<Position X="" Y="" Z="" />
-			<Rotation X="" Y="" Z="" />
-			<Team ID="1" />
-            <Inventory>
-                <Weapon Class="baton" Name="Kurtzschwert">
-                    <Image Value="" />
-                    <Mesh Value="" />
-                    <Texture  Value="" />
-                    <Position X="0" Y="0" Z="0" />
-                    <Rotation X="0" Y="0" Z="0" />
-                    <Damage Value="12" />
-                    <Speed Value="1" />
-                    <Cost Value="40" />
-                </Weapon>
-            </Inventory>
-            <AI>
-                <Talk>
-                    <Context ID="1">
-                        <Text>Hallo Feund mein Name ist Hugo. Wie kann ich dir helfen?</Text>
-                        <Reply id="1">
-                            <Text>Zeig mir was du im Angebot hast!</Text>
-                            <Effect Type="talk">
-                                <OpenTrade />
-                            </Effect>
-                        </Reply>
-                        <Reply id="2">
-                            <Text>cu</Text>
-                            <Effect type="talk">
-                                <Exit />
-                            </Effect>
-                        </Reply>
-                    </Context>
-                </Talk>
-            </AI>
-		</Dealer>
+<!--		<Dealer Name="Hugos Eisenwaren">-->
+<!--            <Health Max="100" Current="100" />-->
+<!--            <ExchangeRate Sell="1.2" Buy="0.7" />-->
+<!--			<Mesh Value="" />-->
+<!--			<Texture Value="" />-->
+<!--			<Position X="" Y="" Z="" />-->
+<!--			<Rotation X="" Y="" Z="" />-->
+<!--			<Team ID="1" />-->
+<!--            <Inventory>-->
+<!--                <Weapon Class="baton" Name="Kurtzschwert">-->
+<!--                    <Image Value="" />-->
+<!--                    <Mesh Value="" />-->
+<!--                    <Texture  Value="" />-->
+<!--                    <Position X="0" Y="0" Z="0" />-->
+<!--                    <Rotation X="0" Y="0" Z="0" />-->
+<!--                    <Damage Value="12" />-->
+<!--                    <Speed Value="1" />-->
+<!--                    <Cost Value="40" />-->
+<!--                </Weapon>-->
+<!--            </Inventory>-->
+<!--            <AI>-->
+<!--                <Talk>-->
+<!--                    <Context ID="1">-->
+<!--                        <Text>Hallo Feund mein Name ist Hugo. Wie kann ich dir helfen?</Text>-->
+<!--                        <Reply id="1">-->
+<!--                            <Text>Zeig mir was du im Angebot hast!</Text>-->
+<!--                            <Effect Type="talk">-->
+<!--                                <OpenTrade />-->
+<!--                            </Effect>-->
+<!--                        </Reply>-->
+<!--                        <Reply id="2">-->
+<!--                            <Text>cu</Text>-->
+<!--                            <Effect type="talk">-->
+<!--                                <Exit />-->
+<!--                            </Effect>-->
+<!--                        </Reply>-->
+<!--                    </Context>-->
+<!--                </Talk>-->
+<!--            </AI>-->
+<!--		</Dealer>-->
 
 		<Loading_Screen points="10.5" text="Erzeuge Spieler" />
 

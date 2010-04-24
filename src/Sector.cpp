@@ -26,6 +26,13 @@ Sector::Sector(Game* game,irr::io::IXMLReader* xml) {
 	map = game->getMap();
 	this->device = game->getIrrlichtDevice();
 	this->gvm = game->getGameEventManager();
+
+	groundtriangles = game->getIrrlichtDevice()->getSceneManager()
+									->createMetaTriangleSelector();
+
+	collisiontriangles = game->getIrrlichtDevice()->getSceneManager()
+									->createMetaTriangleSelector();
+
 	id = xml->getAttributeValueAsInt(L"id");
 	name = xml->getAttributeValue(L"name");
 	while(xml->read()){
@@ -102,13 +109,12 @@ irr::scene::ITriangleSelector* Sector::getTerrainTriangleSelector(){
 
 
 irr::scene::ITriangleSelector* Sector::getGroundTriangleSelector(){
-
+	return groundtriangles;
 }
 
 
 irr::scene::ITriangleSelector* Sector::getCollisionTriangleSelector(){
-
-
+	return collisiontriangles;
 }
 
 

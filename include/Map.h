@@ -39,6 +39,10 @@ public:
 	}
 
 
+	irr::s32 getObjectCount(){
+		return database.size();
+	}
+
 
 	//! adds Object to Database with o->getID() as key
 	//! returns true an success and false if id is already used
