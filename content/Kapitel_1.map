@@ -156,7 +156,6 @@
 		<Player>
             <Health Max="100" Current="100">
             <Mesh Value="content/ninja.b3d" />
-<!--			<Texture Value="" />-->
             <Scale X="1" Y="1" Z="1" />
 			<Position X="100" Y="20" Z="100" />
 			<Rotation X="0" Y="0" Z="0" />

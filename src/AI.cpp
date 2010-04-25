@@ -22,7 +22,7 @@ AI::AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml) {
 		switch (xml->getNodeType()) {
 			case irr::io::EXN_ELEMENT:
 				if(wcscmp(xml->getNodeName(),L"Animaton") == 0){
-
+					parseAnimaton(xml);
 				}
 
 				break;
@@ -108,7 +108,6 @@ void AI::run(irr::s32 dtime){
 			character->setPosition(state.lastpos);
 		}
 		state.lastpos = character->getAbsolutePosition();
-		//moveto(tmpv);
 	}
 }
 
@@ -116,7 +115,8 @@ void AI::walkCharacterTo(const irr::core::vector3df& v){
 	state.iswalking = true;
 	state.target = v;
 	const Animation* anim = getAnimation(AI_Animation_Walk,L"Normal");
-	((irr::scene::IAnimatedMeshSceneNode*)character->getNode())->setFrameLoop(anim->getStartFrame(),anim->getEndFrame());
+//	My_Assert(anim);
+//	((irr::scene::IAnimatedMeshSceneNode*)character->getNode())->setFrameLoop(anim->getStartFrame(),anim->getEndFrame());
 
 }
 
