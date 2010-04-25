@@ -113,8 +113,8 @@ bool Player::OnEvent(const irr::SEvent& event){
 			ai->walkCharacterTo(tmpv);
 
 			irr::scene::IVolumeLightSceneNode * n = game->getSceneManager()->addVolumeLightSceneNode(0, -1,
-							32,                              // Subdivisions on U axis
-							32,                              // Subdivisions on V axis
+							64,                              // Subdivisions on U axis
+							64,                              // Subdivisions on V axis
 							irr::video::SColor(0, 255, 255, 255), // foot color
 							irr::video::SColor(0, 0, 0, 0));      // tail color
 

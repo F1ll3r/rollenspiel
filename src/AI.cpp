@@ -114,6 +114,12 @@ void AI::run(irr::s32 dtime){
 void AI::walkCharacterTo(const irr::core::vector3df& v){
 	state.iswalking = true;
 	state.target = v;
+
+	irr::core::vector3df rot((v-character->getAbsolutePosition()).getHorizontalAngle());
+	rot.X = 0;
+	character->setRotation(rot);
+
+
 	const Animation* anim = getAnimation(AI_Animation_Walk,L"Normal");
 //	My_Assert(anim);
 //	((irr::scene::IAnimatedMeshSceneNode*)character->getNode())->setFrameLoop(anim->getStartFrame(),anim->getEndFrame());
