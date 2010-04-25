@@ -24,9 +24,9 @@ UserInterface::~UserInterface() {
 void UserInterface::init(){
 	this->device = game->getIrrlichtDevice();
 	guienv = device->getGUIEnvironment();
+	options = NULL;
 	CreateMainMenu();
 	CreateOptions();
-
 }
 
 
@@ -74,7 +74,8 @@ bool UserInterface::OnEvent(const irr::SEvent& event){
 		case UI_GUI_Element_Apply:{
 			Settings s;
 
-			//s.resolution = this->getSelectedResolution(options);
+			s.resolution = getSelectedResolution();
+			//s.filtering = getSelectedFilterin();
 			game->setSettings(s);
 
 
