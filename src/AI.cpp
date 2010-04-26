@@ -129,7 +129,7 @@ void AI::walkCharacterTo(const irr::core::vector3df& v){
 
 
 	const Animation* anim = getAnimation(AI_Animation_Walk,L"Normal");
-	printf("%i",animations[AI_Animation_Walk].empty());
+	printf("%i",animations[AI_Animation_Walk].size());
 
 //	My_Assert(anim);
 //	((irr::scene::IAnimatedMeshSceneNode*)character->getNode())->setFrameLoop(anim->getStartFrame(),anim->getEndFrame());

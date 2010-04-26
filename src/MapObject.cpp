@@ -63,6 +63,8 @@ MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,gam
 							->addAnimatedMeshSceneNode(m,0,1,pos,rot,scale);
 					node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 
+					//((irr::scene::IAnimatedMeshSceneNode*)node)->addShadowVolumeSceneNode();
+
 					My_Assert(node);
 
 
