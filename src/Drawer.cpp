@@ -93,7 +93,12 @@ void Drawer::draw(){
 				irr::core::vector3df prot = game->getPlayer()->getRotation();
 
 
-				swprintf(debugtext,L"FPS: %i\n"
+				swprintf(debugtext,
+#ifdef __linux
+									255, 	//!under Linux swprintf takes an additional
+											//!size argument whilst under Windows it does not
+#endif
+								   L"FPS: %i\n"
 									"Tri: %i\n"
 									"Obj: %i\n"
 									"Driver: %ls\n"
