@@ -79,16 +79,16 @@
 
 		<MapObject>
 			<Mesh Value="content/a3dtree.3ds" />
-			<Position X="1000" Y="0" Z="1000" />
+			<Position X="881" Y="108" Z="971" />
 			<Rotation X="0" Y="0" Z="0" />
-			<Scale X="1" Y="1" Z="1" />
+			<Scale X="0.3" Y="0.3" Z="0.3" />
 		</MapObject>
 
         <MapObject>
 			<Mesh Value="content/a3dtree.3ds" />
-			<Position X="2000" Y="100" Z="2000" />
+			<Position X="429" Y="42" Z="287" />
 			<Rotation X="10" Y="10" Z="10" />
-			<Scale X="1" Y="1" Z="1" />
+			<Scale X="0.3" Y="0.3" Z="0.3" />
 		</MapObject>
 
 
