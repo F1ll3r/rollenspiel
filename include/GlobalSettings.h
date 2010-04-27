@@ -42,6 +42,10 @@
 	#define wcscmpi wcscasecmp
 #endif
 
+#ifdef _MSC_VER
+	#define wcscmpi wcscmp //!TODO: fix this by finding a Microsuck function 
+#endif
+
 
 class Game;
 class Drawer;

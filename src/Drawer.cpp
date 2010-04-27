@@ -94,17 +94,17 @@ void Drawer::draw(){
 
 
 				swprintf(debugtext,
-#ifdef __linux
-									255, 	//!under Linux swprintf takes an additional
-											//!size argument whilst under Windows it does not
+#if defined(__linux) ||  defined(_MSC_VER)
+									255, 	//!under Linux swprintf and MSVS takes an additional
+											//!size argument whilst under MinGW it does not
 #endif
-								   L"FPS: %i\n"
-									"Tri: %i\n"
-									"Obj: %i\n"
-									"Driver: %ls\n"
-									"Player:\n"
-									"Pos: %.2f %.2f %.2f\n"
-									"Rot: %.2f %.2f %.2f",
+									L"FPS: %i\n"
+									L"Tri: %i\n"
+									L"Obj: %i\n"
+									L"Driver: %ls\n"
+									L"Player:\n"
+									L"Pos: %.2f %.2f %.2f\n"
+									L"Rot: %.2f %.2f %.2f",
 									device->getVideoDriver()->getFPS(),
 									device->getVideoDriver()->getPrimitiveCountDrawn(),
 									game->getMap()->getObjectCount(),

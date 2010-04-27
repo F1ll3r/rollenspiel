@@ -13,10 +13,10 @@ GrassManager::GrassManager(Sector* s,Game* game,irr::io::IXMLReader* xml) {
 		switch (xml->getNodeType()) {
 			case irr::io::EXN_ELEMENT:
 					if(wcscmp(xml->getNodeName(),L"Grassmap") == 0){
-						grassmap = xml->getAttributeValue(L"Value");
+						grassmap 		= xml->getAttributeValue(L"Value");
 
 					}else if(wcscmp(xml->getNodeName(),L"Texture") == 0){
-						texture = xml->getAttributeValue(L"Value");
+						texture 		= xml->getAttributeValue(L"Value");
 
 					}else if(wcscmp(xml->getNodeName(),L"Wind") == 0){
 						windstrength	= xml->getAttributeValueAsFloat(L"strength");
@@ -42,6 +42,9 @@ GrassManager::~GrassManager() {
 	// TODO Auto-generated destructor stub
 }
 
+void GrassManager::run(){
+
+}
 
 void GrassManager::create(irr::scene::ITerrainSceneNode* t){
 
