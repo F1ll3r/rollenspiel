@@ -10,7 +10,7 @@
 
 #include "GlobalSettings.h"
 #include "IXMLReader.h"
-#include "ITerrainSceneNode.h"
+
 
 class GrassManager {
 

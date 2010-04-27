@@ -6,6 +6,7 @@
  */
 
 #include "GrassManager.h"
+#include "ITerrainSceneNode.h"
 
 GrassManager::GrassManager(Sector* s,Game* game,irr::io::IXMLReader* xml) {
 	density = xml->getAttributeValueAsFloat(L"Density");

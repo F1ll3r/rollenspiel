@@ -31,19 +31,21 @@
 
 
 #include <stdio.h>
-#if( defined __debug__ && defined __linux && STOP_ON_ERROR)
+#if( defined __debug__ && defined __linux &&  defined STOP_ON_ERROR)
 	#define My_Assert(x) if(!(x)) asm("int $3")
 #else
 	#define My_Assert(x) assert(x)
 	#include <assert.h>
 #endif
 
+
 #ifdef __linux
 	#define wcscmpi wcscasecmp
 #endif
 
+
 #ifdef _MSC_VER
-	#define wcscmpi wcscmp //!TODO: fix this by finding a Microsuck function 
+	#define wcscmpi wcsicmp
 #endif
 
 
@@ -112,6 +114,7 @@ namespace irr{
 		class IMeshSceneNode;
 		class ICameraSceneNode;
 		class ILightSceneNode;
+        class ITerrainSceneNode;
 	}
 
 	namespace gui{

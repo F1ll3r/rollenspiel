@@ -53,7 +53,7 @@ Sector* Map::getSector(irr::u32 id){
 }
 
 Player* Map::getPlayer(){
-	Player* p = dynamic_cast<Player*>(getObject(1));
+	Player* p = (Player*)getObject(1);
 	My_Assert(p);
 	return p;
 }

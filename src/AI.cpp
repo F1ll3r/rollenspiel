@@ -139,7 +139,7 @@ void AI::setAnimation(const Animation* anim){
 
 	if(state.animation != anim){
 		state.animation = anim;
-		irr::scene::IAnimatedMeshSceneNode* node = dynamic_cast<irr::scene::IAnimatedMeshSceneNode*>(character->getNode());
+		irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)character->getNode();
 		node->setFrameLoop(anim->getStartFrame(),anim->getEndFrame());
 		node->setAnimationSpeed(anim->getSpeed());
 	}
