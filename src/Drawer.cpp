@@ -97,7 +97,7 @@ void Drawer::draw(){
 
 				swprintf(debugtext,
 #if defined(__linux) ||  defined(_MSC_VER)
-									255, 	//!under Linux swprintf and MSVS takes an additional
+									255, 	//!under Linux and MSVS swprintf takes an additional
 											//!size argument whilst under MinGW it does not
 #endif
 									L"FPS: %i\n"

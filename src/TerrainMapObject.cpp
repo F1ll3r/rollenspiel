@@ -78,7 +78,7 @@ TerrainMapObject::TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml
 					node->setTriangleSelector(sel);
 
 					if(gm)
-						gm->create((irr::scene::ITerrainSceneNode*) node);
+						gm->create((irr::scene::ITerrainSceneNode*) node,game->getVideoDriver()->createImageFromFile(hightmap.c_str()));
 					return;
 					}
 				break;

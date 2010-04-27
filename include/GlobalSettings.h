@@ -49,6 +49,10 @@
 #endif
 
 
+#define DRIVER video::EDT_OPENGL
+//#define DRIVER video::EDT_DIRECT3D9
+
+
 class Game;
 class Drawer;
 class CameraHandler;
@@ -115,6 +119,8 @@ namespace irr{
 		class ICameraSceneNode;
 		class ILightSceneNode;
         class ITerrainSceneNode;
+        class IWindGenerator;
+        class CGrassPatchSceneNode;
 	}
 
 	namespace gui{

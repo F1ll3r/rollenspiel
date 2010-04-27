@@ -21,6 +21,7 @@
 			<Grass Density="800">
 				<Grassmap Value="content/Kapitel_1/terrain-grassmap.png" />
 				<Texture Value="content/Kapitel_1/grass.png" />
+				<Colormap Value="content/Kapitel_1/terrain-grasscol.bmp" />
 				<Wind Strength="30" Regularity="3" />
 			</Grass>
 

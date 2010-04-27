@@ -10,17 +10,21 @@
 
 #include "GlobalSettings.h"
 #include "IXMLReader.h"
+#include "irrString.h"
 
 
 class GrassManager {
 
-	Sector* 				s;
-	Game* 					game;
-	irr::core::stringw		texture;
-	irr::core::stringw		grassmap;
-	irr::f32 				density;
-	irr::f32				windstrength;
-	irr::f32				windregularity;
+	Sector* 					    	s;
+	Game* 						    	game;
+	irr::core::stringw			    	texture;
+	irr::core::stringw			    	grassmap;
+	irr::core::stringw			    	colormap;
+	irr::f32 					    	density;
+	irr::f32					    	windstrength;
+	irr::f32					    	windregularity;
+	irr::scene::IWindGenerator*     	wind;
+    irr::scene::CGrassPatchSceneNode*   node;
 
 public:
 	GrassManager(Sector* s,Game* game,irr::io::IXMLReader* xml);
@@ -28,7 +32,7 @@ public:
 	void run();
 
 
-	void create(irr::scene::ITerrainSceneNode* t);
+	void create(irr::scene::ITerrainSceneNode* t,irr::video::IImage* heightMap);
 };
 
 #endif /* GRASSMANAGER_H_ */

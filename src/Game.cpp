@@ -102,7 +102,7 @@ void Game::init( int argc, const char* argv[] ){
 	settings = readSettings();
 	parseArgs(settings,argc-1,argv+1);
 
-	device = createDevice  (video::EDT_DIRECT3D9,			//video::EDT_OPENGL
+	device = createDevice  (DRIVER,	
 							settings->resolution,
 							settings->depth,
 							settings->fullscreen,
