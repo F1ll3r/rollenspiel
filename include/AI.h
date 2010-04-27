@@ -44,10 +44,13 @@ class AI {
 	}state;
 
 
-	void parseAnimaton(irr::io::IXMLReader* xml);
+	void parseAnimation(irr::io::IXMLReader* xml);
+	void setAnimation(const Animation* anim);
 public:
 	AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml);
 	virtual ~AI();
+
+	void init();
 
 	const Animation* getAnimation(AI_Animation Class,const wchar_t* type);
 
@@ -64,11 +67,10 @@ class Animation{
 	irr::core::stringw	type;
 	bool				loop;
 public:
-	Animation(irr::s32 sframe,irr::s32 eframe,irr::f32 Speed,const wchar_t* Type,bool Loop = false){
+	Animation(irr::s32 sframe,irr::s32 eframe,irr::f32 Speed,const wchar_t* Type,bool Loop = false) : type(Type){
 		sFrame = sframe;
 		eFrame = eframe;
 		speed  = Speed;
-		type   = Type;
 		loop   = Loop;
 	}
 

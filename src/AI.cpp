@@ -21,14 +21,15 @@ AI::AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml) {
 	while(xml->read()){
 		switch (xml->getNodeType()) {
 			case irr::io::EXN_ELEMENT:
-				if(wcscmp(xml->getNodeName(),L"Animaton") == 0){
-					parseAnimaton(xml);
+				if(wcscmp(xml->getNodeName(),L"Animation") == 0){
+					parseAnimation(xml);
 				}
 
 				break;
 			case  irr::io::EXN_ELEMENT_END:
-				if(wcscmp(xml->getNodeName(),L"AI") == 0)
+				if(wcscmp(xml->getNodeName(),L"AI") == 0){
 					return;
+				}
 				break;
 			default:
 				break;
@@ -38,7 +39,7 @@ AI::AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml) {
 
 }
 
-void AI::parseAnimaton(irr::io::IXMLReader* xml){
+void AI::parseAnimation(irr::io::IXMLReader* xml){
 	while(xml->read()){
 		switch (xml->getNodeType()) {
 			case irr::io::EXN_ELEMENT:
@@ -52,7 +53,7 @@ void AI::parseAnimaton(irr::io::IXMLReader* xml){
 									wcscmpi(xml->getAttributeValueSafe(L"Loop"),L"true")==0 );
 
 					animations[AI_Animation_Walk].insert(
-								std::pair<irr::core::stringw,Animation*>(anim->getType(),anim)
+							std::make_pair<irr::core::stringw,Animation*>(anim->getType(),anim)
 							);
 
 				}else if(wcscmp(xml->getNodeName(),L"Idle") == 0){
@@ -65,7 +66,7 @@ void AI::parseAnimaton(irr::io::IXMLReader* xml){
 									wcscmpi(xml->getAttributeValueSafe(L"Loop"),L"true")==0 );
 
 					animations[AI_Animation_Idle].insert(
-								std::pair<irr::core::stringw,Animation*>(anim->getType(),anim)
+							std::make_pair<irr::core::stringw,Animation*>(anim->getType(),anim)
 							);
 
 				}
@@ -95,6 +96,7 @@ void AI::run(irr::s32 dtime){
 		irr::core::vector3df movmened(state.target - character->getAbsolutePosition());
 		if(movmened.getLengthSQ() < irr::core::ROUNDING_ERROR_f32*irr::core::ROUNDING_ERROR_f32 +1){
 			state.iswalking = false;
+			setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
 			return;
 		}
 		movmened.setLength(character->getSpeed() * dtime);
@@ -128,11 +130,22 @@ void AI::walkCharacterTo(const irr::core::vector3df& v){
 	character->setRotation(rot);
 
 
-	const Animation* anim = getAnimation(AI_Animation_Walk,L"Normal");
-	printf("%i",animations[AI_Animation_Walk].size());
-
-//	My_Assert(anim);
-//	((irr::scene::IAnimatedMeshSceneNode*)character->getNode())->setFrameLoop(anim->getStartFrame(),anim->getEndFrame());
+	setAnimation(getAnimation(AI_Animation_Walk,L"Normal"));
 
 }
 
+void AI::setAnimation(const Animation* anim){
+	My_Assert(anim);
+
+	if(state.animation != anim){
+		state.animation = anim;
+		irr::scene::IAnimatedMeshSceneNode* node = dynamic_cast<irr::scene::IAnimatedMeshSceneNode*>(character->getNode());
+		node->setFrameLoop(anim->getStartFrame(),anim->getEndFrame());
+		node->setAnimationSpeed(anim->getSpeed());
+	}
+}
+
+
+void AI::init(){
+	setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
+}

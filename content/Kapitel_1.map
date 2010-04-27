@@ -173,10 +173,10 @@
             </Inventory>
             <AI>
                 <Animation>
-                    <Walk Type="Normal" SFrame="0" EFrame="13" Speed="1" Loop="true" />
-                    <Walk Type="Stealth" SFrame="14" EFrame="29" Speed="1" Loop="true" />
-                    <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="1" Loop="true" />
-                    <Idle Type="Normal" SFrame="183" EFrame="203" Speed="1" Loop="true" />
+                    <Walk Type="Normal" SFrame="0" EFrame="13" Speed="15" Loop="true" />
+                    <Walk Type="Stealth" SFrame="14" EFrame="29" Speed="15" Loop="true" />
+                    <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
+                    <Idle Type="Normal" SFrame="183" EFrame="203" Speed="15" Loop="true" />
                 </Animation>
             </AI>
 		</Player>

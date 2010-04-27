@@ -36,7 +36,8 @@ bool MasterEventReceiver::OnEvent(const irr::SEvent& event){
 	if(event.EventType == irr::EET_MOUSE_INPUT_EVENT){
 		if(ui) cam->OnEvent(event);
 	}
-	if(event.EventType == irr::EET_MOUSE_INPUT_EVENT){
+	if(	event.EventType == irr::EET_MOUSE_INPUT_EVENT ||
+		event.EventType == irr::EET_KEY_INPUT_EVENT){
 		if(player) player->OnEvent(event);
 	}
 
