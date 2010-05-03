@@ -155,9 +155,11 @@ int Game::run(){
 			break;
 
 		case Context_Game_Run:
-			camerahandler->run();
+
 			gameeventmgr->triggerRunEvent();
 			gameeventmgr->run();
+
+			camerahandler->run();
 
 			driver->beginScene(true, true);
 			scenemgr->drawAll();

@@ -123,7 +123,7 @@ bool Player::OnEvent(const irr::SEvent& event){
 
 				if (n)
 				{
-					n->setScale(irr::core::vector3df(50.0f, 10.0f, 50.0f));
+					n->setScale(irr::core::vector3df(60.0f, 15.0f, 60.0f));
 					n->setPosition(tmpv);
 
 					// load textures for animation

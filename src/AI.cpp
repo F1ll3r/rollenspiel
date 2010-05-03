@@ -94,7 +94,7 @@ const Animation* AI::getAnimation(AI_Animation Class,const wchar_t* type){
 void AI::run(irr::s32 dtime){
 	if(state.iswalking){
 		irr::core::vector3df movmened(state.target - character->getAbsolutePosition());
-		if(movmened.getLengthSQ() < irr::core::ROUNDING_ERROR_f32*irr::core::ROUNDING_ERROR_f32 +1){
+		if(movmened.getLengthSQ() < 4){
 			state.iswalking = false;
 			setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
 			return;
@@ -102,8 +102,8 @@ void AI::run(irr::s32 dtime){
 		movmened.setLength(character->getSpeed() * dtime);
 		irr::scene::ISceneCollisionManager* collisionManager =
 					game->getSceneManager()->getSceneCollisionManager();
-		irr::core::line3d<float> line(	character->getAbsolutePosition() + irr::core::vector3df(0,2,0)  + movmened,
-									   (character->getAbsolutePosition() - irr::core::vector3df(0,10,0))+ movmened);
+		irr::core::line3d<float> line(	character->getAbsolutePosition() + irr::core::vector3df(0,4,0)  + movmened,
+									   (character->getAbsolutePosition() - irr::core::vector3df(0,40,0)) + movmened);
 
 		irr::core::vector3df tmpv;
 		irr::core::triangle3df tmpt;

@@ -24,7 +24,7 @@ class GrassManager {
 	irr::f32					    	windstrength;
 	irr::f32					    	windregularity;
 	irr::scene::IWindGenerator*     	wind;
-    irr::scene::CGrassPatchSceneNode*   node;
+    irr::scene::CGrassPatchSceneNode*   node[5][5];
 
 public:
 	GrassManager(Sector* s,Game* game,irr::io::IXMLReader* xml);

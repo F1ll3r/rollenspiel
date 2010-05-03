@@ -13,6 +13,11 @@
 
 GrassManager::GrassManager(Sector* s,Game* game,irr::io::IXMLReader* xml):s(s),game(game) {
 	density = xml->getAttributeValueAsFloat(L"Density");
+
+	for(int i =0; i<5;i++)
+		for(int j =0; j<5;j++)
+			node[i][j] = 0;
+
 	while(xml->read()){
 		switch (xml->getNodeType()) {
 			case irr::io::EXN_ELEMENT:
@@ -49,7 +54,10 @@ GrassManager::GrassManager(Sector* s,Game* game,irr::io::IXMLReader* xml):s(s),g
 }
 
 GrassManager::~GrassManager() {
-	// TODO Auto-generated destructor stub
+	for(int i =0; i<5;i++)
+		for(int j =0; j<5;j++)
+			if(node[i][j])
+				node[i][j]->drop();
 }
 
 void GrassManager::run(){
@@ -62,18 +70,20 @@ void GrassManager::create(irr::scene::ITerrainSceneNode* t,irr::video::IImage* h
 	irr::video::IImage* grassMap   = game->getVideoDriver()->createImageFromFile(grassmap);
 	irr::video::IImage* colorMap   = game->getVideoDriver()->createImageFromFile(colormap);
 
-
-	node = new irr::scene::CGrassPatchSceneNode(t, game->getSceneManager(), -1, irr::core::vector3d<irr::s32>(0,0,0), (irr::c8*)"grass", heightMap, colorMap, grassMap, wind);
-    node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-    node->setMaterialType(irr::video::EMT_TRANSPARENT_ALPHA_CHANNEL);
-	node->getMaterial(0).TextureLayer[0].TextureWrapU = irr::video::ETC_CLAMP;
-    node->getMaterial(0).TextureLayer[0].TextureWrapV = irr::video::ETC_CLAMP;
-	node->getMaterial(0).MaterialTypeParam = 0.5f;
-    node->setMaterialTexture(0, texture);
-	node->setDebugDataVisible(-1);
-    node->drop();
-    node->setMaxDensity(1600);
-    node->setDrawDistance(node->getDrawDistance()*4);
+	for(int i =0; i<5;i++){
+		for(int j =0; j<5;j++){
+			node[i][j] = new irr::scene::CGrassPatchSceneNode(t, game->getSceneManager(), -1, irr::core::vector3d<irr::s32>(i,0,j), (irr::c8*)"grass", heightMap, colorMap, grassMap, wind);
+			node[i][j]->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+			node[i][j]->setMaterialType(irr::video::EMT_TRANSPARENT_ALPHA_CHANNEL);
+			node[i][j]->getMaterial(0).TextureLayer[0].TextureWrapU = irr::video::ETC_CLAMP;
+			node[i][j]->getMaterial(0).TextureLayer[0].TextureWrapV = irr::video::ETC_CLAMP;
+			node[i][j]->getMaterial(0).MaterialTypeParam = 0.5f;
+			node[i][j]->setMaterialTexture(0, texture);
+			node[i][j]->setDebugDataVisible(-1);
+			node[i][j]->setMaxDensity(1600);
+			node[i][j]->setDrawDistance(node[i][j]->getDrawDistance()*4);
+		}
+	}
 
 
 
