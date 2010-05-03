@@ -155,9 +155,9 @@ int Game::run(){
 			break;
 
 		case Context_Game_Run:
+			camerahandler->run();
 			gameeventmgr->triggerRunEvent();
 			gameeventmgr->run();
-			camerahandler->run();
 
 			driver->beginScene(true, true);
 			scenemgr->drawAll();
@@ -165,7 +165,6 @@ int Game::run(){
 			drawer->draw();
 			ui->draw();
 			driver->endScene();
-
 			break;
 
 		case Context_Main_Menu:

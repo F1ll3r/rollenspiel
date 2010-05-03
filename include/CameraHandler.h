@@ -16,8 +16,8 @@ class CameraHandler : public irr::IEventReceiver {
 	irr::IrrlichtDevice* 			device;
 	irr::core::vector3df 			camvac;
 	irr::f32						distence;
-	irr::f32						hight;
 	irr::f32						alpha;
+	irr::f32						beta;
 	irr::scene::ICameraSceneNode*	irrcam;
 
 	irr::u32						lasttime;

@@ -42,7 +42,7 @@ public:
 
 	irr::f32 getSpeed(){
 		//! TODO: implement this
-		return 0.025;
+		return 0.4;
 	}
 };
 

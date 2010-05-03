@@ -13,16 +13,16 @@
         <Loading_Screen points="0" text="Erzeuge Terrain" />
 
 		<Terrain Smoothing="10">
-            <Scale X="10" Y="0.5" Z="10" />
+            <Scale X="60" Y="3" Z="60" />
 			<Hightmap Value="content/Kapitel_1/terrain-heightmap.bmp" />
 			<Texture Value="content/Kapitel_1/terrain-texture.jpg" />
 			<Detailtexture Value="content/Kapitel_1/detailtex.jpg" />
 
-			<Grass Density="800">
+			<Grass Density="8000">
 				<Grassmap Value="content/Kapitel_1/terrain-grassmap.png" />
 				<Texture Value="content/Kapitel_1/grass.png" />
 				<Colormap Value="content/Kapitel_1/terrain-grasscol.bmp" />
-				<Wind Strength="30" Regularity="3" />
+				<Wind Strength="7.5" Regularity="3" />
 			</Grass>
 
 			<Passable_Surface>
@@ -34,7 +34,7 @@
 
 
         <AmbientLight R="0.71" G="0.71" B="0.61" />
-        <LightObject R="1" G="1" B="1" X="100" Y="1000" Z="100" Radius="100000" />
+        <LightObject R="1" G="1" B="1" X="-100" Y="10000" Z="-100" Radius="1000000" />
 
 
 			<!--
@@ -157,8 +157,8 @@
 		<Player>
             <Health Max="100" Current="100">
             <Mesh Value="content/ninja.b3d" />
-            <Scale X="1" Y="1" Z="1" />
-			<Position X="100" Y="20" Z="100" />
+            <Scale X="15" Y="15" Z="15" />
+			<Position X="100" Y="180" Z="100" />
 			<Rotation X="0" Y="0" Z="0" />
             <Inventory>
                 <Weapon class="baton" name="Kurtzschwert">

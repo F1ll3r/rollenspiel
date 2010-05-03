@@ -3,7 +3,7 @@
 #ifndef __C_GRASS_PATCH_SCENE_NODE_H_INCLUDED__
 #define __C_GRASS_PATCH_SCENE_NODE_H_INCLUDED__
 
-#define GRASS_PATCH_SIZE 1024
+#define GRASS_PATCH_SIZE 4096
 
 #include <irrlicht.h>
 #include "IWindGenerator.h"

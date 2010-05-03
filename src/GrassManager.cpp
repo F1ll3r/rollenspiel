@@ -26,8 +26,8 @@ GrassManager::GrassManager(Sector* s,Game* game,irr::io::IXMLReader* xml):s(s),g
 						colormap 		= xml->getAttributeValue(L"Value");
 
 					}else if(wcscmp(xml->getNodeName(),L"Wind") == 0){
-						windstrength	= xml->getAttributeValueAsFloat(L"strength");
-						windregularity	= xml->getAttributeValueAsFloat(L"regularity");
+						windstrength	= xml->getAttributeValueAsFloat(L"Strength");
+						windregularity	= xml->getAttributeValueAsFloat(L"Regularity");
 
 
 					}else{
@@ -63,17 +63,18 @@ void GrassManager::create(irr::scene::ITerrainSceneNode* t,irr::video::IImage* h
 	irr::video::IImage* colorMap   = game->getVideoDriver()->createImageFromFile(colormap);
 
 
-	node = new irr::scene::CGrassPatchSceneNode(t, game->getSceneManager(), -1, irr::core::vector3d<irr::s32>(1,0,1), (irr::c8*)"grass", heightMap, colorMap, grassMap, wind);
+	node = new irr::scene::CGrassPatchSceneNode(t, game->getSceneManager(), -1, irr::core::vector3d<irr::s32>(0,0,0), (irr::c8*)"grass", heightMap, colorMap, grassMap, wind);
     node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
     node->setMaterialType(irr::video::EMT_TRANSPARENT_ALPHA_CHANNEL);
 	node->getMaterial(0).TextureLayer[0].TextureWrapU = irr::video::ETC_CLAMP;
     node->getMaterial(0).TextureLayer[0].TextureWrapV = irr::video::ETC_CLAMP;
 	node->getMaterial(0).MaterialTypeParam = 0.5f;
     node->setMaterialTexture(0, texture);
-	//node->setDebugDataVisible(-1);
+	node->setDebugDataVisible(-1);
     node->drop();
-    node->setMaxDensity(800);
-    node->setDrawDistance(node->getDrawDistance()*2);
+    node->setMaxDensity(1600);
+    node->setDrawDistance(node->getDrawDistance()*4);
+
 
 
     game->getSceneManager()->getParameters()->setAttribute(irr::scene::ALLOW_ZWRITE_ON_TRANSPARENT, true);

@@ -15,9 +15,9 @@
 CameraHandler::CameraHandler(Game* game) {
 	this->game 	= game;
 	irrcam		= NULL;
-	distence 	= 120;
-	hight 		= 150;
+	distence 	= 600;
 	alpha 		= 0;
+	beta		= irr::core::HALF_PI - irr::core::PI/4;
 }
 
 CameraHandler::~CameraHandler() {
@@ -38,23 +38,39 @@ void CameraHandler::run(){
 	irr::f32 timedelta = device->getTimer()->getTime() - lasttime;
 	lasttime = device->getTimer()->getTime();
 
+	//Rotate Camera left/right
 	if(curpos.X < 1){
 		alpha -= timedelta/700;
 	}else if(curpos.X > (irr::s32) device->getVideoDriver()->getScreenSize().Width - 1){
 		alpha += timedelta/700;
 	}
 
+	//Rotate up/down
+	if(curpos.Y < 1){
+		beta -= timedelta/2000;
+	}else if(curpos.Y > (irr::s32) device->getVideoDriver()->getScreenSize().Height - 1){
+		beta += timedelta/2000;
+	}
+
+
+	//Check if values make sense
 	if(alpha > 2 * irr::core::PI){
 		alpha -= 2 * irr::core::PI;
 	}else if(alpha < 0){
 		alpha += 2 * irr::core::PI;
 	}
 
+	if(beta > irr::core::HALF_PI - irr::core::PI/6){
+		beta =  irr::core::HALF_PI - irr::core::PI/6;
+	}else if(beta < irr::core::DEGTORAD){
+		beta = irr::core::DEGTORAD;
+	}
 
 
-	camvac.X = distence * sinf(alpha);
-	camvac.Y = hight;
-	camvac.Z = distence * cosf(alpha);
+
+	camvac.X = distence * sinf(alpha) * sinf(beta);
+	camvac.Y = distence * cosf(beta);
+	camvac.Z = distence * cosf(alpha) * sinf(beta);
 
 	irrcam->setPosition(camvac + game->getPlayer()->getPosition());
 	irrcam->setTarget(game->getPlayer()->getPosition());
@@ -63,8 +79,7 @@ void CameraHandler::run(){
 
 bool CameraHandler::OnEvent(const irr::SEvent& event){
 	if(event.EventType == irr::EET_MOUSE_INPUT_EVENT){
-		hight += event.MouseInput.Wheel*5;
-		distence += event.MouseInput.Wheel*3;
+		distence += event.MouseInput.Wheel*13;
 	}
 	return false;
 }

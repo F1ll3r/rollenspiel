@@ -58,8 +58,13 @@ TerrainMapObject::TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml
 					node = game->getSceneManager()->addTerrainSceneNode(hightmap.c_str(),0,0,
 								irr::core::vector3df(0.0f,0.0f,0.0f),
 								irr::core::vector3df(0.0f,0.0f,0.0f),
-								scale,irr::video::SColor(255,255,255,255),
+								irr::core::vector3df(1.0f,1.0f,1.0f),
+								irr::video::SColor(255,255,255,255),
 								5,irr::scene::ETPS_17,smoothing);
+					My_Assert(node);
+
+					node->setScale(scale);
+
 
 					node->setMaterialTexture(0,
 							game->getVideoDriver()->getTexture(texture));

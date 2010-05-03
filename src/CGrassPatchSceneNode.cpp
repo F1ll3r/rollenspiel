@@ -234,7 +234,7 @@ void CGrassPatchSceneNode::OnRegisterSceneNode()
 	{
 		if (Particles.size() != 0)
 		{   
-			core::vector3df campos = SceneManager->getActiveCamera()->getAbsolutePosition();
+			core::vector3df campos = SceneManager->getActiveCamera()->getPosition();
 			if ( (Box.getCenter() + getPosition()).getDistanceFromSQ(campos) < DrawDistanceSQ*1.5  )
 			{
 			   SceneManager->registerNodeForRendering(this);
@@ -254,7 +254,7 @@ void CGrassPatchSceneNode::OnAnimate(u32 timeMs)
 		redrawnextloop = true;
 		
 		// populate wind grid
-		f32 dist =(Box.getCenter() + getPosition()).getDistanceFromSQ(SceneManager->getActiveCamera()->getAbsolutePosition()) + 1;
+		f32 dist =(Box.getCenter() + getPosition()).getDistanceFromSQ(SceneManager->getActiveCamera()->getPosition()) + 1;
 	  
 		if ( WindGen && dist < DrawDistanceSQ*1.5)
 		  for (u32 x=0; x<windGridRes+1; ++x)
