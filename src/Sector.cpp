@@ -118,3 +118,4 @@ irr::scene::ITriangleSelector* Sector::getCollisionTriangleSelector(){
 }
 
 
+

@@ -94,7 +94,7 @@ const Animation* AI::getAnimation(AI_Animation Class,const wchar_t* type){
 void AI::run(irr::s32 dtime){
 	if(state.iswalking){
 		irr::core::vector3df movmened(state.target - character->getAbsolutePosition());
-		if(movmened.getLengthSQ() < 4){
+		if(movmened.getLengthSQ() < 5){
 			state.iswalking = false;
 			setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
 			return;

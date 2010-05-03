@@ -30,6 +30,8 @@ public:
 
 	virtual void remove();
 
+	virtual void handleEvent(GameEvent* e);
+
 
 	//! returns the ID used for GameEventMgmt this may or may not
 	//! be equal to getNode()->getID()

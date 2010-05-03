@@ -84,6 +84,7 @@ struct Settings;
 #include "Context.h"
 #include "irrTypes.h"
 #include "vector3d.h"
+#include "vector2d.h"
 
 
 namespace irr{

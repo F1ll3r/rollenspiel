@@ -87,9 +87,9 @@
 
         <MapObject>
 			<Mesh Value="content/a3dtree.3ds" />
-			<Position X="429" Y="42" Z="287" />
-			<Rotation X="10" Y="10" Z="10" />
-			<Scale X="0.3" Y="0.3" Z="0.3" />
+			<Position X="2333" Y="220" Z="1775" />
+			<Rotation X="5" Y="90" Z="5" />
+			<Scale X="3" Y="4" Z="3" />
 		</MapObject>
 
 

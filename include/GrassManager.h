@@ -12,19 +12,41 @@
 #include "IXMLReader.h"
 #include "irrString.h"
 
+#define GRASS_BUFFER_SIZE 5
+
 
 class GrassManager {
 
 	Sector* 					    	s;
 	Game* 						    	game;
-	irr::core::stringw			    	texture;
-	irr::core::stringw			    	grassmap;
-	irr::core::stringw			    	colormap;
-	irr::f32 					    	density;
+	irr::video::ITexture* 				texture;
+	irr::video::IImage* 				grassmap;
+	irr::video::IImage*			    	colormap;
+	irr::video::IImage* 				heightmap;
+	irr::scene::ITerrainSceneNode* 		terrain;
 	irr::f32					    	windstrength;
 	irr::f32					    	windregularity;
 	irr::scene::IWindGenerator*     	wind;
-    irr::scene::CGrassPatchSceneNode*   node[5][5];
+	//this is the grass buffer
+    irr::scene::CGrassPatchSceneNode*   node[GRASS_BUFFER_SIZE][GRASS_BUFFER_SIZE];
+    irr::core::vector2di				oldpos;
+
+    irr::f32							distance;
+    irr::f32							density;
+
+    //drops the hole buffer and allocates new grass
+    void reallocate();
+
+    enum Shift_Direction{
+    	Up 		= 0,
+    	Down	= 1,
+    	Left	= 2,
+    	Right	= 4
+    };
+    // shifts the content of the GrassBuffer
+    void shift(Shift_Direction direction);
+
+
 
 public:
 	GrassManager(Sector* s,Game* game,irr::io::IXMLReader* xml);

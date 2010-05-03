@@ -58,3 +58,4 @@ Player* Map::getPlayer(){
 	return p;
 }
 
+

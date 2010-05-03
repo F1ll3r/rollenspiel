@@ -13,6 +13,8 @@
 #include "TerrainMapObject.h"
 #include "GrassManager.h"
 #include "Game.h"
+#include "GameEventManager.h"
+#include "GameEvent.h"
 
 
 TerrainMapObject::TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml)
@@ -82,8 +84,10 @@ TerrainMapObject::TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml
 							((irr::scene::ITerrainSceneNode*) node));
 					node->setTriangleSelector(sel);
 
-					if(gm)
+					if(gm){
 						gm->create((irr::scene::ITerrainSceneNode*) node,game->getVideoDriver()->createImageFromFile(hightmap.c_str()));
+						game->getGameEventManager()->registerForRunEvent(this);
+					}
 					return;
 					}
 				break;
@@ -136,3 +140,12 @@ irr::s32 TerrainMapObject::getID(){
 	//TODO: write real code
 	return 0;
 }
+
+void TerrainMapObject::handleEvent(GameEvent* e){
+	if(e->getEventType() == Game_Event_Type_Run){
+		if(gm){
+			gm->run();
+		}
+	}
+}
+
