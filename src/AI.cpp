@@ -100,11 +100,19 @@ void AI::run(irr::s32 dtime){
 			setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
 			return;
 		}
+
+
+
 		movmened.setLength(character->getSpeed() * dtime);
-
 		movmened+= state.lastpos;
-
 		movmened.Y = sector->getTerrainHightFromXY(movmened.X,movmened.Z);
+
+//		irr::scene::ISceneCollisionManager* collisionManager =
+//					game->getSceneManager()->getSceneCollisionManager();
+//
+//		sector->getCollisionTriangleSelector()->
+//
+//		collisionManager->getSceneNodeFromRayBB();
 
 		character->setPosition(movmened);
 

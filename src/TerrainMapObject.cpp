@@ -141,8 +141,8 @@ irr::s32 TerrainMapObject::getID(){
 	return 0;
 }
 
-void TerrainMapObject::handleEvent(GameEvent* e){
-	if(e->getEventType() == Game_Event_Type_Run){
+void TerrainMapObject::handleEvent(const GameEvent& e){
+	if(e.getEventType() == Game_Event_Type_Run){
 		if(gm){
 			gm->run();
 		}

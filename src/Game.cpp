@@ -222,7 +222,7 @@ Game_Context Game::getContext(){
 }
 
 
-Settings Game::getSettings(){
+Settings Game::getSettings() const {
 	return *settings;
 }
 

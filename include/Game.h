@@ -47,53 +47,53 @@ public:
 	void switchContext(Game_Context context);
 	Game_Context getContext();
 
-	Settings getSettings();
+	Settings getSettings() const ;
 
 	void setSettings(Settings s);
 
-	Importer*	getImporter(){
+	Importer*	getImporter() const {
 		return importer;
 	}
 
-	Exporter* getExporter(){
+	Exporter* getExporter() const {
 		return exporter;
 	}
 
-	Player* getPlayer(){
+	Player* getPlayer() const {
 		return player;
 	}
 
-	CameraHandler* getCameraHandler(){
+	CameraHandler* getCameraHandler() const {
 		return camerahandler;
 	}
 
-	Drawer* getDrawer(){
+	Drawer* getDrawer() const {
 		return drawer;
 	}
-	UserInterface*	getUserInterface(){
+	UserInterface*	getUserInterface() const {
 		return ui;
 	}
 
-	GameEventManager* getGameEventManager(){
+	GameEventManager* getGameEventManager() const {
 		return gameeventmgr;
 	}
-	MasterEventReceiver* getMasterEventReceiver(){
+	MasterEventReceiver* getMasterEventReceiver() const {
 		return mastereventmgr;
 	}
 
-	irr::IrrlichtDevice* getIrrlichtDevice(){
+	irr::IrrlichtDevice* getIrrlichtDevice() const {
 		return device;
 	}
 
-	irr::video::IVideoDriver* getVideoDriver(){
+	irr::video::IVideoDriver* getVideoDriver() const {
 		return driver;
 	}
 
-	irr::scene::ISceneManager* getSceneManager(){
+	irr::scene::ISceneManager* getSceneManager() const {
 		return scenemgr;
 	}
 
-	Map* getMap(){
+	Map* getMap() const {
 		return map;
 	}
 

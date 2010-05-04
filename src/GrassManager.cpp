@@ -77,6 +77,12 @@ GrassManager::~GrassManager() {
 void GrassManager::run(){
 	irr::core::vector3df playpos = game->getPlayer()->getPosition();
 
+	if(node[0][0]->getCenter() != playpos){
+		for(int i =0; i<GRASS_BUFFER_SIZE;i++)
+			for(int j =0; j<GRASS_BUFFER_SIZE;j++)
+				node[i][j]->setCenter(playpos);
+	}
+
 	irr::core::vector2di newpos(
 			(irr::s32)((playpos.X + GRASS_PATCH_SIZE / 2) / GRASS_PATCH_SIZE
 #if !(GRASS_BUFFER_SIZE%2)
@@ -91,42 +97,42 @@ void GrassManager::run(){
 			)-GRASS_BUFFER_SIZE/2
 	);
 
-//	if(newpos != oldpos){
-//		irr::s32 Xoffset = newpos.X - oldpos.X;
-//		if(Xoffset > 0){
-//			if(Xoffset < GRASS_BUFFER_SIZE){
-//				while(Xoffset != 0 ){
-//					shift(Left);
-//					Xoffset = newpos.X - oldpos.X;
-//				}
-//			}
-//		}else{
-//			if(-Xoffset < GRASS_BUFFER_SIZE){
-//				while(Xoffset != 0 ){
-//					shift(Right);
-//					Xoffset = newpos.X - oldpos.X;
-//				}
-//			}
-//		}
-//
-//		irr::s32 Yoffset = newpos.Y - oldpos.Y;
-//		if(Yoffset > 0){
-//			if(Yoffset < GRASS_BUFFER_SIZE){
-//				while(Yoffset != 0 ){
-//					shift(Down);
-//					Yoffset = newpos.Y - oldpos.Y;
-//				}
-//			}
-//		}else{
-//			if(-Yoffset < GRASS_BUFFER_SIZE){
-//				while(Yoffset != 0 ){
-//					shift(Up);
-//					Yoffset = newpos.Y - oldpos.Y;
-//				}
-//			}
-//		}
-//
-//	}
+	if(newpos != oldpos){
+		irr::s32 Xoffset = newpos.X - oldpos.X;
+		if(Xoffset > 0){
+			if(Xoffset < GRASS_BUFFER_SIZE){
+				while(Xoffset != 0 ){
+					shift(Left);
+					Xoffset = newpos.X - oldpos.X;
+				}
+			}
+		}else{
+			if(-Xoffset < GRASS_BUFFER_SIZE){
+				while(Xoffset != 0 ){
+					shift(Right);
+					Xoffset = newpos.X - oldpos.X;
+				}
+			}
+		}
+
+		irr::s32 Yoffset = newpos.Y - oldpos.Y;
+		if(Yoffset > 0){
+			if(Yoffset < GRASS_BUFFER_SIZE){
+				while(Yoffset != 0 ){
+					shift(Down);
+					Yoffset = newpos.Y - oldpos.Y;
+				}
+			}
+		}else{
+			if(-Yoffset < GRASS_BUFFER_SIZE){
+				while(Yoffset != 0 ){
+					shift(Up);
+					Yoffset = newpos.Y - oldpos.Y;
+				}
+			}
+		}
+
+	}
 
 	if(newpos != oldpos){
 		oldpos = newpos;
@@ -175,10 +181,9 @@ void GrassManager::run(){
 //  a movement of the buffer will also reset the position of the center (oldpos)
 //
 void GrassManager::shift(Shift_Direction direction){
-	printf("shift   %i \n",direction);
 	switch (direction) {
-		case Up:
-			oldpos.Y--;
+		case Left:
+			oldpos.X++;
 			for(int i = 0; i<GRASS_BUFFER_SIZE;i++){
 				node[0][i]->remove();
 			}
@@ -197,9 +202,9 @@ void GrassManager::shift(Shift_Direction direction){
 				node[GRASS_BUFFER_SIZE-1][i]->getMaterial(0).TextureLayer[0].TextureWrapV = irr::video::ETC_CLAMP;
 				node[GRASS_BUFFER_SIZE-1][i]->getMaterial(0).MaterialTypeParam = 0.5f;
 				node[GRASS_BUFFER_SIZE-1][i]->setMaterialTexture(0, texture);
-	#ifdef __debug__
+#ifdef __debug__
 				node[GRASS_BUFFER_SIZE-1][i]->setDebugDataVisible(-1);
-	#endif
+#endif
 				node[GRASS_BUFFER_SIZE-1][i]->setMaxDensity((irr::u32)density);
 				node[GRASS_BUFFER_SIZE-1][i]->setDrawDistance(distance);
 			}
@@ -207,8 +212,8 @@ void GrassManager::shift(Shift_Direction direction){
 			break;
 
 
-		case Down:
-			oldpos.Y++;
+		case Right:
+			oldpos.X--;
 			for(int i = 0; i<GRASS_BUFFER_SIZE;i++){
 				node[GRASS_BUFFER_SIZE-1][i]->remove();
 			}
@@ -220,16 +225,16 @@ void GrassManager::shift(Shift_Direction direction){
 			}
 
 			for(int i = 0; i<GRASS_BUFFER_SIZE;i++){
-				node[0][i] = new irr::scene::CGrassPatchSceneNode(terrain, game->getSceneManager(), -1, irr::core::vector3d<irr::s32>(GRASS_BUFFER_SIZE-1 + oldpos.X,0,i + oldpos.Y), (irr::c8*)"grass", heightmap, colormap, grassmap, wind);
+				node[0][i] = new irr::scene::CGrassPatchSceneNode(terrain, game->getSceneManager(), -1, irr::core::vector3d<irr::s32>(oldpos.X,0,i + oldpos.Y), (irr::c8*)"grass", heightmap, colormap, grassmap, wind);
 				node[0][i]->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 				node[0][i]->setMaterialType(irr::video::EMT_TRANSPARENT_ALPHA_CHANNEL);
 				node[0][i]->getMaterial(0).TextureLayer[0].TextureWrapU = irr::video::ETC_CLAMP;
 				node[0][i]->getMaterial(0).TextureLayer[0].TextureWrapV = irr::video::ETC_CLAMP;
 				node[0][i]->getMaterial(0).MaterialTypeParam = 0.5f;
 				node[0][i]->setMaterialTexture(0, texture);
-	#ifdef __debug__
+#ifdef __debug__
 				node[0][i]->setDebugDataVisible(-1);
-	#endif
+#endif
 				node[0][i]->setMaxDensity((irr::u32)density);
 				node[0][i]->setDrawDistance(distance);
 			}
@@ -237,8 +242,8 @@ void GrassManager::shift(Shift_Direction direction){
 			break;
 
 
-		case Left:
-			oldpos.X++;
+		case Down:
+			oldpos.Y++;
 			for(int i = 0; i<GRASS_BUFFER_SIZE;i++){
 				node[i][0]->remove();
 			}
@@ -250,16 +255,16 @@ void GrassManager::shift(Shift_Direction direction){
 			}
 
 			for(int i = 0; i<GRASS_BUFFER_SIZE;i++){
-				node[i][GRASS_BUFFER_SIZE-1] = new irr::scene::CGrassPatchSceneNode(terrain, game->getSceneManager(), -1, irr::core::vector3d<irr::s32>(GRASS_BUFFER_SIZE-1 + oldpos.X,0,i + oldpos.Y), (irr::c8*)"grass", heightmap, colormap, grassmap, wind);
+				node[i][GRASS_BUFFER_SIZE-1] = new irr::scene::CGrassPatchSceneNode(terrain, game->getSceneManager(), -1, irr::core::vector3d<irr::s32>(i + oldpos.X,0,GRASS_BUFFER_SIZE-1 + oldpos.Y), (irr::c8*)"grass", heightmap, colormap, grassmap, wind);
 				node[i][GRASS_BUFFER_SIZE-1]->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 				node[i][GRASS_BUFFER_SIZE-1]->setMaterialType(irr::video::EMT_TRANSPARENT_ALPHA_CHANNEL);
 				node[i][GRASS_BUFFER_SIZE-1]->getMaterial(0).TextureLayer[0].TextureWrapU = irr::video::ETC_CLAMP;
 				node[i][GRASS_BUFFER_SIZE-1]->getMaterial(0).TextureLayer[0].TextureWrapV = irr::video::ETC_CLAMP;
 				node[i][GRASS_BUFFER_SIZE-1]->getMaterial(0).MaterialTypeParam = 0.5f;
 				node[i][GRASS_BUFFER_SIZE-1]->setMaterialTexture(0, texture);
-	#ifdef __debug__
+#ifdef __debug__
 				node[i][GRASS_BUFFER_SIZE-1]->setDebugDataVisible(-1);
-	#endif
+#endif
 				node[i][GRASS_BUFFER_SIZE-1]->setMaxDensity((irr::u32)density);
 				node[i][GRASS_BUFFER_SIZE-1]->setDrawDistance(distance);
 			}
@@ -267,8 +272,8 @@ void GrassManager::shift(Shift_Direction direction){
 			break;
 
 
-		case Right:
-			oldpos.X--;
+		case Up:
+			oldpos.Y--;
 			for(int i = 0; i<GRASS_BUFFER_SIZE;i++){
 				node[i][GRASS_BUFFER_SIZE-1]->remove();
 			}
@@ -280,16 +285,16 @@ void GrassManager::shift(Shift_Direction direction){
 			}
 
 			for(int i = 0; i<GRASS_BUFFER_SIZE;i++){
-				node[i][0] = new irr::scene::CGrassPatchSceneNode(terrain, game->getSceneManager(), -1, irr::core::vector3d<irr::s32>(GRASS_BUFFER_SIZE-1 + oldpos.X,0,i + oldpos.Y), (irr::c8*)"grass", heightmap, colormap, grassmap, wind);
+				node[i][0] = new irr::scene::CGrassPatchSceneNode(terrain, game->getSceneManager(), -1, irr::core::vector3d<irr::s32>(i+ oldpos.X,0,oldpos.Y), (irr::c8*)"grass", heightmap, colormap, grassmap, wind);
 				node[i][0]->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 				node[i][0]->setMaterialType(irr::video::EMT_TRANSPARENT_ALPHA_CHANNEL);
 				node[i][0]->getMaterial(0).TextureLayer[0].TextureWrapU = irr::video::ETC_CLAMP;
 				node[i][0]->getMaterial(0).TextureLayer[0].TextureWrapV = irr::video::ETC_CLAMP;
 				node[i][0]->getMaterial(0).MaterialTypeParam = 0.5f;
 				node[i][0]->setMaterialTexture(0, texture);
-	#ifdef __debug__
+#ifdef __debug__
 				node[i][0]->setDebugDataVisible(-1);
-	#endif
+#endif
 				node[i][0]->setMaxDensity((irr::u32)density);
 				node[i][0]->setDrawDistance(distance);
 			}

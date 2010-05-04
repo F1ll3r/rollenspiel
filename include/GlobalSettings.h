@@ -122,6 +122,8 @@ namespace irr{
         class ITerrainSceneNode;
         class IWindGenerator;
         class CGrassPatchSceneNode;
+        class IMetaTriangleSelector;
+        class ITriangleSelector;
 	}
 
 	namespace gui{

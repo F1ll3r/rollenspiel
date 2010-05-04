@@ -11,10 +11,12 @@
 #include "GlobalSettings.h"
 #include "Object.h"
 #include "IXMLReader.h"
+#include "aabbox3d.h"
 
 class MapObject : public Object{
 protected:
 	irr::scene::IAnimatedMeshSceneNode*			node;
+	irr::core::aabbox3d<irr::f32>*					bbox;
 	irr::s32									id;
 public:
 	MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml);

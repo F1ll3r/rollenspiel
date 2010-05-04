@@ -30,7 +30,7 @@ public:
 
 	virtual void remove();
 
-	virtual void handleEvent(GameEvent* e);
+	virtual void handleEvent(const GameEvent& e);
 
 
 	//! returns the ID used for GameEventMgmt this may or may not

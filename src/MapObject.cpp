@@ -11,6 +11,7 @@
 #include "Game.h"
 #include "IAnimatedMeshSceneNode.h"
 #include "Map.h"
+#include "Sector.h"
 
 MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,game) {
 	irr::core::stringw		mesh;
@@ -20,8 +21,11 @@ MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,gam
 	irr::core::vector3df	scale;
 	irr::IrrlichtDevice*	device = game->getIrrlichtDevice();
 
+	bbox					= 0;
+
 	id	= xml->getAttributeValueAsInt(L"ID");
-	id	= game->getMap()->getFreeID();
+	if(id == 0)
+		id	= game->getMap()->getFreeID();
 
 	while(xml->read()){
 		switch (xml->getNodeType()) {
@@ -47,6 +51,15 @@ MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,gam
 						scale.Y = xml->getAttributeValueAsFloat(L"Y");
 						scale.Z = xml->getAttributeValueAsFloat(L"Z");
 
+					}else if(wcscmp(xml->getNodeName(),L"BBox") == 0){
+
+						bbox = new irr::core::aabbox3d<irr::f32>(
+								xml->getAttributeValueAsFloat(L"X1"),
+								xml->getAttributeValueAsFloat(L"Y1"),
+								xml->getAttributeValueAsFloat(L"Z1"),
+								xml->getAttributeValueAsFloat(L"X2"),
+								xml->getAttributeValueAsFloat(L"Y2"),
+								xml->getAttributeValueAsFloat(L"Z2"));
 
 					}else{
 						wprintf(L"Corrupt XML-file. Unexpected Node <%s>", xml->getNodeName());
@@ -60,8 +73,13 @@ MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,gam
 							device->getSceneManager()->getMesh(mesh.c_str());
 					My_Assert(m);
 					node = device->getSceneManager()
-							->addAnimatedMeshSceneNode(m,0,1,pos,rot,scale);
+							->addAnimatedMeshSceneNode(m,0,id,pos,rot,scale);
 					node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+
+					node->setTriangleSelector(
+							device->getSceneManager()->createTriangleSelector(node));
+
+					//s->registerAsCollisionTriangle(node->getTriangleSelector());
 
 					//((irr::scene::IAnimatedMeshSceneNode*)node)->addShadowVolumeSceneNode();
 

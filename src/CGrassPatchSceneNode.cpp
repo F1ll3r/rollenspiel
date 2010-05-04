@@ -274,6 +274,15 @@ void CGrassPatchSceneNode::OnAnimate(u32 timeMs)
 	ISceneNode::OnAnimate(timeMs);
 }
 
+
+void CGrassPatchSceneNode::setCenter(const core::vector3df& c){
+	center = c;
+}
+
+const core::vector3df& CGrassPatchSceneNode::getCenter(){
+	return center;
+}
+
 //! render
 void CGrassPatchSceneNode::render()
 {
@@ -296,7 +305,6 @@ void CGrassPatchSceneNode::render()
 		// reallocate arrays, if they are too small
 		reallocateBuffers();
 
-		core::vector3df campos = camera->getAbsolutePosition();
 		core::aabbox3d<f32> cbox = camera->getViewFrustum()->getBoundingBox();
 
 		core::vector3df pos = getPosition();
@@ -305,13 +313,15 @@ void CGrassPatchSceneNode::render()
 		
 		// in far boxes we dont loop so deep
 		// 175 to 255 fps 
-		f32 d = getPosition().getDistanceFromSQ(campos) / (f32)(GRASS_PATCH_SIZE*GRASS_PATCH_SIZE);
-		if (d > 1.0)
-		{
-		  //printf("max = %d, %d\n", max, (int)(max/d));
-		  max = u32(f32(max)/d) ; 
+		f32 d = getPosition().getDistanceFromSQ(center) / (f32)(GRASS_PATCH_SIZE*GRASS_PATCH_SIZE);
+
+		if(d < 6){
+			d = 6;
 		}
 		
+
+		max = u32(f32(max)/d) ;
+
 		// i likes teh oldenpointer
 		f32 *v1p = &v1[0];
 		f32 *v2p = &v2[0];
@@ -334,7 +344,7 @@ void CGrassPatchSceneNode::render()
 			   continue;
 			
 			// distance checks: 145fps to 175fps
-			f32 dist = campos.getDistanceFromSQ(gpos);
+			f32 dist = center.getDistanceFromSQ(gpos);
 			
 			if (dist > DrawDistanceSQ)  // too far
 			{

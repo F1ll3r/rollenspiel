@@ -22,6 +22,9 @@ Drawer::Drawer(Game* game) {
 #else
 	debuginfo = false;
 #endif
+
+	debuginfo = true;
+
 	debugtext = new wchar_t[255];
 }
 

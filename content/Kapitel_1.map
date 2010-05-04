@@ -10,7 +10,7 @@
 
 	<Sector ID="1" Name="Taverne">
 
-        <Loading_Screen points="0" text="Erzeuge Terrain" />
+        <Loading_Screen points="1" text="Erzeuge Terrain" />
 
 		<Terrain Smoothing="10">
             <Scale X="60" Y="3" Z="60" />
@@ -22,7 +22,7 @@
 				<Grassmap Value="content/Kapitel_1/terrain-grassmap.png" />
 				<Texture Value="content/Kapitel_1/grass.png" />
 				<Colormap Value="content/Kapitel_1/terrain-grasscol.bmp" />
-				<Wind Strength="7.5" Regularity="3" />
+				<Wind Strength="30" Regularity="3" />
 			</Grass>
 
 			<Passable_Surface>
@@ -30,7 +30,7 @@
 			</Passable_Surface>
 		</Terrain>
 
-        <Loading_Screen points="10" text="Parse Light Sources" />
+        <Loading_Screen points="15" text="Parse Light Sources" />
 
 
         <AmbientLight R="0.71" G="0.71" B="0.61" />
@@ -65,7 +65,7 @@
 
 
 			-->
-        <Loading_Screen points="10" text="Parse Events" />
+        <Loading_Screen points="15" text="Parse Events" />
 
         <Event>
 			<Trigger Type="Enter" Actor="Player">
@@ -76,13 +76,14 @@
 			</Effect>
 		</Event>
 
-		<Loading_Screen points="0.5" text="Lade Objekte" />
+		<Loading_Screen points="1" text="Lade Objekte" />
 
 		<MapObject>
 			<Mesh Value="content/a3dtree.3ds" />
 			<Position X="9456" Y="690" Z="7517" />
 			<Rotation X="0" Y="0" Z="0" />
 			<Scale X="3" Y="3" Z="3" />
+			<BBox X1="-10" Y1="0" Z1="10" X2="10" Y2="690" Z2="-10" >
 		</MapObject>
 
         <MapObject>
@@ -128,7 +129,7 @@
         -->
 
 
-        <Loading_Screen points="10.5" text="Erzeuge NPC" />
+        <Loading_Screen points="20" text="Erzeuge NPC" />
 
 <!--		<NPC Type="Monster" Name="Wilder Hund">-->
 <!--			<Mesh Value="" />-->
@@ -179,7 +180,7 @@
 <!--            </AI>-->
 <!--		</Dealer>-->
 
-		<Loading_Screen points="10.5" text="Erzeuge Spieler" />
+		<Loading_Screen points="12" text="Erzeuge Spieler" />
 
 		<Player>
             <Health Max="100" Current="100">

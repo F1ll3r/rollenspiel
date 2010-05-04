@@ -13,7 +13,6 @@
 #include "IXMLReader.h"
 #include "irrArray.h"
 #include "irrString.h"
-#include "ITriangleSelector.h"
 
 class Sector {
 
@@ -26,8 +25,8 @@ class Sector {
 	GameEventManager* 				gvm;
 	Map*							map;
 
-	irr::scene::ITriangleSelector*	groundtriangles;
-	irr::scene::ITriangleSelector*	collisiontriangles;
+	irr::scene::IMetaTriangleSelector*	groundtriangles;
+	irr::scene::IMetaTriangleSelector*	collisiontriangles;
 
 
 
@@ -39,6 +38,11 @@ public:
 	inline irr::s32 getSectorID(){
 		return id;
 	}
+
+	void registerAsGroundTriangle(irr::scene::ITriangleSelector* tri);
+
+	void registerAsCollisionTriangle(irr::scene::ITriangleSelector* tri);
+
 
 
 

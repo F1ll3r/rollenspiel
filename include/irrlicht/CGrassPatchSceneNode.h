@@ -58,6 +58,9 @@ public:
     void setWindRes(u32 newres);
     u32  getWindRes();
     
+    void setCenter(const core::vector3df& c);
+    const core::vector3df& getCenter();
+
     //! set the number of frames in the texture
     void                   setImageCount(core::dimension2d<s32> ic);
     core::dimension2d<s32> getImageCount();
@@ -71,6 +74,8 @@ private:
 	bool Load();
 	bool Save();
 	bool Create();
+
+	core::vector3df				  center;			// center of the distro
 
 	core::array<SGrassParticle>   Particles;        // list of particles
 	core::vector3d<s32>           gridpos;          // grid position
