@@ -16,7 +16,7 @@
 GrassManager::GrassManager(Sector* s,Game* game,irr::io::IXMLReader* xml):s(s),game(game) {
 	density = xml->getAttributeValueAsFloat(L"Density");
 	density = game->getSettings().grass * density/100;
-	distance = GRASS_PATCH_SIZE * game->getSettings().grass/10.f;
+	distance = GRASS_PATCH_SIZE * game->getSettings().grass;
 
 	for(int i =0; i<GRASS_BUFFER_SIZE;i++)
 		for(int j =0; j<GRASS_BUFFER_SIZE;j++)
@@ -78,8 +78,17 @@ void GrassManager::run(){
 	irr::core::vector3df playpos = game->getPlayer()->getPosition();
 
 	irr::core::vector2di newpos(
-			(irr::s32)((playpos.X + GRASS_PATCH_SIZE / 2) / GRASS_PATCH_SIZE) -GRASS_BUFFER_SIZE/2 ,
-			(irr::s32)((playpos.Z + GRASS_PATCH_SIZE / 2) / GRASS_PATCH_SIZE) -GRASS_BUFFER_SIZE/2
+			(irr::s32)((playpos.X + GRASS_PATCH_SIZE / 2) / GRASS_PATCH_SIZE
+#if !(GRASS_BUFFER_SIZE%2)
+			+0.5
+#endif
+			)-GRASS_BUFFER_SIZE/2
+
+			,(irr::s32)((playpos.Z + GRASS_PATCH_SIZE / 2) / GRASS_PATCH_SIZE
+#if !(GRASS_BUFFER_SIZE%2)
+			+0.5
+#endif
+			)-GRASS_BUFFER_SIZE/2
 	);
 
 //	if(newpos != oldpos){

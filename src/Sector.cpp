@@ -117,5 +117,8 @@ irr::scene::ITriangleSelector* Sector::getCollisionTriangleSelector(){
 	return collisiontriangles;
 }
 
+irr::f32 Sector::getTerrainHightFromXY(irr::f32 X, irr::f32 Y){
+	return ((irr::scene::ITerrainSceneNode*)terrain->getNode())->getHeight(X,Y);
+}
 
 

@@ -23,9 +23,9 @@ GameEventManager::~GameEventManager() {
 
 void GameEventManager::triggerRunEvent(){
 	std::map<irr::s32,Object*>::iterator i = runMap.begin();
-	irr::s32 dtime = (irr::s32)game->getIrrlichtDevice()->getTimer()->getTime() - lasttime;
+	RunGameEvent rv((irr::s32)game->getIrrlichtDevice()->getTimer()->getTime() - lasttime);
 	for(;i != runMap.end();i++){
-		i->second->handleEvent(new RunGameEvent(dtime));
+		i->second->handleEvent(rv);
 	}
 	lasttime = (irr::s32)game->getIrrlichtDevice()->getTimer()->getTime();
 }

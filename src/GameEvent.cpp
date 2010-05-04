@@ -21,6 +21,6 @@ RunGameEvent::~RunGameEvent(){
 
 }
 
-Game_Event_Type RunGameEvent::getEventType(){
+Game_Event_Type RunGameEvent::getEventType() const {
 	return Game_Event_Type_Run;
 }

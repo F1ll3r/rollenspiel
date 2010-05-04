@@ -39,9 +39,9 @@ void Character::remove(){
 
 }
 
-void Character::handleEvent(GameEvent* e){
-	if(e->getEventType() == Game_Event_Type_Run){
-		if(ai) ai->run(((RunGameEvent*)e)->getDeltaTime());
+void Character::handleEvent(const GameEvent& e){
+	if(e.getEventType() == Game_Event_Type_Run){
+		if(ai) ai->run((dynamic_cast<const RunGameEvent&>(e)).getDeltaTime());
 	}
 }
 

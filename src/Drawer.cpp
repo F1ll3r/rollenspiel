@@ -39,7 +39,7 @@ Drawer::~Drawer() {
 void Drawer::drawLoadingScreen(){
 	irr::video::IVideoDriver* driver = device->getVideoDriver();
 	if(!loadscreen)
-		loadscreen = driver->addTexture("content/loadscreen.png",driver->createImageFromFile("content\\loadscreen.png"));
+		loadscreen = driver->getTexture("content/loadscreen.png");
 	
 	My_Assert(loadscreen);
 

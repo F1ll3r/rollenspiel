@@ -46,6 +46,8 @@ public:
 	irr::scene::ITriangleSelector* getGroundTriangleSelector();
 	irr::scene::ITriangleSelector* getCollisionTriangleSelector();
 
+	irr::f32 getTerrainHightFromXY(irr::f32 X, irr::f32 Y);
+
 
 };
 

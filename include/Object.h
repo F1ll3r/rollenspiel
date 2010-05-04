@@ -48,7 +48,7 @@ public:
 	virtual void remove() = 0;
 
 	//! asks Object to handle the GameEvent
-	virtual void handleEvent(GameEvent* e) {}
+	virtual void handleEvent(const GameEvent& e) {}
 
 	//!returns irrlicht scenenode
 	virtual irr::scene::ISceneNode* getNode() = 0;

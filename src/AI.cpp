@@ -93,30 +93,21 @@ const Animation* AI::getAnimation(AI_Animation Class,const wchar_t* type){
 
 void AI::run(irr::s32 dtime){
 	if(state.iswalking){
-		irr::core::vector3df movmened(state.target - character->getAbsolutePosition());
-		if(movmened.getLengthSQ() < 5){
+		state.lastpos = character->getAbsolutePosition();
+		irr::core::vector3df movmened(state.target - state.lastpos);
+		if(movmened.getLength() < character->getSpeed() * dtime){
 			state.iswalking = false;
 			setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
 			return;
 		}
 		movmened.setLength(character->getSpeed() * dtime);
-		irr::scene::ISceneCollisionManager* collisionManager =
-					game->getSceneManager()->getSceneCollisionManager();
-		irr::core::line3d<float> line(	character->getAbsolutePosition() + irr::core::vector3df(0,4,0)  + movmened,
-									   (character->getAbsolutePosition() - irr::core::vector3df(0,40,0)) + movmened);
 
-		irr::core::vector3df tmpv;
-		irr::core::triangle3df tmpt;
-		const irr::scene::ISceneNode* tmpn = NULL;
+		movmened+= state.lastpos;
 
+		movmened.Y = sector->getTerrainHightFromXY(movmened.X,movmened.Z);
 
-		//! TODO: do additional checking if new pos is legal
-		//! TODO: check against Ground Triangles
-		if(collisionManager->getCollisionPoint(line,sector->getTerrainTriangleSelector(),tmpv,tmpt,tmpn)){
-			character->setPosition(tmpv);
-		}else{
-			character->setPosition(state.lastpos);
-		}
+		character->setPosition(movmened);
+
 		state.lastpos = character->getAbsolutePosition();
 	}
 }

@@ -20,7 +20,7 @@ public:
 	GameEvent();
 	virtual ~GameEvent();
 
-	virtual Game_Event_Type getEventType() = 0;
+	virtual Game_Event_Type getEventType() const = 0 ;
 };
 
 
@@ -32,11 +32,11 @@ public:
 	}
 	virtual ~RunGameEvent();
 
-	irr::s32 getDeltaTime(){
+	irr::s32 getDeltaTime() const {
 		return dtime;
 	}
 
-	virtual Game_Event_Type getEventType();
+	virtual Game_Event_Type getEventType() const;
 };
 
 
