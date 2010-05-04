@@ -16,7 +16,7 @@
 GrassManager::GrassManager(Sector* s,Game* game,irr::io::IXMLReader* xml):s(s),game(game) {
 	density = xml->getAttributeValueAsFloat(L"Density");
 	density = game->getSettings().grass * density/100;
-	distance = GRASS_PATCH_SIZE * game->getSettings().grass;
+	distance = GRASS_PATCH_SIZE * game->getSettings().grass/20;
 
 	for(int i =0; i<GRASS_BUFFER_SIZE;i++)
 		for(int j =0; j<GRASS_BUFFER_SIZE;j++)

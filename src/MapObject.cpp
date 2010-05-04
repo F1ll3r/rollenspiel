@@ -74,12 +74,19 @@ MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,gam
 					My_Assert(m);
 					node = device->getSceneManager()
 							->addAnimatedMeshSceneNode(m,0,id,pos,rot,scale);
-					node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+
+                    if(texture.size() != 0){
+                        node->getMaterial(0).setTexture(0,game->getVideoDriver()->getTexture(texture));
+                    }
+
+                    node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+
+
 
 					node->setTriangleSelector(
 							device->getSceneManager()->createTriangleSelector(node));
 
-					//s->registerAsCollisionTriangle(node->getTriangleSelector());
+					s->registerAsCollisionTriangle(node->getTriangleSelector());
 
 					//((irr::scene::IAnimatedMeshSceneNode*)node)->addShadowVolumeSceneNode();
 

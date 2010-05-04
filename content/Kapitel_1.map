@@ -18,7 +18,7 @@
 			<Texture Value="content/Kapitel_1/terrain-texture.jpg" />
 			<Detailtexture Value="content/Kapitel_1/detailtex.jpg" />
 
-			<Grass Density="800">
+			<Grass Density="400">
 				<Grassmap Value="content/Kapitel_1/terrain-grassmap.png" />
 				<Texture Value="content/Kapitel_1/grass.png" />
 				<Colormap Value="content/Kapitel_1/terrain-grasscol.bmp" />
@@ -78,48 +78,56 @@
 
 		<Loading_Screen points="1" text="Lade Objekte" />
 
-		<MapObject>
-			<Mesh Value="content/a3dtree.3ds" />
-			<Position X="9456" Y="690" Z="7517" />
-			<Rotation X="0" Y="0" Z="0" />
-			<Scale X="3" Y="3" Z="3" />
-			<BBox X1="-10" Y1="0" Z1="10" X2="10" Y2="690" Z2="-10" >
-		</MapObject>
-
-        <MapObject>
-			<Mesh Value="content/a3dtree.3ds" />
-			<Position X="2333" Y="220" Z="1775" />
-			<Rotation X="5" Y="90" Z="5" />
-			<Scale X="3" Y="4" Z="3" />
-		</MapObject>
-
-		<MapObject>
-			<Mesh Value="content/a3dtree.3ds" />
-			<Position X="8706" Y="600" Z="6821" />
-			<Rotation X="2" Y="20" Z="-5" />
-			<Scale X="3.5" Y="3.5" Z="3.5" />
-		</MapObject>
-
-		<MapObject>
-			<Mesh Value="content/a3dtree.3ds" />
-			<Position X="5636" Y="680" Z="9389" />
-			<Rotation X="1" Y="40" Z="10" />
-			<Scale X="3" Y="4" Z="3" />
-		</MapObject>
-
-		<MapObject>
-			<Mesh Value="content/a3dtree.3ds" />
-			<Position X="1894" Y="140" Z="8368" />
-			<Rotation X="5" Y="-90" Z="0" />
-			<Scale X="2.5" Y="2" Z="2.5" />
-		</MapObject>
-
-        <MapObject>
-			<Mesh Value="content/a3dtree.3ds" />
-			<Position X="2516" Y="440" Z="5757" />
-			<Rotation X="2" Y="45" Z="-3" />
-			<Scale X="3" Y="3" Z="3" />
-		</MapObject>
+<!--		<MapObject>-->
+<!--			<Mesh Value="content/a3dtree.3ds" />-->
+<!--			<Position X="9456" Y="690" Z="7517" />-->
+<!--			<Rotation X="0" Y="0" Z="0" />-->
+<!--			<Scale X="3" Y="3" Z="3" />-->
+<!--			<BBox X1="-10" Y1="0" Z1="10" X2="10" Y2="690" Z2="-10" >-->
+<!--		</MapObject>-->
+<!---->
+<!--        <MapObject>-->
+<!--			<Mesh Value="content/curve_garden_bridge.3ds" />-->
+<!--			<Texture Value="content/Kapitel_1/grass.png" />-->
+<!--			<Position X="6098" Y="73" Z="8014" />-->
+<!--			<Rotation X="0" Y="-20" Z="0" />-->
+<!--			<Scale X="11" Y="11" Z="11" />-->
+<!--		</MapObject>-->
+<!---->
+<!--		<MapObject>-->
+<!--			<Mesh Value="content/a3dtree.3ds" />-->
+<!--			<Position X="2333" Y="220" Z="1775" />-->
+<!--			<Rotation X="5" Y="90" Z="5" />-->
+<!--			<Scale X="3" Y="4" Z="3" />-->
+<!--		</MapObject>-->
+<!---->
+<!--		<MapObject>-->
+<!--			<Mesh Value="content/a3dtree.3ds" />-->
+<!--			<Position X="8706" Y="600" Z="6821" />-->
+<!--			<Rotation X="2" Y="20" Z="-5" />-->
+<!--			<Scale X="3.5" Y="3.5" Z="3.5" />-->
+<!--		</MapObject>-->
+<!---->
+<!--		<MapObject>-->
+<!--			<Mesh Value="content/a3dtree.3ds" />-->
+<!--			<Position X="5636" Y="680" Z="9389" />-->
+<!--			<Rotation X="1" Y="40" Z="10" />-->
+<!--			<Scale X="3" Y="4" Z="3" />-->
+<!--		</MapObject>-->
+<!---->
+<!--		<MapObject>-->
+<!--			<Mesh Value="content/a3dtree.3ds" />-->
+<!--			<Position X="1894" Y="140" Z="8368" />-->
+<!--			<Rotation X="5" Y="-90" Z="0" />-->
+<!--			<Scale X="2.5" Y="2" Z="2.5" />-->
+<!--		</MapObject>-->
+<!---->
+<!--        <MapObject>-->
+<!--			<Mesh Value="content/a3dtree.3ds" />-->
+<!--			<Position X="2516" Y="440" Z="5757" />-->
+<!--			<Rotation X="2" Y="45" Z="-3" />-->
+<!--			<Scale X="3" Y="3" Z="3" />-->
+<!--		</MapObject>-->
 
         <!--
             Team:

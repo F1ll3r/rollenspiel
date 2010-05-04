@@ -315,11 +315,9 @@ void CGrassPatchSceneNode::render()
 		// 175 to 255 fps 
 		f32 d = getPosition().getDistanceFromSQ(center) / (f32)(GRASS_PATCH_SIZE*GRASS_PATCH_SIZE);
 
-		if(d < 6){
-			d = 6;
+		if(d < 3){
+			d = 3;
 		}
-		
-
 		max = u32(f32(max)/d) ;
 
 		// i likes teh oldenpointer

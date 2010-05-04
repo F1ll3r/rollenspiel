@@ -12,7 +12,7 @@
 #include "IXMLReader.h"
 #include "irrString.h"
 
-#define GRASS_BUFFER_SIZE 6
+#define GRASS_BUFFER_SIZE 5
 
 
 class GrassManager {

@@ -35,7 +35,7 @@ public:
 	virtual ~Sector();
 
 
-	inline irr::s32 getSectorID(){
+	irr::s32 getSectorID() const {
 		return id;
 	}
 

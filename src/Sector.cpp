@@ -41,6 +41,7 @@ Sector::Sector(Game* game,irr::io::IXMLReader* xml) {
 					if(wcscmp(xml->getNodeName(),L"Terrain") == 0){
 						My_Assert(terrain ==  NULL);
 						terrain = new TerrainMapObject(this,game,xml);
+						collisiontriangles->addTriangleSelector(getTerrainTriangleSelector());
 
 
 					}else if(wcscmp(xml->getNodeName(),L"Loading_Screen") == 0){
@@ -98,6 +99,15 @@ Sector::Sector(Game* game,irr::io::IXMLReader* xml) {
 
 Sector::~Sector() {
 	// TODO Auto-generated destructor stub
+}
+
+
+void Sector::registerAsGroundTriangle(irr::scene::ITriangleSelector* tri){
+
+}
+
+void Sector::registerAsCollisionTriangle(irr::scene::ITriangleSelector* tri){
+	collisiontriangles->addTriangleSelector(tri);
 }
 
 irr::scene::ITriangleSelector* Sector::getTerrainTriangleSelector(){

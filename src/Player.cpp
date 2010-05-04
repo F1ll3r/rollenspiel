@@ -111,7 +111,7 @@ bool Player::OnEvent(const irr::SEvent& event){
 			const irr::scene::ISceneNode* tmpn = NULL;
 
 
-			if(collisionManager->getCollisionPoint(line,sector->getTerrainTriangleSelector(),tmpv,tmpt,tmpn)){
+			if(collisionManager->getCollisionPoint(line,sector->getCollisionTriangleSelector(),tmpv,tmpt,tmpn)){
 
 				ai->walkCharacterTo(tmpv);
 

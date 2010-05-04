@@ -147,4 +147,8 @@ void AI::setAnimation(const Animation* anim){
 
 void AI::init(){
 	setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
+//	irr::scene::ISceneNodeAnimator* a = game->getSceneManager()->createCollisionResponseAnimator(
+//			sector->getCollisionTriangleSelector(),character->getNode());
+//	character->getNode()->addAnimator(a);
+//	a->drop();
 }

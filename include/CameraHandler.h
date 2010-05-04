@@ -21,6 +21,7 @@ class CameraHandler : public irr::IEventReceiver {
 	irr::scene::ICameraSceneNode*	irrcam;
 
 	irr::u32						lasttime;
+	bool 							recalc;
 
 public:
 	CameraHandler(Game* game);

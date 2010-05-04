@@ -18,6 +18,7 @@ CameraHandler::CameraHandler(Game* game) {
 	distence 	= 600;
 	alpha 		= 0;
 	beta		= irr::core::HALF_PI - irr::core::PI/4;
+	recalc		= true;
 }
 
 CameraHandler::~CameraHandler() {
@@ -41,36 +42,42 @@ void CameraHandler::run(){
 	//Rotate Camera left/right
 	if(curpos.X < 1){
 		alpha -= timedelta/700;
+		recalc = true;
 	}else if(curpos.X > (irr::s32) device->getVideoDriver()->getScreenSize().Width - 1){
 		alpha += timedelta/700;
+		recalc = true;
 	}
 
 	//Rotate up/down
 	if(curpos.Y < 1){
 		beta -= timedelta/2000;
+		recalc = true;
 	}else if(curpos.Y > (irr::s32) device->getVideoDriver()->getScreenSize().Height - 1){
 		beta += timedelta/2000;
+		recalc = true;
 	}
 
+	if(recalc){
+		//Check if values make sense
+		if(alpha > 2 * irr::core::PI){
+			alpha -= 2 * irr::core::PI;
+		}else if(alpha < 0){
+			alpha += 2 * irr::core::PI;
+		}
 
-	//Check if values make sense
-	if(alpha > 2 * irr::core::PI){
-		alpha -= 2 * irr::core::PI;
-	}else if(alpha < 0){
-		alpha += 2 * irr::core::PI;
+		if(beta > irr::core::HALF_PI - irr::core::PI/6){
+			beta =  irr::core::HALF_PI - irr::core::PI/6;
+		}else if(beta < irr::core::DEGTORAD){
+			beta = irr::core::DEGTORAD;
+		}
+
+
+
+		camvac.X = distence * sinf(alpha) * sinf(beta);
+		camvac.Y = distence * cosf(beta);
+		camvac.Z = distence * cosf(alpha) * sinf(beta);
+		recalc = false;
 	}
-
-	if(beta > irr::core::HALF_PI - irr::core::PI/6){
-		beta =  irr::core::HALF_PI - irr::core::PI/6;
-	}else if(beta < irr::core::DEGTORAD){
-		beta = irr::core::DEGTORAD;
-	}
-
-
-
-	camvac.X = distence * sinf(alpha) * sinf(beta);
-	camvac.Y = distence * cosf(beta);
-	camvac.Z = distence * cosf(alpha) * sinf(beta);
 
 	irrcam->setPosition(camvac + game->getPlayer()->getPosition());
 	irrcam->setTarget(game->getPlayer()->getPosition());
@@ -80,6 +87,7 @@ void CameraHandler::run(){
 bool CameraHandler::OnEvent(const irr::SEvent& event){
 	if(event.EventType == irr::EET_MOUSE_INPUT_EVENT){
 		distence += event.MouseInput.Wheel*13;
+		recalc = true;
 	}
 	return false;
 }
