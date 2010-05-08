@@ -12,6 +12,7 @@
 #include "IAnimatedMeshSceneNode.h"
 #include "Map.h"
 #include "Sector.h"
+#include "Settings.h"
 
 MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,game) {
 	irr::core::stringw		mesh;
@@ -80,6 +81,7 @@ MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,gam
                     }
 
                     node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+                    node->setMaterialFlag(game->getSettings().filtering,true);
 
 //                    node->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS,true);
 

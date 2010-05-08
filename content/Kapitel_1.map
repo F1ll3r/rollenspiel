@@ -103,17 +103,18 @@
 
 		<MapObject>
 			<Mesh Value="content/proprietary/chapel_obj.obj" />
-<!--			<Texture Value="content/proprietary/chapel_diffuse.tga" />-->
-			<Position X="13135" Y="16" Z="13402" />
-			<Rotation X="0" Y="0" Z="0" />
-			<Scale X="1" Y="1" Z="1" />
+			<Texture Value="content/proprietary/chapel_diffuse.tga" />
+			<Position X="26810" Y="16" Z="28236" />
+			<Rotation X="0" Y="180" Z="0" />
+			<Scale X="2" Y="2" Z="2" />
 		</MapObject>
 
 		<Loading_Screen points="10"/>
 
 		<MapObject>
 			<Mesh Value="content/proprietary/house_obj.obj" />
-			<Position X="938" Y="27" Z="3743" />
+			<Texture Value="content/proprietary/house_diffuse.tga" />
+			<Position X="1876" Y="29" Z="7546" />
 			<Rotation X="0" Y="0" Z="0" />
 			<Scale X="1" Y="1" Z="1" />
 		</MapObject>
@@ -122,18 +123,21 @@
 
         <MapObject>
 			<Mesh Value="content/proprietary/fw43_lowpoly_n1.3ds" />
-			<Position X="2975" Y="170" Z="3058" />
+			<Position X="4257" Y="27" Z="6472" />
 			<Rotation X="0" Y="0" Z="0" />
 			<Scale X="60" Y="60" Z="60" />
 		</MapObject>
-<!---->
-<!--		<MapObject>-->
-<!--			<Mesh Value="content/M_TREE6.3DS" />-->
-<!--			<Position X="5636" Y="680" Z="9389" />-->
-<!--			<Rotation X="1" Y="40" Z="10" />-->
-<!--			<Scale X="10" Y="10" Z="10" />-->
-<!--		</MapObject>-->
-<!---->
+
+		<Loading_Screen points="10"/>
+
+		<MapObject>
+			<Mesh Value="content/proprietary/stone/Stone_Forest_1.obj" />
+			<Texture Value="content/proprietary/stone/S1Diffus.jpg" />
+			<Position X="5636" Y="68" Z="9389" />
+			<Rotation X="0" Y="0" Z="0" />
+			<Scale X="2" Y="2" Z="2" />
+		</MapObject>
+
 <!--		<MapObject>-->
 <!--			<Mesh Value="content/M_TREE6.3DS" />-->
 <!--			<Position X="1894" Y="140" Z="8368" />-->
@@ -177,10 +181,6 @@
 <!--            <Inventory>-->
 <!--                <Weapon Class="baton" Name="Kurtzschwert">-->
 <!--                    <Image Value="" />-->
-<!--                    <Mesh Value="" />-->
-<!--                    <Texture  Value="" />-->
-<!--                    <Position X="0" Y="0" Z="0" />-->
-<!--                    <Rotation X="0" Y="0" Z="0" />-->
 <!--                    <Damage Value="12" />-->
 <!--                    <Speed Value="1" />-->
 <!--                    <Cost Value="40" />-->
@@ -211,10 +211,10 @@
 
 		<Player>
             <Health Max="100" Current="100" />
-            <Speed Sneak="0.15" Normal="0.3" Run="0.4" />
+            <Speed Sneak="0.15" Normal="0.3" Run="0.45" />
             <Mesh Value="content/ninja.b3d" />
             <Scale X="15" Y="15" Z="15" />
-			<Position X="100" Y="180" Z="100" />
+			<Position X="2752.67" Y="17.63" Z="1255.92" />
 			<Rotation X="0" Y="0" Z="0" />
             <Inventory>
                 <Weapon class="baton" name="Kurtzschwert">
@@ -227,7 +227,7 @@
             <AI>
                 <Animation>
                     <Walk Type="Normal" SFrame="0" EFrame="13" Speed="15" Loop="true" />
-                    <Walk Type="Run" SFrame="0" EFrame="13" Speed="20" Loop="true" />
+                    <Walk Type="Run" SFrame="0" EFrame="13" Speed="25" Loop="true" />
                     <Walk Type="Stealth" SFrame="14" EFrame="29" Speed="15" Loop="true" />
                     <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
                     <Idle Type="Normal" SFrame="183" EFrame="203" Speed="15" Loop="true" />
