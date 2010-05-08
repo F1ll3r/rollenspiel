@@ -11,17 +11,38 @@
 #include "Game.h"
 
 LightObject::LightObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,game)  {
+	irr::core::vector3df		pos;
+	irr::video::SColorf			color;
+	irr::f32					radius;
+	while(xml->read()){
+			switch (xml->getNodeType()) {
+				case irr::io::EXN_ELEMENT:
+					if(wcscmp(xml->getNodeName(),L"Position") == 0){
+						pos.X = xml->getAttributeValueAsFloat(L"X");
+						pos.Y = xml->getAttributeValueAsFloat(L"Y");
+						pos.Z = xml->getAttributeValueAsFloat(L"Z");
+					}else if(wcscmp(xml->getNodeName(),L"Color") == 0){
+						color = irr::video::SColorf(
+								xml->getAttributeValueAsFloat(L"R"),
+								xml->getAttributeValueAsFloat(L"G"),
+								xml->getAttributeValueAsFloat(L"B")
+							);
 
-	node = game->getSceneManager()->addLightSceneNode(0,
-					irr::core::vector3df(
-							xml->getAttributeValueAsFloat(L"X"),
-							xml->getAttributeValueAsFloat(L"Y"),
-							xml->getAttributeValueAsFloat(L"Z")),
-					irr::video::SColorf(
-							xml->getAttributeValueAsFloat(L"R"),
-							xml->getAttributeValueAsFloat(L"G"),
-							xml->getAttributeValueAsFloat(L"B")
-					),xml->getAttributeValueAsFloat(L"Radius"));
+					}else if(wcscmp(xml->getNodeName(),L"Radius") == 0){
+						radius = xml->getAttributeValueAsFloat(L"Value");
+					}else{
+						wprintf(L"Corrupt XML-file. Unexpected Node <%s>", xml->getNodeName());
+						My_Assert(0);
+					}
+					break;
+				case  irr::io::EXN_ELEMENT_END:
+					if(wcscmp(xml->getNodeName(),L"LightObject") == 0){
+						node = game->getSceneManager()->addLightSceneNode(0,pos,color,radius);
+						My_Assert(node);
+						return;
+					}
+			}
+	}
 
 }
 

@@ -20,6 +20,7 @@ public:
 	irr::s32 getID(){
 		return 666;
 	}
+
 };
 
 #endif /* DEALER_H_ */

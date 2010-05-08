@@ -46,7 +46,7 @@ class GrassManager {
     // shifts the content of the GrassBuffer
     void shift(Shift_Direction direction);
 
-
+    irr::scene::CGrassPatchSceneNode* createPatch(irr::s32 x ,irr::s32 y);
 
 public:
 	GrassManager(Sector* s,Game* game,irr::io::IXMLReader* xml);

@@ -40,10 +40,7 @@ public:
 	//! be equal to getNode()->getID()
 	virtual irr::s32 getID() = 0;
 
-	irr::f32 getSpeed(){
-		//! TODO: implement this
-		return 0.4;
-	}
+	virtual irr::f32 getSpeed(const wchar_t* mode) const = 0;
 };
 
 #endif /* CHARACTER_H_ */

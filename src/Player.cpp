@@ -20,7 +20,9 @@ Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 	irr::core::vector3df	rot;
 	irr::core::vector3df	scale;
 	irr::IrrlichtDevice*	device = game->getIrrlichtDevice();
-	this->game = game;
+
+	this->game 				= game;
+	irrEventSate.shift		= false;
 
 	game->getGameEventManager()->registerForRunEvent(this);
 
@@ -48,6 +50,11 @@ Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 					scale.Y = xml->getAttributeValueAsFloat(L"Y");
 					scale.Z = xml->getAttributeValueAsFloat(L"Z");
 
+				}else if(wcscmp(xml->getNodeName(),L"Speed") == 0){
+					speedslow = xml->getAttributeValueAsFloat(L"Sneak");
+					speedsnorm = xml->getAttributeValueAsFloat(L"Normal");
+					speedsfast = xml->getAttributeValueAsFloat(L"Run");
+
 				}else if(wcscmp(xml->getNodeName(),L"Health") == 0){
 
 				}else if(wcscmp(xml->getNodeName(),L"AI") == 0){
@@ -68,6 +75,7 @@ Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 					My_Assert(m);
 					node = device->getSceneManager()
 							->addAnimatedMeshSceneNode(m,0,1,pos,rot,scale);
+
 
 					My_Assert(node);
 					//node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
@@ -94,17 +102,30 @@ Player::~Player() {
 	// TODO Auto-generated destructor stub
 }
 
+irr::f32 Player::getSpeed(const wchar_t* mode) const{
+
+	if(wcscmp(mode,L"Sneak") == 0){
+		return speedslow;
+	}else if(wcscmp(mode,L"Normal") == 0){
+		return speedsnorm;
+	}else if(wcscmp(mode,L"Run") == 0){
+		return speedsfast;
+	}
+	My_Assert(0);
+}
 
 bool Player::OnEvent(const irr::SEvent& event){
 	if(event.EventType == irr::EET_MOUSE_INPUT_EVENT){
 
-		if(event.MouseInput.Event == irr::EMIE_LMOUSE_PRESSED_DOWN){
+		if(		event.MouseInput.Event == irr::EMIE_LMOUSE_PRESSED_DOWN ||
+				event.MouseInput.Event == irr::EMIE_LMOUSE_DOUBLE_CLICK		){
+
 			irrEventSate.leftmouse = true;
 			irr::scene::ISceneCollisionManager* collisionManager = game->getSceneManager()->getSceneCollisionManager();
 			irr::core::line3d<float> line  = collisionManager->getRayFromScreenCoordinates(
 					 game->getIrrlichtDevice()->getCursorControl()->getPosition(),
 					 game->getSceneManager()->getActiveCamera()
-				);
+					);
 
 			irr::core::vector3df tmpv;
 			irr::core::triangle3df tmpt;
@@ -112,8 +133,13 @@ bool Player::OnEvent(const irr::SEvent& event){
 
 
 			if(collisionManager->getCollisionPoint(line,sector->getCollisionTriangleSelector(),tmpv,tmpt,tmpn)){
-
-				ai->walkCharacterTo(tmpv);
+				if(irrEventSate.shift){
+					ai->walkCharacterTo(tmpv,L"Sneak");
+				}else if(event.MouseInput.Event == irr::EMIE_LMOUSE_DOUBLE_CLICK){
+					ai->walkCharacterTo(tmpv,L"Run");
+				}else{
+					ai->walkCharacterTo(tmpv,L"Normal");
+				}
 
 				irr::scene::IVolumeLightSceneNode * n = game->getSceneManager()->addVolumeLightSceneNode(0, -1,
 								64,                              // Subdivisions on U axis
@@ -151,8 +177,9 @@ bool Player::OnEvent(const irr::SEvent& event){
 		}
 	} else if(event.EventType == irr::EET_KEY_INPUT_EVENT){
 		if(event.KeyInput.Shift){
-			printf("Shift\n");
-
+			irrEventSate.shift = true;
+		}else{
+			irrEventSate.shift = false;
 		}
 	}
 	return false;

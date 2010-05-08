@@ -50,7 +50,7 @@ Sector::Sector(Game* game,irr::io::IXMLReader* xml) {
 									xml->getAttributeValueAsFloat(L"points")
 									,xml->getAttributeValue(L"text"));
 
-						game->getIrrlichtDevice()->sleep(150);
+						game->getIrrlichtDevice()->sleep(15);
 
 					}else if(wcscmp(xml->getNodeName(),L"Event") == 0){
 						game->getGameEventManager()->parseEvent(xml);

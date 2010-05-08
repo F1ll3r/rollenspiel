@@ -20,6 +20,8 @@ public:
 	irr::s32 getID(){
 		return 666;
 	}
+
+	irr::f32 getSpeed(const wchar_t* mode) const{}
 };
 
 #endif /* NPC_H_ */

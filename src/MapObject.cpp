@@ -81,6 +81,8 @@ MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,gam
 
                     node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 
+//                    node->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS,true);
+
 
 
 					node->setTriangleSelector(

@@ -33,8 +33,13 @@
         <Loading_Screen points="15" text="Parse Light Sources" />
 
 
-        <AmbientLight R="0.71" G="0.71" B="0.61" />
-        <LightObject R="1" G="1" B="1" X="-100" Y="10000" Z="-100" Radius="1000000" />
+        <AmbientLight R="0.9" G="0.9" B="0.9" />
+
+        <LightObject>
+            <Color R="1" G="1" B="1" />
+            <Position X="-1000" Y="30000" Z="-1000" />
+            <Radius Value="5000000" />
+        </LightObject>
 
 
 			<!--
@@ -78,13 +83,6 @@
 
 		<Loading_Screen points="1" text="Lade Objekte" />
 
-		<MapObject>
-			<Mesh Value="content/a3dtree2.3ds" />
-			<Position X="9456" Y="690" Z="7517" />
-			<Rotation X="0" Y="0" Z="0" />
-			<Scale X="3" Y="3" Z="3" />
-			<BBox X1="-10" Y1="0" Z1="10" X2="10" Y2="690" Z2="-10" >
-		</MapObject>
 
 <!--        <MapObject>-->
 <!--			<Mesh Value="content/curve_garden_bridge.3ds" />-->
@@ -93,40 +91,61 @@
 <!--			<Rotation X="0" Y="-20" Z="0" />-->
 <!--			<Scale X="11" Y="11" Z="11" />-->
 <!--		</MapObject>-->
-<!---->
-<!--		<MapObject>-->
-<!--			<Mesh Value="content/a3dtree2.3ds" />-->
-<!--			<Position X="2333" Y="220" Z="1775" />-->
-<!--			<Rotation X="5" Y="90" Z="5" />-->
-<!--			<Scale X="3" Y="4" Z="3" />-->
-<!--		</MapObject>-->
 
 <!--		<MapObject>-->
-<!--			<Mesh Value="content/a3dtree.3ds" />-->
-<!--			<Position X="8706" Y="600" Z="6821" />-->
-<!--			<Rotation X="2" Y="20" Z="-5" />-->
-<!--			<Scale X="3.5" Y="3.5" Z="3.5" />-->
+<!--			<Mesh Value="content/M_TREE4.3DS" />-->
+<!--			<Position X="2333" Y="220" Z="1775" />-->
+<!--			<Rotation X="5" Y="90" Z="5" />-->
+<!--			<Scale X="10" Y="10" Z="10" />-->
 <!--		</MapObject>-->
+
+		<Loading_Screen points="5"/>
+
+		<MapObject>
+			<Mesh Value="content/proprietary/chapel_obj.obj" />
+<!--			<Texture Value="content/proprietary/chapel_diffuse.tga" />-->
+			<Position X="13135" Y="16" Z="13402" />
+			<Rotation X="0" Y="0" Z="0" />
+			<Scale X="1" Y="1" Z="1" />
+		</MapObject>
+
+		<Loading_Screen points="10"/>
+
+		<MapObject>
+			<Mesh Value="content/proprietary/house_obj.obj" />
+			<Position X="938" Y="27" Z="3743" />
+			<Rotation X="0" Y="0" Z="0" />
+			<Scale X="1" Y="1" Z="1" />
+		</MapObject>
+
+        <Loading_Screen points="10"/>
+
+        <MapObject>
+			<Mesh Value="content/proprietary/fw43_lowpoly_n1.3ds" />
+			<Position X="2975" Y="170" Z="3058" />
+			<Rotation X="0" Y="0" Z="0" />
+			<Scale X="60" Y="60" Z="60" />
+		</MapObject>
 <!---->
 <!--		<MapObject>-->
-<!--			<Mesh Value="content/a3dtree.3ds" />-->
+<!--			<Mesh Value="content/M_TREE6.3DS" />-->
 <!--			<Position X="5636" Y="680" Z="9389" />-->
 <!--			<Rotation X="1" Y="40" Z="10" />-->
-<!--			<Scale X="3" Y="4" Z="3" />-->
+<!--			<Scale X="10" Y="10" Z="10" />-->
 <!--		</MapObject>-->
 <!---->
 <!--		<MapObject>-->
-<!--			<Mesh Value="content/a3dtree.3ds" />-->
+<!--			<Mesh Value="content/M_TREE6.3DS" />-->
 <!--			<Position X="1894" Y="140" Z="8368" />-->
 <!--			<Rotation X="5" Y="-90" Z="0" />-->
-<!--			<Scale X="2.5" Y="2" Z="2.5" />-->
+<!--			<Scale X="10" Y="10" Z="10" />-->
 <!--		</MapObject>-->
 <!---->
 <!--        <MapObject>-->
-<!--			<Mesh Value="content/a3dtree.3ds" />-->
+<!--			<Mesh Value="content/M_TREE6.3DS" />-->
 <!--			<Position X="2516" Y="440" Z="5757" />-->
 <!--			<Rotation X="2" Y="45" Z="-3" />-->
-<!--			<Scale X="3" Y="3" Z="3" />-->
+<!--			<Scale X="10" Y="10" Z="10" />-->
 <!--		</MapObject>-->
 
         <!--
@@ -191,7 +210,8 @@
 		<Loading_Screen points="12" text="Erzeuge Spieler" />
 
 		<Player>
-            <Health Max="100" Current="100">
+            <Health Max="100" Current="100" />
+            <Speed Sneak="0.15" Normal="0.3" Run="0.4" />
             <Mesh Value="content/ninja.b3d" />
             <Scale X="15" Y="15" Z="15" />
 			<Position X="100" Y="180" Z="100" />
@@ -199,10 +219,6 @@
             <Inventory>
                 <Weapon class="baton" name="Kurtzschwert">
                     <Image Value="" />
-                    <Mesh Value="" />
-                    <Texture  Value="" />
-                    <Position X="0" Y="0" Z="0" />
-                    <Rotation X="0" Y="0" Z="0" />
                     <Damage Value="12" />
                     <Speed Value="1" />
                     <Cost Value="40" />
@@ -211,6 +227,7 @@
             <AI>
                 <Animation>
                     <Walk Type="Normal" SFrame="0" EFrame="13" Speed="15" Loop="true" />
+                    <Walk Type="Run" SFrame="0" EFrame="13" Speed="20" Loop="true" />
                     <Walk Type="Stealth" SFrame="14" EFrame="29" Speed="15" Loop="true" />
                     <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
                     <Idle Type="Normal" SFrame="183" EFrame="203" Speed="15" Loop="true" />
@@ -218,6 +235,6 @@
             </AI>
 		</Player>
 
-		<Loading_Screen points="10" text="Done!" />
+		<Loading_Screen points="100" text="Done!" />
 	</Sector>
 </Map>

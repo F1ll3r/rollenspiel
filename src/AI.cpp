@@ -95,7 +95,7 @@ void AI::run(irr::s32 dtime){
 	if(state.iswalking){
 		state.lastpos = character->getAbsolutePosition();
 		irr::core::vector3df movmened(state.target - state.lastpos);
-		if(movmened.getLength() < character->getSpeed() * dtime){
+		if(movmened.getLength() < character->getSpeed(state.mode) * dtime){
 			state.iswalking = false;
 			setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
 			return;
@@ -103,7 +103,7 @@ void AI::run(irr::s32 dtime){
 
 
 
-		movmened.setLength(character->getSpeed() * dtime);
+		movmened.setLength(character->getSpeed(state.mode) * dtime);
 		movmened+= state.lastpos;
 		movmened.Y = sector->getTerrainHightFromXY(movmened.X,movmened.Z);
 
@@ -120,17 +120,24 @@ void AI::run(irr::s32 dtime){
 	}
 }
 
-void AI::walkCharacterTo(const irr::core::vector3df& v){
-	state.iswalking = true;
-	state.target = v;
+void AI::walkCharacterTo(const irr::core::vector3df& v,const wchar_t* mode){
+	state.iswalking 	= true;
+	state.target 		= v;
+	state.mode 			= mode;
 
 	irr::core::vector3df rot((v-character->getAbsolutePosition()).getHorizontalAngle());
 	rot.X = 0;
 	character->setRotation(rot);
 
-
-	setAnimation(getAnimation(AI_Animation_Walk,L"Normal"));
-
+	if(wcscmp(mode,L"Sneak") == 0){
+		setAnimation(getAnimation(AI_Animation_Walk,L"Stealth"));
+	}else if(wcscmp(mode,L"Normal") == 0){
+		setAnimation(getAnimation(AI_Animation_Walk,L"Normal"));
+	}else if(wcscmp(mode,L"Run") == 0){
+		setAnimation(getAnimation(AI_Animation_Walk,L"Run"));
+	}else{
+		My_Assert(0);
+	}
 }
 
 void AI::setAnimation(const Animation* anim){
