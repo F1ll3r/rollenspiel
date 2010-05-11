@@ -104,7 +104,7 @@
 		<MapObject>
 			<Mesh Value="content/proprietary/chapel_obj.obj" />
 			<Texture Value="content/proprietary/chapel_diffuse.tga" />
-			<Position X="26810" Y="16" Z="28236" />
+			<Position X="26810" Y="130" Z="28236" />
 			<Rotation X="0" Y="180" Z="0" />
 			<Scale X="2" Y="2" Z="2" />
 		</MapObject>
@@ -130,13 +130,22 @@
 
 		<Loading_Screen points="10"/>
 
-		<MapObject>
-			<Mesh Value="content/proprietary/stone/Stone_Forest_1.obj" />
-			<Texture Value="content/proprietary/stone/S1Diffus.jpg" />
-			<Position X="5636" Y="68" Z="9389" />
-			<Rotation X="0" Y="0" Z="0" />
-			<Scale X="2" Y="2" Z="2" />
-		</MapObject>
+<!--		<MapObject>-->
+<!--			<Mesh Value="content/proprietary/Stone_Forest_1.obj" />-->
+<!--			<Texture Value="content/proprietary/stone/S1Diffus.jpg" />-->
+<!--			<Position X="5636" Y="68" Z="9389" />-->
+<!--			<Rotation X="0" Y="0" Z="0" />-->
+<!--			<Scale X="2" Y="2" Z="2" />-->
+<!--		</MapObject>-->
+
+
+<!--        <MapObject>-->
+<!--			<Mesh Value="content/proprietary/monster-character-3ds.3DS" />-->
+<!--			<Texture Value="content/proprietary/stone/S1Diffus.jpg" />-->
+<!--			<Position X="5636" Y="200" Z="9389" />-->
+<!--			<Rotation X="0" Y="0" Z="0" />-->
+<!--			<Scale X="2" Y="2" Z="2" />-->
+<!--		</MapObject>-->
 
 <!--		<MapObject>-->
 <!--			<Mesh Value="content/M_TREE6.3DS" />-->
@@ -213,6 +222,7 @@
             <Health Max="100" Current="100" />
             <Speed Sneak="0.15" Normal="0.3" Run="0.45" />
             <Mesh Value="content/ninja.b3d" />
+<!--            <Mesh Value="content/proprietary/monster-character-high-3ds.3DS" />-->
             <Scale X="15" Y="15" Z="15" />
 			<Position X="2752.67" Y="17.63" Z="1255.92" />
 			<Rotation X="0" Y="0" Z="0" />
