@@ -5,7 +5,6 @@
  *      Author: Max
  */
 
-//newone
 #include "UserInterface.h"
 #include "Game.h"
 #include "irrlicht.h"

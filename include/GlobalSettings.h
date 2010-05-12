@@ -78,6 +78,7 @@ class UserInterface;
 class GameEvent;
 class GameTrigger;
 class LightObject;
+class UserInterfaceManager;
 struct Settings;
 
 
