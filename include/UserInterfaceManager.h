@@ -12,15 +12,20 @@
 #include "IEventReceiver.h"
 #include "irrArray.h"
 
-class UserInterfaceManager : public irr::IEventReceiver {
+class UserInterfaceManager: public irr::IEventReceiver {
+private:
+	Settings readSettings();
+	bool writeSettings();
 protected:
-	Game* 						game;
-	irr::IrrlichtDevice* 		device;
-	irr::gui::IGUIEnvironment* 	guienv;
-	Game_Context 				context;
+	Game* game;
+	irr::IrrlichtDevice* device;
+	irr::gui::IGUIEnvironment* guienv;
+	Game_Context context;
 
 	void init();
 	void createButtons();
+	void setButtonSettings(Settings settings);
+	Settings getButtonSettings();
 	void deleteButtons();
 public:
 
@@ -31,5 +36,6 @@ public:
 	UserInterfaceManager(Game* game);
 	virtual ~UserInterfaceManager();
 };
+
 
 #endif /* USERINTERFACEMANGER_H_g */
