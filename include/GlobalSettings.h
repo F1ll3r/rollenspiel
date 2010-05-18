@@ -80,6 +80,7 @@ class GameTrigger;
 class LightObject;
 class UserInterfaceManager;
 class UserInterfaceMainMenu;
+
 struct Settings;
 
 

@@ -20,7 +20,8 @@ class Game {
 
 	CameraHandler* 				camerahandler;
 	Drawer* 					drawer;
-	UserInterface*				ui;
+	UserInterfaceManager*		ui;
+
 
 	GameEventManager* 			gameeventmgr;
 	MasterEventReceiver*		mastereventmgr;
@@ -70,7 +71,7 @@ public:
 	Drawer* getDrawer() const {
 		return drawer;
 	}
-	UserInterface*	getUserInterface() const {
+	UserInterfaceManager*	getUserInterface() const {
 		return ui;
 	}
 

@@ -27,7 +27,8 @@ Game::Game() {
 
 	camerahandler 	= 	new CameraHandler(this);
 	drawer 			= 	new Drawer(this);
-	ui 				= 	new UserInterface(this);
+	//ui 				= 	new UserInterface(this);
+	ui				=	new UserInterfaceManager(this);
 
 	gameeventmgr 	= 	new GameEventManager(this);
 	mastereventmgr	= 	new MasterEventReceiver(this);
@@ -121,7 +122,7 @@ void Game::init( int argc, const char* argv[] ){
 	drawer->init();
 
 	switchContext(Context_Loadung_Screen);
-	ui->init();
+	//ui->init();
 	drawer->drawLoadingScreen();
 	drawer->processLoadingScreen(0,L"init");
 
@@ -165,14 +166,14 @@ int Game::run(){
 			scenemgr->drawAll();
 			gameeventmgr->triggerDrawEvent();
 			drawer->draw();
-			ui->draw();
+			//ui->draw();
 			driver->endScene();
 			break;
 
 		case Context_Main_Menu:
 			driver->beginScene(true, true);
 			drawer->draw();
-			ui->draw();
+			//ui->draw();
 			driver->endScene();
 			break;
 
@@ -212,7 +213,7 @@ void Game::closeGame(){
 void Game::switchContext(Game_Context context){
 	//! TODO: do real context switching
 	this->context = context;
-	ui->switchContext(context);
+	//ui->switchContext(context);
 	mastereventmgr->switchContext(context);
 }
 

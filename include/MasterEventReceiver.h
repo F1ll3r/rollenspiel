@@ -14,7 +14,7 @@
 class MasterEventReceiver : public irr::IEventReceiver{
 	Game* 				game;
 
-	UserInterface* 		ui;
+	UserInterfaceManager* 		ui;
 	Player*				player;
 	CameraHandler* 		cam;
 

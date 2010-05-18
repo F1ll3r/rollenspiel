@@ -14,14 +14,18 @@
 
 class UserInterfaceManager: public irr::IEventReceiver {
 private:
+
 	Settings readSettings();
 	bool writeSettings();
 protected:
+
 	Game* game;
 	irr::IrrlichtDevice* device;
 	irr::gui::IGUIEnvironment* guienv;
 	Game_Context context;
 
+
+	irr::core::array<irr::gui::IGUIButton*> Buttons;
 	void init();
 	void createButtons();
 	void setButtonSettings(Settings settings);
@@ -35,6 +39,7 @@ public:
 	bool OnEvent(const irr::SEvent& event);
 	UserInterfaceManager(Game* game);
 	virtual ~UserInterfaceManager();
+
 };
 
 
