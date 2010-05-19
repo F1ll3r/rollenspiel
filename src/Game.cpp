@@ -16,6 +16,7 @@
 #include "GameEventManager.h"
 #include "MasterEventReceiver.h"
 #include "UserInterface.h"
+#include "UserInterfaceManager.h"
 #include "irrlicht.h"
 #include "Settings.h"
 

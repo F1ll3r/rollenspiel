@@ -6,6 +6,7 @@
  */
 
 #include "UserInterfaceManager.h"
+#include "UserInterfaceMainMenu.h"
 #include "Game.h"
 #include "irrlicht.h"
 #include "Settings.h"
@@ -30,6 +31,6 @@ bool UserInterfaceManager::writeSettings() {
 void UserInterfaceManager::init() {
 	this->device = game->getIrrlichtDevice();
 	guienv = device->getGUIEnvironment();
-	UserInterfaceMainMenu a = new UserInterfaceMainMenu(this->game);
+	UserInterfaceMainMenu* a = new UserInterfaceMainMenu(this->game);
 	//TODO set the right text settings!
 }
