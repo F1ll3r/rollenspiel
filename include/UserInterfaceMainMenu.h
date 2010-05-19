@@ -21,7 +21,7 @@ class UserInterfaceMainMenu: public UserInterfaceManager
 
 {
 public:
-	UserInterfaceMainMenu();
+	UserInterfaceMainMenu(Game* game);
 	virtual ~UserInterfaceMainMenu();
 };
 
