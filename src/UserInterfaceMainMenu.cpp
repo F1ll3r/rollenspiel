@@ -32,22 +32,49 @@ void UserInterfaceMainMenu::draw(){
 		break;
 	}
 }
+
+bool UserInterfaceMainMenu::OnEvent(const irr::SEvent& event){
+
+	My_Assert(event.EventType == irr::EET_GUI_EVENT);
+
+	if(event.GUIEvent.EventType == irr::gui::EGET_BUTTON_CLICKED){
+		switch (event.GUIEvent.Caller->getID()) {
+		case UI_Button_Main_Exit:
+			device->closeDevice();
+			break;
+		case UI_Button_Main_Load:
+
+			break;
+		case UI_Button_Main_New:
+			game->startGame();
+
+			break;
+		case UI_Button_Main_Options:
+
+			break;
+		default:
+			printf("Unknown button");
+			My_Assert(0);
+		}
+	}
+}
+
 void UserInterfaceManager::createButtons(){
 
 	Buttons.push_back(
-				guienv->addButton  (irr::core::rect<irr::s32>(100,150,190,170),
-						NULL,UI_Button_Main_New,L"New",L"Start new game"));
+			guienv->addButton  (irr::core::rect<irr::s32>(100,150,190,170),
+					NULL,UI_Button_Main_New,L"New",L"Start new game"));
 
 	Buttons.push_back(
-				guienv->addButton  (irr::core::rect<irr::s32>(100,200,190,220),
-						NULL,UI_Button_Main_Options,L"Options",L"Options"));
+			guienv->addButton  (irr::core::rect<irr::s32>(100,200,190,220),
+					NULL,UI_Button_Main_Options,L"Options",L"Options"));
 
 	Buttons.push_back(
-				guienv->addButton  (irr::core::rect<irr::s32>(100,250,190,270),
-						NULL,UI_Button_Main_Load,L"Load",L"Load previously saved game"));
+			guienv->addButton  (irr::core::rect<irr::s32>(100,250,190,270),
+					NULL,UI_Button_Main_Load,L"Load",L"Load previously saved game"));
 
 	Buttons.push_back(
-				guienv->addButton  (irr::core::rect<irr::s32>(100,300,190,320),
-						NULL,UI_Button_Main_Exit,L"Exit",L"Exit"));
+			guienv->addButton  (irr::core::rect<irr::s32>(100,300,190,320),
+					NULL,UI_Button_Main_Exit,L"Exit",L"Exit"));
 }
 

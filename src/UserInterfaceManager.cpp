@@ -16,6 +16,15 @@ UserInterfaceManager::UserInterfaceManager(Game* game) {
 	// TODO Auto-generated constructor stub
 }
 bool UserInterfaceManager::OnEvent(const irr::SEvent& event) {
+	switch(windowid){
+	case UI_W_Main:
+		WindowMainMenu->OnEvent(event);
+		break;
+	case UI_W_Option:
+		break;
+	default:
+		break;
+	}
 
 }
 void UserInterfaceManager::draw(){
@@ -53,7 +62,7 @@ void UserInterfaceManager::init() {
 void UserInterfaceManager::createWindows(){
 	WindowMainMenu = new UserInterfaceMainMenu(this->game);
 	initWindows();
-	setWindowID(UI_W_Main);
+	switchWindow(UI_W_Main);
 }
 void UserInterfaceManager::initWindows(){
 	WindowMainMenu->init();
@@ -62,7 +71,7 @@ void UserInterfaceManager::switchContext(Game_Context context){
 	//! TODO: do real context switching
 	this->context = context;
 }
-void UserInterfaceManager::setWindowID(WindowID id){
+void UserInterfaceManager::switchWindow(WindowID id){
 	switch (id){
 	case UI_W_Main:
 		windowid = id;

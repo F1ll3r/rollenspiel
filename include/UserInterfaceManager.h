@@ -29,8 +29,7 @@ private:
 	bool writeSettings();
 	void initWindows();
 	WindowID windowid;
-	void setWindowID(WindowID id);
-	WindowID getWindowID();
+	void switchWindow(WindowID id);
 protected:
 
 	Game* game;
