@@ -12,11 +12,25 @@
 #include "IEventReceiver.h"
 #include "irrArray.h"
 
+class UserInterfaceMainMenu;
+
+enum WindowID{
+
+	UI_W_Main = 0,
+	UI_W_Option
+};
+
+
 class UserInterfaceManager: public irr::IEventReceiver {
 private:
 
+	UserInterfaceMainMenu* WindowMainMenu;
 	Settings readSettings();
 	bool writeSettings();
+	void initWindows();
+	WindowID windowid;
+	void setWindowID(WindowID id);
+	WindowID getWindowID();
 protected:
 
 	Game* game;
@@ -26,16 +40,17 @@ protected:
 
 
 	irr::core::array<irr::gui::IGUIButton*> Buttons;
-	void init();
+
 	void createButtons();
 	void setButtonSettings(Settings settings);
 	Settings getButtonSettings();
 	void deleteButtons();
 public:
-
+	void init();
+	void createWindows();
+	virtual void draw();
 	void switchContext(Game_Context context);
 	Game_Context getContext();
-	void draw();
 	bool OnEvent(const irr::SEvent& event);
 	UserInterfaceManager(Game* game);
 	virtual ~UserInterfaceManager();

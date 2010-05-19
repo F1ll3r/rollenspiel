@@ -123,7 +123,8 @@ void Game::init( int argc, const char* argv[] ){
 	drawer->init();
 
 	switchContext(Context_Loadung_Screen);
-	//ui->init();
+	ui->init();
+	ui->createWindows();
 	drawer->drawLoadingScreen();
 	drawer->processLoadingScreen(0,L"init");
 
@@ -174,7 +175,7 @@ int Game::run(){
 		case Context_Main_Menu:
 			driver->beginScene(true, true);
 			drawer->draw();
-			//ui->draw();
+			ui->draw();
 			driver->endScene();
 			break;
 
@@ -214,7 +215,7 @@ void Game::closeGame(){
 void Game::switchContext(Game_Context context){
 	//! TODO: do real context switching
 	this->context = context;
-	//ui->switchContext(context);
+	ui->switchContext(context);
 	mastereventmgr->switchContext(context);
 }
 

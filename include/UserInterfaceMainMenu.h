@@ -21,6 +21,7 @@ class UserInterfaceMainMenu: public UserInterfaceManager
 
 {
 public:
+	virtual void draw();
 	UserInterfaceMainMenu(Game* game);
 	virtual ~UserInterfaceMainMenu();
 };

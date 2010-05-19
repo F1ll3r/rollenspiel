@@ -13,12 +13,24 @@
 
 UserInterfaceMainMenu::UserInterfaceMainMenu(Game* game) : UserInterfaceManager(game) {
 	// TODO Auto-generated constructor stub
-	createButtons();
-
+	this->game = game;
+	init();
 }
 
 UserInterfaceMainMenu::~UserInterfaceMainMenu() {
 	// TODO Auto-generated destructor stub
+}
+void UserInterfaceMainMenu::draw(){
+	switch (game->getContext()) {
+	case Context_Main_Menu:
+		Buttons[UI_Button_Main_New	  - 100]->draw();
+		Buttons[UI_Button_Main_Options- 100]->draw();
+		Buttons[UI_Button_Main_Load	  - 100]->draw();
+		Buttons[UI_Button_Main_Exit	  - 100]->draw();
+		break;
+	default:
+		break;
+	}
 }
 void UserInterfaceManager::createButtons(){
 
@@ -38,3 +50,4 @@ void UserInterfaceManager::createButtons(){
 				guienv->addButton  (irr::core::rect<irr::s32>(100,300,190,320),
 						NULL,UI_Button_Main_Exit,L"Exit",L"Exit"));
 }
+
