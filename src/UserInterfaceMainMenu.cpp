@@ -13,6 +13,7 @@
 
 UserInterfaceMainMenu::UserInterfaceMainMenu(Game* game) : UserInterfaceManager(game) {
 	// TODO Auto-generated constructor stub
+	createButtons();
 
 }
 
