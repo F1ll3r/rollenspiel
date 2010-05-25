@@ -19,11 +19,11 @@ enum UI_Button_Main{
 
 class UserInterfaceMainMenu: public UserInterfaceManager {
 public:
-	virtual void draw();
+	void draw();
 	bool OnEvent(const irr::SEvent& event);
 	UserInterfaceMainMenu(Game* game);
 	virtual ~UserInterfaceMainMenu();
-	virtual void createButtons();
+	void createButtons();
 };
 
 #endif /* USERINTERFACEMAINMENU_H_ */

@@ -40,13 +40,13 @@ protected:
 
 	irr::core::array<irr::gui::IGUIButton*> Buttons;
 
-	virtual void createButtons();
+	void createButtons();
 	void setButtonSettings(Settings settings);
 	Settings getButtonSettings();
 	void deleteButtons();
 public:
 	void init();
-	void createWindows();
+	virtual void createWindows();
 	virtual void draw();
 	void switchContext(Game_Context context);
 	Game_Context getContext();

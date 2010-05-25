@@ -31,10 +31,10 @@ enum UI_GUI_Element_Options{
 
 class UserInterfaceOptions: public UserInterfaceManager {
 public:
-	virtual void draw();
+	void draw();
 	bool OnEvent(const irr::SEvent& event);
 	UserInterfaceOptions(Game* game);
-	virtual void createButtons();
+	void createButtons();
 	virtual ~UserInterfaceOptions();
 
 };
