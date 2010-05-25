@@ -59,7 +59,7 @@ bool UserInterfaceMainMenu::OnEvent(const irr::SEvent& event){
 	}
 }
 
-void UserInterfaceManager::createButtons(){
+void UserInterfaceMainMenu::createButtons(){
 
 	Buttons.push_back(
 			guienv->addButton  (irr::core::rect<irr::s32>(100,150,190,170),

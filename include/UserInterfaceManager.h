@@ -40,7 +40,7 @@ protected:
 
 	irr::core::array<irr::gui::IGUIButton*> Buttons;
 
-	void createButtons();
+	virtual void createButtons();
 	void setButtonSettings(Settings settings);
 	Settings getButtonSettings();
 	void deleteButtons();

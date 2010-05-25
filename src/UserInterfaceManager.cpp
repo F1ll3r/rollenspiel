@@ -50,7 +50,7 @@ Settings UserInterfaceManager::readSettings() {
 
 }
 bool UserInterfaceManager::writeSettings() {
-
+	return false;
 }
 void UserInterfaceManager::init() {
 	this->device = game->getIrrlichtDevice();
@@ -84,7 +84,6 @@ void UserInterfaceManager::switchWindow(WindowID id){
 	default:
 		break;
 	}
-
 }
 
 Game_Context UserInterfaceManager::getContext(){

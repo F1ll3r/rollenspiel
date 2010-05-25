@@ -17,14 +17,13 @@ enum UI_Button_Main{
 	UI_Button_Main_Exit
 };
 
-class UserInterfaceMainMenu: public UserInterfaceManager
-
-{
+class UserInterfaceMainMenu: public UserInterfaceManager {
 public:
 	virtual void draw();
 	bool OnEvent(const irr::SEvent& event);
 	UserInterfaceMainMenu(Game* game);
 	virtual ~UserInterfaceMainMenu();
+	virtual void createButtons();
 };
 
 #endif /* USERINTERFACEMAINMENU_H_ */
