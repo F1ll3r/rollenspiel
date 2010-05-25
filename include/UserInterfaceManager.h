@@ -13,6 +13,7 @@
 #include "irrArray.h"
 
 class UserInterfaceMainMenu;
+class UserInterfaceOptions;
 
 enum WindowID{
 
@@ -25,6 +26,7 @@ class UserInterfaceManager: public irr::IEventReceiver {
 private:
 
 	UserInterfaceMainMenu* WindowMainMenu;
+	UserInterfaceOptions* WindowOptions;
 	Settings readSettings();
 	bool writeSettings();
 	void initWindows();
@@ -46,8 +48,8 @@ protected:
 	void deleteButtons();
 public:
 	void init();
-	virtual void createWindows();
-	virtual void draw();
+	void createWindows();
+	void draw();
 	void switchContext(Game_Context context);
 	Game_Context getContext();
 	bool OnEvent(const irr::SEvent& event);

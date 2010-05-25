@@ -6,6 +6,7 @@
  */
 
 #include "UserInterfaceManager.h"
+#include "UserInterfaceOptions.h"
 #include "UserInterfaceMainMenu.h"
 #include "Game.h"
 #include "irrlicht.h"
@@ -61,6 +62,7 @@ void UserInterfaceManager::init() {
 }
 void UserInterfaceManager::createWindows(){
 	WindowMainMenu = new UserInterfaceMainMenu(this->game);
+	WindowOptions = new UserInterfaceOptions(this->game);
 	initWindows();
 	switchWindow(UI_W_Main);
 }
@@ -73,13 +75,12 @@ void UserInterfaceManager::switchContext(Game_Context context){
 }
 void UserInterfaceManager::switchWindow(WindowID id){
 	switch (id){
+	windowid = id;
 	case UI_W_Main:
-		windowid = id;
 		WindowMainMenu->createButtons();
 		break;
 	case UI_W_Option:
-		windowid = id;
-		//TODO WindowOptions->createButtons();
+		WindowOptions->createButtons();
 			break;
 	default:
 		break;

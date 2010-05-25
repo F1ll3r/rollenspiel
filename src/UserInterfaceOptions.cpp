@@ -29,6 +29,18 @@ bool UserInterfaceOptions::OnEvent(const irr::SEvent& event){
 		}
 	}
 }
+void UserInterfaceOptions::draw(){
+	switch (game->getContext()) {
+		case Context_Main_Menu:
+			for(irr::s32 i=200;200+Buttons.size();i++){
+				Buttons[i]->draw();
+			}
+			break;
+		default:
+			break;
+		}
+
+}
 void UserInterfaceOptions::createButtons(){
 	/*
 	Buttons.push_back(
