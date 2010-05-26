@@ -22,11 +22,11 @@ bool UserInterfaceManager::OnEvent(const irr::SEvent& event) {
 		WindowMainMenu->OnEvent(event);
 		break;
 	case UI_W_Option:
+		WindowOptions->OnEvent(event);
 		break;
 	default:
 		break;
 	}
-
 }
 void UserInterfaceManager::draw(){
 	switch (context) {
@@ -36,6 +36,7 @@ void UserInterfaceManager::draw(){
 			WindowMainMenu->draw();
 			break;
 		case UI_W_Option:
+			WindowOptions->draw();
 			break;
 		default:
 			break;
@@ -61,21 +62,24 @@ void UserInterfaceManager::init() {
 	//TODO set the right text settings!
 }
 void UserInterfaceManager::createWindows(){
-	WindowMainMenu = new UserInterfaceMainMenu(this->game);
-	WindowOptions = new UserInterfaceOptions(this->game);
+	WindowMainMenu = new UserInterfaceMainMenu(this->game,this);
+	WindowOptions = new UserInterfaceOptions(this->game,this);
 	initWindows();
 	switchWindow(UI_W_Main);
 }
 void UserInterfaceManager::initWindows(){
 	WindowMainMenu->init();
+	WindowOptions->init();
 }
 void UserInterfaceManager::switchContext(Game_Context context){
-	//! TODO: do real context switching
+	//! TODO: do real context switching And Deleting all Buttons!
+	//deleteButtons();
 	this->context = context;
 }
 void UserInterfaceManager::switchWindow(WindowID id){
-	switch (id){
 	windowid = id;
+	deleteButtons();
+	switch (id){
 	case UI_W_Main:
 		WindowMainMenu->createButtons();
 		break;
@@ -84,6 +88,14 @@ void UserInterfaceManager::switchWindow(WindowID id){
 			break;
 	default:
 		break;
+	}
+}
+void UserInterfaceManager::deleteButtons(){
+	if(WindowMainMenu){
+		WindowMainMenu->deleteButtons();
+	}
+	if(WindowOptions){
+		WindowOptions->deleteButtons();
 	}
 }
 

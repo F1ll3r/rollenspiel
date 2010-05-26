@@ -25,7 +25,8 @@ enum UI_GUI_Element_Options{
 	UI_GUI_Element_Grass_Text,
 	UI_GUI_Element_Filtering,
 	UI_GUI_Element_Anti_Aliasing,
-	UI_GUI_Element_Shadow
+	UI_GUI_Element_Shadow,
+	TESTBUTTON
 };
 
 
@@ -33,8 +34,9 @@ class UserInterfaceOptions: public UserInterfaceManager {
 public:
 	void draw();
 	bool OnEvent(const irr::SEvent& event);
-	UserInterfaceOptions(Game* game);
+	UserInterfaceOptions(Game* game,UserInterfaceManager* UI_Manager);
 	void createButtons();
+	void deleteButtons();
 	virtual ~UserInterfaceOptions();
 
 };

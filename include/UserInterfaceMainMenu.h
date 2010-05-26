@@ -21,9 +21,10 @@ class UserInterfaceMainMenu: public UserInterfaceManager {
 public:
 	void draw();
 	bool OnEvent(const irr::SEvent& event);
-	UserInterfaceMainMenu(Game* game);
+	UserInterfaceMainMenu(Game* game,UserInterfaceManager* UI_Manager);
 	virtual ~UserInterfaceMainMenu();
 	void createButtons();
+	void deleteButtons();
 };
 
 #endif /* USERINTERFACEMAINMENU_H_ */

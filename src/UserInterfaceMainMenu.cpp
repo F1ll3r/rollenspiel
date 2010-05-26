@@ -11,9 +11,10 @@
 #include "Settings.h"
 
 
-UserInterfaceMainMenu::UserInterfaceMainMenu(Game* game) : UserInterfaceManager(game) {
+UserInterfaceMainMenu::UserInterfaceMainMenu(Game* game,UserInterfaceManager* UI_Manager) : UserInterfaceManager(game) {
 	// TODO Auto-generated constructor stub
 	this->game = game;
+	this->UI_Manager = UI_Manager;
 	init();
 }
 
@@ -46,11 +47,11 @@ bool UserInterfaceMainMenu::OnEvent(const irr::SEvent& event){
 
 			break;
 		case UI_Button_Main_New:
+			UI_Manager->switchContext(Context_Game_Run);
 			game->startGame();
-
 			break;
 		case UI_Button_Main_Options:
-
+			UI_Manager->switchWindow(UI_W_Option);
 			break;
 		default:
 			printf("Unknown button");
@@ -76,5 +77,11 @@ void UserInterfaceMainMenu::createButtons(){
 	Buttons.push_back(
 			guienv->addButton  (irr::core::rect<irr::s32>(100,300,190,320),
 					NULL,UI_Button_Main_Exit,L"Exit",L"Exit"));
+}
+void UserInterfaceMainMenu::deleteButtons(){
+	for(irr::u32 i=0;i>Buttons.size();i++)
+	{
+		Buttons[i]->remove();
+	}
 }
 

@@ -31,7 +31,6 @@ private:
 	bool writeSettings();
 	void initWindows();
 	WindowID windowid;
-	void switchWindow(WindowID id);
 protected:
 
 	Game* game;
@@ -39,6 +38,7 @@ protected:
 	irr::gui::IGUIEnvironment* guienv;
 	Game_Context context;
 
+	UserInterfaceManager* UI_Manager;
 
 	irr::core::array<irr::gui::IGUIButton*> Buttons;
 
@@ -49,7 +49,8 @@ protected:
 public:
 	void init();
 	void createWindows();
-	void draw();
+	void switchWindow(WindowID id);
+	virtual void draw();
 	void switchContext(Game_Context context);
 	Game_Context getContext();
 	bool OnEvent(const irr::SEvent& event);
