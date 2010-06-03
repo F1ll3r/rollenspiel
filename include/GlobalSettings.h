@@ -78,6 +78,7 @@ class UserInterface;
 class GameEvent;
 class GameTrigger;
 class LightObject;
+class IGameEventHandler;
 struct Settings;
 
 
@@ -124,6 +125,7 @@ namespace irr{
         class CGrassPatchSceneNode;
         class IMetaTriangleSelector;
         class ITriangleSelector;
+        class ISceneCollisionManager;
 	}
 
 	namespace gui{

@@ -16,7 +16,6 @@
 class MapObject : public Object{
 protected:
 	irr::scene::IAnimatedMeshSceneNode*			node;
-	irr::core::aabbox3d<irr::f32>*					bbox;
 	irr::s32									id;
 public:
 	MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml);
@@ -28,6 +27,18 @@ public:
 
 	irr::s32 getID();
 	void remove();
+
+	virtual bool isClickable() const {
+		return false;
+	}
+
+	virtual bool isGround() const {
+		return true;
+	}
+
+	virtual bool isCollidable() const{
+		return true;
+	}
 
 };
 

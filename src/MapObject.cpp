@@ -22,8 +22,6 @@ MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,gam
 	irr::core::vector3df	scale;
 	irr::IrrlichtDevice*	device = game->getIrrlichtDevice();
 
-	bbox					= 0;
-
 	id	= xml->getAttributeValueAsInt(L"ID");
 	if(id == 0)
 		id	= game->getMap()->getFreeID();
@@ -52,16 +50,6 @@ MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,gam
 						scale.Y = xml->getAttributeValueAsFloat(L"Y");
 						scale.Z = xml->getAttributeValueAsFloat(L"Z");
 
-					}else if(wcscmp(xml->getNodeName(),L"BBox") == 0){
-
-						bbox = new irr::core::aabbox3d<irr::f32>(
-								xml->getAttributeValueAsFloat(L"X1"),
-								xml->getAttributeValueAsFloat(L"Y1"),
-								xml->getAttributeValueAsFloat(L"Z1"),
-								xml->getAttributeValueAsFloat(L"X2"),
-								xml->getAttributeValueAsFloat(L"Y2"),
-								xml->getAttributeValueAsFloat(L"Z2"));
-
 					}else{
 						wprintf(L"Corrupt XML-file. Unexpected Node <%s>", xml->getNodeName());
 						My_Assert(0);
@@ -81,16 +69,16 @@ MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,gam
                     }
 
                     node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+                    node->setMaterialType(irr::video::EMT_SOLID);
+
                     node->setMaterialFlag(game->getSettings().filtering,true);
 
-//                    node->setMaterialFlag(irr::video::EMF_NORMALIZE_NORMALS,true);
 
 
 
 					node->setTriangleSelector(
 							device->getSceneManager()->createTriangleSelector(node));
 
-					s->registerAsCollisionTriangle(node->getTriangleSelector());
 
 					//((irr::scene::IAnimatedMeshSceneNode*)node)->addShadowVolumeSceneNode();
 

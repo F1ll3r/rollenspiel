@@ -20,10 +20,6 @@ class Player : public Character, public irr::IEventReceiver {
 		bool				shift;
 	}irrEventSate;
 
-	irr::f32				speedslow;
-	irr::f32				speedsnorm;
-	irr::f32				speedsfast;
-
 public:
 	Player(Sector* s,Game* game,irr::io::IXMLReader* xml);
 	Player(Sector*s,Game* game);
@@ -34,8 +30,6 @@ public:
 	virtual irr::s32 getID(){
 		return 1;
 	}
-
-	irr::f32 getSpeed(const wchar_t* mode) const;
 };
 
 #endif /* PLAYER_H_ */

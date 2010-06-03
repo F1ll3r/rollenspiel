@@ -15,10 +15,11 @@
 
 
 class GameEventManager {
-	Game* 						game;
-	Drawer* 					drawer;
-	std::map<irr::s32,Object*> 	runMap;
-	irr::s32					lasttime;
+	Game* 									game;
+	Drawer* 								drawer;
+	std::map<irr::s32,IGameEventHandler*> 	runMap;
+	std::map<irr::s32,IGameEventHandler*> 	drawMap;
+	irr::s32								lasttime;
 public:
 	GameEventManager(Game* game);
 	virtual ~GameEventManager();
@@ -33,9 +34,9 @@ public:
 
 	void registerTrigger(GameTrigger* t, irr::core::array<GameEvent*> e);
 
-	void registerForRunEvent(Object* o);
+	void registerForRunEvent(IGameEventHandler* o,irr::s32 id);
 
-	void registerForDrawEvent(Object* o);
+	void registerForDrawEvent(IGameEventHandler* o,irr::s32 id);
 };
 
 #endif /* GAMEEVENTMANAGER_H_ */

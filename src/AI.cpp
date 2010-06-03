@@ -105,16 +105,31 @@ void AI::run(irr::s32 dtime){
 
 		movmened.setLength(character->getSpeed(state.mode) * dtime);
 		movmened+= state.lastpos;
-		movmened.Y = sector->getTerrainHightFromXY(movmened.X,movmened.Z);
-
-//		irr::scene::ISceneCollisionManager* collisionManager =
-//					game->getSceneManager()->getSceneCollisionManager();
-//
-//		sector->getCollisionTriangleSelector()->
-//
-//		collisionManager->getSceneNodeFromRayBB();
+		movmened.Y = sector->getGroundHightFromPos(irr::core::vector3df(movmened.X,state.lastpos.Y,movmened.Z));
 
 		character->setPosition(movmened);
+
+		if(sector->collidesWithObject(character)){
+			character->setPosition(state.lastpos);
+			state.iswalking = false;
+			setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
+		}else{
+			irr::core::aabbox3d<irr::f32> bbox = character->getNode()->getTransformedBoundingBox();
+
+			irr::core::vector3df middle((bbox.MinEdge.X+bbox.MaxEdge.X)/2,
+										(bbox.MinEdge.Y+bbox.MaxEdge.Y)/2,
+										(bbox.MinEdge.Z+bbox.MaxEdge.Z)/2);
+
+			irr::core::vector3df oldmiddle( state.lastpos.X,
+											state.lastpos.Y + (middle.Y - character->getPosition().Y),
+											state.lastpos.Z);
+
+			if(sector->collidesWithObject(irr::core::line3d<float>(middle,oldmiddle),middle)){
+				character->setPosition(state.lastpos);
+				state.iswalking = false;
+				setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
+			}
+		}
 
 		state.lastpos = character->getAbsolutePosition();
 	}

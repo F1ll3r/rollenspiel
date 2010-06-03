@@ -24,7 +24,7 @@ Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 	this->game 				= game;
 	irrEventSate.shift		= false;
 
-	game->getGameEventManager()->registerForRunEvent(this);
+	game->getGameEventManager()->registerForRunEvent(this,this->getID());
 
 	while(xml->read()){
 		switch (xml->getNodeType()) {
@@ -102,23 +102,58 @@ Player::~Player() {
 	// TODO Auto-generated destructor stub
 }
 
-irr::f32 Player::getSpeed(const wchar_t* mode) const{
-
-	if(wcscmp(mode,L"Sneak") == 0){
-		return speedslow;
-	}else if(wcscmp(mode,L"Normal") == 0){
-		return speedsnorm;
-	}else if(wcscmp(mode,L"Run") == 0){
-		return speedsfast;
-	}
-	My_Assert(0);
-}
-
 bool Player::OnEvent(const irr::SEvent& event){
 	if(event.EventType == irr::EET_MOUSE_INPUT_EVENT){
 
+
+		if(		event.MouseInput.Event == irr::EMIE_LMOUSE_PRESSED_DOWN ||
+				event.MouseInput.Event == irr::EMIE_LMOUSE_DOUBLE_CLICK	||
+				event.MouseInput.Event == irr::EMIE_RMOUSE_PRESSED_DOWN ){
+
+			irr::core::vector3df tmpv;
+			irr::core::position2d<irr::s32> p =
+					game->getIrrlichtDevice()->getCursorControl()->getPosition();
+			Object* o = sector->getObjectFromScreenCoordinates(p.X,p.Y,tmpv);
+			if(o){
+				irr::scene::IVolumeLightSceneNode * n = game->getSceneManager()->addVolumeLightSceneNode(0, -1,
+								64,                              // Subdivisions on U axis
+								64,                              // Subdivisions on V axis
+								irr::video::SColor(0, 128, 0, 0), // foot color
+								irr::video::SColor(0, 0, 0, 0));      // tail color
+
+				if (n){
+					n->setScale(irr::core::vector3df(60.0f, 15.0f, 60.0f));
+					n->setPosition(tmpv);
+
+					// load textures for animation
+					irr::core::array<irr::video::ITexture*> textures;
+					for (irr::s32 g=7; g > 0; --g)
+					{
+						irr::core::stringc tmp;
+						tmp = "content/portal";
+						tmp += g;
+						tmp += ".bmp";
+						irr::video::ITexture* t = game->getVideoDriver()->getTexture( tmp.c_str() );
+						textures.push_back(t);
+					}
+
+					// create texture animator
+					irr::scene::ISceneNodeAnimator* anim = game->getSceneManager()->createTextureAnimator(textures, 150);
+
+					n->addAnimator(anim);
+					anim->drop();
+					anim = game->getSceneManager()->createDeleteAnimator(500);
+					n->addAnimator(anim);
+					anim->drop();
+				}
+
+				return false;
+			}
+		}
+
 		if(		event.MouseInput.Event == irr::EMIE_LMOUSE_PRESSED_DOWN ||
 				event.MouseInput.Event == irr::EMIE_LMOUSE_DOUBLE_CLICK		){
+
 
 			irrEventSate.leftmouse = true;
 			irr::scene::ISceneCollisionManager* collisionManager = game->getSceneManager()->getSceneCollisionManager();
@@ -128,11 +163,9 @@ bool Player::OnEvent(const irr::SEvent& event){
 					);
 
 			irr::core::vector3df tmpv;
-			irr::core::triangle3df tmpt;
-			const irr::scene::ISceneNode* tmpn = NULL;
 
+			if(sector->getGroundFromLine(line,tmpv)){
 
-			if(collisionManager->getCollisionPoint(line,sector->getCollisionTriangleSelector(),tmpv,tmpt,tmpn)){
 				if(irrEventSate.shift){
 					ai->walkCharacterTo(tmpv,L"Sneak");
 				}else if(event.MouseInput.Event == irr::EMIE_LMOUSE_DOUBLE_CLICK){
@@ -147,8 +180,7 @@ bool Player::OnEvent(const irr::SEvent& event){
 								irr::video::SColor(0, 255, 255, 255), // foot color
 								irr::video::SColor(0, 0, 0, 0));      // tail color
 
-				if (n)
-				{
+				if (n){
 					n->setScale(irr::core::vector3df(60.0f, 15.0f, 60.0f));
 					n->setPosition(tmpv);
 

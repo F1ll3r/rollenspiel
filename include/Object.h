@@ -10,6 +10,7 @@
 
 #include "GlobalSettings.h"
 #include "IXMLWriter.h"
+#include "IGameEventHandler.h"
 
 
 enum Onject_Type{
@@ -22,7 +23,7 @@ enum Onject_Type{
 };
 
 
-class Object {
+class Object : public IGameEventHandler{
 protected:
 	Sector*					sector;
 	Game*					game;
@@ -47,8 +48,7 @@ public:
 	//! removes Object from Game and irrlicht
 	virtual void remove() = 0;
 
-	//! asks Object to handle the GameEvent
-	virtual void handleEvent(const GameEvent& e) {}
+	virtual void handleEvent(const GameEvent& e){}
 
 	//!returns irrlicht scenenode
 	virtual irr::scene::ISceneNode* getNode() = 0;
@@ -60,6 +60,16 @@ public:
 	virtual Onject_Type getType(){
 		return Type_Unknown;
 	}
+
+	Sector* getSector(){
+		return sector;
+	}
+
+	virtual bool isClickable() const = 0;
+
+	virtual bool isGround() const = 0;
+
+	virtual bool isCollidable() const = 0;
 
 };
 

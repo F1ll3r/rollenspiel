@@ -12,16 +12,22 @@
 #include "Character.h"
 
 class NPC : public Character{
+	irr::f32				speedslow;
+	irr::f32				speedsnorm;
+	irr::f32				speedsfast;
+	irr::s32				id;
 public:
 	NPC(Sector* s,Game* game,irr::io::IXMLReader* xml);
 	NPC(Sector* s,Game* game);
 	virtual ~NPC();
 
+
+
 	irr::s32 getID(){
 		return 666;
 	}
 
-	irr::f32 getSpeed(const wchar_t* mode) const{}
+	irr::f32 getSpeed(const wchar_t* mode) const;
 };
 
 #endif /* NPC_H_ */

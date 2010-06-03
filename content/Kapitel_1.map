@@ -8,7 +8,7 @@
         the name is used for displaying ingame
     -->
 
-	<Sector ID="1" Name="Taverne">
+	<Sector ID="1" Name="Taverna">
 
         <Loading_Screen points="1" text="Erzeuge Terrain" />
 
@@ -18,7 +18,7 @@
 			<Texture Value="content/Kapitel_1/terrain-texture.jpg" />
 			<Detailtexture Value="content/Kapitel_1/detailtex.jpg" />
 
-			<Grass Density="400">
+			<Grass Density="800">
 				<Grassmap Value="content/Kapitel_1/terrain-grassmap.png" />
 				<Texture Value="content/Kapitel_1/grass.png" />
 				<Colormap Value="content/Kapitel_1/terrain-grasscol.bmp" />
@@ -33,7 +33,7 @@
         <Loading_Screen points="15" text="Parse Light Sources" />
 
 
-        <AmbientLight R="0.9" G="0.9" B="0.9" />
+        <AmbientLight R="1" G="1" B="1" />
 
         <LightObject>
             <Color R="1" G="1" B="1" />
@@ -83,22 +83,6 @@
 
 		<Loading_Screen points="1" text="Lade Objekte" />
 
-
-<!--        <MapObject>-->
-<!--			<Mesh Value="content/curve_garden_bridge.3ds" />-->
-<!--			<Texture Value="content/Kapitel_1/grass.png" />-->
-<!--			<Position X="6098" Y="73" Z="8014" />-->
-<!--			<Rotation X="0" Y="-20" Z="0" />-->
-<!--			<Scale X="11" Y="11" Z="11" />-->
-<!--		</MapObject>-->
-
-<!--		<MapObject>-->
-<!--			<Mesh Value="content/M_TREE4.3DS" />-->
-<!--			<Position X="2333" Y="220" Z="1775" />-->
-<!--			<Rotation X="5" Y="90" Z="5" />-->
-<!--			<Scale X="10" Y="10" Z="10" />-->
-<!--		</MapObject>-->
-
 		<Loading_Screen points="5"/>
 
 		<MapObject>
@@ -114,7 +98,7 @@
 		<MapObject>
 			<Mesh Value="content/proprietary/house_obj.obj" />
 			<Texture Value="content/proprietary/house_diffuse.tga" />
-			<Position X="1876" Y="29" Z="7546" />
+			<Position X="1876" Y="107" Z="7546" />
 			<Rotation X="0" Y="0" Z="0" />
 			<Scale X="1" Y="1" Z="1" />
 		</MapObject>
@@ -123,43 +107,12 @@
 
         <MapObject>
 			<Mesh Value="content/proprietary/fw43_lowpoly_n1.3ds" />
-			<Position X="4257" Y="27" Z="6472" />
+			<Position X="4257" Y="80" Z="6472" />
 			<Rotation X="0" Y="0" Z="0" />
 			<Scale X="60" Y="60" Z="60" />
 		</MapObject>
 
 		<Loading_Screen points="10"/>
-
-<!--		<MapObject>-->
-<!--			<Mesh Value="content/proprietary/Stone_Forest_1.obj" />-->
-<!--			<Texture Value="content/proprietary/stone/S1Diffus.jpg" />-->
-<!--			<Position X="5636" Y="68" Z="9389" />-->
-<!--			<Rotation X="0" Y="0" Z="0" />-->
-<!--			<Scale X="2" Y="2" Z="2" />-->
-<!--		</MapObject>-->
-
-
-<!--        <MapObject>-->
-<!--			<Mesh Value="content/proprietary/monster-character-3ds.3DS" />-->
-<!--			<Texture Value="content/proprietary/stone/S1Diffus.jpg" />-->
-<!--			<Position X="5636" Y="200" Z="9389" />-->
-<!--			<Rotation X="0" Y="0" Z="0" />-->
-<!--			<Scale X="2" Y="2" Z="2" />-->
-<!--		</MapObject>-->
-
-<!--		<MapObject>-->
-<!--			<Mesh Value="content/M_TREE6.3DS" />-->
-<!--			<Position X="1894" Y="140" Z="8368" />-->
-<!--			<Rotation X="5" Y="-90" Z="0" />-->
-<!--			<Scale X="10" Y="10" Z="10" />-->
-<!--		</MapObject>-->
-<!---->
-<!--        <MapObject>-->
-<!--			<Mesh Value="content/M_TREE6.3DS" />-->
-<!--			<Position X="2516" Y="440" Z="5757" />-->
-<!--			<Rotation X="2" Y="45" Z="-3" />-->
-<!--			<Scale X="10" Y="10" Z="10" />-->
-<!--		</MapObject>-->
 
         <!--
             Team:
@@ -171,13 +124,36 @@
 
         <Loading_Screen points="20" text="Erzeuge NPC" />
 
-<!--		<NPC Type="Monster" Name="Wilder Hund">-->
-<!--			<Mesh Value="" />-->
-<!--			<Texture  Value="" />-->
-<!--			<Position X="" Y="" Z="" />-->
-<!--			<Rotation X="" Y="" Z="" />-->
-<!--			<Team ID="2" />-->
-<!--		</NPC>-->
+        <NPC>
+            <Health Max="100" Current="100" />
+            <Speed Sneak="0.15" Normal="0.3" Run="0.45" />
+            <Mesh Value="content/ninja.b3d" />
+            <Texture Value="content/nskinrd.jpg" />
+            <Scale X="15" Y="15" Z="15" />
+			<Position X="4752.67" Y="170.63" Z="1255.92" />
+			<Rotation X="0" Y="0" Z="0" />
+            <Inventory>
+                <Weapon class="baton" name="Kurtzschwert">
+                    <Image Value="" />
+                    <Damage Value="12" />
+                    <Speed Value="1" />
+                    <Cost Value="40" />
+                </Weapon>
+            </Inventory>
+            <AI>
+                <Animation>
+                    <Walk Type="Normal" SFrame="0" EFrame="13" Speed="15" Loop="true" />
+                    <Walk Type="Run" SFrame="0" EFrame="13" Speed="25" Loop="true" />
+                    <Walk Type="Stealth" SFrame="14" EFrame="29" Speed="15" Loop="true" />
+                    <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
+                    <Idle Type="Normal" SFrame="183" EFrame="203" Speed="15" Loop="true" />
+                </Animation>
+                <Behavior type="Aggressive">
+
+                </Behavior>
+            </AI>
+		</NPC>
+
 
 <!--		<Dealer Name="Hugos Eisenwaren">-->
 <!--            <Health Max="100" Current="100" />-->
@@ -224,7 +200,7 @@
             <Mesh Value="content/ninja.b3d" />
 <!--            <Mesh Value="content/proprietary/monster-character-high-3ds.3DS" />-->
             <Scale X="15" Y="15" Z="15" />
-			<Position X="2752.67" Y="17.63" Z="1255.92" />
+			<Position X="2752.67" Y="123.63" Z="1255.92" />
 			<Rotation X="0" Y="0" Z="0" />
             <Inventory>
                 <Weapon class="baton" name="Kurtzschwert">

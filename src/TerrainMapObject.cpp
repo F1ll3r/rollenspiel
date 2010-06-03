@@ -16,6 +16,7 @@
 #include "GameEventManager.h"
 #include "GameEvent.h"
 #include "Settings.h"
+#include "Map.h"
 
 
 TerrainMapObject::TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml)
@@ -26,6 +27,11 @@ TerrainMapObject::TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml
 	irr::core::stringw		texture;
 	irr::core::stringw		detailtexture;
 	gm = NULL;
+
+	//!FIXME: add getting id;
+
+	id = game->getMap()->getFreeID();
+
 
 
 	while(xml->read()){
@@ -58,7 +64,7 @@ TerrainMapObject::TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml
 				break;
 			case  irr::io::EXN_ELEMENT_END:
 				if(wcscmp(xml->getNodeName(),L"Terrain") == 0){
-					node = game->getSceneManager()->addTerrainSceneNode(hightmap.c_str(),0,0,
+					node = game->getSceneManager()->addTerrainSceneNode(hightmap.c_str(),0,id,
 								irr::core::vector3df(0.0f,0.0f,0.0f),
 								irr::core::vector3df(0.0f,0.0f,0.0f),
 								irr::core::vector3df(1.0f,1.0f,1.0f),
@@ -88,8 +94,10 @@ TerrainMapObject::TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml
 
 					if(gm){
 						gm->create((irr::scene::ITerrainSceneNode*) node,game->getVideoDriver()->createImageFromFile(hightmap.c_str()));
-						game->getGameEventManager()->registerForRunEvent(this);
+						game->getGameEventManager()->registerForRunEvent(this,getID());
 					}
+
+					s->addObject(this);
 					return;
 					}
 				break;
@@ -136,12 +144,11 @@ void TerrainMapObject::remove(){
 	}
 }
 
-//! returns the ID used for GameEventMgmt this may or may not
-//! be equal to getNode()->getID()
+
 irr::s32 TerrainMapObject::getID(){
-	//TODO: write real code
-	return 0;
+	return id;
 }
+
 
 void TerrainMapObject::handleEvent(const GameEvent& e){
 	if(e.getEventType() == Game_Event_Type_Run){
