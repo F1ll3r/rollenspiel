@@ -84,7 +84,7 @@ NPC::NPC(Sector* s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 
 					My_Assert(m);
 					node = device->getSceneManager()
-							->addAnimatedMeshSceneNode(m,0,1,pos,rot,scale);
+							->addAnimatedMeshSceneNode(m,0,id,pos,rot,scale);
 
 					node->setTriangleSelector(
 							device->getSceneManager()->createTriangleSelector((irr::scene::IAnimatedMeshSceneNode*)node));

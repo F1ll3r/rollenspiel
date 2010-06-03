@@ -24,7 +24,7 @@ public:
 
 
 	irr::s32 getID(){
-		return 666;
+		return id;
 	}
 
 	irr::f32 getSpeed(const wchar_t* mode) const;

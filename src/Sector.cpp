@@ -163,7 +163,7 @@ Object* Sector::getGroundFromLine(const irr::core::line3d<float>& line, irr::cor
 	std::map<irr::s32,Object*>::iterator i = database.begin();
 	for(;i != database.end();i++){
 		if(i->second->isGround()
-				&& i->second->getNode()->getTransformedBoundingBox().intersectsWithLine(line)){
+				&& i->second->getNode()->getTransformedBoundingBox().intersectsWithLine(line)) {
 			groundtriangles->addTriangleSelector(i->second->getNode()->getTriangleSelector());
 		}
 	}
@@ -176,11 +176,15 @@ Object* Sector::getGroundFromLine(const irr::core::line3d<float>& line, irr::cor
 
 
 irr::f32 Sector::getGroundHightFromPos(const irr::core::vector3df& pos){
-	irr::core::line3d<float> line(pos.X,pos.Y+10,pos.Z,pos.X,pos.Y-1000000,pos.Z); //!TODO: keep this in mind
+	irr::core::line3d<float> line(pos.X,pos.Y+50,pos.Z,pos.X,pos.Y-1000000,pos.Z); //!TODO: keep this in mind
 	irr::core::vector3df vec;
 
 	if(getGroundFromLine(line,vec)){
 		return vec.Y;
+	}
+
+	if(terrain){
+		return ((irr::scene::ITerrainSceneNode*)(terrain->getNode()))->getHeight(pos.X,pos.Z);
 	}
 
 

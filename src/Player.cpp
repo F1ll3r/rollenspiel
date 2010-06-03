@@ -122,8 +122,9 @@ bool Player::OnEvent(const irr::SEvent& event){
 								irr::video::SColor(0, 0, 0, 0));      // tail color
 
 				if (n){
-					n->setScale(irr::core::vector3df(60.0f, 15.0f, 60.0f));
-					n->setPosition(tmpv);
+					n->setScale(irr::core::vector3df(180.0f, 150.0f, 180.0f));
+					n->setPosition(o->getAbsolutePosition());
+					printf("clickable id:%i hit\n",o->getID());
 
 					// load textures for animation
 					irr::core::array<irr::video::ITexture*> textures;
