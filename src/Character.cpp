@@ -60,3 +60,7 @@ irr::f32 Character::getSpeed(const wchar_t* mode) const{
 	}
 	My_Assert(0);
 }
+
+irr::s32 Character::getTeam(){
+
+}

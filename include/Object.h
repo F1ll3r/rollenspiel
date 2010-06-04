@@ -65,11 +65,17 @@ public:
 		return sector;
 	}
 
-	virtual bool isClickable() const = 0;
+	virtual bool isClickable() const {
+		return false;
+	}
 
-	virtual bool isGround() const = 0;
+	virtual bool isGround() const {
+		return false;
+	}
 
-	virtual bool isCollidable() const = 0;
+	virtual bool isCollidable() const{
+		return false;
+	}
 
 };
 

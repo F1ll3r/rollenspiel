@@ -75,6 +75,7 @@ Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 					My_Assert(m);
 					node = device->getSceneManager()
 							->addAnimatedMeshSceneNode(m,0,1,pos,rot,scale);
+					node->setMaterialFlag(irr::video::EMF_ANTI_ALIASING,true);
 
 
 					My_Assert(node);
@@ -115,6 +116,14 @@ bool Player::OnEvent(const irr::SEvent& event){
 					game->getIrrlichtDevice()->getCursorControl()->getPosition();
 			Object* o = sector->getObjectFromScreenCoordinates(p.X,p.Y,tmpv);
 			if(o){
+				if(irrEventSate.shift){
+					ai->interactWith(o,Interaction_Attake,L"Sneak");
+				}else if(event.MouseInput.Event == irr::EMIE_LMOUSE_DOUBLE_CLICK){
+					ai->interactWith(o,Interaction_Attake,L"Run");
+				}else{
+					ai->interactWith(o,Interaction_Attake,L"Normal");
+				}
+
 				irr::scene::IVolumeLightSceneNode * n = game->getSceneManager()->addVolumeLightSceneNode(0, -1,
 								64,                              // Subdivisions on U axis
 								64,                              // Subdivisions on V axis
@@ -124,7 +133,6 @@ bool Player::OnEvent(const irr::SEvent& event){
 				if (n){
 					n->setScale(irr::core::vector3df(180.0f, 150.0f, 180.0f));
 					n->setPosition(o->getAbsolutePosition());
-					printf("clickable id:%i hit\n",o->getID());
 
 					// load textures for animation
 					irr::core::array<irr::video::ITexture*> textures;
@@ -213,6 +221,12 @@ bool Player::OnEvent(const irr::SEvent& event){
 			irrEventSate.shift = true;
 		}else{
 			irrEventSate.shift = false;
+		}
+
+		if(event.KeyInput.Control){
+			irrEventSate.ctrl = true;
+		}else{
+			irrEventSate.ctrl = false;
 		}
 	}
 	return false;

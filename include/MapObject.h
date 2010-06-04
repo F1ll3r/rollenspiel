@@ -15,8 +15,11 @@
 
 class MapObject : public Object{
 protected:
-	irr::scene::IAnimatedMeshSceneNode*			node;
-	irr::s32									id;
+	irr::scene::IAnimatedMeshSceneNode*		node;
+	irr::s32								id;
+	bool 									clickable;
+	bool 									ground;
+	bool 									collidable;
 public:
 	MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml);
 	virtual ~MapObject();
@@ -29,15 +32,15 @@ public:
 	void remove();
 
 	virtual bool isClickable() const {
-		return false;
+		return clickable;
 	}
 
 	virtual bool isGround() const {
-		return true;
+		return ground;
 	}
 
 	virtual bool isCollidable() const{
-		return true;
+		return collidable;
 	}
 
 };

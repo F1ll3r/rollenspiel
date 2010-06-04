@@ -85,12 +85,15 @@ TerrainMapObject::TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml
 					//node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 					node->setMaterialType(irr::video::EMT_DETAIL_MAP);
 					node->setMaterialFlag(game->getSettings().filtering,true);
+					node->setMaterialFlag(irr::video::EMF_ANTI_ALIASING,true);
 					//node->setMaterialType(irr::video::EMT_SOLID);
 					// TODO throw exception on error
 
 					irr::scene::ITriangleSelector* sel = game->getSceneManager()->createTerrainTriangleSelector(
 							((irr::scene::ITerrainSceneNode*) node));
 					node->setTriangleSelector(sel);
+
+
 
 					if(gm){
 						gm->create((irr::scene::ITerrainSceneNode*) node,game->getVideoDriver()->createImageFromFile(hightmap.c_str()));

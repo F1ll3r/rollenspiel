@@ -18,6 +18,7 @@ class Player : public Character, public irr::IEventReceiver {
 		bool				leftmouse;
 		irr::s32			timer;
 		bool				shift;
+		bool				ctrl;
 	}irrEventSate;
 
 public:

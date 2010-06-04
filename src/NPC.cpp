@@ -79,7 +79,7 @@ NPC::NPC(Sector* s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 							device->getSceneManager()->getMesh(mesh.c_str());
 
 					if(texture.size() != 0){
-                        //node->getMaterial(0).setTexture(0,game->getVideoDriver()->getTexture(texture));
+                        node->setMaterialTexture(0,game->getVideoDriver()->getTexture(texture));
                     }
 
 					My_Assert(m);
@@ -89,6 +89,7 @@ NPC::NPC(Sector* s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 					node->setTriangleSelector(
 							device->getSceneManager()->createTriangleSelector((irr::scene::IAnimatedMeshSceneNode*)node));
 
+					node->setMaterialFlag(irr::video::EMF_ANTI_ALIASING,true);
 
 					My_Assert(node);
 					//node->setMaterialFlag(irr::video::EMF_LIGHTING, false);

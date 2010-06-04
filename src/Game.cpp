@@ -123,7 +123,7 @@ void Game::init( int argc, const char* argv[] ){
 	switchContext(Context_Loadung_Screen);
 	ui->init();
 	drawer->drawLoadingScreen();
-	drawer->processLoadingScreen(0,L"init");
+
 
 	importer->init();
 	exporter->init();
@@ -132,6 +132,14 @@ void Game::init( int argc, const char* argv[] ){
 	camerahandler->init();
 
 	device->setEventReceiver(mastereventmgr);
+
+	drawer->processLoadingScreen(1,L"Loading Font");
+
+	irr::gui::IGUIFont* font = device->getGUIEnvironment()->getFont("content/myfont.xml");
+	irr::gui::IGUISkin* skin = device->getGUIEnvironment()->getSkin();
+	skin->setFont(font);
+	device->getGUIEnvironment()->setSkin(skin);
+
 
 	irr::core::stringw str;
 

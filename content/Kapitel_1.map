@@ -91,6 +91,7 @@
 			<Position X="26810" Y="130" Z="28236" />
 			<Rotation X="0" Y="180" Z="0" />
 			<Scale X="2" Y="2" Z="2" />
+			<Collision Ground="false" Click="false" Collide="true">
 		</MapObject>
 
 		<Loading_Screen points="10"/>
@@ -101,6 +102,7 @@
 			<Position X="1876" Y="107" Z="7546" />
 			<Rotation X="0" Y="0" Z="0" />
 			<Scale X="1" Y="1" Z="1" />
+			<Collision Ground="false" Click="false" Collide="true">
 		</MapObject>
 
         <Loading_Screen points="10"/>
@@ -110,6 +112,7 @@
 			<Position X="4257" Y="80" Z="6472" />
 			<Rotation X="0" Y="0" Z="0" />
 			<Scale X="60" Y="60" Z="60" />
+			<Collision Ground="false" Click="false" Collide="true">
 		</MapObject>
 
 		<MapObject>
@@ -117,6 +120,7 @@
 			<Position X="4257" Y="80" Z="4472" />
 			<Rotation X="0" Y="0" Z="0" />
 			<Scale X="1" Y="1" Z="1" />
+			<Collision Ground="false" Click="false" Collide="true">
 		</MapObject>
 
 		<Loading_Screen points="10"/>
@@ -135,7 +139,7 @@
             <Health Max="100" Current="100" />
             <Speed Sneak="0.15" Normal="0.3" Run="0.45" />
             <Mesh Value="content/ninja.b3d" />
-            <Texture Value="content/nskinrd.jpg" />
+<!--            <Texture Value="content/nskinrd.jpg" />-->
             <Scale X="15" Y="15" Z="15" />
 			<Position X="4752.67" Y="197.63" Z="1255.92" />
 			<Rotation X="0" Y="0" Z="0" />
@@ -182,7 +186,7 @@
                     <Walk Type="Run" SFrame="0" EFrame="13" Speed="25" Loop="true" />
                     <Walk Type="Stealth" SFrame="14" EFrame="29" Speed="15" Loop="true" />
                     <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
-                    <Idle Type="Normal" SFrame="183" EFrame="203" Speed="15" Loop="true" />
+                    <Idle Type="Normal" SFrame="0" EFrame="400" Speed="12" Loop="true" />
                 </Animation>
                 <Behavior type="Aggressive">
 
@@ -193,7 +197,8 @@
 		<NPC>
             <Health Max="100" Current="100" />
             <Speed Sneak="0.15" Normal="0.3" Run="0.45" />
-            <Mesh Value="content/beast/beast.ms3d" />
+            <Mesh Value="content/beast/beast.b3d" />
+<!--            <Texture Value="content/beast/beast1.jpg" />-->
             <Scale X="1" Y="1" Z="1" />
 			<Position X="3437" Y="136" Z="6000" />
 			<Rotation X="0" Y="0" Z="0" />
@@ -207,13 +212,44 @@
             </Inventory>
             <AI>
                 <Animation>
-                    <Walk Type="Normal" SFrame="0" EFrame="13" Speed="15" Loop="true" />
-                    <Walk Type="Run" SFrame="0" EFrame="13" Speed="25" Loop="true" />
-                    <Walk Type="Stealth" SFrame="14" EFrame="29" Speed="15" Loop="true" />
-                    <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
-                    <Idle Type="Normal" SFrame="183" EFrame="203" Speed="15" Loop="true" />
+                    <Walk Type="Normal" SFrame="0" EFrame="25" Speed="15" Loop="true" />
+                    <Walk Type="Run" SFrame="0" EFrame="25" Speed="25" Loop="true" />
+                    <Walk Type="Stealth" SFrame="0" EFrame="25" Speed="15" Loop="true" />
+                    <Idle Type="Exhausted" SFrame="331" EFrame="379" Speed="15" Loop="true" />
+                    <Idle Type="Normal" SFrame="331" EFrame="379" Speed="15" Loop="true" />
                 </Animation>
                 <Behavior type="Aggressive">
+
+                </Behavior>
+            </AI>
+		</NPC>
+
+		<NPC>
+            <Health Max="100" Current="100" />
+            <Speed Sneak="0.15" Normal="0.3" Run="0.45" />
+            <Mesh Value="content/zombie/zombie.b3d" />
+<!--            <Texture Value="content/beast/beast1.jpg" />-->
+            <Scale X="7" Y="7" Z="7" />
+			<Position X="3437" Y="85" Z="8000" />
+			<Rotation X="0" Y="0" Z="0" />
+            <Inventory>
+                <Weapon class="baton" name="Kurtzschwert">
+                    <Image Value="" />
+                    <Damage Value="12" />
+                    <Speed Value="1" />
+                    <Cost Value="40" />
+                </Weapon>
+            </Inventory>
+            <AI>
+                <Animation>
+                    <Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+                    <Walk Type="Run" SFrame="21" EFrame="35" Speed="25" Loop="true" />
+                    <Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+                    <Idle Type="Exhausted" SFrame="136" EFrame="168" Speed="10" Loop="true" />
+                    <Idle Type="Normal" SFrame="169" EFrame="199" Speed="10" Loop="true" />
+                </Animation>
+                <Behavior Type="Fight" Value="Agressive">
+                    <Attack >
 
                 </Behavior>
             </AI>

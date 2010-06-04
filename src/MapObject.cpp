@@ -22,6 +22,10 @@ MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,gam
 	irr::core::vector3df	scale;
 	irr::IrrlichtDevice*	device = game->getIrrlichtDevice();
 
+	clickable = false;
+	ground = false;
+	collidable = false;
+
 	id	= xml->getAttributeValueAsInt(L"ID");
 	if(id == 0)
 		id	= game->getMap()->getFreeID();
@@ -50,6 +54,18 @@ MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,gam
 						scale.Y = xml->getAttributeValueAsFloat(L"Y");
 						scale.Z = xml->getAttributeValueAsFloat(L"Z");
 
+
+					}else if(wcscmp(xml->getNodeName(),L"Collision") == 0){
+						if(xml->getAttributeValue(L"Ground")){
+							ground = wcscmpi(xml->getAttributeValue(L"Ground"),L"true") == 0;
+						}
+						if(xml->getAttributeValue(L"Click")){
+							clickable = wcscmpi(xml->getAttributeValue(L"Click"),L"true") == 0;
+						}
+						if(xml->getAttributeValue(L"Collide")){
+							collidable = wcscmpi(xml->getAttributeValue(L"Collide"),L"true") == 0;
+						}
+
 					}else{
 						wprintf(L"Corrupt XML-file. Unexpected Node <%s>", xml->getNodeName());
 						My_Assert(0);
@@ -72,6 +88,7 @@ MapObject::MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,gam
                     node->setMaterialType(irr::video::EMT_SOLID);
 
                     node->setMaterialFlag(game->getSettings().filtering,true);
+                    node->setMaterialFlag(irr::video::EMF_ANTI_ALIASING,true);
 
 
 

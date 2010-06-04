@@ -46,6 +46,8 @@ public:
 
 	virtual irr::f32 getSpeed(const wchar_t* mode) const;
 
+	virtual irr::s32 getTeam();
+
 	virtual bool isClickable() const {
 		return true;
 	}
