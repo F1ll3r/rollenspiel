@@ -79,7 +79,7 @@ NPC::NPC(Sector* s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 							device->getSceneManager()->getMesh(mesh.c_str());
 
 					if(texture.size() != 0){
-                        //node->getMaterial(0).setTexture(0,game->getVideoDriver()->getTexture(texture));
+                        node->setMaterialTexture(0,game->getVideoDriver()->getTexture(texture));
                     }
 
 					My_Assert(m);
