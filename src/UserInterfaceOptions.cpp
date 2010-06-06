@@ -44,7 +44,7 @@ void UserInterfaceOptions::createButtons(){
 	Buttons.push_back(
 			guienv->addButton  (irr::core::rect<irr::s32>(100,150,190,170),
 					NULL,TESTBUTTON,L"TESTButton",L"Start new game"));
-	/*
+
 	Buttons.push_back(
 			guienv->addScrollBar(true,irr::core::rect<irr::s32>(300,50,500,70),
 					NULL, UI_GUI_Element_Grass));
@@ -113,11 +113,10 @@ void UserInterfaceOptions::createButtons(){
 	Buttons.push_back(
 			guienv->addButton  (irr::core::rect<irr::s32>(400,320,490,340),
 					NULL,UI_GUI_Element_Close,L"Close",L"Close options. Discard changes"));
-					*/
 }
 void UserInterfaceOptions::deleteButtons(){
 	printf("Buttonsize in Options:%i",Buttons.size());
-	for(irr::u32 i=0;i>Buttons.size();i++)
+	for(irr::u32 i=0;i<Buttons.size();i++)
 	{
 		Buttons[i]->remove();
 	}

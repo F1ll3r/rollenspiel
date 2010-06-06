@@ -40,7 +40,7 @@ protected:
 
 	UserInterfaceManager* UI_Manager;
 
-	irr::core::array<irr::gui::IGUIButton*> Buttons;
+	irr::core::array<irr::gui::IGUIElement*> Buttons;
 
 	void createButtons();
 	void setButtonSettings(Settings settings);
