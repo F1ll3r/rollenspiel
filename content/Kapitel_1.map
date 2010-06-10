@@ -159,7 +159,9 @@
                     <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
                     <Idle Type="Normal" SFrame="183" EFrame="203" Speed="15" Loop="true" />
                 </Animation>
-                <Behavior type="Aggressive">
+                <Behavior Type="Aggressive">
+                    <Team Value="2" />
+                    <Attack Name="Kick" Dmg="5" Time="3" />
 
                 </Behavior>
             </AI>
