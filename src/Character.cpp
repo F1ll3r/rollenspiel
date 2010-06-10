@@ -48,3 +48,19 @@ void Character::handleEvent(const GameEvent& e){
 irr::scene::ISceneNode* Character::getNode(){
 	return node;
 }
+
+irr::f32 Character::getSpeed(const wchar_t* mode) const{
+
+	if(wcscmp(mode,L"Sneak") == 0){
+		return speedslow;
+	}else if(wcscmp(mode,L"Normal") == 0){
+		return speedsnorm;
+	}else if(wcscmp(mode,L"Run") == 0){
+		return speedsfast;
+	}
+	My_Assert(0);
+}
+
+irr::s32 Character::getTeam(){
+
+}

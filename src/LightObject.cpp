@@ -41,6 +41,8 @@ LightObject::LightObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s
 						My_Assert(node);
 						return;
 					}
+				default:
+					break;
 			}
 	}
 

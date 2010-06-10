@@ -17,6 +17,7 @@
 class TerrainMapObject: public Object {
 	GrassManager * 					gm;
 	irr::scene::ISceneNode*			node;
+	irr::s32						id;
 public:
 	TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml);
 	virtual ~TerrainMapObject();
@@ -36,6 +37,18 @@ public:
 	//! returns the ID used for GameEventMgmt this may or may not
 	//! be equal to getNode()->getID()
 	virtual irr::s32 getID();
+
+	virtual bool isClickable() const {
+		return false;
+	}
+
+	virtual bool isGround() const {
+		return true;
+	}
+
+	virtual bool isCollidable() const{
+		return false;
+	}
 };
 
 #endif /* TERRAINMAPOBJECT_H_ */

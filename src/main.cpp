@@ -17,6 +17,10 @@ int main( int argc, const char* argv[]){
 #endif
 
 
+#ifdef NO_STDOUT_BUFFERING
+		setvbuf(stdout, NULL, _IONBF, 0);
+#endif
+
 		Game* game = new Game();
 
 		game->init(argc,argv);

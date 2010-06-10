@@ -21,6 +21,10 @@ protected:
 	irr::scene::ISceneNode*			node;
 	AI*								ai;
 
+	irr::f32				speedslow;
+	irr::f32				speedsnorm;
+	irr::f32				speedsfast;
+
 
 	void parsInventory(irr::io::IXMLReader* xml);
 
@@ -40,7 +44,21 @@ public:
 	//! be equal to getNode()->getID()
 	virtual irr::s32 getID() = 0;
 
-	virtual irr::f32 getSpeed(const wchar_t* mode) const = 0;
+	virtual irr::f32 getSpeed(const wchar_t* mode) const;
+
+	virtual irr::s32 getTeam();
+
+	virtual bool isClickable() const {
+		return true;
+	}
+
+	virtual bool isGround() const {
+		return false;
+	}
+
+	virtual bool isCollidable() const{
+		return true;
+	}
 };
 
 #endif /* CHARACTER_H_ */

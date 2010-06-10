@@ -22,7 +22,7 @@ GameEventManager::~GameEventManager() {
 }
 
 void GameEventManager::triggerRunEvent(){
-	std::map<irr::s32,Object*>::iterator i = runMap.begin();
+	std::map<irr::s32,IGameEventHandler*>::iterator i = runMap.begin();
 	RunGameEvent rv((irr::s32)game->getIrrlichtDevice()->getTimer()->getTime() - lasttime);
 	for(;i != runMap.end();i++){
 		i->second->handleEvent(rv);
@@ -64,11 +64,11 @@ void GameEventManager::registerTrigger(GameTrigger* t, irr::core::array<GameEven
 
 }
 
-void GameEventManager::registerForRunEvent(Object* o){
-	runMap.insert(std::pair<irr::s32,Object*>(o->getID(),o));
+void GameEventManager::registerForRunEvent(IGameEventHandler* o,irr::s32 id){
+	runMap.insert(std::pair<irr::s32,IGameEventHandler*>(id,o));
 }
 
-void GameEventManager::registerForDrawEvent(Object* o){
+void GameEventManager::registerForDrawEvent(IGameEventHandler* o,irr::s32 id){
 
 }
 

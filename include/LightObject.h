@@ -27,6 +27,18 @@ public:
 
 	irr::s32 getID();
 	void remove();
+
+	virtual bool isClickable() const {
+		return false;
+	}
+
+	virtual bool isGround() const {
+		return false;
+	}
+
+	virtual bool isCollidable() const{
+		return false;
+	}
 };
 
 #endif /* LIGHTOBJECT_H_ */

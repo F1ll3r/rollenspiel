@@ -25,6 +25,12 @@ Map::~Map() {
 }
 
 
+void Map::run(){
+
+
+}
+
+
 void Map::load(irr::c8* file){
 	irr::io::IXMLReader* xml = device->getFileSystem()->createXMLReader(file);
 

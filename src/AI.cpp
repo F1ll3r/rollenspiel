@@ -14,6 +14,7 @@
 
 AI::AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml) {
 	state.iswalking = false;
+	state.wantsToInteractWith = NULL;
 	this->game = game;
 	this->sector = s;
 	this->character = c;
@@ -69,6 +70,19 @@ void AI::parseAnimation(irr::io::IXMLReader* xml){
 							std::make_pair<irr::core::stringw,Animation*>(anim->getType(),anim)
 							);
 
+				}else if(wcscmp(xml->getNodeName(),L"Attack") == 0){
+
+					Animation* anim = new Animation(
+									xml->getAttributeValueAsInt(L"SFrame"),
+									xml->getAttributeValueAsInt(L"EFrame"),
+									xml->getAttributeValueAsFloat(L"Speed"),
+									xml->getAttributeValue(L"Type"),
+									wcscmpi(xml->getAttributeValueSafe(L"Loop"),L"true")==0 );
+
+					animations[AI_Animation_Attack].insert(
+							std::make_pair<irr::core::stringw,Animation*>(anim->getType(),anim)
+							);
+
 				}
 
 				break;
@@ -92,6 +106,11 @@ const Animation* AI::getAnimation(AI_Animation Class,const wchar_t* type){
 }
 
 void AI::run(irr::s32 dtime){
+	if(state.wantsToInteractWith){
+		state.target = state.wantsToInteractWith->getAbsolutePosition();
+
+	}
+
 	if(state.iswalking){
 		state.lastpos = character->getAbsolutePosition();
 		irr::core::vector3df movmened(state.target - state.lastpos);
@@ -105,25 +124,41 @@ void AI::run(irr::s32 dtime){
 
 		movmened.setLength(character->getSpeed(state.mode) * dtime);
 		movmened+= state.lastpos;
-		movmened.Y = sector->getTerrainHightFromXY(movmened.X,movmened.Z);
-
-//		irr::scene::ISceneCollisionManager* collisionManager =
-//					game->getSceneManager()->getSceneCollisionManager();
-//
-//		sector->getCollisionTriangleSelector()->
-//
-//		collisionManager->getSceneNodeFromRayBB();
+		movmened.Y = sector->getGroundHightFromPos(irr::core::vector3df(movmened.X,state.lastpos.Y,movmened.Z));
 
 		character->setPosition(movmened);
+
+		if(sector->collidesWithObject(character)){
+			character->setPosition(state.lastpos);
+			state.iswalking = false;
+			setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
+		}else{
+			irr::core::aabbox3d<irr::f32> bbox = character->getNode()->getTransformedBoundingBox();
+
+			irr::core::vector3df middle((bbox.MinEdge.X+bbox.MaxEdge.X)/2,
+										(bbox.MinEdge.Y+bbox.MaxEdge.Y)/2,
+										(bbox.MinEdge.Z+bbox.MaxEdge.Z)/2);
+
+			irr::core::vector3df oldmiddle( state.lastpos.X,
+											state.lastpos.Y + (middle.Y - character->getPosition().Y),
+											state.lastpos.Z);
+
+			if(sector->collidesWithObject(irr::core::line3d<float>(middle,oldmiddle),middle)){
+				character->setPosition(state.lastpos);
+				state.iswalking = false;
+				setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
+			}
+		}
 
 		state.lastpos = character->getAbsolutePosition();
 	}
 }
 
 void AI::walkCharacterTo(const irr::core::vector3df& v,const wchar_t* mode){
-	state.iswalking 	= true;
-	state.target 		= v;
-	state.mode 			= mode;
+	state.iswalking 			= true;
+	state.wantsToInteractWith	= NULL;
+	state.target 				= v;
+	state.mode 					= mode;
 
 	irr::core::vector3df rot((v-character->getAbsolutePosition()).getHorizontalAngle());
 	rot.X = 0;
@@ -151,11 +186,16 @@ void AI::setAnimation(const Animation* anim){
 	}
 }
 
+void AI::interactWith(Object* o,Interaction_Type interaction,const wchar_t* mode){
+	walkCharacterTo(o->getAbsolutePosition(),mode);
+	state.wantsToInteractWith = o;
+	state.interaction = interaction;
+}
 
 void AI::init(){
 	setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
-//	irr::scene::ISceneNodeAnimator* a = game->getSceneManager()->createCollisionResponseAnimator(
-//			sector->getCollisionTriangleSelector(),character->getNode());
-//	character->getNode()->addAnimator(a);
-//	a->drop();
+}
+
+void AI::OnAnimationEnd(irr::scene::IAnimatedMeshSceneNode* node){
+
 }

@@ -12,6 +12,7 @@
 #include "IXMLReader.h"
 #include <map>
 #include "irrString.h"
+#include "IAnimatedMeshSceneNode.h"
 
 
 enum AI_Animation{
@@ -21,23 +22,32 @@ enum AI_Animation{
 	AI_Animation_Count
 };
 
+enum Interaction_Type{
+	Interaction_Attake = 0,
+	Interaction_Talk,
+	Interaction_Unknown
+};
+
 
 class Animation;
 
 
-class AI {
+class AI : public irr::scene::IAnimationEndCallBack{
 
 	std::map<irr::core::stringw,Animation*>		animations[AI_Animation_Count];
 
-	Game*										game;
-	Character* 									character;
-	Sector* 									sector;
+	Game*									game;
+	Character* 								character;
+	Sector* 								sector;
 
 
 	//! struct used to bottle up the data determining the state of
 	//! the character controlled by this AI
 	struct {
 		bool 					iswalking;
+		Object*					wantsToInteractWith;
+		Interaction_Type		interaction;
+
 		irr::core::vector3df	target;
 		const Animation*		animation;
 		irr::core::vector3df	lastpos;
@@ -47,6 +57,7 @@ class AI {
 
 	void parseAnimation(irr::io::IXMLReader* xml);
 	void setAnimation(const Animation* anim);
+
 public:
 	AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml);
 	virtual ~AI();
@@ -57,6 +68,10 @@ public:
 
 	void run(irr::s32 dtime);
 	void walkCharacterTo(const irr::core::vector3df& v,const wchar_t* mode);
+
+	void interactWith(Object* o,Interaction_Type interaction,const wchar_t* mode);
+
+	virtual void OnAnimationEnd(irr::scene::IAnimatedMeshSceneNode* node);
 
 };
 

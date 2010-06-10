@@ -19,6 +19,7 @@
 #include "irrString.h"
 #include "Object.h"
 #include <map>
+#include "Sector.h"
 
 class Map {
 	std::map<irr::s32,Sector*> 	sectors;
@@ -27,12 +28,16 @@ class Map {
 
 	GameEventManager* 			gvm;
 
-	std::map<irr::s32,Object*>	database;
+	std::map<irr::s32,std::map<irr::s32,Object*>*>
+								Masterdatabase;
 	irr::core::stringw			name;
 
 public:
 	Map(Game* game);
 	virtual ~Map();
+
+	void run();
+
 
 	const wchar_t* getName(){
 		return name.c_str();
@@ -40,17 +45,21 @@ public:
 
 
 	irr::s32 getObjectCount(){
-		return database.size();
+		return Masterdatabase.size();
 	}
 
 
 	//! adds Object to Database with o->getID() as key
 	//! returns true an success and false if id is already used
 	inline bool addObject(Object* o){
-		if(database.count(o->getID())){
+		if(Masterdatabase.count(o->getID())){
 			return false;
 		}
-		database.insert(std::pair<irr::s32,Object*>(o->getID(),o));
+		Masterdatabase.insert(
+				std::pair<irr::s32,std::map<irr::s32,Object*>*>(o->getID(),&o->getSector()->database)
+		);
+
+		o->getSector()->addObject(o);
 		return true;
 	}
 
@@ -58,16 +67,16 @@ public:
 	//! tests whether or not an Object is in the Database based on id
 	//! returns true if database contains the object and false if not
 	inline bool containsObject(irr::s32 id){
-		return database.count(id) != 0;
+		return Masterdatabase.count(id) != 0;
 	}
 
 
 	//! returns the Object with based on the id
 	inline Object* getObject(irr::s32 id){
 #ifdef __debug__
-		My_Assert(database.count(id));
+		My_Assert(Masterdatabase.count(id));
 #endif
-		return database.find(id)->second;
+		return Masterdatabase.find(id)->second->find(id)->second;
 	}
 
 	irr::s32 getFreeID(){
