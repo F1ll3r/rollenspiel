@@ -201,6 +201,7 @@
             <Speed Sneak="0.15" Normal="0.3" Run="0.45" />
             <Mesh Value="content/beast/beast.b3d" />
 <!--            <Texture Value="content/beast/beast1.jpg" />-->
+>>>>>>> 7086e767ce129433d10bd12188c73c9a633217e8
             <Scale X="1" Y="1" Z="1" />
 			<Position X="3437" Y="136" Z="6000" />
 			<Rotation X="0" Y="0" Z="0" />

@@ -11,6 +11,8 @@
 #include "Game.h"
 #include "irrlicht.h"
 #include "Settings.h"
+#include <fstream>
+
 
 UserInterfaceManager::UserInterfaceManager(Game* game) {
 	this->game = game;
@@ -50,9 +52,23 @@ UserInterfaceManager::~UserInterfaceManager() {
 	// TODO Auto-generated destructor stub
 }
 Settings UserInterfaceManager::readSettings() {
-
+	Settings s;
+	std::ifstream fin("Settings.dat", std::ios::binary);
+	if(fin){
+		fin.read((char *)(&s), sizeof(s));
+		fin.close();
+	}
+	else{
+		writeSettings(game->getSettings());
+	}
+	return s;
 }
 bool UserInterfaceManager::writeSettings(Settings s) {
+	std::ofstream fout("Settings.dat", std::ios::binary);
+	if(fout){
+		fout.write((char *)(&s), sizeof(s));
+		fout.close();
+	}
 	return false;
 }
 void UserInterfaceManager::init() {
@@ -86,7 +102,7 @@ void UserInterfaceManager::switchWindow(WindowID id){
 		break;
 	case UI_W_Option:
 		WindowOptions->createButtons();
-			break;
+		break;
 	default:
 		break;
 	}
