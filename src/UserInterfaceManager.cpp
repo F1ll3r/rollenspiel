@@ -27,6 +27,7 @@ bool UserInterfaceManager::OnEvent(const irr::SEvent& event) {
 	default:
 		break;
 	}
+	return true;
 }
 void UserInterfaceManager::draw(){
 	switch (context) {
@@ -51,7 +52,7 @@ UserInterfaceManager::~UserInterfaceManager() {
 Settings UserInterfaceManager::readSettings() {
 
 }
-bool UserInterfaceManager::writeSettings() {
+bool UserInterfaceManager::writeSettings(Settings s) {
 	return false;
 }
 void UserInterfaceManager::init() {
@@ -98,6 +99,7 @@ void UserInterfaceManager::deleteButtons(){
 		WindowOptions->deleteButtons();
 	}
 }
+
 
 Game_Context UserInterfaceManager::getContext(){
 	return context;

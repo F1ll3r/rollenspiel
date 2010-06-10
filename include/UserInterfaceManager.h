@@ -27,8 +27,7 @@ private:
 
 	UserInterfaceMainMenu* WindowMainMenu;
 	UserInterfaceOptions* WindowOptions;
-	Settings readSettings();
-	bool writeSettings();
+
 	void initWindows();
 	WindowID windowid;
 protected:
@@ -46,6 +45,9 @@ protected:
 	void setButtonSettings(Settings settings);
 	Settings getButtonSettings();
 	void deleteButtons();
+
+	Settings readSettings();
+	bool writeSettings(Settings s);
 public:
 	void init();
 	void createWindows();

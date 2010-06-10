@@ -26,11 +26,15 @@ enum UI_GUI_Element_Options{
 	UI_GUI_Element_Filtering,
 	UI_GUI_Element_Anti_Aliasing,
 	UI_GUI_Element_Shadow,
+	UI_GUI_Element_Shadow_Text,
 	TESTBUTTON
 };
 
 
 class UserInterfaceOptions: public UserInterfaceManager {
+private:
+	bool setSettings(Settings s);
+	Settings getSettings();
 public:
 	void draw();
 	bool OnEvent(const irr::SEvent& event);

@@ -79,9 +79,12 @@ void UserInterfaceMainMenu::createButtons(){
 					NULL,UI_Button_Main_Exit,L"Exit",L"Exit"));
 }
 void UserInterfaceMainMenu::deleteButtons(){
-	for(irr::u32 i=0;i>Buttons.size();i++)
+	irr::u32 i;
+	for(i=0;i<Buttons.size();i++)
 	{
 		Buttons[i]->remove();
 	}
+	if(i != 0 )
+		Buttons.clear();
 }
 
