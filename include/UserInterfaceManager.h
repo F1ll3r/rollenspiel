@@ -29,6 +29,7 @@ private:
 	UserInterfaceOptions* WindowOptions;
 
 	void initWindows();
+
 	WindowID windowid;
 protected:
 
@@ -46,8 +47,7 @@ protected:
 	Settings getButtonSettings();
 	void deleteButtons();
 
-	Settings readSettings();
-	bool writeSettings(Settings s);
+
 public:
 	void init();
 	void createWindows();
@@ -55,6 +55,8 @@ public:
 	virtual void draw();
 	void switchContext(Game_Context context);
 	Game_Context getContext();
+	Settings readSettings();
+	bool writeSettings(Settings s);
 	bool OnEvent(const irr::SEvent& event);
 	UserInterfaceManager(Game* game);
 	virtual ~UserInterfaceManager();

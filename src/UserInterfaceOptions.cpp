@@ -28,6 +28,7 @@ bool UserInterfaceOptions::OnEvent(const irr::SEvent& event){
 		case UI_GUI_Element_Apply:
 			//s.resolution = getSelectedResolution();
 			game->setSettings(getSettings());
+			UI_Manager->writeSettings(game->getSettings());
 		case UI_GUI_Element_Close:
 			UI_Manager->switchWindow(UI_W_Main);
 			break;
@@ -118,11 +119,9 @@ void UserInterfaceOptions::createButtons(){
 	combotmp = guienv->addComboBox(irr::core::rect<irr::s32>(20,60,120,80),
 			NULL, UI_GUI_Element_Filtering);
 	Buttons.push_back(combotmp);
-	combotmp->addItem(L"No filtering");
 	combotmp->addItem(L"Bilinear");
 	combotmp->addItem(L"Trilinear");
 	combotmp->addItem(L"Anisotropic");
-	combotmp->addItem(L"Isotropic");
 
 	combotmp = guienv->addComboBox(irr::core::rect<irr::s32>(20,100,120,120),
 			NULL, UI_GUI_Element_Anti_Aliasing);
@@ -203,8 +202,18 @@ Settings UserInterfaceOptions::getSettings(){
 			s.resolution.Width = 800;
 		}
 		if(guienv->getRootGUIElement()->getElementFromId(UI_GUI_Element_Filtering)){
-			//irr::gui::IGUIComboBox* combobox = dynamic_cast<irr::gui::IGUIComboBox*>(guienv->getRootGUIElement()->getElementFromId(UI_GUI_Element_Filtering, false));
-			//TODO Implementate Element Filtering!
+			irr::gui::IGUIComboBox* combobox = dynamic_cast<irr::gui::IGUIComboBox*>(guienv->getRootGUIElement()->getElementFromId(UI_GUI_Element_Filtering, false));
+			switch(combobox->getSelected()){
+			case 0:
+				s.filtering = irr::video::EMF_BILINEAR_FILTER;
+				break;
+			case 1:
+				s.filtering = irr::video::EMF_TRILINEAR_FILTER;
+				break;
+			case 2:
+				s.filtering = irr::video::EMF_ANISOTROPIC_FILTER;
+				break;
+			}
 		}
 		if(guienv->getRootGUIElement()->getElementFromId(UI_GUI_Element_Anti_Aliasing)){
 			irr::gui::IGUIComboBox* combobox = dynamic_cast<irr::gui::IGUIComboBox*>(guienv->getRootGUIElement()->getElementFromId(UI_GUI_Element_Anti_Aliasing, false));
@@ -330,8 +339,20 @@ bool UserInterfaceOptions::setSettings(Settings s){
 		}
 
 		if(guienv->getRootGUIElement()->getElementFromId(UI_GUI_Element_Filtering)){
-			//irr::gui::IGUIComboBox* combobox = dynamic_cast<irr::gui::IGUIComboBox*>(guienv->getRootGUIElement()->getElementFromId(UI_GUI_Element_Filtering, false));
-			//TODO Implementate Element Filtering!
+			irr::gui::IGUIComboBox* combobox = dynamic_cast<irr::gui::IGUIComboBox*>(guienv->getRootGUIElement()->getElementFromId(UI_GUI_Element_Filtering, false));
+			switch(s.filtering){
+			case  irr::video::EMF_BILINEAR_FILTER:
+				combobox->setSelected(0);
+				break;
+			case irr::video::EMF_TRILINEAR_FILTER:
+				combobox->setSelected(1);
+				break;
+			case irr::video::EMF_ANISOTROPIC_FILTER:
+				combobox->setSelected(2);
+				break;
+			default:
+				break;
+			}
 		}
 
 		if(guienv->getRootGUIElement()->getElementFromId(UI_GUI_Element_Anti_Aliasing)){

@@ -11,6 +11,7 @@
 #include "irrlicht.h"
 
 struct Settings{
+
 	//! list of supported resolution:
 	//! 1024 	× 	768		 4:3
 	//!	1152 	× 	864		 4:3
@@ -38,6 +39,5 @@ struct Settings{
 	irr::video::E_MATERIAL_FLAG	filtering;
 	irr::u32					anti_aliasing;
 };
-
 
 #endif /* SETTINGS_H_ */
