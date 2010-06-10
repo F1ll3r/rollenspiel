@@ -15,7 +15,6 @@
 #include "Drawer.h"
 #include "GameEventManager.h"
 #include "MasterEventReceiver.h"
-#include "UserInterface.h"
 #include "UserInterfaceManager.h"
 #include "irrlicht.h"
 #include "Settings.h"
@@ -28,7 +27,6 @@ Game::Game() {
 
 	camerahandler 	= 	new CameraHandler(this);
 	drawer 			= 	new Drawer(this);
-	//ui 				= 	new UserInterface(this);
 	ui				=	new UserInterfaceManager(this);
 
 	gameeventmgr 	= 	new GameEventManager(this);

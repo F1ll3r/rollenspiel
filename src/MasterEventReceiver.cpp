@@ -7,7 +7,6 @@
 
 #include "MasterEventReceiver.h"
 #include "CameraHandler.h"
-#include "UserInterface.h"
 #include "UserInterfaceManager.h"
 #include "Player.h"
 #include "Game.h"
