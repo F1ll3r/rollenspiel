@@ -14,6 +14,7 @@
 #include <fstream>
 
 
+
 UserInterfaceManager::UserInterfaceManager(Game* game) {
 	this->game = game;
 	// TODO Auto-generated constructor stub
@@ -52,6 +53,7 @@ UserInterfaceManager::~UserInterfaceManager() {
 	// TODO Auto-generated destructor stub
 }
 Settings UserInterfaceManager::readSettings() {
+	/*
 	Settings s;
 	std::ifstream fin("Settings.dat", std::ios::binary);
 	if(fin){
@@ -62,11 +64,13 @@ Settings UserInterfaceManager::readSettings() {
 		writeSettings(game->getSettings());
 	}
 	return s;
+	*/
 }
 bool UserInterfaceManager::writeSettings(Settings s) {
 	std::ofstream fout("Settings.dat", std::ios::binary);
 	if(fout){
 		fout.write((char *)(&s), sizeof(s));
+		//fout.flush();
 		fout.close();
 	}
 	return false;

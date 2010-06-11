@@ -22,13 +22,10 @@ bool UserInterfaceOptions::OnEvent(const irr::SEvent& event){
 
 	if(event.GUIEvent.EventType == irr::gui::EGET_BUTTON_CLICKED){
 		switch (event.GUIEvent.Caller->getID()) {
-		case TESTBUTTON:
-			UI_Manager->switchWindow(UI_W_Main);
-			break;
 		case UI_GUI_Element_Apply:
 			//s.resolution = getSelectedResolution();
-			game->setSettings(getSettings());
-			UI_Manager->writeSettings(game->getSettings());
+			game->setSettings(this->getSettings());
+			game->writeSettings(this->getSettings());
 		case UI_GUI_Element_Close:
 			UI_Manager->switchWindow(UI_W_Main);
 			break;
@@ -63,10 +60,6 @@ void UserInterfaceOptions::draw(){
 void UserInterfaceOptions::createButtons(){
 
 	irr::gui::IGUIComboBox* combotmp;
-
-	Buttons.push_back(
-			guienv->addButton  (irr::core::rect<irr::s32>(100,150,190,170),
-					NULL,TESTBUTTON,L"TESTButton",L"Start new game"));
 
 	Buttons.push_back(
 			guienv->addScrollBar(true,irr::core::rect<irr::s32>(300,50,500,70),
@@ -159,34 +152,34 @@ Settings UserInterfaceOptions::getSettings(){
 			irr::gui::IGUIComboBox* combobox = dynamic_cast<irr::gui::IGUIComboBox*>(guienv->getRootGUIElement()->getElementFromId(UI_GUI_Element_Resolution, false));
 			if(wcscmp(combobox->getItem(combobox->getSelected()),L"1024 x 768")== 0)
 			{
-				d2d.set(768,1024);
+				d2d.set(1024,768);
 			}
 			else if(wcscmp(combobox->getItem(combobox->getSelected()),L"1152 x 864")== 0){
-				d2d.set(864,1152);
+				d2d.set(1152,864);
 			}
 			else if(wcscmp(combobox->getItem(combobox->getSelected()),L"1280 x 720")== 0){
-				d2d.set(720,1280);
+				d2d.set(1280,720);
 			}
 			else if(wcscmp(combobox->getItem(combobox->getSelected()),L"1280 x 800")== 0){
-				d2d.set(800,1280);
+				d2d.set(1280,800);
 			}
 			else if(wcscmp(combobox->getItem(combobox->getSelected()),L"1440 x 900")== 0){
-				d2d.set(900,1440);
+				d2d.set(1440,900);
 			}
 			else if(wcscmp(combobox->getItem(combobox->getSelected()),L"1600 x 900")== 0){
-				d2d.set(900,1600);
+				d2d.set(1600,900);
 			}
 			else if(wcscmp(combobox->getItem(combobox->getSelected()),L"1280 x 960")== 0){
-				d2d.set(960,1280);
+				d2d.set(1280,960);
 			}
 			else if(wcscmp(combobox->getItem(combobox->getSelected()),L"1600 x 1200")== 0){
-				d2d.set(1200,1600);
+				d2d.set(1600,1200);
 			}
 			else if(wcscmp(combobox->getItem(combobox->getSelected()),L"1600 x 900")== 0){
-				d2d.set(900,1600);
+				d2d.set(1600,900);
 			}
 			else if(wcscmp(combobox->getItem(combobox->getSelected()),L"1920 x 1080")== 0){
-				d2d.set(1080,1920);
+				d2d.set(1920,1080);
 			}
 			else{
 				printf("Cannot get/read Usersettings (Resolution)");
@@ -292,49 +285,49 @@ bool UserInterfaceOptions::setSettings(Settings s){
 		if(guienv->getRootGUIElement()->getElementFromId(UI_GUI_Element_Resolution))
 		{
 			irr::gui::IGUIComboBox* combobox = dynamic_cast<irr::gui::IGUIComboBox*>(guienv->getRootGUIElement()->getElementFromId(UI_GUI_Element_Resolution, false));
-			if(s.resolution.Height==1024&&s.resolution.Width==800)
+			if(s.resolution.Width==1024&&s.resolution.Height==800)
 			{
 				combobox->setSelected(0);
 			}
-			else if(s.resolution.Height==1152&&s.resolution.Width==864)
+			else if(s.resolution.Width==1152&&s.resolution.Height==864)
 			{
 				combobox->setSelected(1);
 			}
-			else if(s.resolution.Height==1280&&s.resolution.Width==720)
+			else if(s.resolution.Width==1280&&s.resolution.Height==720)
 			{
 				combobox->setSelected(2);
 			}
-			else if(s.resolution.Height==1280&&s.resolution.Width==800)
+			else if(s.resolution.Width==1280&&s.resolution.Height==800)
 			{
 				combobox->setSelected(3);
 			}
-			else if(s.resolution.Height==1440&&s.resolution.Width==900)
+			else if(s.resolution.Width==1440&&s.resolution.Height==900)
 			{
 				combobox->setSelected(4);
 			}
-			else if(s.resolution.Height==1600&&s.resolution.Width==900)
+			else if(s.resolution.Width==1600&&s.resolution.Height==900)
 			{
 				combobox->setSelected(5);
 			}
-			else if(s.resolution.Height==1280&&s.resolution.Width==960)
+			else if(s.resolution.Width==1280&&s.resolution.Height==960)
 			{
 				combobox->setSelected(6);
 			}
-			else if(s.resolution.Height==1600&&s.resolution.Width==1200)
+			else if(s.resolution.Width==1600&&s.resolution.Height==1200)
 			{
 				combobox->setSelected(7);
 			}
-			else if(s.resolution.Height==1600&&s.resolution.Width==900)
+			else if(s.resolution.Width==1600&&s.resolution.Height==900)
 			{
 				combobox->setSelected(8);
 			}
-			else if(s.resolution.Height==1920&&s.resolution.Width==1080)
+			else if(s.resolution.Width==1920&&s.resolution.Height==1080)
 			{
 				combobox->setSelected(9);
 			}
 			else{
 				combobox->setSelected(0);
-				//printf("Cannot set Usersettings (Resolution)\n");
+				printf("Cannot set Usersettings (Resolution)\n");
 			}
 		}
 

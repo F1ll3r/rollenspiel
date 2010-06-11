@@ -49,7 +49,9 @@ public:
 	Game_Context getContext();
 
 	Settings getSettings() const ;
-
+	Settings readSettings();
+	bool writeSettings(Settings s);
+	Settings setStandartSettings();
 	void setSettings(Settings s);
 
 	Importer*	getImporter() const {
