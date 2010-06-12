@@ -18,6 +18,7 @@
 #include "UserInterfaceManager.h"
 #include "irrlicht.h"
 #include "Settings.h"
+#include <fstream>
 
 using namespace irr;
 
@@ -44,21 +45,6 @@ Game::Game() {
 Game::~Game() {
 
 }
-
-
-Settings* readSettings(){
-	//TODO: Getting settings from file
-	Settings* s = new Settings();
-	s->anti_aliasing = 8;
-	s->depth = 32;
-	s->filtering = irr::video::EMF_ANISOTROPIC_FILTER;
-	s->fullscreen = false;
-	s->grass = 100;
-	s->vsync = false;
-	s->resolution = irr::core::dimension2du(1152,864);
-	return s;
-}
-
 
 void parseArgs(Settings* s,int argc, const char* argv[]){
 	for(int i=0;i<argc;i++){
@@ -98,16 +84,17 @@ void parseArgs(Settings* s,int argc, const char* argv[]){
 
 
 void Game::init( int argc, const char* argv[] ){
+	settings = new Settings();
+	*settings = readSettings();
 
-	settings = readSettings();
 	parseArgs(settings,argc-1,argv+1);
 
 	device = createDevice  (DRIVER,	
-							settings->resolution,
-							settings->depth,
-							settings->fullscreen,
-							true,
-							settings->vsync);
+			settings->resolution,
+			settings->depth,
+			settings->fullscreen,
+			true,
+			settings->vsync);
 
 	My_Assert(device != NULL);
 
@@ -241,6 +228,41 @@ void Game::setSettings(Settings s){
 	// TODO: do real settings setting xD
 	*settings = s;
 }
-
+Settings Game::readSettings(){
+		Settings rset;
+		std::ifstream fin("Settings.dat", std::ios::binary);
+		if(fin){
+			fin.read((char *)(&rset), sizeof(rset));
+			fin.close();
+		}
+		else{
+			rset = setStandartSettings();
+			writeSettings(rset);
+			return rset;
+		}
+		return rset;
+}
+bool Game::writeSettings(Settings s){
+	std::ofstream fout("Settings.dat", std::ios::binary);
+	if(fout){
+		fout.write((char *)(&s), sizeof(s));
+		fout.close();
+		return true;
+	}
+	fout.close();
+	return false;
+}
+Settings Game::setStandartSettings(){
+	Settings s;
+	s.anti_aliasing = 8;
+	s.depth = 32;
+	s.filtering = irr::video::EMF_ANISOTROPIC_FILTER;
+	s.fullscreen = false;
+	s.grass = 100;
+	s.vsync = false;
+	s.shadow = true;
+	s.resolution = irr::core::dimension2du(1152,864);
+	return s;
+}
 
 

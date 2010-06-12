@@ -26,8 +26,7 @@ enum UI_GUI_Element_Options{
 	UI_GUI_Element_Filtering,
 	UI_GUI_Element_Anti_Aliasing,
 	UI_GUI_Element_Shadow,
-	UI_GUI_Element_Shadow_Text,
-	TESTBUTTON
+	UI_GUI_Element_Shadow_Text
 };
 
 

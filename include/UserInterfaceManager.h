@@ -14,11 +14,13 @@
 
 class UserInterfaceMainMenu;
 class UserInterfaceOptions;
+class UserInterfaceIngameGUI;
 
 enum WindowID{
 
 	UI_W_Main = 0,
-	UI_W_Option
+	UI_W_Option,
+	UI_IngameGUI
 };
 
 
@@ -27,6 +29,7 @@ private:
 
 	UserInterfaceMainMenu* WindowMainMenu;
 	UserInterfaceOptions* WindowOptions;
+	UserInterfaceIngameGUI* IngameGUI;
 
 	void initWindows();
 
@@ -55,8 +58,6 @@ public:
 	virtual void draw();
 	void switchContext(Game_Context context);
 	Game_Context getContext();
-	Settings readSettings();
-	bool writeSettings(Settings s);
 	bool OnEvent(const irr::SEvent& event);
 	UserInterfaceManager(Game* game);
 	virtual ~UserInterfaceManager();

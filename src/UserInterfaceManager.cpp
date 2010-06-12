@@ -8,10 +8,12 @@
 #include "UserInterfaceManager.h"
 #include "UserInterfaceOptions.h"
 #include "UserInterfaceMainMenu.h"
+#include "UserInterfaceIngameGUI.h"
 #include "Game.h"
 #include "irrlicht.h"
 #include "Settings.h"
 #include <fstream>
+
 
 
 UserInterfaceManager::UserInterfaceManager(Game* game) {
@@ -19,15 +21,25 @@ UserInterfaceManager::UserInterfaceManager(Game* game) {
 	// TODO Auto-generated constructor stub
 }
 bool UserInterfaceManager::OnEvent(const irr::SEvent& event) {
-	switch(windowid){
-	case UI_W_Main:
-		WindowMainMenu->OnEvent(event);
+	switch (context) {
+	case Context_Main_Menu:
+		switch(windowid){
+		case UI_W_Main:
+			WindowMainMenu->OnEvent(event);
+			break;
+		case UI_W_Option:
+			WindowOptions->OnEvent(event);
+			break;
+		default:
+			break;
+		}
 		break;
-	case UI_W_Option:
-		WindowOptions->OnEvent(event);
-		break;
-	default:
-		break;
+		case Context_Game_Menu:
+			break;
+		default:
+			printf("wrong event received by Userinterfacemanager");
+			My_Assert(0);
+			break;
 	}
 	return true;
 }
@@ -51,26 +63,6 @@ void UserInterfaceManager::draw(){
 UserInterfaceManager::~UserInterfaceManager() {
 	// TODO Auto-generated destructor stub
 }
-Settings UserInterfaceManager::readSettings() {
-	Settings s;
-	std::ifstream fin("Settings.dat", std::ios::binary);
-	if(fin){
-		fin.read((char *)(&s), sizeof(s));
-		fin.close();
-	}
-	else{
-		writeSettings(game->getSettings());
-	}
-	return s;
-}
-bool UserInterfaceManager::writeSettings(Settings s) {
-	std::ofstream fout("Settings.dat", std::ios::binary);
-	if(fout){
-		fout.write((char *)(&s), sizeof(s));
-		fout.close();
-	}
-	return false;
-}
 void UserInterfaceManager::init() {
 	this->device = game->getIrrlichtDevice();
 	guienv = device->getGUIEnvironment();
@@ -81,6 +73,7 @@ void UserInterfaceManager::init() {
 void UserInterfaceManager::createWindows(){
 	WindowMainMenu = new UserInterfaceMainMenu(this->game,this);
 	WindowOptions = new UserInterfaceOptions(this->game,this);
+	IngameGUI = new UserInterfaceIngameGUI(this->game,this);
 	initWindows();
 	switchWindow(UI_W_Main);
 }
@@ -106,6 +99,7 @@ void UserInterfaceManager::switchWindow(WindowID id){
 	default:
 		break;
 	}
+
 }
 void UserInterfaceManager::deleteButtons(){
 	if(WindowMainMenu){
