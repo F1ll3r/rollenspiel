@@ -24,6 +24,10 @@ AI::AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml) {
 			case irr::io::EXN_ELEMENT:
 				if(wcscmp(xml->getNodeName(),L"Animation") == 0){
 					parseAnimation(xml);
+				}else if(wcscmp(xml->getNodeName(),L"Behavior") == 0){
+					parseBehavior(xml);
+				}else if(wcscmp(xml->getNodeName(),L"Attacks") == 0){
+					parseAttacks(xml);
 				}
 
 				break;
@@ -35,9 +39,7 @@ AI::AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml) {
 			default:
 				break;
 		}
-
 	}
-
 }
 
 void AI::parseAnimation(irr::io::IXMLReader* xml){
@@ -97,8 +99,54 @@ void AI::parseAnimation(irr::io::IXMLReader* xml){
 	}
 }
 
+
+void AI::parseBehavior(irr::io::IXMLReader* xml){
+
+	behavior.type = xml->getAttributeValueSafe(L"Type");
+
+	while(xml->read()){
+		switch (xml->getNodeType()) {
+			case irr::io::EXN_ELEMENT:
+				if(wcscmp(xml->getNodeName(),L"Walk") == 0){
+
+
+				}
+				break;
+			case  irr::io::EXN_ELEMENT_END:
+				if(wcscmp(xml->getNodeName(),L"Behavior") == 0)
+					return;
+				break;
+			default:
+				break;
+		}
+	}
+}
+
+void AI::parseAttacks(irr::io::IXMLReader* xml){
+
+	behavior.type = xml->getAttributeValueSafe(L"Type");
+
+	while(xml->read()){
+		switch (xml->getNodeType()) {
+			case irr::io::EXN_ELEMENT:
+				if(wcscmp(xml->getNodeName(),L"Walk") == 0){
+
+
+				}
+				break;
+			case  irr::io::EXN_ELEMENT_END:
+				if(wcscmp(xml->getNodeName(),L"Attacks") == 0)
+					return;
+				break;
+			default:
+				break;
+		}
+	}
+}
+
+
 AI::~AI() {
-	// TODO Auto-generated destructor stub
+
 }
 
 const Animation* AI::getAnimation(AI_Animation Class,const wchar_t* type){

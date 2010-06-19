@@ -79,13 +79,9 @@ class GameEvent;
 class GameTrigger;
 class LightObject;
 class UserInterfaceManager;
-<<<<<<< HEAD
 class IGameEventHandler;
 class Behaviorplugin;
-=======
-
 class IGameEventHandler;
->>>>>>> 9c8a276e2a583aa121bfc8459a4aa2333e32d84c
 struct Settings;
 
 

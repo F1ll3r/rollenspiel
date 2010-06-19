@@ -39,6 +39,7 @@ class AI : public irr::scene::IAnimationEndCallBack{
 	Game*									game;
 	Character* 								character;
 	Sector* 								sector;
+	Behaviorplugin*							plugin;
 
 
 	//! struct used to bottle up the data determining the state of
@@ -54,8 +55,17 @@ class AI : public irr::scene::IAnimationEndCallBack{
 		const wchar_t*			mode;
 	}state;
 
+	//! struct used to bottle up the data used for Behavior
+	struct {
+		const wchar_t*			type;
+
+	}behavior;
+
+
 
 	void parseAnimation(irr::io::IXMLReader* xml);
+	void parseBehavior(irr::io::IXMLReader* xml);
+	void parseAttacks(irr::io::IXMLReader* xml);
 	void setAnimation(const Animation* anim);
 
 public:

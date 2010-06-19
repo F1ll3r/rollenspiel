@@ -20,7 +20,7 @@ void UserInterfaceIngameGUI::draw(){
 
 }
 bool UserInterfaceIngameGUI::OnEvent(const irr::SEvent& event){
-
+    return true;
 }
 void UserInterfaceIngameGUI::createButtons(){
 

@@ -185,7 +185,7 @@ void GrassManager::shift(Shift_Direction direction){
 		case Left:
 			oldpos.X++;
 			for(int i = 0; i<GRASS_BUFFER_SIZE;i++){
-				node[0][i]->remove();
+				node[0][i]->drop();
 			}
 
 			for(int i = 1; i<GRASS_BUFFER_SIZE;i++){
@@ -204,7 +204,7 @@ void GrassManager::shift(Shift_Direction direction){
 		case Right:
 			oldpos.X--;
 			for(int i = 0; i<GRASS_BUFFER_SIZE;i++){
-				node[GRASS_BUFFER_SIZE-1][i]->remove();
+				node[GRASS_BUFFER_SIZE-1][i]->drop();
 			}
 
 			for(int i = GRASS_BUFFER_SIZE-2; i>=0;i--){
@@ -224,7 +224,7 @@ void GrassManager::shift(Shift_Direction direction){
 		case Down:
 			oldpos.Y++;
 			for(int i = 0; i<GRASS_BUFFER_SIZE;i++){
-				node[i][0]->remove();
+				node[i][0]->drop();
 			}
 
 			for(int i = 1; i<GRASS_BUFFER_SIZE;i++){
@@ -243,7 +243,8 @@ void GrassManager::shift(Shift_Direction direction){
 		case Up:
 			oldpos.Y--;
 			for(int i = 0; i<GRASS_BUFFER_SIZE;i++){
-				node[i][GRASS_BUFFER_SIZE-1]->remove();
+				node[i][GRASS_BUFFER_SIZE-1]->drop();
+				printf("%i\n",node[i][GRASS_BUFFER_SIZE-1]->getReferenceCount());
 			}
 
 			for(int i = GRASS_BUFFER_SIZE-2; i>=0;i--){
@@ -264,7 +265,7 @@ void GrassManager::shift(Shift_Direction direction){
 void GrassManager::reallocate(){
 	for(int i = 0; i<GRASS_BUFFER_SIZE;i++){
 		for(int j = 0; j<GRASS_BUFFER_SIZE;j++){
-			node[i][j]->remove();
+			node[i][j]->drop();
 			node[i][j] = createPatch(i,j);
 		}
 	}
@@ -284,6 +285,7 @@ irr::scene::CGrassPatchSceneNode* GrassManager::createPatch(irr::s32 x ,irr::s32
 //#endif
 	node->setMaxDensity((irr::u32)density);
 	node->setDrawDistance(distance);
+	node->drop();
 	return node;
 }
 
@@ -298,7 +300,6 @@ void GrassManager::create(irr::scene::ITerrainSceneNode* t,irr::video::IImage* h
 			node[i][j] = createPatch(i,j);
 		}
 	}
-
     game->getSceneManager()->getParameters()->setAttribute(irr::scene::ALLOW_ZWRITE_ON_TRANSPARENT, true);
 
 }

@@ -58,6 +58,7 @@ bool UserInterfaceMainMenu::OnEvent(const irr::SEvent& event){
 			My_Assert(0);
 		}
 	}
+    return true;
 }
 
 void UserInterfaceMainMenu::createButtons(){
