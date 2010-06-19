@@ -37,8 +37,8 @@ bool UserInterfaceManager::OnEvent(const irr::SEvent& event) {
 		case Context_Game_Menu:
 			break;
 		default:
-			printf("wrong event received by Userinterfacemanager");
-			My_Assert(0);
+			printf("wrong event received by Userinterfacemanager\n");
+			return false;
 			break;
 	}
 	return true;

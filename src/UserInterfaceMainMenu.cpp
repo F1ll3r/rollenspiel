@@ -16,6 +16,7 @@ UserInterfaceMainMenu::UserInterfaceMainMenu(Game* game,UserInterfaceManager* UI
 	this->game = game;
 	this->UI_Manager = UI_Manager;
 	init();
+	//
 }
 
 UserInterfaceMainMenu::~UserInterfaceMainMenu() {
