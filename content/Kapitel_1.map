@@ -323,7 +323,7 @@
                     <Walk Type="Stealth" SFrame="14" EFrame="29" Speed="15" Loop="true" />
                     <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
                     <Idle Type="Normal" SFrame="183" EFrame="203" Speed="15" Loop="true" />
-                    <Attack Type="Kick" sFrame="73" EFrame="83" Speed="20" Loop="false"/>
+                    <Attack Type="Kick" SFrame="73" EFrame="83" Speed="20" Loop="false"/>
                 </Animation>
                 <Behavior Type="Player">
                     <Team Value="2" />

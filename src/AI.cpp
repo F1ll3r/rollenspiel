@@ -18,6 +18,7 @@ AI::AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml) {
 	this->game = game;
 	this->sector = s;
 	this->character = c;
+	state.time_until_next=0;
 
 	while(xml->read()){
 		switch (xml->getNodeType()) {
@@ -155,7 +156,26 @@ const Animation* AI::getAnimation(AI_Animation Class,const wchar_t* type){
 
 void AI::run(irr::s32 dtime){
 	if(state.wantsToInteractWith){
-		state.target = state.wantsToInteractWith->getAbsolutePosition();
+		irr::core::vector3df dist = state.wantsToInteractWith->getAbsolutePosition();
+		dist -=  character->getAbsolutePosition();
+		if(state.time_until_next > 0){
+			state.time_until_next -= dtime;
+			if(state.time_until_next < 0) state.time_until_next=0;
+		}
+		if(dist.getLengthSQ() > 100000){
+			walkCharacterTo(state.wantsToInteractWith->getAbsolutePosition(),L"Run");
+		}else{
+			if(state.iswalking){
+				setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
+				state.iswalking = false;
+			}
+			if(state.time_until_next == 0){
+				setAnimation(getAnimation(AI_Animation_Attack,L"Kick"));
+				state.time_until_next = 3000;
+			}else{
+			}
+			return;
+		}
 
 	}
 
@@ -229,6 +249,7 @@ void AI::setAnimation(const Animation* anim){
 	if(state.animation != anim){
 		state.animation = anim;
 		irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)character->getNode();
+		node->setLoopMode(anim->getLoop());
 		node->setFrameLoop(anim->getStartFrame(),anim->getEndFrame());
 		node->setAnimationSpeed(anim->getSpeed());
 	}
@@ -242,8 +263,11 @@ void AI::interactWith(Object* o,Interaction_Type interaction,const wchar_t* mode
 
 void AI::init(){
 	setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
+	irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)character->getNode();
+	node->setAnimationEndCallback(this);
 }
 
 void AI::OnAnimationEnd(irr::scene::IAnimatedMeshSceneNode* node){
-
+	setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
+	printf("OnEnd\n");
 }
