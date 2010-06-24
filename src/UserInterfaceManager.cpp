@@ -56,6 +56,10 @@ void UserInterfaceManager::draw(){
 		default:
 			break;
 		}
+		case Context_Game_Menu:
+			break;
+		case Context_Game_Run:
+			break;
 		default:
 			break;
 	}
