@@ -89,12 +89,17 @@ void Game::init( int argc, const char* argv[] ){
 
 	parseArgs(settings,argc-1,argv+1);
 
-	device = createDevice  (DRIVER,	
-			settings->resolution,
-			settings->depth,
-			settings->fullscreen,
-			true,
-			settings->vsync);
+	irr::SIrrlichtCreationParameters s;
+
+	s.AntiAlias = settings->anti_aliasing;
+	s.Bits = settings->depth;
+	s.DriverType = DRIVER;
+	s.Fullscreen = settings->fullscreen;
+	s.Vsync = settings->vsync;
+	s.Stencilbuffer = settings->shadow;
+	s.WindowSize = settings->resolution;
+
+	device = createDeviceEx(s);
 
 	My_Assert(device != NULL);
 
@@ -103,7 +108,6 @@ void Game::init( int argc, const char* argv[] ){
 	driver = device->getVideoDriver();
 	scenemgr = device->getSceneManager();
 
-	scenemgr->setAmbientLight(irr::video::SColorf(0.5,0.5,0.5));
 
 	drawer->init();
 
@@ -184,6 +188,7 @@ int Game::run(){
 
 
 void Game::startGame(){
+	switchContext(Context_Loadung_Screen);
 	drawer->resetProcess();
 	drawer->processLoadingScreen(0,L"");
 	drawer->drawLoadingScreen();

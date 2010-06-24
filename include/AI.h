@@ -47,6 +47,7 @@ class AI : public irr::scene::IAnimationEndCallBack{
 		bool 					iswalking;
 		Object*					wantsToInteractWith;
 		Interaction_Type		interaction;
+		irr::s32 				time_until_next;
 
 		irr::core::vector3df	target;
 		const Animation*		animation;
