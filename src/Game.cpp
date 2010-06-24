@@ -103,7 +103,7 @@ void Game::init( int argc, const char* argv[] ){
 
 	My_Assert(device != NULL);
 
-	device->setWindowCaption(L"NoNameGame");
+	device->setWindowCaption(L"Ninja vs. Zombies");
 
 	driver = device->getVideoDriver();
 	scenemgr = device->getSceneManager();

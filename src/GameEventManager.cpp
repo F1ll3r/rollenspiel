@@ -11,6 +11,7 @@
 #include "Object.h"
 #include "IrrlichtDevice.h"
 #include "GameEvent.h"
+#include "GameTrigger.h"
 
 GameEventManager::GameEventManager(Game* game) {
 	this->game 	 = game;
@@ -31,6 +32,16 @@ void GameEventManager::triggerRunEvent(){
 }
 
 void GameEventManager::run(){
+	irr::s32 dtime = (irr::s32)game->getIrrlichtDevice()->getTimer()->getTime() - lasttime;
+
+	for(irr::core::list<ClockGameTrigger*>::Iterator i = timer.begin();i != timer.end();i++){
+		if((*i)->run(dtime)){
+			handleEvent((*i)->getEvent());
+			delete (*i)->getEvent();
+			delete *i;
+			timer.erase(i);
+		}
+	}
 
 }
 
@@ -57,7 +68,23 @@ void GameEventManager::parseEvent(irr::io::IXMLReader* xml){
 }
 
 void GameEventManager::handleTrigger(GameTrigger* t){
+	switch (t->getType()){
+		case Game_Trigger_Clock:
+				timer.push_back(static_cast<ClockGameTrigger*>(t));
+			break;
+		default:
+			My_Assert(0);
+			break;
+	}
 
+}
+
+void GameEventManager::handleEvent(GameEvent* e){
+	My_Assert(e->getDest());
+
+	//Lookup
+
+	e->getDest()->handleEvent(*e);
 }
 
 void GameEventManager::registerTrigger(GameTrigger* t, irr::core::array<GameEvent*> e){

@@ -114,6 +114,10 @@ NPC::~NPC() {
 	// TODO Auto-generated destructor stub
 }
 
+AttackGameEvent* NPC::attack(){
+	return new AttackGameEvent(100,3,300,this);
+}
+
 irr::f32 NPC::getSpeed(const wchar_t* mode) const{
 
 	if(wcscmp(mode,L"Sneak") == 0){

@@ -21,6 +21,8 @@ public:
 	NPC(Sector* s,Game* game);
 	virtual ~NPC();
 
+	virtual AttackGameEvent* attack();
+
 
 
 	irr::s32 getID(){

@@ -82,6 +82,9 @@ class UserInterfaceManager;
 class IGameEventHandler;
 class Behaviorplugin;
 class IGameEventHandler;
+class AttackGameEvent;
+class GameTrigger;
+class ClockGameTrigger;
 struct Settings;
 
 
