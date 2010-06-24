@@ -98,6 +98,11 @@ Player::Player(Sector*s,Game* game):Character(s,game) {
 
 }
 
+AttackGameEvent *Player::attack()
+{
+	return new AttackGameEvent(100,3,300,this);
+}
+
 
 Player::~Player() {
 	// TODO Auto-generated destructor stub

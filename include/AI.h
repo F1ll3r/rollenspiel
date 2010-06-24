@@ -69,6 +69,8 @@ class AI : public irr::scene::IAnimationEndCallBack{
 	void parseAttacks(irr::io::IXMLReader* xml);
 	void setAnimation(const Animation* anim);
 
+	void dispatchInteraction();
+
 public:
 	AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml);
 	virtual ~AI();
@@ -81,6 +83,10 @@ public:
 	void walkCharacterTo(const irr::core::vector3df& v,const wchar_t* mode);
 
 	void interactWith(Object* o,Interaction_Type interaction,const wchar_t* mode);
+
+	Object* interactsWith(){
+		return state.wantsToInteractWith;
+	}
 
 	virtual void OnAnimationEnd(irr::scene::IAnimatedMeshSceneNode* node);
 
