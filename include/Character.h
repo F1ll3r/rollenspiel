@@ -25,6 +25,8 @@ protected:
 	irr::f32				speedsnorm;
 	irr::f32				speedsfast;
 
+	irr::s32				health;
+
 
 	void parsInventory(irr::io::IXMLReader* xml);
 
@@ -48,6 +50,8 @@ public:
 
 	virtual irr::s32 getTeam();
 
+	virtual AttackGameEvent* attack() = 0;
+
 	virtual bool isClickable() const {
 		return true;
 	}
@@ -58,6 +62,10 @@ public:
 
 	virtual bool isCollidable() const{
 		return true;
+	}
+
+	irr::s32 getHealth(){
+		return health;
 	}
 };
 

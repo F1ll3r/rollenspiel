@@ -7,6 +7,7 @@
  //Test
 #include "AI.h"
 #include "NPC.h"
+#include "GameEvent.h"
 #include "Sector.h"
 #include "GameEventManager.h"
 #include "irrlicht.h"
@@ -107,28 +108,33 @@ const Animation* AI::getAnimation(AI_Animation Class,const wchar_t* type){
 }
 
 void AI::run(irr::s32 dtime){
+
+	if(state.time_until_next > 0){
+		state.time_until_next -= dtime;
+		if(state.time_until_next < 0) state.time_until_next=0;
+	}
+
 	if(state.wantsToInteractWith){
 		irr::core::vector3df dist = state.wantsToInteractWith->getAbsolutePosition();
 		dist -=  character->getAbsolutePosition();
-		if(state.time_until_next > 0){
-			state.time_until_next -= dtime;
-			if(state.time_until_next < 0) state.time_until_next=0;
-		}
-		if(dist.getLengthSQ() > 100000){
+
+
+		if(dist.getLength() > 100){
+			Object* obj = state.wantsToInteractWith;
 			walkCharacterTo(state.wantsToInteractWith->getAbsolutePosition(),L"Run");
+			 state.wantsToInteractWith = obj;
 		}else{
 			if(state.iswalking){
-				setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
 				state.iswalking = false;
+				setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
 			}
+
 			if(state.time_until_next == 0){
-				setAnimation(getAnimation(AI_Animation_Attack,L"Kick"));
-				state.time_until_next = 3000;
-			}else{
+				dispatchInteraction();
 			}
+
 			return;
 		}
-
 	}
 
 	if(state.iswalking){
@@ -139,7 +145,6 @@ void AI::run(irr::s32 dtime){
 			setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
 			return;
 		}
-
 
 
 		movmened.setLength(character->getSpeed(state.mode) * dtime);
@@ -173,6 +178,31 @@ void AI::run(irr::s32 dtime){
 		state.lastpos = character->getAbsolutePosition();
 	}
 }
+
+void AI::dispatchInteraction(){
+	switch (state.interaction) {
+		case Interaction_Attake:
+			//TODO: getmode
+			AttackGameEvent* a = character->attack();
+			a->setDest(state.wantsToInteractWith);
+			setAnimation(getAnimation(AI_Animation_Attack,L"Kick"));
+			game->getGameEventManager()->handleEvent(a);
+			state.time_until_next = a->getDowntime();
+			delete a;
+
+			break;
+
+		case Interaction_Talk:
+
+			break;
+
+		default:
+			My_Assert(0);
+			break;
+	}
+
+}
+
 
 void AI::walkCharacterTo(const irr::core::vector3df& v,const wchar_t* mode){
 	state.iswalking 			= true;

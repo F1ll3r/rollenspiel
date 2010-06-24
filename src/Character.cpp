@@ -40,8 +40,16 @@ void Character::remove(){
 }
 
 void Character::handleEvent(const GameEvent& e){
-	if(e.getEventType() == Game_Event_Type_Run){
-		if(ai) ai->run((dynamic_cast<const RunGameEvent&>(e)).getDeltaTime());
+	switch(e.getEventType()){
+	case Game_Event_Type_Run:
+		if(ai) ai->run((static_cast<const RunGameEvent&>(e)).getDeltaTime());
+		break;
+	case Game_Event_Type_Attack:{
+		const AttackGameEvent& a = static_cast<const AttackGameEvent&>(e);
+		//rechnen
+		if(!ai->interactsWith()) ai->interactWith(a.getSrc(),Interaction_Attake,L"Run");
+	}
+
 	}
 }
 

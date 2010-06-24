@@ -26,6 +26,8 @@ public:
 	Player(Sector*s,Game* game);
 	virtual ~Player();
 
+	virtual AttackGameEvent* attack();
+
 	bool OnEvent(const irr::SEvent& event);
 
 	virtual irr::s32 getID(){

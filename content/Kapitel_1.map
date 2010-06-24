@@ -170,35 +170,6 @@
             </AI>
 		</NPC>
 
-        <NPC>
-            <Health Max="100" Current="100" />
-            <Speed Sneak="0.15" Normal="0.3" Run="0.45" />
-            <Mesh Value="content/proprietary/spider.obj" />
-            <Scale X="1" Y="1" Z="1" />
-			<Position X="3437" Y="136" Z="4489" />
-			<Rotation X="0" Y="0" Z="0" />
-            <Inventory>
-                <Weapon class="baton" name="Kurtzschwert">
-                    <Image Value="" />
-                    <Damage Value="12" />
-                    <Speed Value="1" />
-                    <Cost Value="40" />
-                </Weapon>
-            </Inventory>
-            <AI>
-                <Animation>
-                    <Walk Type="Normal" SFrame="0" EFrame="13" Speed="15" Loop="true" />
-                    <Walk Type="Run" SFrame="0" EFrame="13" Speed="25" Loop="true" />
-                    <Walk Type="Stealth" SFrame="14" EFrame="29" Speed="15" Loop="true" />
-                    <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
-                    <Idle Type="Normal" SFrame="0" EFrame="400" Speed="12" Loop="true" />
-                </Animation>
-                <Behavior type="Aggressive">
-
-                </Behavior>
-            </AI>
-		</NPC>
-
 		<NPC>
             <Health Max="100" Current="100" />
             <Speed Sneak="0.15" Normal="0.3" Run="0.45" />
@@ -215,17 +186,22 @@
                     <Cost Value="40" />
                 </Weapon>
             </Inventory>
-            <AI>
+           <AI>
                 <Animation>
-                    <Walk Type="Normal" SFrame="0" EFrame="25" Speed="15" Loop="true" />
-                    <Walk Type="Run" SFrame="0" EFrame="25" Speed="25" Loop="true" />
-                    <Walk Type="Stealth" SFrame="0" EFrame="25" Speed="15" Loop="true" />
-                    <Idle Type="Exhausted" SFrame="331" EFrame="379" Speed="15" Loop="true" />
-                    <Idle Type="Normal" SFrame="331" EFrame="379" Speed="15" Loop="true" />
+                    <Walk Type="Normal" SFrame="0" EFrame="13" Speed="15" Loop="true" />
+                    <Walk Type="Run" SFrame="0" EFrame="13" Speed="25" Loop="true" />
+                    <Walk Type="Stealth" SFrame="14" EFrame="29" Speed="15" Loop="true" />
+                    <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
+                    <Idle Type="Normal" SFrame="183" EFrame="203" Speed="15" Loop="true" />
+                    <Attack Type="Kick" SFrame="111" EFrame="123" Speed="12" Loop="false"/>
                 </Animation>
-                <Behavior type="Aggressive">
-
+                <Behavior Type="Player">
+                    <Team Value="2" />
+                    <Attack Name="Kick">
                 </Behavior>
+                <Attacks>
+                    <Attack Name="Kick" Dmg="5" Time="3" />
+                </Attacks>
             </AI>
 		</NPC>
 
@@ -323,7 +299,7 @@
                     <Walk Type="Stealth" SFrame="14" EFrame="29" Speed="15" Loop="true" />
                     <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
                     <Idle Type="Normal" SFrame="183" EFrame="203" Speed="15" Loop="true" />
-                    <Attack Type="Kick" SFrame="73" EFrame="83" Speed="20" Loop="false"/>
+                    <Attack Type="Kick" SFrame="111" EFrame="123" Speed="12" Loop="false"/>
                 </Animation>
                 <Behavior Type="Player">
                     <Team Value="2" />
