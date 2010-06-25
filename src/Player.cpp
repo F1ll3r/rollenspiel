@@ -11,6 +11,7 @@
 #include "Game.h"
 #include "GameEvent.h"
 #include "GameEventManager.h"
+#include "GameTrigger.h"
 #include "Sector.h"
 
 Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
@@ -100,7 +101,9 @@ Player::Player(Sector*s,Game* game):Character(s,game) {
 
 AttackGameEvent *Player::attack()
 {
-	return new AttackGameEvent(100,3,300,this);
+	AttackGameEvent* ret = new AttackGameEvent(100,3,3000,this);
+	ret->setTrigger(new ClockGameTrigger(750,ret));
+	return ret;
 }
 
 

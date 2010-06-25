@@ -21,8 +21,11 @@ class GameTrigger {
 protected:
 	GameEvent* ev;
 public:
-	GameTrigger(GameEvent* event);
-	virtual ~GameTrigger();
+	GameTrigger(GameEvent* event){
+		ev = event;
+	}
+
+	virtual ~GameTrigger(){}
 
 	virtual Game_Trigger_Type getType(){
 		return Game_Trigger_Unknown;
@@ -46,7 +49,7 @@ public:
 
 	bool run(irr::s32 dtime){
 		time -= dtime;
-		if(time < 0){
+		if(time <= 0){
 			time = 0;
 			return true;
 		}

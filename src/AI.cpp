@@ -72,6 +72,19 @@ void AI::parseAnimation(irr::io::IXMLReader* xml){
 							std::make_pair<irr::core::stringw,Animation*>(anim->getType(),anim)
 							);
 
+				}else if(wcscmp(xml->getNodeName(),L"Other") == 0){
+
+									Animation* anim = new Animation(
+													xml->getAttributeValueAsInt(L"SFrame"),
+													xml->getAttributeValueAsInt(L"EFrame"),
+													xml->getAttributeValueAsFloat(L"Speed"),
+													xml->getAttributeValue(L"Type"),
+													wcscmpi(xml->getAttributeValueSafe(L"Loop"),L"true")==0 );
+
+									animations[AI_Animation_Other].insert(
+											std::make_pair<irr::core::stringw,Animation*>(anim->getType(),anim)
+											);
+
 				}else if(wcscmp(xml->getNodeName(),L"Attack") == 0){
 
 					Animation* anim = new Animation(
@@ -186,9 +199,13 @@ void AI::dispatchInteraction(){
 			AttackGameEvent* a = character->attack();
 			a->setDest(state.wantsToInteractWith);
 			setAnimation(getAnimation(AI_Animation_Attack,L"Kick"));
-			game->getGameEventManager()->handleEvent(a);
+			if(a->getTrigger()){
+				game->getGameEventManager()->handleTrigger(a->getTrigger());
+			}else{
+				game->getGameEventManager()->handleEvent(a);
+			}
 			state.time_until_next = a->getDowntime();
-			delete a;
+			//delete a;
 
 			break;
 
@@ -203,6 +220,14 @@ void AI::dispatchInteraction(){
 
 }
 
+
+void AI::takeHit(const AttackGameEvent& a){
+	setAnimation(getAnimation(AI_Animation_Other,L"TakeHit"));
+	state.time_until_next = 500;
+	if(!state.wantsToInteractWith && !state.iswalking){
+		interactWith(a.getSrc(),Interaction_Attake,L"Run");
+	}
+}
 
 void AI::walkCharacterTo(const irr::core::vector3df& v,const wchar_t* mode){
 	state.iswalking 			= true;
@@ -251,5 +276,4 @@ void AI::init(){
 
 void AI::OnAnimationEnd(irr::scene::IAnimatedMeshSceneNode* node){
 	setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
-	printf("OnEnd\n");
 }

@@ -59,7 +59,6 @@ public:
 	void setSrc(Object *src) {
 		this->src = src;
 	}
-
 };
 
 class RunGameEvent: public GameEvent {

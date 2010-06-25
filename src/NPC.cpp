@@ -11,6 +11,7 @@
 #include "Game.h"
 #include "GameEvent.h"
 #include "GameEventManager.h"
+#include "GameTrigger.h"
 #include "Sector.h"
 #include "Map.h"
 
@@ -115,7 +116,9 @@ NPC::~NPC() {
 }
 
 AttackGameEvent* NPC::attack(){
-	return new AttackGameEvent(100,3,300,this);
+		AttackGameEvent* ret = new AttackGameEvent(100,3,3000,this);
+		ret->setTrigger(new ClockGameTrigger(750,ret));
+		return ret;
 }
 
 irr::f32 NPC::getSpeed(const wchar_t* mode) const{

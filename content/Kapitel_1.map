@@ -158,9 +158,10 @@
                     <Walk Type="Stealth" SFrame="14" EFrame="29" Speed="15" Loop="true" />
                     <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
                     <Idle Type="Normal" SFrame="183" EFrame="203" Speed="15" Loop="true" />
-                    <Attack Type="Kick" sFrame="73" EFrame="83" Speed="20" Loop="false"/>
+                    <Attack Type="Kick" SFrame="111" EFrame="123" Speed="12" Loop="false"/>
+                    <Other Type="TakeHit" SFrame="165" EFrame="172" Speed="12" Loop="false"/>
                 </Animation>
-                <Behavior Type="Aggressive">
+                <Behavior Type="Player">
                     <Team Value="2" />
                     <Attack Name="Kick">
                 </Behavior>
@@ -186,7 +187,7 @@
                     <Cost Value="40" />
                 </Weapon>
             </Inventory>
-           <AI>
+            <AI>
                 <Animation>
                     <Walk Type="Normal" SFrame="0" EFrame="13" Speed="15" Loop="true" />
                     <Walk Type="Run" SFrame="0" EFrame="13" Speed="25" Loop="true" />
@@ -194,6 +195,7 @@
                     <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
                     <Idle Type="Normal" SFrame="183" EFrame="203" Speed="15" Loop="true" />
                     <Attack Type="Kick" SFrame="111" EFrame="123" Speed="12" Loop="false"/>
+                    <Other Type="TakeHit" SFrame="165" EFrame="172" Speed="12" Loop="false"/>
                 </Animation>
                 <Behavior Type="Player">
                     <Team Value="2" />
@@ -223,16 +225,21 @@
             </Inventory>
             <AI>
                 <Animation>
-                    <Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
-                    <Walk Type="Run" SFrame="21" EFrame="35" Speed="25" Loop="true" />
-                    <Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
-                    <Idle Type="Exhausted" SFrame="136" EFrame="168" Speed="10" Loop="true" />
-                    <Idle Type="Normal" SFrame="169" EFrame="199" Speed="10" Loop="true" />
+                    <Walk Type="Normal" SFrame="0" EFrame="13" Speed="15" Loop="true" />
+                    <Walk Type="Run" SFrame="0" EFrame="13" Speed="25" Loop="true" />
+                    <Walk Type="Stealth" SFrame="14" EFrame="29" Speed="15" Loop="true" />
+                    <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
+                    <Idle Type="Normal" SFrame="183" EFrame="203" Speed="15" Loop="true" />
+                    <Attack Type="Kick" SFrame="111" EFrame="123" Speed="12" Loop="false"/>
+                    <Other Type="TakeHit" SFrame="165" EFrame="172" Speed="12" Loop="false"/>
                 </Animation>
-                <Behavior Type="Fight" Value="Agressive">
-                    <Attack >
-
+                <Behavior Type="Player">
+                    <Team Value="2" />
+                    <Attack Name="Kick">
                 </Behavior>
+                <Attacks>
+                    <Attack Name="Kick" Dmg="5" Time="3" />
+                </Attacks>
             </AI>
 		</NPC>
 
@@ -300,6 +307,7 @@
                     <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
                     <Idle Type="Normal" SFrame="183" EFrame="203" Speed="15" Loop="true" />
                     <Attack Type="Kick" SFrame="111" EFrame="123" Speed="12" Loop="false"/>
+                    <Other Type="TakeHit" SFrame="165" EFrame="172" Speed="12" Loop="false"/>
                 </Animation>
                 <Behavior Type="Player">
                     <Team Value="2" />

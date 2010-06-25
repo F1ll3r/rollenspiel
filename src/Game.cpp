@@ -156,8 +156,8 @@ int Game::run(){
 
 		case Context_Game_Run:
 
-			gameeventmgr->triggerRunEvent();
 			gameeventmgr->run();
+			gameeventmgr->triggerRunEvent();
 
 			camerahandler->run();
 

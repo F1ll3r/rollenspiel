@@ -6,12 +6,3 @@
  */
 
 #include "GameTrigger.h"
-
-GameTrigger::GameTrigger(GameEvent* event) {
-	ev = event;
-}
-
-GameTrigger::~GameTrigger() {
-
-}
-

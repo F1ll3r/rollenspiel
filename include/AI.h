@@ -19,6 +19,7 @@ enum AI_Animation{
 	AI_Animation_Walk = 0,
 	AI_Animation_Idle,
 	AI_Animation_Attack,
+	AI_Animation_Other,
 	AI_Animation_Count
 };
 
@@ -73,6 +74,8 @@ public:
 	void walkCharacterTo(const irr::core::vector3df& v,const wchar_t* mode);
 
 	void interactWith(Object* o,Interaction_Type interaction,const wchar_t* mode);
+
+	void takeHit(const AttackGameEvent&);
 
 	Object* interactsWith(){
 		return state.wantsToInteractWith;
