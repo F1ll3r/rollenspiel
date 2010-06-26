@@ -16,6 +16,7 @@ class Drawer {
 	irr::IrrlichtDevice* 	device;
 	irr::f32 				process;
 	irr::video::ITexture* 	loadscreen;
+	irr::video::ITexture* 	back;
 	irr::core::stringw 		msg;
 	bool					debuginfo;
 	wchar_t*				debugtext;

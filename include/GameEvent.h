@@ -82,19 +82,25 @@ class AttackGameEvent: public GameEvent {
 	irr::s32 attack_Value;
 	irr::s32 dmg;
 	irr::s32 downtime;
+	const wchar_t* anim;
 public:
-	AttackGameEvent(irr::s32 attack, irr::s32 dmg, irr::s32 downtime,
-			Object* src) :
+	AttackGameEvent(irr::s32 attack, irr::s32 dmg, irr::s32 downtime, const
+			wchar_t* anim,Object* src) :
 		GameEvent(src, 0) {
 		attack_Value = attack;
 		this->dmg = dmg;
 		this->downtime = downtime;
+		this->anim = anim;
 	}
 
 	virtual Game_Event_Type getEventType() const;
 
 	irr::s32 getAttack() const {
 		return attack_Value;
+	}
+
+	const wchar_t* getAnimation() const{
+		return anim;
 	}
 
 	irr::s32 getDmg() const {

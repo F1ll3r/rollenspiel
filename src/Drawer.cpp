@@ -14,6 +14,7 @@
 Drawer::Drawer(Game* game) {
 	this->game = game;
 	loadscreen = NULL;
+	back	   = NULL;
 
 	//! default in debug settings is drawing of debuginfo
 	//! whilst is release is not
@@ -133,6 +134,20 @@ void Drawer::draw(){
 			}
 		}
 			break;
+
+		case Context_Main_Menu:{
+			irr::video::IVideoDriver* driver = device->getVideoDriver();
+			if(!back){
+				irr::core::stringc file = L"content/back.png";
+				back = driver->getTexture(file);
+			}
+			driver->draw2DImage(back,irr::core::vector2di(
+					driver->getScreenSize().Width/2 - back->getSize().Width/2,
+					driver->getScreenSize().Height/2 - back->getSize().Height/2));
+
+		}
+			break;
+
 		default:
 			break;
 	}

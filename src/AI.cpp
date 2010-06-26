@@ -156,7 +156,6 @@ void AI::run(irr::s32 dtime){
 
 		irr::f32 f = character->getSpeed();
 
-		printf("%f\n",f);
 		if(movmened.getLength() < f * dtime){
 			state.iswalking = false;
 			setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
@@ -204,7 +203,7 @@ void AI::dispatchInteraction(){
 			//TODO: getmode
 			AttackGameEvent* a = character->attack();
 			a->setDest(state.wantsToInteractWith);
-			setAnimation(getAnimation(AI_Animation_Attack,L"Kick"));
+			setAnimation(getAnimation(AI_Animation_Attack,a->getAnimation()));
 			if(a->getTrigger()){
 				game->getGameEventManager()->handleTrigger(a->getTrigger());
 			}else{

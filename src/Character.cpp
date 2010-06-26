@@ -59,6 +59,37 @@ irr::scene::ISceneNode* Character::getNode() {
 	return node;
 }
 
+void Character::parseAttacks(irr::io::IXMLReader* xml){
+	while(xml->read()){
+		switch (xml->getNodeType()) {
+			case irr::io::EXN_ELEMENT:
+				if(wcscmp(xml->getNodeName(),L"Attack") == 0){
+
+					Attacks* anim = new Attacks(
+									xml->getAttributeValueSafe(L"Name"),
+									xml->getAttributeValueSafe(L"Label"),
+									xml->getAttributeValueAsInt(L"Time"),
+									xml->getAttributeValueAsInt(L"Dmg"),
+									xml->getAttributeValueAsInt(L"Attack"),
+									xml->getAttributeValueAsInt(L"TimeOffset"));
+
+					attacks.insert(
+							std::make_pair<irr::core::stringw,Attacks*>(anim->getName(),anim)
+							);
+
+				}
+				break;
+			case  irr::io::EXN_ELEMENT_END:
+				if(wcscmp(xml->getNodeName(),L"Attacks") == 0)
+					return;
+				break;
+			default:
+				break;
+		}
+
+	}
+}
+
 irr::f32 Character::getSpeed() const {
 
 	if (wcscmp(mode, L"Sneak") == 0) {

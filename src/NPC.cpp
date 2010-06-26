@@ -75,6 +75,9 @@ NPC::NPC(Sector* s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 				}else if(wcscmp(xml->getNodeName(),L"Inventory") == 0){
 					parsInventory(xml);
 
+				}else if(wcscmp(xml->getNodeName(),L"Attacks") == 0){
+					parseAttacks(xml);
+
 				}else{
 					wprintf(L"Corrupt XML-file. Unexpected Node <%s>", xml->getNodeName());
 					My_Assert(0);
@@ -122,8 +125,19 @@ NPC::~NPC() {
 }
 
 AttackGameEvent* NPC::attack(){
-		AttackGameEvent* ret = new AttackGameEvent(100,3,3000,this);
-		ret->setTrigger(new ClockGameTrigger(750,ret));
-		return ret;
+	irr::s32 ran = rand()%attacks.size();
+
+	std::map<irr::core::stringw, Attacks*>::iterator i = attacks.begin();
+
+	while(ran){
+		i = ++i;
+		--ran;
+	}
+
+	Attacks* a = i->second;
+
+	AttackGameEvent* ret = new AttackGameEvent(a->getAttack(),a->getDmg(),a->getDowntime(),a->getName(),this);
+	ret->setTrigger(new ClockGameTrigger(a->getTimeoffset(),ret));
+	return ret;
 }
 
