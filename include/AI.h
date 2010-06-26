@@ -53,6 +53,7 @@ class AI : public irr::scene::IAnimationEndCallBack{
 		irr::core::vector3df	target;
 		const Animation*		animation;
 		irr::core::vector3df	lastpos;
+		bool					dead;
 	}state;
 
 
@@ -75,6 +76,8 @@ public:
 	void interactWith(Object* o,Interaction_Type interaction);
 
 	void takeHit(const AttackGameEvent&);
+
+	void die();
 
 	Object* interactsWith(){
 		return state.wantsToInteractWith;

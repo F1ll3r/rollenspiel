@@ -68,6 +68,10 @@ protected:
 	irr::f32 speedsnorm;
 	irr::f32 speedsfast;
 
+	bool clickable;
+	bool ground;
+	bool collidable;
+
 	irr::s32 health;
 	irr::s32 healthmax;
 	const wchar_t* mode;
@@ -93,6 +97,8 @@ public:
 
 	virtual irr::s32 getTeam();
 
+	virtual void die();
+
 	virtual AttackGameEvent *attack() =0;
 
 	const wchar_t *getMode() const {
@@ -115,16 +121,16 @@ public:
 		return ai;
 	}
 
-	virtual bool isClickable() const {
-		return true;
+	bool isClickable() const {
+		return clickable;
 	}
 
-	virtual bool isGround() const {
-		return false;
+	bool isGround() const {
+		return ground;
 	}
 
-	virtual bool isCollidable() const {
-		return true;
+	bool isCollidable() const {
+		return collidable;
 	}
 
 	irr::s32 getHealth() {
