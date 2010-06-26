@@ -20,6 +20,7 @@ AI::AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml) {
 	this->sector = s;
 	this->character = c;
 	state.time_until_next=0;
+	state.dead = false;
 
 	while(xml->read()){
 		switch (xml->getNodeType()) {
@@ -116,11 +117,21 @@ AI::~AI() {
 	// TODO Auto-generated destructor stub
 }
 
+void AI::die(){
+	state.iswalking = false;
+	state.wantsToInteractWith = 0;
+	setAnimation(getAnimation(AI_Animation_Other,L"Die"));
+	state.dead = true;
+}
+
 const Animation* AI::getAnimation(AI_Animation Class,const wchar_t* type){
 	return animations[Class][type];
 }
 
 void AI::run(irr::s32 dtime){
+
+	if(state.dead)
+		return;
 
 	if(state.time_until_next > 0){
 		state.time_until_next -= dtime;
@@ -278,5 +289,6 @@ void AI::init(){
 }
 
 void AI::OnAnimationEnd(irr::scene::IAnimatedMeshSceneNode* node){
-	setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
+	if(!state.dead)
+		setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
 }

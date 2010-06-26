@@ -13,6 +13,9 @@ Character::Character(Sector* s, Game* game) :
 	Object(s, game) {
 	ai = NULL;
 	mode = L"Normal";
+	clickable = true;
+	ground = false;
+	collidable = true;
 }
 
 Character::~Character() {
@@ -37,6 +40,13 @@ void Character::parsInventory(irr::io::IXMLReader* xml) {
 
 void Character::remove() {
 
+}
+
+void Character::die(){
+	health = 0;
+	clickable = false;
+	collidable = false;
+	ai->die();
 }
 
 void Character::handleEvent(const GameEvent& e) {
