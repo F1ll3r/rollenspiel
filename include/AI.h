@@ -53,7 +53,6 @@ class AI : public irr::scene::IAnimationEndCallBack{
 		irr::core::vector3df	target;
 		const Animation*		animation;
 		irr::core::vector3df	lastpos;
-		const wchar_t*			mode;
 	}state;
 
 
@@ -71,9 +70,9 @@ public:
 	const Animation* getAnimation(AI_Animation Class,const wchar_t* type);
 
 	void run(irr::s32 dtime);
-	void walkCharacterTo(const irr::core::vector3df& v,const wchar_t* mode);
+	void walkCharacterTo(const irr::core::vector3df& v);
 
-	void interactWith(Object* o,Interaction_Type interaction,const wchar_t* mode);
+	void interactWith(Object* o,Interaction_Type interaction);
 
 	void takeHit(const AttackGameEvent&);
 

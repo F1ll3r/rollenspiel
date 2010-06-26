@@ -33,10 +33,8 @@ public:
         char *filepath, video::IImage* heightMap, video::IImage* colourMap,
         video::IImage* grassMap, scene::IWindGenerator *windgen);
 
-	virtual ~CGrassPatchSceneNode(){printf("smoked grass\n");}
 	virtual ~CGrassPatchSceneNode(){}
 
-	virtual ~CGrassPatchSceneNode(){printf("smoked grass\n");}
 	//! Returns the material based on the zero based index i.
 	virtual video::SMaterial& getMaterial(u32 i);
 

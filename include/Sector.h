@@ -92,11 +92,11 @@ public:
 	//retuns that object or NULL if no such Object exits.
 	//Algorithm is greedy it will only return first collision found
 	//even if multiple collision exists.
-	Object* collidesWithObject(const irr::core::line3d<float>&  line,irr::core::vector3df& vout);
+	Object* collidesWithObject(const irr::core::line3d<float>&  line,irr::core::vector3df& vout,Object* except = 0);
 
 	//returns the Object closest to the camera where isClickable() == true
 	//and is in the line from Camera and screen coordinates
-	Object* getObjectFromScreenCoordinates(irr::u32 X, irr::u32 Y,irr::core::vector3df& vout);
+	Object* getObjectFromScreenCoordinates(irr::u32 X, irr::u32 Y,irr::core::vector3df& vout,Object* except = 0);
 
 	//returns the Object closest to the camera where isGround() == true
 	//and is in the line from Camera and screen coordinates

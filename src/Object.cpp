@@ -25,12 +25,16 @@ irr::core::vector3df Object::getAbsolutePosition(){
 	return getNode()->getAbsolutePosition();
 }
 
+irr::core::vector3df Object::getRotationOffset(){
+	return irr::core::vector3df();
+}
+
 irr::core::vector3df Object::getRotation(){
-	return getNode()->getRotation();
+	return getNode()->getRotation()-getRotationOffset();
 }
 
 irr::core::vector3df Object::getAbsoluteRotation(){
-	return getNode()->getAbsoluteTransformation().getRotationDegrees();
+	return getNode()->getAbsoluteTransformation().getRotationDegrees()-getRotationOffset();
 }
 
 void Object::setPosition(irr::core::vector3df v){
@@ -38,5 +42,5 @@ void Object::setPosition(irr::core::vector3df v){
 }
 
 void Object::setRotation(irr::core::vector3df v){
-	getNode()->setRotation(v);
+	getNode()->setRotation(v+getRotationOffset());
 }

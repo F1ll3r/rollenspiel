@@ -12,12 +12,12 @@
 Character::Character(Sector* s, Game* game) :
 	Object(s, game) {
 	ai = NULL;
+	mode = L"Normal";
 }
 
 Character::~Character() {
 
 }
-
 
 void Character::parsInventory(irr::io::IXMLReader* xml) {
 	while (xml->read()) {
@@ -32,7 +32,6 @@ void Character::parsInventory(irr::io::IXMLReader* xml) {
 		default:
 			break;
 		}
-
 	}
 }
 
@@ -44,7 +43,7 @@ void Character::handleEvent(const GameEvent& e) {
 	switch (e.getEventType()) {
 	case Game_Event_Type_Run:
 		if (ai)
-			ai->run((static_cast<const RunGameEvent&> (e)).getDeltaTime());
+			ai->run((static_cast<const RunGameEvent&>(e)).getDeltaTime());
 		break;
 	case Game_Event_Type_Attack: {
 		const AttackGameEvent& a = static_cast<const AttackGameEvent&> (e);
@@ -60,7 +59,7 @@ irr::scene::ISceneNode* Character::getNode() {
 	return node;
 }
 
-irr::f32 Character::getSpeed(const wchar_t* mode) const {
+irr::f32 Character::getSpeed() const {
 
 	if (wcscmp(mode, L"Sneak") == 0) {
 		return speedslow;
@@ -70,11 +69,9 @@ irr::f32 Character::getSpeed(const wchar_t* mode) const {
 		return speedsfast;
 	}
 	My_Assert(0);
-<<<<<<< .mine	return 0;
-=======>>>>>>> .theirs}
-
-<<<<<<< .mineirr::s32 Character::getTeam() {
 	return 0;
-=======irr::s32 Character::getTeam(){
+}
 
->>>>>>> .theirs}
+irr::s32 Character::getTeam() {
+	return 0;
+}

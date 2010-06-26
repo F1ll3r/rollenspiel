@@ -84,6 +84,9 @@ void parseArgs(Settings* s,int argc, const char* argv[]){
 
 
 void Game::init( int argc, const char* argv[] ){
+
+	srand(time(NULL));
+
 	settings = new Settings();
 	*settings = readSettings();
 
@@ -190,7 +193,6 @@ int Game::run(){
 void Game::startGame(){
 	switchContext(Context_Loadung_Screen);
 	drawer->resetProcess();
-	drawer->processLoadingScreen(0,L"");
 	drawer->drawLoadingScreen();
 	map = new Map(this);
 	importer->load("content/Kapitel_1.map");

@@ -36,7 +36,7 @@ CGrassPatchSceneNode::CGrassPatchSceneNode(
 	// set position
 	setPosition(core::vector3df((f32)(gridpos.X*GRASS_PATCH_SIZE),0 , (f32)(gridpos.Z*GRASS_PATCH_SIZE)));
 	
-	setWindRes(5);
+	setWindRes(1);
 	
 	// set default image count
 	setImageCount(core::dimension2d<s32>(4,2));

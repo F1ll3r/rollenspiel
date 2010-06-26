@@ -38,6 +38,7 @@ public:
 	virtual void setPosition(irr::core::vector3df);
 
 	virtual irr::core::vector3df getRotation();
+	virtual irr::core::vector3df getRotationOffset();
 	virtual irr::core::vector3df getAbsoluteRotation();
 
 	virtual void setRotation(irr::core::vector3df);

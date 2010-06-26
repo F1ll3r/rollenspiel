@@ -46,6 +46,11 @@ NPC::NPC(Sector* s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 					pos.Y = xml->getAttributeValueAsFloat(L"Y");
 					pos.Z = xml->getAttributeValueAsFloat(L"Z");
 
+				}else if(wcscmp(xml->getNodeName(),L"RotationOffset") == 0){
+					rotoffset.X = xml->getAttributeValueAsFloat(L"X");
+					rotoffset.Y = xml->getAttributeValueAsFloat(L"Y");
+					rotoffset.Z = xml->getAttributeValueAsFloat(L"Z");
+
 				}else if(wcscmp(xml->getNodeName(),L"Rotation") == 0){
 					rot.X = xml->getAttributeValueAsFloat(L"X");
 					rot.Y = xml->getAttributeValueAsFloat(L"Y");
@@ -62,7 +67,8 @@ NPC::NPC(Sector* s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 					speedsfast = xml->getAttributeValueAsFloat(L"Run");
 
 				}else if(wcscmp(xml->getNodeName(),L"Health") == 0){
-
+					health = xml->getAttributeValueAsInt(L"Current");
+					healthmax = xml->getAttributeValueAsInt(L"Max");
 				}else if(wcscmp(xml->getNodeName(),L"AI") == 0){
 					My_Assert(ai==NULL);
 					ai = new AI(this,s,game,xml);
@@ -121,14 +127,3 @@ AttackGameEvent* NPC::attack(){
 		return ret;
 }
 
-irr::f32 NPC::getSpeed(const wchar_t* mode) const{
-
-	if(wcscmp(mode,L"Sneak") == 0){
-		return speedslow;
-	}else if(wcscmp(mode,L"Normal") == 0){
-		return speedsnorm;
-	}else if(wcscmp(mode,L"Run") == 0){
-		return speedsfast;
-	}
-	My_Assert(0);
-}

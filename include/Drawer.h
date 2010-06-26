@@ -44,9 +44,7 @@ public:
 	}
 
 	//! sets loadingbar back to 0%
-	void resetProcess(){
-		process = 0;
-	}
+	void resetProcess();
 
 	bool getDrawDebugInfo(){
 		return debuginfo;

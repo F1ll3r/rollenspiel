@@ -15,42 +15,58 @@
 #include "irrString.h"
 #include "AI.h"
 
-class Character : public Object{
+class Character: public Object {
 protected:
-	Game*							game;
-	irr::scene::ISceneNode*			node;
-	AI*								ai;
+	Game* game;
+	irr::scene::ISceneNode* node;
+	AI* ai;
 
-	irr::f32				speedslow;
-	irr::f32				speedsnorm;
-	irr::f32				speedsfast;
+	irr::f32 speedslow;
+	irr::f32 speedsnorm;
+	irr::f32 speedsfast;
 
-	irr::s32				health;
-
+	irr::s32 health;
+	irr::s32 healthmax;
+	const wchar_t* mode;
 
 	void parsInventory(irr::io::IXMLReader* xml);
 
 public:
-	Character(Sector* s,Game* game);
+	Character(Sector* s, Game* game);
 	virtual ~Character();
 
 	virtual void remove();
+	virtual void handleEvent(const GameEvent & e);
 
-	//! asks Object to handle the GameEvent
-	virtual void handleEvent(const GameEvent& e);
+	virtual irr::scene::ISceneNode *getNode();
 
+	virtual irr::s32 getID() =0;
 
-	virtual irr::scene::ISceneNode* getNode();
-
-	//! returns the ID used for GameEventMgmt this may or may not
-	//! be equal to getNode()->getID()
-	virtual irr::s32 getID() = 0;
-
-	virtual irr::f32 getSpeed(const wchar_t* mode) const;
+	virtual irr::f32 getSpeed() const;
 
 	virtual irr::s32 getTeam();
 
-	virtual AttackGameEvent* attack() = 0;
+	virtual AttackGameEvent *attack() =0;
+
+	const wchar_t *getMode() const {
+		return mode;
+	}
+
+	irr::s32 getHealthmax() const {
+		return healthmax;
+	}
+
+	void setHealthmax(irr::s32 healthmax) {
+		this->healthmax = healthmax;
+	}
+
+	void setHealth(irr::s32 health) {
+		this->health = health;
+	}
+
+	AI *getAi() const {
+		return ai;
+	}
 
 	virtual bool isClickable() const {
 		return true;
@@ -60,11 +76,11 @@ public:
 		return false;
 	}
 
-	virtual bool isCollidable() const{
+	virtual bool isCollidable() const {
 		return true;
 	}
 
-	irr::s32 getHealth(){
+	irr::s32 getHealth() {
 		return health;
 	}
 };

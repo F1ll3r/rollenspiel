@@ -41,8 +41,10 @@ Drawer::~Drawer() {
 
 void Drawer::drawLoadingScreen(){
 	irr::video::IVideoDriver* driver = device->getVideoDriver();
-	if(!loadscreen)
-		loadscreen = driver->getTexture("content/loadscreen.png");
+	if(!loadscreen){
+		irr::core::stringc file = irr::core::stringc("content/loadscreen") + irr::core::stringc(rand()%2 + 1) + ".png";
+		loadscreen = driver->getTexture(file);
+	}
 	
 	My_Assert(loadscreen);
 
@@ -89,6 +91,12 @@ void Drawer::processLoadingScreen(irr::f32 p,const wchar_t* msg,bool update){
 		drawLoadingScreen();
 }
 
+void Drawer::resetProcess(){
+	process = 0;
+	//loadscreen->drop();
+	loadscreen = 0;
+	msg = L"";
+}
 
 void Drawer::draw(){
 	switch (game->getContext()) {
@@ -96,7 +104,6 @@ void Drawer::draw(){
 			if(debuginfo){
 				irr::core::vector3df ppos = game->getPlayer()->getAbsolutePosition();
 				irr::core::vector3df prot = game->getPlayer()->getRotation();
-
 
 				swprintf(debugtext,
 #if defined(__linux) ||  defined(_MSC_VER)
