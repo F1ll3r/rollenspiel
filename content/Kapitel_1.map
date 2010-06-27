@@ -169,22 +169,26 @@
 			<RotationOffset X="0" Y="180" Z="0" />
             <AI>
                 <Animation>
-                    <Walk Type="Normal" SFrame="0" EFrame="24" Speed="15" Loop="true" />
-                    <Walk Type="Run" SFrame="0" EFrame="24" Speed="25" Loop="true" />
-                    <Walk Type="Stealth" SFrame="0" EFrame="24" Speed="10" Loop="true" />
-                    <Idle Type="Exhausted" SFrame="331" EFrame="379" Speed="20" Loop="true" />
-                    <Idle Type="Normal" SFrame="331" EFrame="379" Speed="15" Loop="true" />
-                    <Attack Type="Kick" SFrame="196" EFrame="209" Speed="12" Loop="false"/>
+                    <Walk Type="Normal" SFrame="0" EFrame="25" Speed="15" Loop="true" />
+                    <Walk Type="Run" SFrame="0" EFrame="25" Speed="25" Loop="true" />
+                    <Walk Type="Stealth" SFrame="0" EFrame="25" Speed="15" Loop="true" />
+                    <Idle Type="Exhausted" SFrame="331" EFrame="379" Speed="15" Loop="true" />
+                    <Idle Type="Normal" SFrame="331" EFrame="379" Speed="20" Loop="true" />
+                    <Attack Type="Headbutt" SFrame="181" EFrame="194" Speed="12" Loop="false"/>
+                    <Attack Type="Bite" SFrame="196" EFrame="209" Speed="12" Loop="false"/>
+                    <Attack Type="Bite2" SFrame="211" EFrame="229" Speed="12" Loop="false"/>
+                    <Attack Type="Stomp" SFrame="231" EFrame="269" Speed="12" Loop="false"/>
                     <Other Type="TakeHit" SFrame="271" EFrame="287" Speed="17" Loop="false"/>
+                    <Other Type="Die" SFrame="381" EFrame="400" Speed="17" Loop="false"/>
                 </Animation>
-                <Behavior Type="Player">
-                    <Team Value="2" />
-                    <Attack Name="Kick">
-                </Behavior>
-                <Attacks>
-                    <Attack Name="Kick" Dmg="5" Time="3" />
-                </Attacks>
+                <Team Value="1" />
             </AI>
+            <Attacks>
+                <Attack Name="Headbutt" Label="" Dmg="30" Attack="100" Time="3000" TimeOffset="500"/>
+                <Attack Name="Bite" Label="" Dmg="30" Attack="100" Time="2000" TimeOffset="300"/>
+                <Attack Name="Bite2" Label="" Dmg="30" Attack="100" Time="1800" TimeOffset="300"/>
+                <Attack Name="Stomp" Label="" Dmg="30" Attack="100" Time="2200" TimeOffset="300"/>
+            </Attacks>
 		</NPC>
 
 		<NPC>
@@ -198,22 +202,26 @@
 			<Rotation X="0" Y="0" Z="0" />
             <AI>
                 <Animation>
-                    <Walk Type="Normal" SFrame="1" EFrame="20" Speed="10" Loop="true" />
-                    <Walk Type="Run" SFrame="1" EFrame="20" Speed="15" Loop="true" />
-                    <Walk Type="Stealth" SFrame="21" EFrame="35" Speed="7" Loop="true" />
-                    <Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
-                    <Idle Type="Normal" SFrame="137" EFrame="168" Speed="15" Loop="true" />
-                    <Attack Type="Kick" SFrame="129" EFrame="136" Speed="12" Loop="false"/>
-                    <Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+                    <Walk Type="Normal" SFrame="0" EFrame="13" Speed="15" Loop="true" />
+                    <Walk Type="Run" SFrame="0" EFrame="13" Speed="25" Loop="true" />
+                    <Walk Type="Stealth" SFrame="14" EFrame="29" Speed="15" Loop="true" />
+                    <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
+                    <Idle Type="Normal" SFrame="183" EFrame="203" Speed="15" Loop="true" />
+                    <Attack Type="FinishHim" SFrame="111" EFrame="123" Speed="12" Loop="false"/>
+                    <Attack Type="PunchSwipe" SFrame="31" EFrame="43" Speed="12" Loop="false"/>
+                    <Attack Type="Swipe" SFrame="44" EFrame="58" Speed="12" Loop="false"/>
+                    <Attack Type="kick" SFrame="71" EFrame="82" Speed="12" Loop="false"/>
+                    <Other Type="TakeHit" SFrame="165" EFrame="166" Speed="17" Loop="false"/>
+                    <Other Type="Die" SFrame="173" EFrame="181" Speed="17" Loop="false"/>
                 </Animation>
-                <Behavior Type="Player">
-                    <Team Value="2" />
-                    <Attack Name="Kick">
-                </Behavior>
-                <Attacks>
-                    <Attack Name="Kick" Dmg="5" Time="3" />
-                </Attacks>
+                <Team Value="1" />
             </AI>
+            <Attacks>
+                <Attack Name="FinishHim" Label="" Dmg="30" Attack="100" Time="3000" TimeOffset="500"/>
+                <Attack Name="PunchSwipe" Label="" Dmg="30" Attack="100" Time="2000" TimeOffset="300"/>
+                <Attack Name="Swipe" Label="" Dmg="30" Attack="100" Time="1800" TimeOffset="300"/>
+                <Attack Name="kick" Label="" Dmg="30" Attack="100" Time="2200" TimeOffset="300"/>
+            </Attacks>
 		</NPC>
 
 
@@ -277,7 +285,7 @@
                     <Other Type="TakeHit" SFrame="165" EFrame="166" Speed="17" Loop="false"/>
                     <Other Type="Die" SFrame="173" EFrame="181" Speed="17" Loop="false"/>
                 </Animation>
-                <Team Value="2" />
+                <Team Value="1" />
             </AI>
             <Attacks>
                 <Attack Name="FinishHim" Label="" Dmg="30" Attack="100" Time="3000" TimeOffset="500"/>
