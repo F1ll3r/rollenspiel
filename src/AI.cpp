@@ -212,16 +212,22 @@ void AI::dispatchInteraction(){
 	switch (state.interaction) {
 		case Interaction_Attake:
 			//TODO: getmode
-			AttackGameEvent* a = character->attack();
-			a->setDest(state.wantsToInteractWith);
-			setAnimation(getAnimation(AI_Animation_Attack,a->getAnimation()));
-			if(a->getTrigger()){
-				game->getGameEventManager()->handleTrigger(a->getTrigger());
+			Character* c = static_cast<Character*>(state.wantsToInteractWith);
+			if(c->isDead()){
+				state.wantsToInteractWith = 0;
+				state.iswalking = false;
 			}else{
-				game->getGameEventManager()->handleEvent(a);
-			}
-			state.time_until_next = a->getDowntime()>state.time_until_next?a->getDowntime():state.time_until_next;
+				AttackGameEvent* a = character->attack();
+				a->setDest(state.wantsToInteractWith);
 
+				setAnimation(getAnimation(AI_Animation_Attack,a->getAnimation()));
+				if(a->getTrigger()){
+					game->getGameEventManager()->handleTrigger(a->getTrigger());
+				}else{
+					game->getGameEventManager()->handleEvent(a);
+				}
+				state.time_until_next = a->getDowntime()>state.time_until_next?a->getDowntime():state.time_until_next;
+			}
 			break;
 
 		case Interaction_Talk:
@@ -237,10 +243,12 @@ void AI::dispatchInteraction(){
 
 
 void AI::takeHit(const AttackGameEvent& a){
-	setAnimation(getAnimation(AI_Animation_Other,L"TakeHit"));
-	state.time_until_next = 500>state.time_until_next?500:state.time_until_next;
-	if(!state.wantsToInteractWith && !state.iswalking){
-		interactWith(a.getSrc(),Interaction_Attake);
+	if(!state.dead){
+		setAnimation(getAnimation(AI_Animation_Other,L"TakeHit"));
+		state.time_until_next = 500>state.time_until_next?500:state.time_until_next;
+		if(!state.wantsToInteractWith && !state.iswalking){
+			interactWith(a.getSrc(),Interaction_Attake);
+		}
 	}
 }
 

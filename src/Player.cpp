@@ -126,12 +126,16 @@ Player::~Player() {
 }
 
 bool Player::OnEvent(const irr::SEvent& event){
+	if(isDead()){
+		return false;
+	}
+
 	if(event.EventType == irr::EET_MOUSE_INPUT_EVENT){
 
 
-		if(		event.MouseInput.Event == irr::EMIE_LMOUSE_PRESSED_DOWN ||
-				event.MouseInput.Event == irr::EMIE_LMOUSE_DOUBLE_CLICK	||
-				event.MouseInput.Event == irr::EMIE_RMOUSE_PRESSED_DOWN ){
+		if(	event.MouseInput.Event == irr::EMIE_LMOUSE_PRESSED_DOWN ||
+			event.MouseInput.Event == irr::EMIE_LMOUSE_DOUBLE_CLICK	||
+			event.MouseInput.Event == irr::EMIE_RMOUSE_PRESSED_DOWN 	){
 
 			irr::core::vector3df tmpv;
 			irr::core::position2d<irr::s32> p =

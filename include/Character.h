@@ -99,6 +99,8 @@ public:
 
 	virtual void die();
 
+	virtual bool isDead();
+
 	virtual AttackGameEvent *attack() =0;
 
 	const wchar_t *getMode() const {
