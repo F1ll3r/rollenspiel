@@ -149,7 +149,6 @@ void Drawer::draw(){
 					driver->getScreenSize().Height/2 - back->getSize().Height/2));
 
 		}
-			break;
 
 
 		default:
