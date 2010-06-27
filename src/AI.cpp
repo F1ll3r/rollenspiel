@@ -252,6 +252,16 @@ void AI::takeHit(const AttackGameEvent& a){
 	}
 }
 
+void AI::blockHit(const AttackGameEvent& a){
+	if(!state.dead){
+		setAnimation(getAnimation(AI_Animation_Other,L"BlockHit"));
+		state.time_until_next = 300>state.time_until_next?300:state.time_until_next;
+		if(!state.wantsToInteractWith && !state.iswalking){
+			interactWith(a.getSrc(),Interaction_Attake);
+		}
+	}
+}
+
 void AI::walkCharacterTo(const irr::core::vector3df& v){
 	state.iswalking 			= true;
 	state.wantsToInteractWith	= NULL;

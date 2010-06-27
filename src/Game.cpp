@@ -83,9 +83,25 @@ void parseArgs(Settings* s,int argc, const char* argv[]){
 }
 
 
+void rand_seed(){
+	time_t timeval; /* Current time. */
+	unsigned char *ptr; /* Type punned pointed into timeval. */
+	unsigned seed; /* Generated seed. */
+	size_t i;
+
+	timeval = time (NULL);
+	ptr = (unsigned char *) &timeval;
+
+	seed = 0;
+	for (i = 0; i < sizeof timeval; i++)
+	seed = seed * (UCHAR_MAX + 2u) + ptr[i];
+
+	srand(seed);
+}
+
 void Game::init( int argc, const char* argv[] ){
 
-	srand(time(NULL));
+	rand_seed();
 
 	settings = new Settings();
 	*settings = readSettings();

@@ -72,6 +72,7 @@ protected:
 	bool ground;
 	bool collidable;
 
+	irr::s32 def;
 	irr::s32 health;
 	irr::s32 healthmax;
 	const wchar_t* mode;
@@ -100,6 +101,7 @@ public:
 	virtual void die();
 
 	virtual bool isDead();
+	irr::s32 getDefense();
 
 	virtual AttackGameEvent *attack() =0;
 

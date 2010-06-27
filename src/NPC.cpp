@@ -41,6 +41,9 @@ NPC::NPC(Sector* s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 				}else if(wcscmp(xml->getNodeName(),L"Texture") == 0){
 					texture = xml->getAttributeValue(L"Value");
 
+				}else if(wcscmp(xml->getNodeName(),L"Defense") == 0){
+					def = xml->getAttributeValueAsInt(L"Value");
+
 				}else if(wcscmp(xml->getNodeName(),L"Position") == 0){
 					pos.X = xml->getAttributeValueAsFloat(L"X");
 					pos.Y = xml->getAttributeValueAsFloat(L"Y");

@@ -129,6 +129,7 @@
         <NPC>
             <Health Max="100" Current="100" />
             <Speed Sneak="0.15" Normal="0.3" Run="0.45" />
+            <Defense Value="60" />
             <Mesh Value="content/ninja.b3d" />
 <!--            <Texture Value="content/nskinrd.jpg" />-->
             <Scale X="15" Y="15" Z="15" />
@@ -145,6 +146,7 @@
                     <Attack Type="PunchSwipe" SFrame="31" EFrame="43" Speed="12" Loop="false"/>
                     <Attack Type="Swipe" SFrame="44" EFrame="58" Speed="12" Loop="false"/>
                     <Attack Type="kick" SFrame="71" EFrame="82" Speed="12" Loop="false"/>
+                    <Other Type="BlockHit" SFrame="68" EFrame="71" Speed="11" Loop="false"/>
                     <Other Type="TakeHit" SFrame="165" EFrame="166" Speed="17" Loop="false"/>
                     <Other Type="Die" SFrame="173" EFrame="181" Speed="17" Loop="false"/>
                 </Animation>
@@ -152,9 +154,9 @@
             </AI>
             <Attacks>
                 <Attack Name="FinishHim" Label="" Dmg="30" Attack="100" Time="3000" TimeOffset="500"/>
-                <Attack Name="PunchSwipe" Label="" Dmg="30" Attack="100" Time="2000" TimeOffset="300"/>
-                <Attack Name="Swipe" Label="" Dmg="30" Attack="100" Time="1800" TimeOffset="300"/>
-                <Attack Name="kick" Label="" Dmg="30" Attack="100" Time="2200" TimeOffset="300"/>
+                <Attack Name="PunchSwipe" Label="" Dmg="10" Attack="100" Time="2000" TimeOffset="300"/>
+                <Attack Name="Swipe" Label="" Dmg="7" Attack="100" Time="1800" TimeOffset="300"/>
+                <Attack Name="kick" Label="" Dmg="14" Attack="100" Time="2200" TimeOffset="300"/>
             </Attacks>
 		</NPC>
 
@@ -266,6 +268,7 @@
 
 		<Player>
             <Health Max="100" Current="100" />
+            <Defense Value="75" />
             <Speed Sneak="0.15" Normal="0.3" Run="0.45" />
             <Mesh Value="content/ninja.b3d" />
             <Scale X="15" Y="15" Z="15" />
@@ -282,6 +285,7 @@
                     <Attack Type="PunchSwipe" SFrame="31" EFrame="43" Speed="12" Loop="false"/>
                     <Attack Type="Swipe" SFrame="44" EFrame="58" Speed="12" Loop="false"/>
                     <Attack Type="kick" SFrame="71" EFrame="82" Speed="12" Loop="false"/>
+                    <Other Type="BlockHit" SFrame="68" EFrame="71" Speed="11" Loop="false"/>
                     <Other Type="TakeHit" SFrame="165" EFrame="166" Speed="17" Loop="false"/>
                     <Other Type="Die" SFrame="173" EFrame="181" Speed="17" Loop="false"/>
                 </Animation>
@@ -289,9 +293,9 @@
             </AI>
             <Attacks>
                 <Attack Name="FinishHim" Label="" Dmg="30" Attack="100" Time="3000" TimeOffset="500"/>
-                <Attack Name="PunchSwipe" Label="" Dmg="30" Attack="100" Time="2000" TimeOffset="300"/>
-                <Attack Name="Swipe" Label="" Dmg="30" Attack="100" Time="1800" TimeOffset="300"/>
-                <Attack Name="kick" Label="" Dmg="30" Attack="100" Time="2200" TimeOffset="300"/>
+                <Attack Name="PunchSwipe" Label="" Dmg="10" Attack="100" Time="2000" TimeOffset="300"/>
+                <Attack Name="Swipe" Label="" Dmg="7" Attack="100" Time="1800" TimeOffset="300"/>
+                <Attack Name="kick" Label="" Dmg="14" Attack="100" Time="2200" TimeOffset="300"/>
             </Attacks>
 		</Player>
 

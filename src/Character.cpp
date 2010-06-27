@@ -57,11 +57,19 @@ void Character::handleEvent(const GameEvent& e) {
 		break;
 	case Game_Event_Type_Attack: {
 		const AttackGameEvent& a = static_cast<const AttackGameEvent&> (e);
-		ai->takeHit(a);
-		health -= a.getDmg();
-		if(health <= 0){
-			health = 0;
-			die();
+
+		int attak  = rand()%a.getAttack();
+		int defense = rand()%getDefense();
+
+		if(defense > attak){
+			ai->blockHit(a);
+		}else{
+			ai->takeHit(a);
+			health -= a.getDmg();
+			if(health <= 0){
+				health = 0;
+				die();
+			}
 		}
 	}
 
@@ -118,6 +126,10 @@ irr::f32 Character::getSpeed() const {
 	}
 	My_Assert(0);
 	return 0;
+}
+
+irr::s32 Character::getDefense(){
+	return def;
 }
 
 irr::s32 Character::getTeam() {

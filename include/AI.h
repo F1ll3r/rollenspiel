@@ -71,11 +71,14 @@ public:
 	const Animation* getAnimation(AI_Animation Class,const wchar_t* type);
 
 	void run(irr::s32 dtime);
+
 	void walkCharacterTo(const irr::core::vector3df& v);
 
 	void interactWith(Object* o,Interaction_Type interaction);
 
 	void takeHit(const AttackGameEvent&);
+
+	void blockHit(const AttackGameEvent&);
 
 	void die();
 
