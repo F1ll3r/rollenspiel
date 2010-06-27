@@ -105,18 +105,17 @@ Object* Sector::collidesWithObject(Object* o){
 								 bbox.MaxEdge.Y,
 								(bbox.MinEdge.Z+bbox.MaxEdge.Z)/2);
 
-	return collidesWithObject(irr::core::line3d<float>(lower,upper),upper);
-
+	return collidesWithObject(irr::core::line3d<float>(lower,upper),upper,o);
 }
 
 
-Object* Sector::collidesWithObject(const irr::core::line3d<float>& line,irr::core::vector3df& vout){
+Object* Sector::collidesWithObject(const irr::core::line3d<float>& line,irr::core::vector3df& vout,Object* except){
 	irr::core::triangle3df tmpt;
 	const irr::scene::ISceneNode* tmpn = NULL;
 
 	std::map<irr::s32,Object*>::iterator i = database.begin();
 	for(;i != database.end();i++){
-		if(i->second->isCollidable()){
+		if(i->second != except && i->second->isCollidable()){
 			if(collisionManager->getCollisionPoint(
 					line,i->second->getNode()->getTriangleSelector(),vout,tmpt,tmpn)){
 				return i->second;
@@ -127,7 +126,7 @@ Object* Sector::collidesWithObject(const irr::core::line3d<float>& line,irr::cor
 }
 
 
-Object* Sector::getObjectFromScreenCoordinates(irr::u32 X, irr::u32 Y,irr::core::vector3df& vout){
+Object* Sector::getObjectFromScreenCoordinates(irr::u32 X, irr::u32 Y,irr::core::vector3df& vout,Object* except){
 	irr::core::triangle3df tmpt;
 	const irr::scene::ISceneNode* tmpn = NULL;
 	irr::scene::IMetaTriangleSelector*	collisiontriangles = game->getIrrlichtDevice()->getSceneManager()
@@ -141,7 +140,7 @@ Object* Sector::getObjectFromScreenCoordinates(irr::u32 X, irr::u32 Y,irr::core:
 
 	std::map<irr::s32,Object*>::iterator i = database.begin();
 	for(;i != database.end();i++){
-		if(i->second->isClickable() &&
+		if(i->second != except && i->second->isClickable() &&
 				i->second->getNode()->getTransformedBoundingBox().intersectsWithLine(line)){
 			collisiontriangles->addTriangleSelector(i->second->getNode()->getTriangleSelector());
 		}

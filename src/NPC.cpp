@@ -11,6 +11,7 @@
 #include "Game.h"
 #include "GameEvent.h"
 #include "GameEventManager.h"
+#include "GameTrigger.h"
 #include "Sector.h"
 #include "Map.h"
 
@@ -45,6 +46,11 @@ NPC::NPC(Sector* s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 					pos.Y = xml->getAttributeValueAsFloat(L"Y");
 					pos.Z = xml->getAttributeValueAsFloat(L"Z");
 
+				}else if(wcscmp(xml->getNodeName(),L"RotationOffset") == 0){
+					rotoffset.X = xml->getAttributeValueAsFloat(L"X");
+					rotoffset.Y = xml->getAttributeValueAsFloat(L"Y");
+					rotoffset.Z = xml->getAttributeValueAsFloat(L"Z");
+
 				}else if(wcscmp(xml->getNodeName(),L"Rotation") == 0){
 					rot.X = xml->getAttributeValueAsFloat(L"X");
 					rot.Y = xml->getAttributeValueAsFloat(L"Y");
@@ -61,12 +67,16 @@ NPC::NPC(Sector* s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 					speedsfast = xml->getAttributeValueAsFloat(L"Run");
 
 				}else if(wcscmp(xml->getNodeName(),L"Health") == 0){
-
+					health = xml->getAttributeValueAsInt(L"Current");
+					healthmax = xml->getAttributeValueAsInt(L"Max");
 				}else if(wcscmp(xml->getNodeName(),L"AI") == 0){
 					My_Assert(ai==NULL);
 					ai = new AI(this,s,game,xml);
 				}else if(wcscmp(xml->getNodeName(),L"Inventory") == 0){
 					parsInventory(xml);
+
+				}else if(wcscmp(xml->getNodeName(),L"Attacks") == 0){
+					parseAttacks(xml);
 
 				}else{
 					wprintf(L"Corrupt XML-file. Unexpected Node <%s>", xml->getNodeName());
@@ -115,17 +125,19 @@ NPC::~NPC() {
 }
 
 AttackGameEvent* NPC::attack(){
-	return new AttackGameEvent(100,3,300,this);
-}
+	irr::s32 ran = rand()%attacks.size();
 
-irr::f32 NPC::getSpeed(const wchar_t* mode) const{
+	std::map<irr::core::stringw, Attacks*>::iterator i = attacks.begin();
 
-	if(wcscmp(mode,L"Sneak") == 0){
-		return speedslow;
-	}else if(wcscmp(mode,L"Normal") == 0){
-		return speedsnorm;
-	}else if(wcscmp(mode,L"Run") == 0){
-		return speedsfast;
+	while(ran){
+		i = ++i;
+		--ran;
 	}
-	My_Assert(0);
+
+	Attacks* a = i->second;
+
+	AttackGameEvent* ret = new AttackGameEvent(a->getAttack(),a->getDmg(),a->getDowntime(),a->getName(),this);
+	ret->setTrigger(new ClockGameTrigger(a->getTimeoffset(),ret));
+	return ret;
 }
+

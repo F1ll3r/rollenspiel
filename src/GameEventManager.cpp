@@ -31,15 +31,18 @@ void GameEventManager::triggerRunEvent(){
 	lasttime = (irr::s32)game->getIrrlichtDevice()->getTimer()->getTime();
 }
 
+
 void GameEventManager::run(){
 	irr::s32 dtime = (irr::s32)game->getIrrlichtDevice()->getTimer()->getTime() - lasttime;
 
-	for(irr::core::list<ClockGameTrigger*>::Iterator i = timer.begin();i != timer.end();i++){
-		if((*i)->run(dtime)){
-			handleEvent((*i)->getEvent());
-			delete (*i)->getEvent();
-			delete *i;
+	for(int i = 0; i < (irr::s32)timer.size();i++){
+		if(timer[i]->run(dtime)){
+			handleEvent(timer[i]->getEvent());
+			printf("Liefere event aus!\n");
+//			delete timer[i]->getEvent();
+//			delete timer[i];
 			timer.erase(i);
+			i--;
 		}
 	}
 
@@ -70,13 +73,13 @@ void GameEventManager::parseEvent(irr::io::IXMLReader* xml){
 void GameEventManager::handleTrigger(GameTrigger* t){
 	switch (t->getType()){
 		case Game_Trigger_Clock:
+				printf("Trage trigger ein!\n");
 				timer.push_back(static_cast<ClockGameTrigger*>(t));
 			break;
 		default:
 			My_Assert(0);
 			break;
 	}
-
 }
 
 void GameEventManager::handleEvent(GameEvent* e){
@@ -85,10 +88,7 @@ void GameEventManager::handleEvent(GameEvent* e){
 	//Lookup
 
 	e->getDest()->handleEvent(*e);
-}
-
-void GameEventManager::registerTrigger(GameTrigger* t, irr::core::array<GameEvent*> e){
-
+	delete e;
 }
 
 void GameEventManager::registerForRunEvent(IGameEventHandler* o,irr::s32 id){

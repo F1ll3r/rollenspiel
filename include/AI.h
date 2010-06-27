@@ -19,6 +19,7 @@ enum AI_Animation{
 	AI_Animation_Walk = 0,
 	AI_Animation_Idle,
 	AI_Animation_Attack,
+	AI_Animation_Other,
 	AI_Animation_Count
 };
 
@@ -52,7 +53,7 @@ class AI : public irr::scene::IAnimationEndCallBack{
 		irr::core::vector3df	target;
 		const Animation*		animation;
 		irr::core::vector3df	lastpos;
-		const wchar_t*			mode;
+		bool					dead;
 	}state;
 
 
@@ -70,9 +71,13 @@ public:
 	const Animation* getAnimation(AI_Animation Class,const wchar_t* type);
 
 	void run(irr::s32 dtime);
-	void walkCharacterTo(const irr::core::vector3df& v,const wchar_t* mode);
+	void walkCharacterTo(const irr::core::vector3df& v);
 
-	void interactWith(Object* o,Interaction_Type interaction,const wchar_t* mode);
+	void interactWith(Object* o,Interaction_Type interaction);
+
+	void takeHit(const AttackGameEvent&);
+
+	void die();
 
 	Object* interactsWith(){
 		return state.wantsToInteractWith;

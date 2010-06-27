@@ -11,6 +11,7 @@
 #include "Game.h"
 #include "GameEvent.h"
 #include "GameEventManager.h"
+#include "GameTrigger.h"
 #include "Sector.h"
 
 Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
@@ -56,12 +57,17 @@ Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 					speedsfast = xml->getAttributeValueAsFloat(L"Run");
 
 				}else if(wcscmp(xml->getNodeName(),L"Health") == 0){
-
+					health = xml->getAttributeValueAsInt(L"Current");
+					healthmax = xml->getAttributeValueAsInt(L"Max");
 				}else if(wcscmp(xml->getNodeName(),L"AI") == 0){
 					My_Assert(ai==NULL);
 					ai = new AI(this,s,game,xml);
 				}else if(wcscmp(xml->getNodeName(),L"Inventory") == 0){
 					parsInventory(xml);
+
+				}else if(wcscmp(xml->getNodeName(),L"Attacks") == 0){
+					parseAttacks(xml);
+
 
 				}else{
 					wprintf(L"Corrupt XML-file. Unexpected Node <%s>", xml->getNodeName());
@@ -88,9 +94,7 @@ Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 			default:
 				break;
 		}
-
 	}
-
 }
 
 
@@ -100,7 +104,20 @@ Player::Player(Sector*s,Game* game):Character(s,game) {
 
 AttackGameEvent *Player::attack()
 {
-	return new AttackGameEvent(100,3,300,this);
+	irr::s32 ran = rand()%attacks.size();
+
+	std::map<irr::core::stringw, Attacks*>::iterator i = attacks.begin();
+
+	while(ran){
+		i = ++i;
+		--ran;
+	}
+
+	Attacks* a = i->second;
+
+	AttackGameEvent* ret = new AttackGameEvent(a->getAttack(),a->getDmg(),a->getDowntime(),a->getName(),this);
+	ret->setTrigger(new ClockGameTrigger(a->getTimeoffset(),ret));
+	return ret;
 }
 
 
@@ -122,11 +139,14 @@ bool Player::OnEvent(const irr::SEvent& event){
 			Object* o = sector->getObjectFromScreenCoordinates(p.X,p.Y,tmpv);
 			if(o){
 				if(irrEventSate.shift){
-					ai->interactWith(o,Interaction_Attake,L"Sneak");
+					mode = L"Sneak";
+					ai->interactWith(o,Interaction_Attake);
 				}else if(event.MouseInput.Event == irr::EMIE_LMOUSE_DOUBLE_CLICK){
-					ai->interactWith(o,Interaction_Attake,L"Run");
+					mode = L"Run";
+					ai->interactWith(o,Interaction_Attake);
 				}else{
-					ai->interactWith(o,Interaction_Attake,L"Normal");
+					mode = L"Normal";
+					ai->interactWith(o,Interaction_Attake);
 				}
 
 				irr::scene::IVolumeLightSceneNode * n = game->getSceneManager()->addVolumeLightSceneNode(0, -1,
@@ -181,11 +201,14 @@ bool Player::OnEvent(const irr::SEvent& event){
 			if(sector->getGroundFromLine(line,tmpv)){
 
 				if(irrEventSate.shift){
-					ai->walkCharacterTo(tmpv,L"Sneak");
+					mode = L"Sneak";
+					ai->walkCharacterTo(tmpv);
 				}else if(event.MouseInput.Event == irr::EMIE_LMOUSE_DOUBLE_CLICK){
-					ai->walkCharacterTo(tmpv,L"Run");
+					mode = L"Run";
+					ai->walkCharacterTo(tmpv);
 				}else{
-					ai->walkCharacterTo(tmpv,L"Normal");
+					mode = L"Normal";
+					ai->walkCharacterTo(tmpv);
 				}
 
 				irr::scene::IVolumeLightSceneNode * n = game->getSceneManager()->addVolumeLightSceneNode(0, -1,

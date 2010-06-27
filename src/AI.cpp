@@ -20,6 +20,7 @@ AI::AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml) {
 	this->sector = s;
 	this->character = c;
 	state.time_until_next=0;
+	state.dead = false;
 
 	while(xml->read()){
 		switch (xml->getNodeType()) {
@@ -72,6 +73,19 @@ void AI::parseAnimation(irr::io::IXMLReader* xml){
 							std::make_pair<irr::core::stringw,Animation*>(anim->getType(),anim)
 							);
 
+				}else if(wcscmp(xml->getNodeName(),L"Other") == 0){
+
+									Animation* anim = new Animation(
+													xml->getAttributeValueAsInt(L"SFrame"),
+													xml->getAttributeValueAsInt(L"EFrame"),
+													xml->getAttributeValueAsFloat(L"Speed"),
+													xml->getAttributeValue(L"Type"),
+													wcscmpi(xml->getAttributeValueSafe(L"Loop"),L"true")==0 );
+
+									animations[AI_Animation_Other].insert(
+											std::make_pair<irr::core::stringw,Animation*>(anim->getType(),anim)
+											);
+
 				}else if(wcscmp(xml->getNodeName(),L"Attack") == 0){
 
 					Animation* anim = new Animation(
@@ -103,11 +117,21 @@ AI::~AI() {
 	// TODO Auto-generated destructor stub
 }
 
+void AI::die(){
+	state.iswalking = false;
+	state.wantsToInteractWith = 0;
+	setAnimation(getAnimation(AI_Animation_Other,L"Die"));
+	state.dead = true;
+}
+
 const Animation* AI::getAnimation(AI_Animation Class,const wchar_t* type){
 	return animations[Class][type];
 }
 
 void AI::run(irr::s32 dtime){
+
+	if(state.dead)
+		return;
 
 	if(state.time_until_next > 0){
 		state.time_until_next -= dtime;
@@ -121,8 +145,8 @@ void AI::run(irr::s32 dtime){
 
 		if(dist.getLength() > 100){
 			Object* obj = state.wantsToInteractWith;
-			walkCharacterTo(state.wantsToInteractWith->getAbsolutePosition(),L"Run");
-			 state.wantsToInteractWith = obj;
+			walkCharacterTo(state.wantsToInteractWith->getAbsolutePosition());
+			state.wantsToInteractWith = obj;
 		}else{
 			if(state.iswalking){
 				state.iswalking = false;
@@ -140,20 +164,24 @@ void AI::run(irr::s32 dtime){
 	if(state.iswalking){
 		state.lastpos = character->getAbsolutePosition();
 		irr::core::vector3df movmened(state.target - state.lastpos);
-		if(movmened.getLength() < character->getSpeed(state.mode) * dtime){
+
+		irr::f32 f = character->getSpeed();
+
+		if(movmened.getLength() < f * dtime){
 			state.iswalking = false;
 			setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
 			return;
 		}
 
-
-		movmened.setLength(character->getSpeed(state.mode) * dtime);
+		movmened.setLength( f * dtime);
 		movmened+= state.lastpos;
 		movmened.Y = sector->getGroundHightFromPos(irr::core::vector3df(movmened.X,state.lastpos.Y,movmened.Z));
 
 		character->setPosition(movmened);
 
-		if(sector->collidesWithObject(character)){
+		Object* o;
+
+		if(o = sector->collidesWithObject(character)){
 			character->setPosition(state.lastpos);
 			state.iswalking = false;
 			setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
@@ -168,7 +196,8 @@ void AI::run(irr::s32 dtime){
 											state.lastpos.Y + (middle.Y - character->getPosition().Y),
 											state.lastpos.Z);
 
-			if(sector->collidesWithObject(irr::core::line3d<float>(middle,oldmiddle),middle)){
+
+			if(sector->collidesWithObject(irr::core::line3d<float>(middle,oldmiddle),middle,character)){
 				character->setPosition(state.lastpos);
 				state.iswalking = false;
 				setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
@@ -185,10 +214,13 @@ void AI::dispatchInteraction(){
 			//TODO: getmode
 			AttackGameEvent* a = character->attack();
 			a->setDest(state.wantsToInteractWith);
-			setAnimation(getAnimation(AI_Animation_Attack,L"Kick"));
-			game->getGameEventManager()->handleEvent(a);
-			state.time_until_next = a->getDowntime();
-			delete a;
+			setAnimation(getAnimation(AI_Animation_Attack,a->getAnimation()));
+			if(a->getTrigger()){
+				game->getGameEventManager()->handleTrigger(a->getTrigger());
+			}else{
+				game->getGameEventManager()->handleEvent(a);
+			}
+			state.time_until_next = a->getDowntime()>state.time_until_next?a->getDowntime():state.time_until_next;
 
 			break;
 
@@ -204,21 +236,28 @@ void AI::dispatchInteraction(){
 }
 
 
-void AI::walkCharacterTo(const irr::core::vector3df& v,const wchar_t* mode){
+void AI::takeHit(const AttackGameEvent& a){
+	setAnimation(getAnimation(AI_Animation_Other,L"TakeHit"));
+	state.time_until_next = 500>state.time_until_next?500:state.time_until_next;
+	if(!state.wantsToInteractWith && !state.iswalking){
+		interactWith(a.getSrc(),Interaction_Attake);
+	}
+}
+
+void AI::walkCharacterTo(const irr::core::vector3df& v){
 	state.iswalking 			= true;
 	state.wantsToInteractWith	= NULL;
 	state.target 				= v;
-	state.mode 					= mode;
 
 	irr::core::vector3df rot((v-character->getAbsolutePosition()).getHorizontalAngle());
 	rot.X = 0;
 	character->setRotation(rot);
 
-	if(wcscmp(mode,L"Sneak") == 0){
+	if(wcscmp(character->getMode(),L"Sneak") == 0){
 		setAnimation(getAnimation(AI_Animation_Walk,L"Stealth"));
-	}else if(wcscmp(mode,L"Normal") == 0){
+	}else if(wcscmp(character->getMode(),L"Normal") == 0){
 		setAnimation(getAnimation(AI_Animation_Walk,L"Normal"));
-	}else if(wcscmp(mode,L"Run") == 0){
+	}else if(wcscmp(character->getMode(),L"Run") == 0){
 		setAnimation(getAnimation(AI_Animation_Walk,L"Run"));
 	}else{
 		My_Assert(0);
@@ -237,8 +276,8 @@ void AI::setAnimation(const Animation* anim){
 	}
 }
 
-void AI::interactWith(Object* o,Interaction_Type interaction,const wchar_t* mode){
-	walkCharacterTo(o->getAbsolutePosition(),mode);
+void AI::interactWith(Object* o,Interaction_Type interaction){
+	walkCharacterTo(o->getAbsolutePosition());
 	state.wantsToInteractWith = o;
 	state.interaction = interaction;
 }
@@ -250,6 +289,6 @@ void AI::init(){
 }
 
 void AI::OnAnimationEnd(irr::scene::IAnimatedMeshSceneNode* node){
-	setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
-	printf("OnEnd\n");
+	if(!state.dead)
+		setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
 }

@@ -15,56 +15,125 @@
 #include "irrString.h"
 #include "AI.h"
 
-class Character : public Object{
+class Attacks {
+	irr::core::stringw name;
+	irr::core::stringw label;
+	irr::s32 downtime;
+	irr::s32 dmg;
+	irr::s32 attack;
+	irr::s32 timeoffset;
+
+public:
+	Attacks(const wchar_t* name, const wchar_t* label, irr::s32 downtime,
+			irr::s32 dmg, irr::s32 attack, irr::s32 offset) :
+		name(name), label(label) {
+		this->attack = attack;
+		this->downtime = downtime;
+		this->dmg = dmg;
+		this->timeoffset = offset;
+	}
+
+	irr::s32 getAttack() const {
+		return attack;
+	}
+
+	irr::s32 getDmg() const {
+		return dmg;
+	}
+
+	irr::s32 getDowntime() const {
+		return downtime;
+	}
+
+	const wchar_t* getLabel() const {
+		return label.c_str();
+	}
+
+	const wchar_t* getName() const {
+		return name.c_str();
+	}
+
+	irr::s32 getTimeoffset() const {
+		return timeoffset;
+	}
+};
+
+class Character: public Object {
 protected:
-	Game*							game;
-	irr::scene::ISceneNode*			node;
-	AI*								ai;
+	Game* game;
+	irr::scene::ISceneNode* node;
+	AI* ai;
 
-	irr::f32				speedslow;
-	irr::f32				speedsnorm;
-	irr::f32				speedsfast;
+	irr::f32 speedslow;
+	irr::f32 speedsnorm;
+	irr::f32 speedsfast;
 
-	irr::s32				health;
+	bool clickable;
+	bool ground;
+	bool collidable;
 
+	irr::s32 health;
+	irr::s32 healthmax;
+	const wchar_t* mode;
 
 	void parsInventory(irr::io::IXMLReader* xml);
 
+	std::map<irr::core::stringw, Attacks*> attacks;
+
+	void parseAttacks(irr::io::IXMLReader* xml);
+
 public:
-	Character(Sector* s,Game* game);
+	Character(Sector* s, Game* game);
 	virtual ~Character();
 
 	virtual void remove();
+	virtual void handleEvent(const GameEvent & e);
 
-	//! asks Object to handle the GameEvent
-	virtual void handleEvent(const GameEvent& e);
+	virtual irr::scene::ISceneNode *getNode();
 
+	virtual irr::s32 getID() =0;
 
-	virtual irr::scene::ISceneNode* getNode();
-
-	//! returns the ID used for GameEventMgmt this may or may not
-	//! be equal to getNode()->getID()
-	virtual irr::s32 getID() = 0;
-
-	virtual irr::f32 getSpeed(const wchar_t* mode) const;
+	virtual irr::f32 getSpeed() const;
 
 	virtual irr::s32 getTeam();
 
-	virtual AttackGameEvent* attack() = 0;
+	virtual void die();
 
-	virtual bool isClickable() const {
-		return true;
+	virtual AttackGameEvent *attack() =0;
+
+	const wchar_t *getMode() const {
+		return mode;
 	}
 
-	virtual bool isGround() const {
-		return false;
+	irr::s32 getHealthmax() const {
+		return healthmax;
 	}
 
-	virtual bool isCollidable() const{
-		return true;
+	void setHealthmax(irr::s32 healthmax) {
+		this->healthmax = healthmax;
 	}
 
-	irr::s32 getHealth(){
+	void setHealth(irr::s32 health) {
+		this->health = health;
+	}
+
+	AI *getAi() const {
+		return ai;
+	}
+
+	bool isClickable() const {
+		return clickable;
+	}
+
+	bool isGround() const {
+		return ground;
+	}
+
+	bool isCollidable() const {
+		return collidable;
+	}
+
+	irr::s32 getHealth() {
 		return health;
 	}
 };

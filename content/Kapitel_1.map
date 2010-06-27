@@ -33,7 +33,7 @@
         <Loading_Screen points="15" text="Parse Light Sources" />
 
 
-        <AmbientLight R="1" G="1" B="1" />
+        <AmbientLight R="0.5" G="0.5" B="0.5" />
 
         <LightObject>
             <Color R="1" G="1" B="1" />
@@ -67,7 +67,6 @@
 					-Move:
 					-Rotate:
 					-Talk:
-
 
 			-->
         <Loading_Screen points="15" text="Parse Events" />
@@ -115,14 +114,6 @@
 			<Collision Ground="false" Click="false" Collide="true">
 		</MapObject>
 
-		<MapObject>
-			<Mesh Value="content/proprietary/tree.3ds" />
-			<Position X="4257" Y="80" Z="4472" />
-			<Rotation X="0" Y="0" Z="0" />
-			<Scale X="1" Y="1" Z="1" />
-			<Collision Ground="false" Click="false" Collide="true">
-		</MapObject>
-
 		<Loading_Screen points="10"/>
 
         <!--
@@ -143,14 +134,6 @@
             <Scale X="15" Y="15" Z="15" />
 			<Position X="4752.67" Y="197.63" Z="1255.92" />
 			<Rotation X="0" Y="0" Z="0" />
-            <Inventory>
-                <Weapon class="baton" name="Kurtzschwert">
-                    <Image Value="" />
-                    <Damage Value="12" />
-                    <Speed Value="1" />
-                    <Cost Value="40" />
-                </Weapon>
-            </Inventory>
             <AI>
                 <Animation>
                     <Walk Type="Normal" SFrame="0" EFrame="13" Speed="15" Loop="true" />
@@ -158,42 +141,41 @@
                     <Walk Type="Stealth" SFrame="14" EFrame="29" Speed="15" Loop="true" />
                     <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
                     <Idle Type="Normal" SFrame="183" EFrame="203" Speed="15" Loop="true" />
-                    <Attack Type="Kick" sFrame="73" EFrame="83" Speed="20" Loop="false"/>
+                    <Attack Type="FinishHim" SFrame="111" EFrame="123" Speed="12" Loop="false"/>
+                    <Attack Type="PunchSwipe" SFrame="31" EFrame="43" Speed="12" Loop="false"/>
+                    <Attack Type="Swipe" SFrame="44" EFrame="58" Speed="12" Loop="false"/>
+                    <Attack Type="kick" SFrame="71" EFrame="82" Speed="12" Loop="false"/>
+                    <Other Type="TakeHit" SFrame="165" EFrame="166" Speed="17" Loop="false"/>
+                    <Other Type="Die" SFrame="173" EFrame="181" Speed="17" Loop="false"/>
                 </Animation>
-                <Behavior Type="Aggressive">
-                    <Team Value="2" />
-                    <Attack Name="Kick">
-                </Behavior>
-                <Attacks>
-                    <Attack Name="Kick" Dmg="5" Time="3" />
-                </Attacks>
+                <Team Value="2" />
             </AI>
+            <Attacks>
+                <Attack Name="FinishHim" Label="" Dmg="30" Attack="100" Time="3000" TimeOffset="500"/>
+                <Attack Name="PunchSwipe" Label="" Dmg="30" Attack="100" Time="2000" TimeOffset="300"/>
+                <Attack Name="Swipe" Label="" Dmg="30" Attack="100" Time="1800" TimeOffset="300"/>
+                <Attack Name="kick" Label="" Dmg="30" Attack="100" Time="2200" TimeOffset="300"/>
+            </Attacks>
 		</NPC>
 
 		<NPC>
             <Health Max="100" Current="100" />
-            <Speed Sneak="0.15" Normal="0.3" Run="0.45" />
+            <Speed Sneak="0.10" Normal="0.20" Run="0.35" />
             <Mesh Value="content/beast/beast.b3d" />
 <!--            <Texture Value="content/beast/beast1.jpg" />-->
             <Scale X="1" Y="1" Z="1" />
 			<Position X="3437" Y="136" Z="6000" />
 			<Rotation X="0" Y="0" Z="0" />
-            <Inventory>
-                <Weapon class="baton" name="Kurtzschwert">
-                    <Image Value="" />
-                    <Damage Value="12" />
-                    <Speed Value="1" />
-                    <Cost Value="40" />
-                </Weapon>
-            </Inventory>
-           <AI>
+			<RotationOffset X="0" Y="180" Z="0" />
+            <AI>
                 <Animation>
-                    <Walk Type="Normal" SFrame="0" EFrame="13" Speed="15" Loop="true" />
-                    <Walk Type="Run" SFrame="0" EFrame="13" Speed="25" Loop="true" />
-                    <Walk Type="Stealth" SFrame="14" EFrame="29" Speed="15" Loop="true" />
-                    <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
-                    <Idle Type="Normal" SFrame="183" EFrame="203" Speed="15" Loop="true" />
-                    <Attack Type="Kick" SFrame="111" EFrame="123" Speed="12" Loop="false"/>
+                    <Walk Type="Normal" SFrame="0" EFrame="24" Speed="15" Loop="true" />
+                    <Walk Type="Run" SFrame="0" EFrame="24" Speed="25" Loop="true" />
+                    <Walk Type="Stealth" SFrame="0" EFrame="24" Speed="10" Loop="true" />
+                    <Idle Type="Exhausted" SFrame="331" EFrame="379" Speed="20" Loop="true" />
+                    <Idle Type="Normal" SFrame="331" EFrame="379" Speed="15" Loop="true" />
+                    <Attack Type="Kick" SFrame="196" EFrame="209" Speed="12" Loop="false"/>
+                    <Other Type="TakeHit" SFrame="271" EFrame="287" Speed="17" Loop="false"/>
                 </Animation>
                 <Behavior Type="Player">
                     <Team Value="2" />
@@ -207,32 +189,30 @@
 
 		<NPC>
             <Health Max="100" Current="100" />
-            <Speed Sneak="0.15" Normal="0.3" Run="0.45" />
+            <Speed Sneak="0.05" Normal="0.1" Run="0.25" />
             <Mesh Value="content/zombie/zombie.b3d" />
 <!--            <Texture Value="content/beast/beast1.jpg" />-->
+            <RotationOffset X="0" Y="180" Z="0" />
             <Scale X="7" Y="7" Z="7" />
 			<Position X="3437" Y="85" Z="8000" />
 			<Rotation X="0" Y="0" Z="0" />
-            <Inventory>
-                <Weapon class="baton" name="Kurtzschwert">
-                    <Image Value="" />
-                    <Damage Value="12" />
-                    <Speed Value="1" />
-                    <Cost Value="40" />
-                </Weapon>
-            </Inventory>
             <AI>
                 <Animation>
-                    <Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
-                    <Walk Type="Run" SFrame="21" EFrame="35" Speed="25" Loop="true" />
-                    <Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
-                    <Idle Type="Exhausted" SFrame="136" EFrame="168" Speed="10" Loop="true" />
-                    <Idle Type="Normal" SFrame="169" EFrame="199" Speed="10" Loop="true" />
+                    <Walk Type="Normal" SFrame="1" EFrame="20" Speed="10" Loop="true" />
+                    <Walk Type="Run" SFrame="1" EFrame="20" Speed="15" Loop="true" />
+                    <Walk Type="Stealth" SFrame="21" EFrame="35" Speed="7" Loop="true" />
+                    <Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+                    <Idle Type="Normal" SFrame="137" EFrame="168" Speed="15" Loop="true" />
+                    <Attack Type="Kick" SFrame="129" EFrame="136" Speed="12" Loop="false"/>
+                    <Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
                 </Animation>
-                <Behavior Type="Fight" Value="Agressive">
-                    <Attack >
-
+                <Behavior Type="Player">
+                    <Team Value="2" />
+                    <Attack Name="Kick">
                 </Behavior>
+                <Attacks>
+                    <Attack Name="Kick" Dmg="5" Time="3" />
+                </Attacks>
             </AI>
 		</NPC>
 
@@ -280,18 +260,9 @@
             <Health Max="100" Current="100" />
             <Speed Sneak="0.15" Normal="0.3" Run="0.45" />
             <Mesh Value="content/ninja.b3d" />
-<!--            <Mesh Value="content/proprietary/monster-character-high-3ds.3DS" />-->
             <Scale X="15" Y="15" Z="15" />
 			<Position X="2752.67" Y="123.63" Z="1255.92" />
 			<Rotation X="0" Y="0" Z="0" />
-            <Inventory>
-                <Weapon class="baton" name="Kurtzschwert">
-                    <Image Value="" />
-                    <Damage Value="12" />
-                    <Speed Value="1" />
-                    <Cost Value="40" />
-                </Weapon>
-            </Inventory>
             <AI>
                 <Animation>
                     <Walk Type="Normal" SFrame="0" EFrame="13" Speed="15" Loop="true" />
@@ -299,16 +270,21 @@
                     <Walk Type="Stealth" SFrame="14" EFrame="29" Speed="15" Loop="true" />
                     <Idle Type="Exhausted" SFrame="183" EFrame="203" Speed="15" Loop="true" />
                     <Idle Type="Normal" SFrame="183" EFrame="203" Speed="15" Loop="true" />
-                    <Attack Type="Kick" SFrame="111" EFrame="123" Speed="12" Loop="false"/>
+                    <Attack Type="FinishHim" SFrame="111" EFrame="123" Speed="12" Loop="false"/>
+                    <Attack Type="PunchSwipe" SFrame="31" EFrame="43" Speed="12" Loop="false"/>
+                    <Attack Type="Swipe" SFrame="44" EFrame="58" Speed="12" Loop="false"/>
+                    <Attack Type="kick" SFrame="71" EFrame="82" Speed="12" Loop="false"/>
+                    <Other Type="TakeHit" SFrame="165" EFrame="166" Speed="17" Loop="false"/>
+                    <Other Type="Die" SFrame="173" EFrame="181" Speed="17" Loop="false"/>
                 </Animation>
-                <Behavior Type="Player">
-                    <Team Value="2" />
-                    <Attack Name="Kick">
-                </Behavior>
-                <Attacks>
-                    <Attack Name="Kick" Dmg="5" Time="3" />
-                </Attacks>
+                <Team Value="2" />
             </AI>
+            <Attacks>
+                <Attack Name="FinishHim" Label="" Dmg="30" Attack="100" Time="3000" TimeOffset="500"/>
+                <Attack Name="PunchSwipe" Label="" Dmg="30" Attack="100" Time="2000" TimeOffset="300"/>
+                <Attack Name="Swipe" Label="" Dmg="30" Attack="100" Time="1800" TimeOffset="300"/>
+                <Attack Name="kick" Label="" Dmg="30" Attack="100" Time="2200" TimeOffset="300"/>
+            </Attacks>
 		</Player>
 
 		<Loading_Screen points="100" text="Done!" />

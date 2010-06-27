@@ -10,7 +10,7 @@
 
 #include "GlobalSettings.h"
 #include "irrArray.h"
-#include "irrList.h"
+
 #include "IXMLReader.h"
 #include <map>
 
@@ -20,7 +20,7 @@ class GameEventManager {
 	Drawer* 								drawer;
 	std::map<irr::s32,IGameEventHandler*> 	runMap;
 	std::map<irr::s32,IGameEventHandler*> 	drawMap;
-	irr::core::list<ClockGameTrigger*>		timer;
+	irr::core::array<ClockGameTrigger*>		timer;
 	irr::s32								lasttime;
 public:
 	GameEventManager(Game* game);

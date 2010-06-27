@@ -14,6 +14,8 @@
 Drawer::Drawer(Game* game) {
 	this->game = game;
 	loadscreen = NULL;
+	back	   = NULL;
+	back	   = NULL;
 
 	//! default in debug settings is drawing of debuginfo
 	//! whilst is release is not
@@ -41,8 +43,10 @@ Drawer::~Drawer() {
 
 void Drawer::drawLoadingScreen(){
 	irr::video::IVideoDriver* driver = device->getVideoDriver();
-	if(!loadscreen)
-		loadscreen = driver->getTexture("content/loadscreen.png");
+	if(!loadscreen){
+		irr::core::stringc file = irr::core::stringc("content/loadscreen") + irr::core::stringc(rand()%2 + 1) + ".png";
+		loadscreen = driver->getTexture(file);
+	}
 	
 	My_Assert(loadscreen);
 
@@ -89,6 +93,12 @@ void Drawer::processLoadingScreen(irr::f32 p,const wchar_t* msg,bool update){
 		drawLoadingScreen();
 }
 
+void Drawer::resetProcess(){
+	process = 0;
+	//loadscreen->drop();
+	loadscreen = 0;
+	msg = L"";
+}
 
 void Drawer::draw(){
 	switch (game->getContext()) {
@@ -96,7 +106,6 @@ void Drawer::draw(){
 			if(debuginfo){
 				irr::core::vector3df ppos = game->getPlayer()->getAbsolutePosition();
 				irr::core::vector3df prot = game->getPlayer()->getRotation();
-
 
 				swprintf(debugtext,
 #if defined(__linux) ||  defined(_MSC_VER)
@@ -126,6 +135,22 @@ void Drawer::draw(){
 			}
 		}
 			break;
+
+
+		case Context_Main_Menu:{
+			irr::video::IVideoDriver* driver = device->getVideoDriver();
+			if(!back){
+				irr::core::stringc file = L"content/back.png";
+				back = driver->getTexture(file);
+			}
+
+			driver->draw2DImage(back,irr::core::vector2di(
+					driver->getScreenSize().Width/2 - back->getSize().Width/2,
+					driver->getScreenSize().Height/2 - back->getSize().Height/2));
+
+		}
+
+
 		default:
 			break;
 	}
