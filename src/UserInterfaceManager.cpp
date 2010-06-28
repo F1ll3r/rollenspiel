@@ -34,7 +34,16 @@ bool UserInterfaceManager::OnEvent(const irr::SEvent& event) {
 			break;
 		}
 		break;
+
 		case Context_Game_Menu:
+			break;
+		case Context_Game_Run:
+			if(windowid==UI_IngameGUI){
+				IngameGUI->OnEvent(event);
+			}
+			else{
+				printf("WindowsID not IngameGUI!\n");
+			}
 			break;
 		default:
 			printf("wrong event received by Userinterfacemanager \n");
@@ -59,6 +68,7 @@ void UserInterfaceManager::draw(){
 		case Context_Game_Menu:
 			break;
 		case Context_Game_Run:
+			IngameGUI->draw();
 			break;
 		default:
 			break;
@@ -84,6 +94,7 @@ void UserInterfaceManager::createWindows(){
 void UserInterfaceManager::initWindows(){
 	WindowMainMenu->init();
 	WindowOptions->init();
+	IngameGUI->init();
 }
 void UserInterfaceManager::switchContext(Game_Context context){
 	//! TODO: do real context switching And Deleting all Buttons!
@@ -100,6 +111,8 @@ void UserInterfaceManager::switchWindow(WindowID id){
 	case UI_W_Option:
 		WindowOptions->createButtons();
 		break;
+	case UI_IngameGUI:
+		IngameGUI->createButtons();
 	default:
 		break;
 	}
@@ -111,6 +124,9 @@ void UserInterfaceManager::deleteButtons(){
 	}
 	if(WindowOptions){
 		WindowOptions->deleteButtons();
+	}
+	if(IngameGUI){
+		IngameGUI->deleteButtons();
 	}
 }
 
