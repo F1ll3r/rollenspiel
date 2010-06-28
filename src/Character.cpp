@@ -58,11 +58,18 @@ void Character::handleEvent(const GameEvent& e) {
 	case Game_Event_Type_Attack: {
 		const AttackGameEvent& a = static_cast<const AttackGameEvent&> (e);
 		ai->takeHit(a);
-		//rechnen
-
+		health -= a.getDmg();
+		if(health <= 0){
+			health = 0;
+			die();
+		}
 	}
 
 	}
+}
+
+bool Character::isDead(){
+	return health == 0;
 }
 
 irr::scene::ISceneNode* Character::getNode() {
