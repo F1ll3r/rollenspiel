@@ -66,7 +66,6 @@ void Character::handleEvent(const GameEvent& e) {
 			ai->blockHit(a);
 			floutingText(irr::video::SColor(255,43, 53, 255),L"Blocked");
 		} else {
-			float r = attak/(float)defense;
 			ai->takeHit(a);
 			irr::core::stringw s(L"Hit ");
 			s += a.getDmg();
@@ -86,12 +85,12 @@ void Character::floutingText(const irr::video::SColor& c, const wchar_t* text){
 	irr::gui::IGUIFont* f =
 				game->getIrrlichtDevice()->getGUIEnvironment()->getSkin()->getFont();
 	irr::scene::IBillboardTextSceneNode* b = game->getSceneManager()->addBillboardTextSceneNode(f, text,
-			getNode(), irr::core::dimension2df(35, 35),
+			0, irr::core::dimension2df(35, 35),
 			irr::core::vector3df(0, 10, 0), -1, c, c);
 	irr::scene::ISceneNodeAnimator* anim = game->getSceneManager()->createDeleteAnimator(700);
 	b->addAnimator(anim);
 	anim->drop();
-	anim =  game->getSceneManager()->createFlyStraightAnimator(irr::core::vector3df(0,10,0),irr::core::vector3df(0,15,0),700);
+	anim =  game->getSceneManager()->createFlyStraightAnimator(irr::core::vector3df(0,150,0)+getAbsolutePosition(),irr::core::vector3df(0,220,0)+getAbsolutePosition(),700);
 	b->addAnimator(anim);
 	anim->drop();
 }
