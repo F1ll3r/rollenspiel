@@ -17,13 +17,17 @@ UserInterfaceIngameGUI::UserInterfaceIngameGUI(Game* game,UserInterfaceManager* 
 	init();
 }
 void UserInterfaceIngameGUI::draw(){
-
+	for(irr::u32 i=0;i<Buttons.size();i++){
+			Buttons[i]->draw();
+		}
 }
 bool UserInterfaceIngameGUI::OnEvent(const irr::SEvent& event){
 
 }
 void UserInterfaceIngameGUI::createButtons(){
-
+	Buttons.push_back(
+				guienv->addButton  (irr::core::rect<irr::s32>(290,320,380,340),
+						NULL,TESTBUTTON,L"Apply",L"Apply changes"));
 }
 void UserInterfaceIngameGUI::deleteButtons(){
 

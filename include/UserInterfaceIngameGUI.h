@@ -10,6 +10,10 @@
 
 #include "UserInterfaceManager.h"
 
+enum UI_INGAME_GUI{
+	TESTBUTTON =200
+};
+
 class UserInterfaceIngameGUI: public UserInterfaceManager {
 public:
 	void draw();
