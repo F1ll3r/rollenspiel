@@ -83,6 +83,8 @@ protected:
 
 	void parseAttacks(irr::io::IXMLReader* xml);
 
+	void floutingText(const irr::video::SColor& c, const wchar_t* text);
+
 public:
 	Character(Sector* s, Game* game);
 	virtual ~Character();
