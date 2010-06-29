@@ -20,8 +20,12 @@ public:
 	bool OnEvent(const irr::SEvent& event);
 	void createButtons();
 	void deleteButtons();
+	void init();
 	UserInterfaceIngameGUI(Game* game,UserInterfaceManager* UI_Manager);
 	virtual ~UserInterfaceIngameGUI();
+private:
+	irr::video::ITexture* menubar;
+	irr::video::IVideoDriver* driver;
 };
 
 #endif /* USERINTERFACEINGAMEGUI_H_ */

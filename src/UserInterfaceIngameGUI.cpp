@@ -16,10 +16,21 @@ UserInterfaceIngameGUI::UserInterfaceIngameGUI(Game* game,UserInterfaceManager* 
 	this->UI_Manager = UI_Manager;
 	init();
 }
+void UserInterfaceIngameGUI::init(){
+	this->device = game->getIrrlichtDevice();
+	guienv = device->getGUIEnvironment();
+	driver=NULL;
+	menubar=NULL;
+}
 void UserInterfaceIngameGUI::draw(){
+	if(menubar&&driver){
+	driver->draw2DImage(menubar,irr::core::vector2di(
+			driver->getScreenSize().Width/2 - menubar->getSize().Width/2,
+			driver->getScreenSize().Height/3 - menubar->getSize().Height/2));
+	}
 	for(irr::u32 i=0;i<Buttons.size();i++){
-			Buttons[i]->draw();
-		}
+		Buttons[i]->draw();
+	}
 }
 bool UserInterfaceIngameGUI::OnEvent(const irr::SEvent& event){
 	My_Assert(event.EventType == irr::EET_GUI_EVENT);
@@ -35,12 +46,17 @@ bool UserInterfaceIngameGUI::OnEvent(const irr::SEvent& event){
 		}
 		return true;
 	}
-return false;
+	return false;
 }
 void UserInterfaceIngameGUI::createButtons(){
 	Buttons.push_back(
-				guienv->addButton  (irr::core::rect<irr::s32>(290,320,380,340),
-						NULL,TESTBUTTON,L"Apply",L"Apply changes"));
+			guienv->addButton  (irr::core::rect<irr::s32>(290,320,380,340),
+					NULL,TESTBUTTON,L"Apply",L"Apply changes"));
+	if(!menubar){
+		driver = device->getVideoDriver();
+		irr::core::stringc file = irr::core::stringc("content/Layout.bmp");
+		menubar = driver->getTexture(file);
+	}
 }
 void UserInterfaceIngameGUI::deleteButtons(){
 
