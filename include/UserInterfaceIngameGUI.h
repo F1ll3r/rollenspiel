@@ -11,9 +11,9 @@
 #include "UserInterfaceManager.h"
 
 enum UI_INGAME_GUI{
-	runbutton = 200,
+	sneakbutton = 200,
+	runbutton ,
 	walkbutton,
-	sneakbutton,
 	punchbutton,
 	kickbutton,
 	sword1button,

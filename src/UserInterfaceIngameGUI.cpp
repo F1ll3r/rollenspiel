@@ -35,8 +35,25 @@ bool UserInterfaceIngameGUI::OnEvent(const irr::SEvent& event){
 
 	if(event.GUIEvent.EventType == irr::gui::EGET_BUTTON_CLICKED){
 		switch (event.GUIEvent.Caller->getID()) {
+		case sneakbutton:
+			return true;
+			break;
+		case walkbutton:
+			return true;
+			break;
 		case runbutton:
-			printf("TestButton!\n");
+			return true;
+			break;
+		case punchbutton:
+			return true;
+			break;
+		case kickbutton:
+			return true;
+			break;
+		case sword1button:
+			return true;
+			break;
+		case sword2button:
 			return true;
 			break;
 		default:
@@ -53,14 +70,14 @@ void UserInterfaceIngameGUI::createButtons(){
 		menubar = driver->getTexture(file);
 	}
 	irr::gui::IGUIButton* mybutton;
-	//RUN
+	//Sneak
 	mybutton = guienv->addButton  (irr::core::rect<irr::s32>(
 			driver->getScreenSize().Width/2 - menubar->getSize().Width/2+33,
 			driver->getScreenSize().Height - menubar->getSize().Height+21,
 			driver->getScreenSize().Width/2 - menubar->getSize().Width/2+43+33,
 			driver->getScreenSize().Height - menubar->getSize().Height+43+21),
-			NULL,runbutton,L"",L"run");
-	mybutton->setImage(driver->getTexture("content/run.bmp"));
+			NULL,sneakbutton,L"",L"walk");
+	mybutton->setImage(driver->getTexture("content/sneak.bmp"));
 	Buttons.push_back(mybutton);
 	//Walk
 	mybutton = guienv->addButton  (irr::core::rect<irr::s32>(
@@ -71,14 +88,14 @@ void UserInterfaceIngameGUI::createButtons(){
 			NULL,walkbutton,L"",L"walk");
 	mybutton->setImage(driver->getTexture("content/walk.bmp"));
 	Buttons.push_back(mybutton);
-	//Sneak
+	//RUN
 	mybutton = guienv->addButton  (irr::core::rect<irr::s32>(
 			driver->getScreenSize().Width/2 - menubar->getSize().Width/2+153,
 			driver->getScreenSize().Height - menubar->getSize().Height+21,
 			driver->getScreenSize().Width/2 - menubar->getSize().Width/2+43+153,
 			driver->getScreenSize().Height - menubar->getSize().Height+43+21),
-			NULL,sneakbutton,L"",L"walk");
-	mybutton->setImage(driver->getTexture("content/schleichen.bmp"));
+			NULL,runbutton,L"",L"run");
+	mybutton->setImage(driver->getTexture("content/run.bmp"));
 	Buttons.push_back(mybutton);
 	//Punsh
 	mybutton = guienv->addButton  (irr::core::rect<irr::s32>(
