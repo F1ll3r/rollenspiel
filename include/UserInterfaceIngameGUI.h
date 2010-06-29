@@ -22,6 +22,7 @@ public:
 	void deleteButtons();
 	void init();
 	void drawhealthbar();
+	void drawgui();
 	UserInterfaceIngameGUI(Game* game,UserInterfaceManager* UI_Manager);
 	virtual ~UserInterfaceIngameGUI();
 private:

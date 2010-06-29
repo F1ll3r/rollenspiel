@@ -19,19 +19,15 @@ UserInterfaceIngameGUI::UserInterfaceIngameGUI(Game* game,UserInterfaceManager* 
 void UserInterfaceIngameGUI::init(){
 	this->device = game->getIrrlichtDevice();
 	guienv = device->getGUIEnvironment();
-	driver=NULL;
+	driver = device->getVideoDriver();
 	menubar=NULL;
 }
 void UserInterfaceIngameGUI::draw(){
-	if(menubar&&driver){
-	driver->draw2DImage(menubar,irr::core::vector2di(
-			driver->getScreenSize().Width/2 - menubar->getSize().Width/2,
-			driver->getScreenSize().Height - menubar->getSize().Height));
-	}
-	for(irr::u32 i=0;i<Buttons.size();i++){
-		Buttons[i]->draw();
-	}
+	drawgui();
 	drawhealthbar();
+	for(irr::u32 i=0;i<Buttons.size();i++){
+			Buttons[i]->draw();
+		}
 }
 bool UserInterfaceIngameGUI::OnEvent(const irr::SEvent& event){
 	My_Assert(event.EventType == irr::EET_GUI_EVENT);
@@ -50,17 +46,34 @@ bool UserInterfaceIngameGUI::OnEvent(const irr::SEvent& event){
 	return false;
 }
 void UserInterfaceIngameGUI::createButtons(){
-	Buttons.push_back(
-			guienv->addButton  (irr::core::rect<irr::s32>(290,320,380,340),
-					NULL,TESTBUTTON,L"Apply",L"Apply changes"));
+	//Buttons.push_back();
 	if(!menubar){
-		driver = device->getVideoDriver();
 		irr::core::stringc file = irr::core::stringc("content/Layout.bmp");
 		menubar = driver->getTexture(file);
 	}
+	//(irr::core::rect<irr::s32>(300,795,338,838),NULL,TESTBUTTON,L"",L"Apply changes");
+	/*
+	irr::gui::IGUIButton* test = guienv->addButton  (irr::core::rect<irr::s32>(
+			driver->getScreenSize().Width/2 - menubar->getSize().Width/2,
+			driver->getScreenSize().Height - menubar->getSize().Height),
+			NULL,TESTBUTTON,L"",L"Apply changes");
+
+	test->setImage(driver->getTexture("content/kick.bmp"));
+	test->setPressedImage(driver->getTexture("content/kick.bmp"));
+	test->setUseAlphaChannel(true);
+	Buttons.push_back(test);
+*/
+
 }
 void UserInterfaceIngameGUI::drawhealthbar(){
 
+}
+void UserInterfaceIngameGUI::drawgui(){
+	if(menubar){
+		driver->draw2DImage(menubar,irr::core::vector2di(
+				driver->getScreenSize().Width/2 - menubar->getSize().Width/2,
+				driver->getScreenSize().Height - menubar->getSize().Height));
+	}
 }
 void UserInterfaceIngameGUI::deleteButtons(){
 
