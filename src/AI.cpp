@@ -22,6 +22,7 @@ AI::AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml) {
 	this->character = c;
 	state.time_until_next=0;
 	state.dead = false;
+	AL.timer = 0;
 
 	while(xml->read()){
 		switch (xml->getNodeType()) {
@@ -102,6 +103,9 @@ void AI::parseAnimation(irr::io::IXMLReader* xml){
 							std::make_pair<irr::core::stringw,Animation*>(anim->getType(),anim)
 							);
 
+				}else if(wcscmp(xml->getNodeName(),L"Team") == 0){
+					state.team = xml->getAttributeValueAsInt(L"Value");
+
 				}
 
 				break;
@@ -132,6 +136,11 @@ const Animation* AI::getAnimation(AI_Animation Class,const wchar_t* type){
 }
 
 void AI::run(irr::s32 dtime){
+
+	if(dtime < 0){
+		dtime = 0;
+		printf("warnung negative dtime\n");
+	}
 
 	if(state.dead)
 		return;
@@ -232,11 +241,22 @@ void AI::run(irr::s32 dtime){
 
 		state.lastpos = character->getAbsolutePosition();
 	}
+
+
+	if(AL.usesAL && state.wantsToInteractWith == 0 && !state.iswalking){
+		AL.timer -= dtime;
+		if(AL.timer <=0){
+			AL.timer = 0;
+			printf("doing random stuff\n");
+			doRandomStuff();
+			AL.timer = rand() % 1000;
+		}
+	}
 }
 
 void AI::dispatchInteraction(){
 	switch (state.interaction) {
-		case Interaction_Attake:
+		case Interaction_Attake:{
 			//TODO: getmode
 			Character* c = static_cast<Character*>(state.wantsToInteractWith);
 			if(c->isDead()){
@@ -255,7 +275,7 @@ void AI::dispatchInteraction(){
 				state.time_until_next = a->getDowntime()>state.time_until_next?a->getDowntime():state.time_until_next;
 			}
 			break;
-
+		}
 		case Interaction_Talk:
 
 			break;
@@ -330,6 +350,29 @@ void AI::init(){
 	setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
 	irr::scene::IAnimatedMeshSceneNode* node = (irr::scene::IAnimatedMeshSceneNode*)character->getNode();
 	node->setAnimationEndCallback(this);
+	if(character->getID() == 1){
+		AL.usesAL = false;
+	}else{
+		AL.usesAL = true;
+		AL.timer = rand() % 10000;
+	}
+}
+
+void AI::doRandomStuff(){
+//	if(rand()%3 == 0){
+		irr::core::vector3df dest(rand()%100,0,0);
+		dest.rotateXZBy((rand()%3600)/10.);
+		irr::core::vector3df f;
+		printf("%f %f %f\n",character->getAbsolutePosition().X,character->getAbsolutePosition().Y,character->getAbsolutePosition().Z);
+		printf("%f %f %f\n",dest.X,dest.Y,dest.Z);
+		dest += character->getAbsolutePosition();
+		dest.Y = sector->getGroundHightFromPos(dest);
+		printf("%f %f %f\n",dest.X,dest.Y,dest.Z);
+		if(sector->collidesWithObject(irr::core::line3df(character->getAbsolutePosition(),dest),f,character)){
+			return;
+		}
+		walkCharacterTo(character->getAbsolutePosition()+dest);
+//	}
 }
 
 void AI::OnAnimationEnd(irr::scene::IAnimatedMeshSceneNode* node){
