@@ -30,7 +30,7 @@ NPC::NPC(Sector* s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 	if(id == 0)
 		id	= game->getMap()->getFreeID();
 
-	game->getGameEventManager()->registerForRunEvent(this,id);
+	game->getGameEventManager()->registerForRunEvent(this);
 
 	while(xml->read()){
 		switch (xml->getNodeType()) {
@@ -98,6 +98,8 @@ NPC::NPC(Sector* s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 					My_Assert(m);
 					node = device->getSceneManager()
 							->addAnimatedMeshSceneNode(m,0,id,pos,rot,scale);
+
+					setRotation(rot);
 
 					node->setTriangleSelector(
 							device->getSceneManager()->createTriangleSelector((irr::scene::IAnimatedMeshSceneNode*)node));

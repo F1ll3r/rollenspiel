@@ -23,9 +23,15 @@ enum Game_Trigger_Type {
 class GameTrigger {
 protected:
 	GameEvent* ev;
+	bool isvolatile;
 public:
-	GameTrigger(GameEvent* event){
+	GameTrigger(GameEvent* event,bool v){
 		ev = event;
+		isvolatile = v;
+	}
+
+	bool isVolatile(){
+		return isvolatile;
 	}
 
 	virtual ~GameTrigger(){}
@@ -46,7 +52,7 @@ class ClockGameTrigger : public GameTrigger{
 
 public:
 
-	ClockGameTrigger(irr::s32 timer,GameEvent* event) : GameTrigger(event){
+	ClockGameTrigger(irr::s32 timer,GameEvent* event, bool v = true) : GameTrigger(event,v){
 		time = timer;
 	}
 
@@ -69,23 +75,39 @@ public:
 };
 
 class GameTriggerAttack : public GameTrigger{
-	GameTriggerAttack(): GameTrigger(0){
 
+public:
+	GameTriggerAttack(Object* watch,Object* abserver,GameEvent* event, bool v = true) : GameTrigger(event,v){
+
+	}
+
+	virtual Game_Trigger_Type getType(){
+		return Game_Trigger_Attack;
 	}
 
 };
 
 class GameTriggerDeath : public GameTrigger{
-	GameTriggerDeath():GameTrigger(0){
+
+public:
+	GameTriggerDeath(Object* watch,Object* abserver,GameEvent* event, bool v = true) : GameTrigger(event,v){
 
 	}
 
+	virtual Game_Trigger_Type getType(){
+		return Game_Trigger_Death;
+	}
 };
 
 class GameTriggerObjectEnter : public GameTrigger{
-	GameTriggerObjectEnter(): GameTrigger(0){
+
+public:
+	GameTriggerObjectEnter(): GameTrigger(0,false){
 
 	}
 
+	virtual Game_Trigger_Type getType(){
+		return Game_Trigger_ObjectEnter;
+	}
 };
 #endif /* GAMETRIGGER_H_ */

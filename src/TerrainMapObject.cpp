@@ -97,7 +97,7 @@ TerrainMapObject::TerrainMapObject(Sector* s,Game* game,irr::io::IXMLReader* xml
 
 					if(gm){
 						gm->create((irr::scene::ITerrainSceneNode*) node,game->getVideoDriver()->createImageFromFile(hightmap.c_str()));
-						game->getGameEventManager()->registerForRunEvent(this,getID());
+						game->getGameEventManager()->registerForRunEvent(this);
 					}
 
 					s->addObject(this);

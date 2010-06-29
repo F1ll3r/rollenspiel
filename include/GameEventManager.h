@@ -19,7 +19,6 @@ class GameEventManager {
 	Game* 									game;
 	Drawer* 								drawer;
 	std::map<irr::s32,IGameEventHandler*> 	runMap;
-	std::map<irr::s32,IGameEventHandler*> 	drawMap;
 	irr::core::array<ClockGameTrigger*>		timer;
 	irr::s32								lasttime;
 public:
@@ -28,7 +27,7 @@ public:
 
 	void triggerRunEvent();
 	void run();
-	void triggerDrawEvent();
+
 
 	void parseEvent(irr::io::IXMLReader* xml);
 
@@ -36,11 +35,10 @@ public:
 
 	void handleEvent(GameEvent* e);
 
-	void registerTrigger(GameTrigger* t, irr::core::array<GameEvent*> e);
+	void registerForRunEvent(Object* o);
 
-	void registerForRunEvent(IGameEventHandler* o,irr::s32 id);
+	void triggerDeath(Object* o);
 
-	void registerForDrawEvent(IGameEventHandler* o,irr::s32 id);
 };
 
 #endif /* GAMEEVENTMANAGER_H_ */

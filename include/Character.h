@@ -85,6 +85,8 @@ protected:
 
 	void floutingText(const irr::video::SColor& c, const wchar_t* text);
 
+	bool isSneaky(const AttackGameEvent& a);
+
 public:
 	Character(Sector* s, Game* game);
 	virtual ~Character();
@@ -98,7 +100,9 @@ public:
 
 	virtual irr::f32 getSpeed() const;
 
-	virtual irr::s32 getTeam();
+	irr::s32 getTeam(){
+		return ai->getTeam();
+	}
 
 	virtual void die();
 

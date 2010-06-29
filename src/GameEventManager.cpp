@@ -48,9 +48,6 @@ void GameEventManager::run(){
 
 }
 
-void GameEventManager::triggerDrawEvent(){
-
-}
 
 void GameEventManager::parseEvent(irr::io::IXMLReader* xml){
 
@@ -91,11 +88,10 @@ void GameEventManager::handleEvent(GameEvent* e){
 	delete e;
 }
 
-void GameEventManager::registerForRunEvent(IGameEventHandler* o,irr::s32 id){
-	runMap.insert(std::pair<irr::s32,IGameEventHandler*>(id,o));
+void GameEventManager::registerForRunEvent(Object* o){
+	runMap.insert(std::pair<irr::s32,IGameEventHandler*>(o->getID(),o));
 }
 
-void GameEventManager::registerForDrawEvent(IGameEventHandler* o,irr::s32 id){
+void GameEventManager::triggerDeath(Object* o){
 
 }
-

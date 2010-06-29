@@ -12,6 +12,7 @@
 #include "GameEventManager.h"
 #include "irrlicht.h"
 #include "Game.h"
+#include "Player.h"
 
 AI::AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml) {
 	state.iswalking = false;
@@ -27,6 +28,8 @@ AI::AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml) {
 			case irr::io::EXN_ELEMENT:
 				if(wcscmp(xml->getNodeName(),L"Animation") == 0){
 					parseAnimation(xml);
+				}else if(wcscmp(xml->getNodeName(),L"Team") == 0){
+					state.team = xml->getAttributeValueAsInt(L"Value");
 				}
 
 				break;
@@ -159,6 +162,28 @@ void AI::run(irr::s32 dtime){
 
 			return;
 		}
+	} else {
+		if(character != game->getPlayer() && !game->getPlayer()->isDead()){
+			irr::f32 dist = game->getPlayer()->getNode()->getAbsolutePosition().getDistanceFrom(character->getAbsolutePosition());
+			if(dist <= 2000 && wcscmp(game->getPlayer()->getMode(),L"Normal") == 0){
+				interactWith(game->getPlayer(),Interaction_Attake);
+			}else if(dist <= 4000 && wcscmp(game->getPlayer()->getMode(),L"Run") == 0){
+				interactWith(game->getPlayer(),Interaction_Attake);
+			}else if(dist <= 1000 && wcscmp(game->getPlayer()->getMode(),L"Sneak") == 0){
+				irr::f32 ang = (character->getAbsolutePosition()-game->getPlayer()->getAbsolutePosition()).getHorizontalAngle().X;
+				if (ang > 180.f)
+					ang-=180.f;
+				irr::f32 ang2 = character->getRotation().X;
+				if (ang2 > 180.f)
+					ang2-=180.f;
+
+				if(irr::core::equals(ang,ang2,70.f)){
+					interactWith(game->getPlayer(),Interaction_Attake);
+				}
+			}
+
+
+		}
 	}
 
 	if(state.iswalking){
@@ -199,6 +224,7 @@ void AI::run(irr::s32 dtime){
 
 			if(sector->collidesWithObject(irr::core::line3d<float>(middle,oldmiddle),middle,character)){
 				character->setPosition(state.lastpos);
+				//check for triggers
 				state.iswalking = false;
 				setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
 			}

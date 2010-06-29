@@ -16,7 +16,7 @@ CameraHandler::CameraHandler(Game* game) {
 	this->game 	= game;
 	irrcam		= NULL;
 	distence 	= 600;
-	alpha 		= 0;
+	alpha 		= irr::core::PI;
 	beta		= irr::core::HALF_PI - irr::core::PI/4;
 	recalc		= true;
 }
@@ -29,7 +29,7 @@ CameraHandler::~CameraHandler() {
 void CameraHandler::init(){
 	this->device = game->getIrrlichtDevice();
 	irrcam = device->getSceneManager()->addCameraSceneNode();
-	irrcam->setFarValue(12000);
+	irrcam->setFarValue(14000);
 	lasttime = device->getTimer()->getTime();
 }
 
@@ -86,8 +86,11 @@ void CameraHandler::run(){
 
 bool CameraHandler::OnEvent(const irr::SEvent& event){
 	if(event.EventType == irr::EET_MOUSE_INPUT_EVENT){
-		distence += event.MouseInput.Wheel*13;
-		recalc = true;
+		if(event.MouseInput.Wheel>0 && distence < 1700 ||
+				event.MouseInput.Wheel < 0 && distence > 500){
+			distence += event.MouseInput.Wheel*13;
+			recalc = true;
+		}
 	}
 	return false;
 }
