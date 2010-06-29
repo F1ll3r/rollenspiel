@@ -153,15 +153,15 @@
                 <Team Value="2" />
             </AI>
             <Attacks>
-                <Attack Name="FinishHim" Label="" Dmg="30" Attack="100" Time="3000" TimeOffset="500"/>
-                <Attack Name="PunchSwipe" Label="" Dmg="10" Attack="100" Time="2000" TimeOffset="300"/>
-                <Attack Name="Swipe" Label="" Dmg="7" Attack="100" Time="1800" TimeOffset="300"/>
-                <Attack Name="kick" Label="" Dmg="14" Attack="100" Time="2200" TimeOffset="300"/>
+                <Attack Name="FinishHim" Label="" Dmg="30" Attack="100" Time="6000" TimeOffset="500"/>
+                <Attack Name="PunchSwipe" Label="" Dmg="10" Attack="90" Time="2000" TimeOffset="300"/>
+                <Attack Name="Swipe" Label="" Dmg="7" Attack="110" Time="1800" TimeOffset="300"/>
+                <Attack Name="kick" Label="" Dmg="14" Attack="85" Time="2200" TimeOffset="300"/>
             </Attacks>
 		</NPC>
 
 		<NPC>
-            <Health Max="100" Current="100" />
+            <Health Max="600" Current="600" />
             <Speed Sneak="0.10" Normal="0.20" Run="0.35" />
             <Defense Value="60" />
             <Mesh Value="content/beast/beast.b3d" />
@@ -172,8 +172,8 @@
 			<RotationOffset X="0" Y="180" Z="0" />
             <AI>
                 <Animation>
-                    <Walk Type="Normal" SFrame="0" EFrame="24" Speed="15" Loop="true" />
-                    <Walk Type="Run" SFrame="0" EFrame="24" Speed="25" Loop="true" />
+                    <Walk Type="Normal" SFrame="0" EFrame="24" Speed="25" Loop="true" />
+                    <Walk Type="Run" SFrame="0" EFrame="24" Speed="35" Loop="true" />
                     <Walk Type="Stealth" SFrame="0" EFrame="24" Speed="15" Loop="true" />
                     <Idle Type="Exhausted" SFrame="331" EFrame="379" Speed="15" Loop="true" />
                     <Idle Type="Normal" SFrame="331" EFrame="379" Speed="20" Loop="true" />
@@ -188,7 +188,7 @@
                 <Team Value="1" />
             </AI>
             <Attacks>
-                <Attack Name="Headbutt" Label="" Dmg="30" Attack="100" Time="3000" TimeOffset="500"/>
+                <Attack Name="Headbutt" Label="" Dmg="3" Attack="100" Time="3000" TimeOffset="500"/>
                 <Attack Name="Bite" Label="" Dmg="30" Attack="100" Time="2000" TimeOffset="300"/>
                 <Attack Name="Bite2" Label="" Dmg="30" Attack="100" Time="1800" TimeOffset="300"/>
                 <Attack Name="Stomp" Label="" Dmg="30" Attack="100" Time="2200" TimeOffset="300"/>
@@ -196,7 +196,7 @@
 		</NPC>
 
 		<NPC>
-            <Health Max="100" Current="100" />
+            <Health Max="50" Current="50" />
             <Speed Sneak="0.05" Normal="0.1" Run="0.25" />
             <Mesh Value="content/zombie/zombie.b3d" />
             <Defense Value="60" />
@@ -221,49 +221,13 @@
                 <Team Value="1" />
             </AI>
             <Attacks>
-                <Attack Name="HeadButt" Label="" Dmg="30" Attack="100" Time="3000" TimeOffset="500"/>
-                <Attack Name="Kick" Label="" Dmg="30" Attack="100" Time="2000" TimeOffset="300"/>
-                <Attack Name="Punch" Label="" Dmg="30" Attack="100" Time="1800" TimeOffset="300"/>
+                <Attack Name="HeadButt" Label="" Dmg="10" Attack="80" Time="3000" TimeOffset="500"/>
+                <Attack Name="Kick" Label="" Dmg="11" Attack="90" Time="2000" TimeOffset="300"/>
+                <Attack Name="Punch" Label="" Dmg="7" Attack="100" Time="1800" TimeOffset="300"/>
             </Attacks>
 		</NPC>
 
 
-<!--		<Dealer Name="Hugos Eisenwaren">-->
-<!--            <Health Max="100" Current="100" />-->
-<!--            <ExchangeRate Sell="1.2" Buy="0.7" />-->
-<!--			<Mesh Value="" />-->
-<!--			<Texture Value="" />-->
-<!--			<Position X="" Y="" Z="" />-->
-<!--			<Rotation X="" Y="" Z="" />-->
-<!--			<Team ID="1" />-->
-<!--            <Inventory>-->
-<!--                <Weapon Class="baton" Name="Kurtzschwert">-->
-<!--                    <Image Value="" />-->
-<!--                    <Damage Value="12" />-->
-<!--                    <Speed Value="1" />-->
-<!--                    <Cost Value="40" />-->
-<!--                </Weapon>-->
-<!--            </Inventory>-->
-<!--            <AI>-->
-<!--                <Talk>-->
-<!--                    <Context ID="1">-->
-<!--                        <Text>Hallo Feund mein Name ist Hugo. Wie kann ich dir helfen?</Text>-->
-<!--                        <Reply id="1">-->
-<!--                            <Text>Zeig mir was du im Angebot hast!</Text>-->
-<!--                            <Effect Type="talk">-->
-<!--                                <OpenTrade />-->
-<!--                            </Effect>-->
-<!--                        </Reply>-->
-<!--                        <Reply id="2">-->
-<!--                            <Text>cu</Text>-->
-<!--                            <Effect type="talk">-->
-<!--                                <Exit />-->
-<!--                            </Effect>-->
-<!--                        </Reply>-->
-<!--                    </Context>-->
-<!--                </Talk>-->
-<!--            </AI>-->
-<!--		</Dealer>-->
 
 		<Loading_Screen points="12" text="Erzeuge Spieler" />
 
@@ -293,13 +257,12 @@
                 <Team Value="1" />
             </AI>
             <Attacks>
-                <Attack Name="FinishHim" Label="" Dmg="30" Attack="100" Time="3000" TimeOffset="500"/>
-                <Attack Name="PunchSwipe" Label="" Dmg="10" Attack="100" Time="2000" TimeOffset="300"/>
-                <Attack Name="Swipe" Label="" Dmg="7" Attack="100" Time="1800" TimeOffset="300"/>
-                <Attack Name="kick" Label="" Dmg="14" Attack="100" Time="2200" TimeOffset="300"/>
+                <Attack Name="FinishHim" Label="" Dmg="30" Attack="100" Time="6000" TimeOffset="500"/>
+                <Attack Name="PunchSwipe" Label="" Dmg="10" Attack="90" Time="2000" TimeOffset="300"/>
+                <Attack Name="Swipe" Label="" Dmg="7" Attack="110" Time="1800" TimeOffset="300"/>
+                <Attack Name="kick" Label="" Dmg="14" Attack="85" Time="2200" TimeOffset="300"/>
             </Attacks>
 		</Player>
-
 		<Loading_Screen points="100" text="Done!" />
 	</Sector>
 </Map>
