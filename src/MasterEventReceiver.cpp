@@ -32,6 +32,8 @@ void MasterEventReceiver::init(){
 bool MasterEventReceiver::OnEvent(const irr::SEvent& event){
 	if(event.EventType == irr::EET_GUI_EVENT){
 		if(ui && context == Context_Main_Menu) ui->OnEvent(event);
+		//if(ui && context == Context_Game_Menu) ui->OnEvent(event);
+		//if(ui && context == Context_Game_Run ) ui->OnEvent(event);
 	}
 	if(event.EventType == irr::EET_MOUSE_INPUT_EVENT){
 		if(cam) cam->OnEvent(event);
