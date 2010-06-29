@@ -80,6 +80,9 @@ protected:
 	irr::s32 exp;
 	irr::s32 nextlevel;
 
+	irr::f32 dmgmulti;
+	irr::f32 attackmulti;
+
 	void parsInventory(irr::io::IXMLReader* xml);
 
 	std::map<irr::core::stringw, Attacks*> attacks;

@@ -9,6 +9,7 @@
 #include "Game.h"
 #include "irrlicht.h"
 #include "Settings.h"
+#include "Player.h"
 
 UserInterfaceIngameGUI::UserInterfaceIngameGUI(Game* game,UserInterfaceManager* UI_Manager) : UserInterfaceManager(game) {
 	// TODO Auto-generated constructor stub
@@ -66,6 +67,26 @@ void UserInterfaceIngameGUI::createButtons(){
 
 }
 void UserInterfaceIngameGUI::drawhealthbar(){
+	irr::video::IVideoDriver* driver = device->getVideoDriver();
+	irr::video::ITexture* bar = driver->getTexture("content/live.bmp");
+
+	irr::f32 prozent = game->getPlayer()->getHealth()/(irr::f32)game->getPlayer()->getHealthmax();
+	irr::core::recti src(irr::core::vector2di(),bar->getSize());
+	src.LowerRightCorner.X *= prozent;
+
+
+
+	irr::core::recti target;
+
+	target.UpperLeftCorner = irr::core::vector2di(
+			driver->getScreenSize().Width/2 - menubar->getSize().Width/2,
+				driver->getScreenSize().Height - menubar->getSize().Height);
+
+	target.UpperLeftCorner += irr::core::vector2di(510,34);
+	target.LowerRightCorner = target.UpperLeftCorner + irr::core::vector2di(bar->getSize().Width*prozent,bar->getSize().Height);
+
+
+	driver->draw2DImage(bar,target,src);
 
 }
 void UserInterfaceIngameGUI::drawgui(){

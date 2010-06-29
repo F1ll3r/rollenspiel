@@ -20,6 +20,8 @@ Character::Character(Sector* s, Game* game) :
 	collidable = true;
 	exp = 0;
 	nextlevel = 250;
+	dmgmulti = 1;
+	attackmulti = 1;
 }
 
 Character::~Character() {

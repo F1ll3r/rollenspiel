@@ -119,7 +119,7 @@ AttackGameEvent *Player::attack()
 
 	Attacks* a = i->second;
 
-	AttackGameEvent* ret = new AttackGameEvent(a->getAttack(),a->getDmg(),a->getDowntime(),a->getName(),this);
+	AttackGameEvent* ret = new AttackGameEvent(a->getAttack()*attackmulti,a->getDmg()*dmgmulti,a->getDowntime(),a->getName(),this);
 	ret->setTrigger(new ClockGameTrigger(a->getTimeoffset(),ret));
 	return ret;
 }
