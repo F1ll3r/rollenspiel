@@ -25,10 +25,12 @@ bool UserInterfaceManager::OnEvent(const irr::SEvent& event) {
 	case Context_Main_Menu:
 		switch(windowid){
 		case UI_W_Main:
-			WindowMainMenu->OnEvent(event);
+			if(WindowMainMenu->OnEvent(event))
+				return true;
 			break;
 		case UI_W_Option:
-			WindowOptions->OnEvent(event);
+			if(WindowOptions->OnEvent(event))
+				return true;
 			break;
 		default:
 			break;
@@ -39,7 +41,8 @@ bool UserInterfaceManager::OnEvent(const irr::SEvent& event) {
 			break;
 		case Context_Game_Run:
 			if(windowid==UI_IngameGUI){
-				IngameGUI->OnEvent(event);
+				if(IngameGUI->OnEvent(event))
+					return true;
 			}
 			else{
 				printf("WindowsID not IngameGUI!\n");
@@ -50,7 +53,6 @@ bool UserInterfaceManager::OnEvent(const irr::SEvent& event) {
 			return false;
 			break;
 	}
-	return true;
 }
 void UserInterfaceManager::draw(){
 	switch (context) {

@@ -22,7 +22,20 @@ void UserInterfaceIngameGUI::draw(){
 		}
 }
 bool UserInterfaceIngameGUI::OnEvent(const irr::SEvent& event){
+	My_Assert(event.EventType == irr::EET_GUI_EVENT);
 
+	if(event.GUIEvent.EventType == irr::gui::EGET_BUTTON_CLICKED){
+		switch (event.GUIEvent.Caller->getID()) {
+		case TESTBUTTON:
+			printf("TestButton!\n");
+			return true;
+			break;
+		default:
+			break;
+		}
+		return true;
+	}
+return false;
 }
 void UserInterfaceIngameGUI::createButtons(){
 	Buttons.push_back(
