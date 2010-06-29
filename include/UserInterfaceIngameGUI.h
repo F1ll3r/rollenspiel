@@ -11,7 +11,13 @@
 #include "UserInterfaceManager.h"
 
 enum UI_INGAME_GUI{
-	TESTBUTTON =200
+	runbutton = 200,
+	walkbutton,
+	sneakbutton,
+	punchbutton,
+	kickbutton,
+	sword1button,
+	sword2button
 };
 
 class UserInterfaceIngameGUI: public UserInterfaceManager {

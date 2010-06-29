@@ -27,15 +27,15 @@ void UserInterfaceIngameGUI::draw(){
 	drawgui();
 	drawhealthbar();
 	for(irr::u32 i=0;i<Buttons.size();i++){
-			Buttons[i]->draw();
-		}
+		Buttons[i]->draw();
+	}
 }
 bool UserInterfaceIngameGUI::OnEvent(const irr::SEvent& event){
 	My_Assert(event.EventType == irr::EET_GUI_EVENT);
 
 	if(event.GUIEvent.EventType == irr::gui::EGET_BUTTON_CLICKED){
 		switch (event.GUIEvent.Caller->getID()) {
-		case TESTBUTTON:
+		case runbutton:
 			printf("TestButton!\n");
 			return true;
 			break;
@@ -52,18 +52,74 @@ void UserInterfaceIngameGUI::createButtons(){
 		irr::core::stringc file = irr::core::stringc("content/Layout.bmp");
 		menubar = driver->getTexture(file);
 	}
-	//(irr::core::rect<irr::s32>(300,795,338,838),NULL,TESTBUTTON,L"",L"Apply changes");
-	/*
-	irr::gui::IGUIButton* test = guienv->addButton  (irr::core::rect<irr::s32>(
-			driver->getScreenSize().Width/2 - menubar->getSize().Width/2,
-			driver->getScreenSize().Height - menubar->getSize().Height),
-			NULL,TESTBUTTON,L"",L"Apply changes");
+	irr::gui::IGUIButton* mybutton;
+	//RUN
+	mybutton = guienv->addButton  (irr::core::rect<irr::s32>(
+			driver->getScreenSize().Width/2 - menubar->getSize().Width/2+33,
+			driver->getScreenSize().Height - menubar->getSize().Height+21,
+			driver->getScreenSize().Width/2 - menubar->getSize().Width/2+43+33,
+			driver->getScreenSize().Height - menubar->getSize().Height+43+21),
+			NULL,runbutton,L"",L"run");
+	mybutton->setImage(driver->getTexture("content/run.bmp"));
+	Buttons.push_back(mybutton);
+	//Walk
+	mybutton = guienv->addButton  (irr::core::rect<irr::s32>(
+			driver->getScreenSize().Width/2 - menubar->getSize().Width/2+93,
+			driver->getScreenSize().Height - menubar->getSize().Height+21,
+			driver->getScreenSize().Width/2 - menubar->getSize().Width/2+43+93,
+			driver->getScreenSize().Height - menubar->getSize().Height+43+21),
+			NULL,walkbutton,L"",L"walk");
+	mybutton->setImage(driver->getTexture("content/walk.bmp"));
+	Buttons.push_back(mybutton);
+	//Sneak
+	mybutton = guienv->addButton  (irr::core::rect<irr::s32>(
+			driver->getScreenSize().Width/2 - menubar->getSize().Width/2+153,
+			driver->getScreenSize().Height - menubar->getSize().Height+21,
+			driver->getScreenSize().Width/2 - menubar->getSize().Width/2+43+153,
+			driver->getScreenSize().Height - menubar->getSize().Height+43+21),
+			NULL,sneakbutton,L"",L"walk");
+	mybutton->setImage(driver->getTexture("content/schleichen.bmp"));
+	Buttons.push_back(mybutton);
+	//Punsh
+	mybutton = guienv->addButton  (irr::core::rect<irr::s32>(
+			driver->getScreenSize().Width/2 - menubar->getSize().Width/2+256,
+			driver->getScreenSize().Height - menubar->getSize().Height+21,
+			driver->getScreenSize().Width/2 - menubar->getSize().Width/2+43+256,
+			driver->getScreenSize().Height - menubar->getSize().Height+43+21),
+			NULL,punchbutton,L"",L"walk");
+	mybutton->setImage(driver->getTexture("content/punch.bmp"));
+	Buttons.push_back(mybutton);
+	//Kick
+	mybutton = guienv->addButton  (irr::core::rect<irr::s32>(
+			driver->getScreenSize().Width/2 - menubar->getSize().Width/2+316,
+			driver->getScreenSize().Height - menubar->getSize().Height+21,
+			driver->getScreenSize().Width/2 - menubar->getSize().Width/2+43+316,
+			driver->getScreenSize().Height - menubar->getSize().Height+43+21),
+			NULL,kickbutton,L"",L"walk");
+	mybutton->setImage(driver->getTexture("content/kick.bmp"));
+	Buttons.push_back(mybutton);
+	//Sword1
+	mybutton = guienv->addButton  (irr::core::rect<irr::s32>(
+			driver->getScreenSize().Width/2 - menubar->getSize().Width/2+376,
+			driver->getScreenSize().Height - menubar->getSize().Height+21,
+			driver->getScreenSize().Width/2 - menubar->getSize().Width/2+43+376,
+			driver->getScreenSize().Height - menubar->getSize().Height+43+21),
+			NULL,sword1button,L"",L"walk");
+	mybutton->setImage(driver->getTexture("content/sword.bmp"));
+	Buttons.push_back(mybutton);
+	//Sword2
+	mybutton = guienv->addButton  (irr::core::rect<irr::s32>(
+			driver->getScreenSize().Width/2 - menubar->getSize().Width/2+436,
+			driver->getScreenSize().Height - menubar->getSize().Height+21,
+			driver->getScreenSize().Width/2 - menubar->getSize().Width/2+43+436,
+			driver->getScreenSize().Height - menubar->getSize().Height+43+21),
+			NULL,sword2button,L"",L"walk");
+	mybutton->setImage(driver->getTexture("content/sword2.bmp"));
+	Buttons.push_back(mybutton);
 
-	test->setImage(driver->getTexture("content/kick.bmp"));
-	test->setPressedImage(driver->getTexture("content/kick.bmp"));
-	test->setUseAlphaChannel(true);
-	Buttons.push_back(test);
-*/
+
+
+
 
 }
 void UserInterfaceIngameGUI::drawhealthbar(){
@@ -80,7 +136,7 @@ void UserInterfaceIngameGUI::drawhealthbar(){
 
 	target.UpperLeftCorner = irr::core::vector2di(
 			driver->getScreenSize().Width/2 - menubar->getSize().Width/2,
-				driver->getScreenSize().Height - menubar->getSize().Height);
+			driver->getScreenSize().Height - menubar->getSize().Height);
 
 	target.UpperLeftCorner += irr::core::vector2di(510,34);
 	target.LowerRightCorner = target.UpperLeftCorner + irr::core::vector2di(bar->getSize().Width*prozent,bar->getSize().Height);
