@@ -21,7 +21,7 @@ class Player : public Character, public irr::IEventReceiver {
 		bool				ctrl;
 	}irrEventSate;
 
-
+	irr::core::stringw attackmode;
 
 public:
 	Player(Sector* s,Game* game,irr::io::IXMLReader* xml);
@@ -29,6 +29,14 @@ public:
 	virtual ~Player();
 
 	virtual AttackGameEvent* attack();
+
+	void setAttackMode(const wchar_t* mode){
+		attackmode = mode;
+	}
+
+	const wchar_t* getAttackMode(){
+		return attackmode.c_str();
+	}
 
 	bool OnEvent(const irr::SEvent& event);
 

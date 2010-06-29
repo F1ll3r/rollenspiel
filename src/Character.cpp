@@ -19,7 +19,7 @@ Character::Character(Sector* s, Game* game) :
 	ground = false;
 	collidable = true;
 	exp = 0;
-	nextlevel = 250;
+	nextlevel = 2500;
 	dmgmulti = 1;
 	attackmulti = 1;
 }
@@ -62,9 +62,13 @@ void Character::handleEvent(const GameEvent& e) {
 			ai->run((static_cast<const RunGameEvent&> (e)).getDeltaTime());
 		if(exp>nextlevel){
 			floutingText(irr::video::SColor(255,255,219,89),L"Level Up");
-			nextlevel *= 1.5;
+			nextlevel *= 2;
 			healthmax *= 1.3;
+
 			def += 10;
+			dmgmulti += 0.05;
+			attackmulti += 0.07;
+
 			health = healthmax;
 		}
 		break;

@@ -25,6 +25,7 @@ Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 	this->game 				= game;
 	irrEventSate.shift		= false;
 	def 					= 0;
+	attackmode				= L"FinishHim";
 
 	game->getGameEventManager()->registerForRunEvent(this);
 
@@ -108,16 +109,7 @@ Player::Player(Sector*s,Game* game):Character(s,game) {
 
 AttackGameEvent *Player::attack()
 {
-	irr::s32 ran = rand()%attacks.size();
-
-	std::map<irr::core::stringw, Attacks*>::iterator i = attacks.begin();
-
-	while(ran){
-		i = ++i;
-		--ran;
-	}
-
-	Attacks* a = i->second;
+	Attacks* a = attacks[attackmode];
 
 	AttackGameEvent* ret = new AttackGameEvent(a->getAttack()*attackmulti,a->getDmg()*dmgmulti,a->getDowntime(),a->getName(),this);
 	ret->setTrigger(new ClockGameTrigger(a->getTimeoffset(),ret));
@@ -147,13 +139,13 @@ bool Player::OnEvent(const irr::SEvent& event){
 			Object* o = sector->getObjectFromScreenCoordinates(p.X,p.Y,tmpv);
 			if(o){
 				if(irrEventSate.shift){
+
 					mode = L"Sneak";
 					ai->interactWith(o,Interaction_Attake);
 				}else if(event.MouseInput.Event == irr::EMIE_LMOUSE_DOUBLE_CLICK){
 					mode = L"Run";
 					ai->interactWith(o,Interaction_Attake);
 				}else{
-					mode = L"Normal";
 					ai->interactWith(o,Interaction_Attake);
 				}
 
@@ -213,7 +205,6 @@ bool Player::OnEvent(const irr::SEvent& event){
 					mode = L"Run";
 					ai->walkCharacterTo(tmpv);
 				}else{
-					mode = L"Normal";
 					ai->walkCharacterTo(tmpv);
 				}
 
@@ -251,6 +242,23 @@ bool Player::OnEvent(const irr::SEvent& event){
 			}
 		}
 	} else if(event.EventType == irr::EET_KEY_INPUT_EVENT){
+		if(event.KeyInput.PressedDown){
+			if( event.KeyInput.Key == irr::KEY_KEY_W){
+				mode = L"Normal";
+			}else if( event.KeyInput.Key == irr::KEY_KEY_R){
+				mode = L"Run";
+			}else if( event.KeyInput.Key == irr::KEY_KEY_S){
+				mode = L"Sneak";
+			}else if( event.KeyInput.Key == irr::KEY_KEY_1){
+				attackmode = L"FinishHim";
+			}else if( event.KeyInput.Key == irr::KEY_KEY_2){
+				attackmode = L"PunchSwipe";
+			}else if( event.KeyInput.Key == irr::KEY_KEY_3){
+				attackmode = L"Swipe";
+			}else if( event.KeyInput.Key == irr::KEY_KEY_4){
+				attackmode = L"kick";
+			}
+		}
 		if(event.KeyInput.Shift){
 			irrEventSate.shift = true;
 		}else{

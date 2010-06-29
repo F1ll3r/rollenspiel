@@ -198,6 +198,17 @@ void AI::run(irr::s32 dtime){
 	}
 
 	if(state.iswalking){
+
+		if(wcscmp(character->getMode(),L"Sneak") == 0){
+			setAnimation(getAnimation(AI_Animation_Walk,L"Stealth"));
+		}else if(wcscmp(character->getMode(),L"Normal") == 0){
+			setAnimation(getAnimation(AI_Animation_Walk,L"Normal"));
+		}else if(wcscmp(character->getMode(),L"Run") == 0){
+			setAnimation(getAnimation(AI_Animation_Walk,L"Run"));
+		}else{
+			My_Assert(0);
+		}
+
 		state.lastpos = character->getAbsolutePosition();
 		irr::core::vector3df movmened(state.target - state.lastpos);
 

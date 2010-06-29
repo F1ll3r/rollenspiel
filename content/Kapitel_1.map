@@ -128,13 +128,13 @@
 
 
 		<NPC>
-            <Health Max="600" Current="300" />
+            <Health Max="600" Current="600" />
             <Speed Sneak="0.10" Normal="0.20" Run="0.35" />
             <Defense Value="45" />
             <Mesh Value="content/beast/beast.b3d" />
             <Texture Value="content/beast/beast1.jpg" />
-            <Scale X="1" Y="1" Z="1" />
-			<Position X="3437" Y="136" Z="6000" />
+            <Scale X="1.5" Y="1.5" Z="1.5" />
+			<Position X="25395" Y="129" Z="28163" />
 			<Rotation X="0" Y="0" Z="0" />
 			<RotationOffset X="0" Y="180" Z="0" />
             <AI>
