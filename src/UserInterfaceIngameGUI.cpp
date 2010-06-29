@@ -27,6 +27,7 @@ bool UserInterfaceIngameGUI::OnEvent(const irr::SEvent& event){
 	if(event.GUIEvent.EventType == irr::gui::EGET_BUTTON_CLICKED){
 		switch (event.GUIEvent.Caller->getID()) {
 		case TESTBUTTON:
+			printf("TestButton!\n");
 			return true;
 			break;
 		default:

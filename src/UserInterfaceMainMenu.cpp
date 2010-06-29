@@ -60,7 +60,9 @@ bool UserInterfaceMainMenu::OnEvent(const irr::SEvent& event){
 			printf("Unknown button");
 			My_Assert(0);
 		}
+
 	}
+	return true;
 }
 
 void UserInterfaceMainMenu::createButtons(){

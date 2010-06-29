@@ -31,16 +31,21 @@ void MasterEventReceiver::init(){
 
 bool MasterEventReceiver::OnEvent(const irr::SEvent& event){
 	if(event.EventType == irr::EET_GUI_EVENT){
-		if(ui && context == Context_Main_Menu) ui->OnEvent(event);
-		//if(ui && context == Context_Game_Menu) ui->OnEvent(event);
-		//if(ui && context == Context_Game_Run ) ui->OnEvent(event);
+		if(ui && context == Context_Main_Menu && ui->OnEvent(event))
+			return true;
+		if(ui && context == Context_Game_Menu && ui->OnEvent(event))
+			return true;
+		if(ui && context == Context_Game_Run && ui->OnEvent(event))
+			return true;
 	}
 	if(event.EventType == irr::EET_MOUSE_INPUT_EVENT){
-		if(cam) cam->OnEvent(event);
+		if(cam&&cam->OnEvent(event))
+			return true;
 	}
 	if(	event.EventType == irr::EET_MOUSE_INPUT_EVENT ||
-		event.EventType == irr::EET_KEY_INPUT_EVENT){
-		if(player) player->OnEvent(event);
+			event.EventType == irr::EET_KEY_INPUT_EVENT){
+		if(player&&player->OnEvent(event))
+			return true;
 	}
 
 	return false;
