@@ -127,7 +127,7 @@ void Drawer::draw(){
 									prot.X,prot.Y,prot.Z);
 
 				irr::gui::IGUIStaticText* text = device->getGUIEnvironment()->
-						addStaticText(debugtext,irr::core::recti(0,0,150,150));
+						addStaticText(debugtext,irr::core::recti(0,0,250,250));
 
 				text->setOverrideColor(irr::video::SColor(255,255,255,255));
 				text->draw();
@@ -135,7 +135,7 @@ void Drawer::draw(){
 			}
 
 			if(Player* p =game->getPlayer()){
-				drawHealthfor(p);
+
 				Object* o = p->getAi()->interactsWith();
 				if(o && o->getType() == Type_NPC){
 					drawHealthfor((Character*)o);

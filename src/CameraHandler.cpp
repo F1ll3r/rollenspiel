@@ -43,7 +43,7 @@ void CameraHandler::run(){
 	if(curpos.X < 1){
 		alpha -= timedelta/700;
 		recalc = true;
-	}else if(curpos.X > (irr::s32) device->getVideoDriver()->getScreenSize().Width - 1){
+	}else if(curpos.X > (irr::s32) device->getVideoDriver()->getScreenSize().Width - 2){
 		alpha += timedelta/700;
 		recalc = true;
 	}
@@ -52,7 +52,7 @@ void CameraHandler::run(){
 	if(curpos.Y < 1){
 		beta -= timedelta/2000;
 		recalc = true;
-	}else if(curpos.Y > (irr::s32) device->getVideoDriver()->getScreenSize().Height - 1){
+	}else if(curpos.Y > (irr::s32) device->getVideoDriver()->getScreenSize().Height - 2){
 		beta += timedelta/2000;
 		recalc = true;
 	}
