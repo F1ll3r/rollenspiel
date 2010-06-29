@@ -27,6 +27,12 @@ Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 	def 					= 0;
 	attackmode				= L"FinishHim";
 
+	menu = irr::core::recti(game->getVideoDriver()->getScreenSize().Width/2 - 425,
+			game->getVideoDriver()->getScreenSize().Height - 90,
+			game->getVideoDriver()->getScreenSize().Width/2 + 425,
+			game->getVideoDriver()->getScreenSize().Height
+			);
+
 	game->getGameEventManager()->registerForRunEvent(this);
 
 	while(xml->read()){
@@ -122,12 +128,17 @@ Player::~Player() {
 }
 
 bool Player::OnEvent(const irr::SEvent& event){
-	if(isDead()){
-		return false;
-	}
+
 
 	if(event.EventType == irr::EET_MOUSE_INPUT_EVENT){
 
+		if(isDead()){
+			return false;
+		}
+
+		if(menu.isPointInside(game->getIrrlichtDevice()->getCursorControl()->getPosition())){
+			return false;
+		}
 
 		if(	event.MouseInput.Event == irr::EMIE_LMOUSE_PRESSED_DOWN ||
 			event.MouseInput.Event == irr::EMIE_LMOUSE_DOUBLE_CLICK	||
@@ -250,13 +261,48 @@ bool Player::OnEvent(const irr::SEvent& event){
 			}else if( event.KeyInput.Key == irr::KEY_KEY_S){
 				mode = L"Sneak";
 			}else if( event.KeyInput.Key == irr::KEY_KEY_1){
-				attackmode = L"FinishHim";
-			}else if( event.KeyInput.Key == irr::KEY_KEY_2){
 				attackmode = L"PunchSwipe";
-			}else if( event.KeyInput.Key == irr::KEY_KEY_3){
-				attackmode = L"Swipe";
-			}else if( event.KeyInput.Key == irr::KEY_KEY_4){
+			}else if( event.KeyInput.Key == irr::KEY_KEY_2){
 				attackmode = L"kick";
+			}else if( event.KeyInput.Key == irr::KEY_KEY_3){
+				attackmode = L"FinishHim";
+			}else if( event.KeyInput.Key == irr::KEY_KEY_4){
+				attackmode = L"Swipe";
+			}else if( event.KeyInput.Key == irr::KEY_ESCAPE){
+				game->closeGame();
+			}else if( event.KeyInput.Key == irr::KEY_KEY_P){
+//				printf("\t\t<NPC>\n");
+//				printf("\t\t<Health Max=\"50\" Current=\"50\" />\n");
+//				printf("\t\t<Speed Sneak=\"0.05\" Normal=\"0.1\" Run=\"0.25\" />\n");
+//				printf("\t\t<Mesh Value=\"content/zombie/zombie.b3d\" />\n");
+//				printf("\t\t<Defense Value=\"60\" />\n");
+//				printf("\t\t<RotationOffset X=\"0\" Y=\"180\" Z=\"0\" />\n");
+//				printf("\t\t<Scale X=\"7\" Y=\"7\" Z=\"7\" />\n");
+//				printf("\t\t\t<Position X=\"%f\" Y=\"%f\" Z=\"%f\" />\n",getAbsolutePosition().X,getAbsolutePosition().Y,getAbsolutePosition().Z);
+//				printf("\t\t<Rotation X=\"0\" Y=\"0\" Z=\"0\" />\n");
+//				printf("\t\t<AI>\n");
+//				printf("\t\t\t<Walk Type=\"Normal\" SFrame=\"1\" EFrame=\"19\" Speed=\"15\" Loop=\"true\" />\n");
+//				printf("\t\t\t<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" /> \n");
+//				printf("\t\t\t<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" /> \n");
+//				printf("\t\t\t<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" /> \n");
+//				printf("\t\t\t<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" /> \n");
+//				printf("\t\t\t<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/> \n");
+//				printf("\t\t\t<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/> \n");
+//				printf("\t\t\t<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/> \n");
+//				printf("\t\t\t<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/> \n");
+//				printf("\t\t\t<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/> \n");
+//				printf("\t\t\t<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/> \n");
+//				printf("\t\t\t</Animation> \n");
+//				printf("\t\t<Team Value="1" /> \n");
+//				printf("\t\t</AI> \n");
+//				printf("\t\t<Attacks> \n");
+//				printf("\t\t<Attack Name="HeadButt" Label="" Dmg="10" Attack="80" Time="3000" TimeOffset="500"/> \n");
+//				printf("\t\t<Attack Name="Kick" Label="" Dmg="11" Attack="90" Time="2000" TimeOffset="300"/> \n");
+//				printf("\t\t<Attack Name="Punch" Label="" Dmg="7" Attack="100" Time="1800" TimeOffset="300"/> \n");
+//				printf("\t\t</Attacks> \n");
+//				printf("\t\t</NPC> \n");
+//				printf("\t\t \n");
+
 			}
 		}
 		if(event.KeyInput.Shift){

@@ -39,7 +39,6 @@ void GameEventManager::run(){
 	for(int i = 0; i < (irr::s32)timer.size();i++){
 		if(timer[i]->run(dtime)){
 			handleEvent(timer[i]->getEvent());
-			printf("Liefere event aus!\n");
 //			delete timer[i]->getEvent();
 //			delete timer[i];
 			timer.erase(i);
@@ -71,7 +70,6 @@ void GameEventManager::parseEvent(irr::io::IXMLReader* xml){
 void GameEventManager::handleTrigger(GameTrigger* t){
 	switch (t->getType()){
 		case Game_Trigger_Clock:
-				printf("Trage trigger ein!\n");
 				timer.push_back(static_cast<ClockGameTrigger*>(t));
 			break;
 		default:

@@ -30,6 +30,7 @@ void MasterEventReceiver::init(){
 }
 
 bool MasterEventReceiver::OnEvent(const irr::SEvent& event){
+	player = game->getPlayer();
 	if(event.EventType == irr::EET_GUI_EVENT){
 		if(ui && context == Context_Main_Menu && ui->OnEvent(event))
 			return true;

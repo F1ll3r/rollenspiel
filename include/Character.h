@@ -75,7 +75,7 @@ protected:
 	irr::s32 def;
 	irr::s32 health;
 	irr::s32 healthmax;
-	const wchar_t* mode;
+	irr::core::stringw mode;
 
 	irr::s32 exp;
 	irr::s32 nextlevel;
@@ -129,7 +129,11 @@ public:
 	}
 
 	const wchar_t *getMode() const {
-		return mode;
+		return mode.c_str();
+	}
+
+	void setMode(const wchar_t * m){
+		mode = m;
 	}
 
 	irr::s32 getHealthmax() const {

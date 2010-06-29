@@ -155,8 +155,9 @@ void Drawer::draw(){
 
 		case Context_Main_Menu:{
 			irr::video::IVideoDriver* driver = device->getVideoDriver();
+
 			if(!back){
-				irr::core::stringc file = L"content/back.png";
+				irr::core::stringc file = irr::core::stringc("content/loadscreen") + irr::core::stringc(rand()%2 + 1) + ".png";
 				back = driver->getTexture(file);
 			}
 

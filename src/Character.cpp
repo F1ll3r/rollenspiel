@@ -123,10 +123,10 @@ void Character::floutingText(const irr::video::SColor& c, const wchar_t* text){
 	irr::scene::IBillboardTextSceneNode* b = game->getSceneManager()->addBillboardTextSceneNode(f, text,
 			0, irr::core::dimension2df(wcslen(text)*8, 30),
 			irr::core::vector3df(0, 10, 0), -1, c, c);
-	irr::scene::ISceneNodeAnimator* anim = game->getSceneManager()->createDeleteAnimator(700);
+	irr::scene::ISceneNodeAnimator* anim = game->getSceneManager()->createDeleteAnimator(900);
 	b->addAnimator(anim);
 	anim->drop();
-	anim =  game->getSceneManager()->createFlyStraightAnimator(irr::core::vector3df(0,150,0)+getAbsolutePosition(),irr::core::vector3df(0,220,0)+getAbsolutePosition(),700);
+	anim =  game->getSceneManager()->createFlyStraightAnimator(irr::core::vector3df(0,150,0)+getAbsolutePosition(),irr::core::vector3df(0,230,0)+getAbsolutePosition(),900);
 	b->addAnimator(anim);
 	anim->drop();
 }
@@ -171,11 +171,11 @@ void Character::parseAttacks(irr::io::IXMLReader* xml) {
 
 irr::f32 Character::getSpeed() const {
 
-	if (wcscmp(mode, L"Sneak") == 0) {
+	if (mode == L"Sneak") {
 		return speedslow;
-	} else if (wcscmp(mode, L"Normal") == 0) {
+	} else if (mode ==  L"Normal") {
 		return speedsnorm;
-	} else if (wcscmp(mode, L"Run") == 0) {
+	} else if (mode ==  L"Run") {
 		return speedsfast;
 	}
 	My_Assert(0);
@@ -192,7 +192,7 @@ bool Character::isSneaky(const AttackGameEvent& a){
 		return false;
 	}
 
-	if(wcscmp(((Character*)a.getSrc())->mode,L"Sneak"))
+	if(wcscmp(((Character*)a.getSrc())->mode.c_str(),L"Sneak"))
 		return false;
 
 	irr::core::vector3df ang = getAbsolutePosition()-a.getSrc()->getAbsolutePosition();

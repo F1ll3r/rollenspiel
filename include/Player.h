@@ -21,7 +21,8 @@ class Player : public Character, public irr::IEventReceiver {
 		bool				ctrl;
 	}irrEventSate;
 
-	irr::core::stringw attackmode;
+	irr::core::stringw 		attackmode;
+	irr::core::recti		menu;
 
 public:
 	Player(Sector* s,Game* game,irr::io::IXMLReader* xml);

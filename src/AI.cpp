@@ -155,7 +155,14 @@ void AI::run(irr::s32 dtime){
 		dist -=  character->getAbsolutePosition();
 
 
-		if(dist.getLength() > 100){
+		if(dist.getLength() > 4500){
+			if(state.iswalking){
+				state.iswalking = false;
+				setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
+			}
+			state.wantsToInteractWith = 0;
+
+		}else if(dist.getLength() > 100){
 			Object* obj = state.wantsToInteractWith;
 			walkCharacterTo(state.wantsToInteractWith->getAbsolutePosition());
 			state.wantsToInteractWith = obj;

@@ -36,26 +36,33 @@ bool UserInterfaceIngameGUI::OnEvent(const irr::SEvent& event){
 	if(event.GUIEvent.EventType == irr::gui::EGET_BUTTON_CLICKED){
 		switch (event.GUIEvent.Caller->getID()) {
 		case sneakbutton:
+			game->getPlayer()->setMode(L"Sneak");
 			return true;
-			break;
+
 		case walkbutton:
+			game->getPlayer()->setMode(L"Normal");
 			return true;
-			break;
+
 		case runbutton:
+			game->getPlayer()->setMode(L"Run");
 			return true;
-			break;
+
 		case punchbutton:
+			game->getPlayer()->setAttackMode(L"PunchSwipe");
 			return true;
-			break;
+
 		case kickbutton:
+			game->getPlayer()->setAttackMode(L"kick");
 			return true;
-			break;
+
 		case sword1button:
+			game->getPlayer()->setAttackMode(L"FinishHim");
 			return true;
-			break;
+
 		case sword2button:
+			game->getPlayer()->setAttackMode(L"Swipe");
 			return true;
-			break;
+
 		default:
 			break;
 		}
@@ -155,11 +162,25 @@ void UserInterfaceIngameGUI::drawhealthbar(){
 			driver->getScreenSize().Width/2 - menubar->getSize().Width/2,
 			driver->getScreenSize().Height - menubar->getSize().Height);
 
+
 	target.UpperLeftCorner += irr::core::vector2di(510,34);
 	target.LowerRightCorner = target.UpperLeftCorner + irr::core::vector2di(bar->getSize().Width*prozent,bar->getSize().Height);
 
 
 	driver->draw2DImage(bar,target,src);
+
+	target.UpperLeftCorner += irr::core::vector2di(0,10);
+	target.LowerRightCorner =target.UpperLeftCorner + irr::core::vector2di(100,20);
+
+	irr::core::stringw msg = irr::core::stringw(game->getPlayer()->getExp());
+	msg += L"/";
+	msg += irr::core::stringw(game->getPlayer()->getNextlevel());
+
+	irr::gui::IGUIStaticText* text = device->getGUIEnvironment()->addStaticText(msg.c_str(),target);
+
+	text->setOverrideColor(irr::video::SColor(255,255,255,255));
+	text->draw();
+	text->remove();
 
 }
 void UserInterfaceIngameGUI::drawgui(){

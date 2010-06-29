@@ -248,6 +248,19 @@ void Game::load(irr::c8* savegame) {
 }
 
 void Game::closeGame() {
+	delete camerahandler;
+	delete gameeventmgr;
+	delete map;
+	delete player;
+	player = 0;
+	map = 0;
+
+	gameeventmgr = new GameEventManager(this);
+	camerahandler = new CameraHandler(this);
+	camerahandler->init();
+
+	scenemgr->clear();
+	switchContext(Context_Main_Menu);
 
 }
 
