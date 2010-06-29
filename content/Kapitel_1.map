@@ -126,11 +126,6 @@
 
         <Loading_Screen points="20" text="Erzeuge NPC" />
 
-        <NPC>
-            <Health Max="100" Current="100" />
-            <Speed Sneak="0.15" Normal="0.3" Run="0.45" />
-
-
 
 		<NPC>
             <Health Max="600" Current="600" />
