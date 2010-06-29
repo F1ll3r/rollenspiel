@@ -26,11 +26,12 @@ void UserInterfaceIngameGUI::draw(){
 	if(menubar&&driver){
 	driver->draw2DImage(menubar,irr::core::vector2di(
 			driver->getScreenSize().Width/2 - menubar->getSize().Width/2,
-			driver->getScreenSize().Height/3 - menubar->getSize().Height/2));
+			driver->getScreenSize().Height - menubar->getSize().Height));
 	}
 	for(irr::u32 i=0;i<Buttons.size();i++){
 		Buttons[i]->draw();
 	}
+	drawhealthbar();
 }
 bool UserInterfaceIngameGUI::OnEvent(const irr::SEvent& event){
 	My_Assert(event.EventType == irr::EET_GUI_EVENT);
@@ -57,6 +58,9 @@ void UserInterfaceIngameGUI::createButtons(){
 		irr::core::stringc file = irr::core::stringc("content/Layout.bmp");
 		menubar = driver->getTexture(file);
 	}
+}
+void UserInterfaceIngameGUI::drawhealthbar(){
+
 }
 void UserInterfaceIngameGUI::deleteButtons(){
 
