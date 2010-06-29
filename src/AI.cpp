@@ -364,6 +364,7 @@ void AI::doRandomStuff(){
 		dest.rotateXZBy((rand()%3600)/10.);
 		irr::core::vector3df f;
 		printf("%f %f %f\n",character->getAbsolutePosition().X,character->getAbsolutePosition().Y,character->getAbsolutePosition().Z);
+		printf("%f %f %f\n",character->getPosition().X,character->getPosition().Y,character->getPosition().Z);
 		printf("%f %f %f\n",dest.X,dest.Y,dest.Z);
 		dest += character->getAbsolutePosition();
 		dest.Y = sector->getGroundHightFromPos(dest);
