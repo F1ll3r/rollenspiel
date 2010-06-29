@@ -26,7 +26,7 @@ Player::Player(Sector*s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 	irrEventSate.shift		= false;
 	def 					= 0;
 
-	game->getGameEventManager()->registerForRunEvent(this,this->getID());
+	game->getGameEventManager()->registerForRunEvent(this);
 
 	while(xml->read()){
 		switch (xml->getNodeType()) {

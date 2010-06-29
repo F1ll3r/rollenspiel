@@ -131,7 +131,6 @@
             <Speed Sneak="0.15" Normal="0.3" Run="0.45" />
             <Defense Value="60" />
             <Mesh Value="content/ninja.b3d" />
-<!--            <Texture Value="content/nskinrd.jpg" />-->
             <Scale X="15" Y="15" Z="15" />
 			<Position X="4752.67" Y="197.63" Z="1255.92" />
 			<Rotation X="0" Y="0" Z="0" />
@@ -182,7 +181,7 @@
                     <Attack Type="Bite2" SFrame="211" EFrame="229" Speed="12" Loop="false"/>
                     <Attack Type="Stomp" SFrame="231" EFrame="269" Speed="12" Loop="false"/>
                     <Other Type="BlockHit" SFrame="121" EFrame="149" Speed="11" Loop="false"/>
-                    <Other Type="TakeHit" SFrame="271" EFrame="287" Speed="17" Loop="false"/>
+                    <Other Type="TakeHit" SFrame="276" EFrame="287" Speed="21" Loop="false"/>
                     <Other Type="Die" SFrame="381" EFrame="399" Speed="17" Loop="false"/>
                 </Animation>
                 <Team Value="1" />

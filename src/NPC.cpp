@@ -30,7 +30,7 @@ NPC::NPC(Sector* s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 	if(id == 0)
 		id	= game->getMap()->getFreeID();
 
-	game->getGameEventManager()->registerForRunEvent(this,id);
+	game->getGameEventManager()->registerForRunEvent(this);
 
 	while(xml->read()){
 		switch (xml->getNodeType()) {

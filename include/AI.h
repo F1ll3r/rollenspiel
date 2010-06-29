@@ -54,6 +54,7 @@ class AI : public irr::scene::IAnimationEndCallBack{
 		const Animation*		animation;
 		irr::core::vector3df	lastpos;
 		bool					dead;
+		irr::s32				team;
 	}state;
 
 
@@ -81,6 +82,10 @@ public:
 	void blockHit(const AttackGameEvent&);
 
 	void die();
+
+	irr::s32 getTeam(){
+		return state.team;
+	}
 
 	Object* interactsWith(){
 		return state.wantsToInteractWith;
