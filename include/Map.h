@@ -80,7 +80,7 @@ public:
 	}
 
 	irr::s32 getFreeID(){
-		srand(device->getTimer()->getRealTime());
+		//srand(device->getTimer()->getRealTime());
 		while(true){
 #if ((RAND_MAX+RAND_MAX+DYNAMIC_ID_RANGE_START) > DYNAMIC_ID_RANGE_END)
 			irr::s32 r = rand()%(DYNAMIC_ID_RANGE_END-DYNAMIC_ID_RANGE_START) + DYNAMIC_ID_RANGE_START;

@@ -96,6 +96,7 @@ void rand_seed(){
 	for (i = 0; i < sizeof timeval; i++)
 	seed = seed * (UCHAR_MAX + 2u) + ptr[i];
 
+	printf("seeding with %i",seed);
 	srand(seed);
 }
 

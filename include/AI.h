@@ -57,11 +57,20 @@ class AI : public irr::scene::IAnimationEndCallBack{
 		irr::s32				team;
 	}state;
 
+	//! struct used to bottle up the information
+	//!needet for Artificial Life simulation
+	struct{
+		bool 		usesAL;
+		irr::s32	timer;
+	}AL;
+
 
 	void parseAnimation(irr::io::IXMLReader* xml);
 	void setAnimation(const Animation* anim);
 
 	void dispatchInteraction();
+
+	void doRandomStuff();
 
 public:
 	AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml);
