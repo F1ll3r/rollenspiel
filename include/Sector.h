@@ -34,10 +34,6 @@ class Sector {
 	Game*							game;
 
 
-
-
-
-
 public:
 	Sector(Game* game,irr::io::IXMLReader* xml);
 	virtual ~Sector();
@@ -50,6 +46,8 @@ public:
 	irr::s32 getObjectCount(){
 		return database.size();
 	}
+
+	Object* createObject(irr::io::IXMLReader* xml);
 
 
 	//! adds Object to Database with o->getID() as key

@@ -36,20 +36,19 @@ Sector::Sector(Game* game,irr::io::IXMLReader* xml) {
 	while(xml->read()){
 		switch (xml->getNodeType()) {
 			case irr::io::EXN_ELEMENT:
-					if(wcscmp(xml->getNodeName(),L"Terrain") == 0){
-						My_Assert(terrain ==  NULL);
-						terrain = new TerrainMapObject(this,game,xml);
+				 if(wcscmp(xml->getNodeName(),L"Loading_Screen") == 0){
 
-					}else if(wcscmp(xml->getNodeName(),L"Loading_Screen") == 0){
+					game->getDrawer()->processLoadingScreen(
+							xml->getAttributeValueAsFloat(L"points")
+							,xml->getAttributeValue(L"text"));
 
-						game->getDrawer()->processLoadingScreen(
-									xml->getAttributeValueAsFloat(L"points")
-									,xml->getAttributeValue(L"text"));
-
-						game->getIrrlichtDevice()->sleep(15);
-
+					game->getIrrlichtDevice()->sleep(15);
 					}else if(wcscmp(xml->getNodeName(),L"Event") == 0){
 						game->getGameEventManager()->parseEvent(xml);
+
+					}else if(wcscmp(xml->getNodeName(),L"Terrain") == 0){
+						My_Assert(terrain ==  NULL);
+						terrain = new TerrainMapObject(this,game,xml);
 
 					}else if(wcscmp(xml->getNodeName(),L"MapObject") == 0){
 						map->addObject( new MapObject(this,game,xml));
@@ -123,6 +122,27 @@ Object* Sector::collidesWithObject(const irr::core::line3d<float>& line,irr::cor
 		}
 	}
 	return NULL;
+}
+
+Object* Sector::createObject(irr::io::IXMLReader* xml){
+	if(wcscmp(xml->getNodeName(),L"MapObject") == 0){
+		return ( new MapObject(this,game,xml));
+
+	}else if(wcscmp(xml->getNodeName(),L"LightObject") == 0){
+		return ( new LightObject(this,game,xml));
+
+	}else if(wcscmp(xml->getNodeName(),L"NPC") == 0){
+		return ( new NPC(this,game,xml));
+
+	}else if(wcscmp(xml->getNodeName(),L"Dealer") == 0){
+		return ( new Dealer(this,game,xml));
+
+	}else{
+		wprintf(L"Corrupt XML-file. Unexpected Node <%s>", xml->getNodeName());
+		My_Assert(0);
+	}
+
+
 }
 
 

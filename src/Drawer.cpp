@@ -133,6 +133,8 @@ void Drawer::draw(){
 				text->draw();
 				text->remove();
 			}
+
+
 		}
 			break;
 

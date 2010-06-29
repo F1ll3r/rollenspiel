@@ -91,13 +91,13 @@ NPC::NPC(Sector* s,Game* game,irr::io::IXMLReader* xml):Character(s,game) {
 					irr::scene::IAnimatedMesh* m =
 							device->getSceneManager()->getMesh(mesh.c_str());
 
-					if(texture.size() != 0){
-                        node->setMaterialTexture(0,game->getVideoDriver()->getTexture(texture));
-                    }
-
 					My_Assert(m);
 					node = device->getSceneManager()
 							->addAnimatedMeshSceneNode(m,0,id,pos,rot,scale);
+
+					if(texture.size() != 0){
+                        node->setMaterialTexture(0,game->getVideoDriver()->getTexture(texture));
+                    }
 
 					setRotation(rot);
 

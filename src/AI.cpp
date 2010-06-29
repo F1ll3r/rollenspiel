@@ -247,9 +247,8 @@ void AI::run(irr::s32 dtime){
 		AL.timer -= dtime;
 		if(AL.timer <=0){
 			AL.timer = 0;
-			printf("doing random stuff\n");
 			doRandomStuff();
-			AL.timer = rand() % 1000;
+			AL.timer = (rand()+1000) % 10000;
 		}
 	}
 }
@@ -354,25 +353,26 @@ void AI::init(){
 		AL.usesAL = false;
 	}else{
 		AL.usesAL = true;
-		AL.timer = rand() % 10000;
+		AL.timer = (rand()+1000) % 50000;
 	}
 }
 
 void AI::doRandomStuff(){
-//	if(rand()%3 == 0){
-		irr::core::vector3df dest(rand()%100,0,0);
-		dest.rotateXZBy((rand()%3600)/10.);
+	if(rand()%3 == 0){
+		irr::core::vector3df dest(rand()%500,0,0);
+		if(rand()%5 == 0){
+			dest.rotateXZBy((rand()%3600)/10.);
+		}else{
+			dest.rotateXZBy((rand()%200)/10. + character->getRotation().X);
+		}
 		irr::core::vector3df f;
-		printf("%f %f %f\n",character->getAbsolutePosition().X,character->getAbsolutePosition().Y,character->getAbsolutePosition().Z);
-		printf("%f %f %f\n",dest.X,dest.Y,dest.Z);
 		dest += character->getAbsolutePosition();
 		dest.Y = sector->getGroundHightFromPos(dest);
-		printf("%f %f %f\n",dest.X,dest.Y,dest.Z);
 		if(sector->collidesWithObject(irr::core::line3df(character->getAbsolutePosition(),dest),f,character)){
 			return;
 		}
-		walkCharacterTo(character->getAbsolutePosition()+dest);
-//	}
+		walkCharacterTo(dest);
+	}
 }
 
 void AI::OnAnimationEnd(irr::scene::IAnimatedMeshSceneNode* node){

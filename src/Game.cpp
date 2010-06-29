@@ -23,44 +23,43 @@
 using namespace irr;
 
 Game::Game() {
-	importer 		= 	new Importer(this);
-	exporter 		= 	new Exporter(this);
+	importer = new Importer(this);
+	exporter = new Exporter(this);
 
-	camerahandler 	= 	new CameraHandler(this);
-	drawer 			= 	new Drawer(this);
-	ui				=	new UserInterfaceManager(this);
+	camerahandler = new CameraHandler(this);
+	drawer = new Drawer(this);
+	ui = new UserInterfaceManager(this);
 
-	gameeventmgr 	= 	new GameEventManager(this);
-	mastereventmgr	= 	new MasterEventReceiver(this);
+	gameeventmgr = new GameEventManager(this);
+	mastereventmgr = new MasterEventReceiver(this);
 
-	device 			= 	NULL;
-	driver 			= 	NULL;
-	scenemgr 		= 	NULL;
-	player 			= 	NULL;
-	map 			= 	NULL;
-	settings		=	NULL;
+	device = NULL;
+	driver = NULL;
+	scenemgr = NULL;
+	player = NULL;
+	map = NULL;
+	settings = NULL;
 }
-
 
 Game::~Game() {
 
 }
 
-void parseArgs(Settings* s,int argc, const char* argv[]){
-	for(int i=0;i<argc;i++){
-		if(strlen(argv[i]) < 2  || argv[i][0] != '-'){
+void parseArgs(Settings* s, int argc, const char* argv[]) {
+	for (int i = 0; i < argc; i++) {
+		if (strlen(argv[i]) < 2 || argv[i][0] != '-') {
 			printf("Error: Wrong arguments");
 			exit(666);
 		}
-		switch(argv[i][1]){
+		switch (argv[i][1]) {
 		case 'x':
-			s->resolution.Width = atoi(argv[i]+2);
+			s->resolution.Width = atoi(argv[i] + 2);
 			break;
 		case 'y':
-			s->resolution.Height = atoi(argv[i]+2);
+			s->resolution.Height = atoi(argv[i] + 2);
 			break;
 		case 'd':
-			s->depth = atoi(argv[i]+2);
+			s->depth = atoi(argv[i] + 2);
 			break;
 		case 'f':
 			s->fullscreen = true;
@@ -82,32 +81,31 @@ void parseArgs(Settings* s,int argc, const char* argv[]){
 	}
 }
 
-
-void rand_seed(){
+void rand_seed() {
 	time_t timeval; /* Current time. */
 	unsigned char *ptr; /* Type punned pointed into timeval. */
 	unsigned seed; /* Generated seed. */
 	size_t i;
 
-	timeval = time (NULL);
+	timeval = time(NULL);
 	ptr = (unsigned char *) &timeval;
 
 	seed = 0;
 	for (i = 0; i < sizeof timeval; i++)
-	seed = seed * (UCHAR_MAX + 2u) + ptr[i];
+		seed = seed * (UCHAR_MAX + 2u) + ptr[i];
 
-	printf("seeding with %i",seed);
+	printf("seeding with %i", seed);
 	srand(seed);
 }
 
-void Game::init( int argc, const char* argv[] ){
+void Game::init(int argc, const char* argv[]) {
 
 	rand_seed();
 
 	settings = new Settings();
 	*settings = readSettings();
 
-	parseArgs(settings,argc-1,argv+1);
+	parseArgs(settings, argc - 1, argv + 1);
 
 	irr::SIrrlichtCreationParameters s;
 
@@ -128,14 +126,12 @@ void Game::init( int argc, const char* argv[] ){
 	driver = device->getVideoDriver();
 	scenemgr = device->getSceneManager();
 
-
 	drawer->init();
 
 	switchContext(Context_Loadung_Screen);
 	ui->init();
 	ui->createWindows();
 	drawer->drawLoadingScreen();
-
 
 	importer->init();
 	exporter->init();
@@ -145,31 +141,62 @@ void Game::init( int argc, const char* argv[] ){
 
 	device->setEventReceiver(mastereventmgr);
 
-	drawer->processLoadingScreen(1,L"Loading Font");
+	drawer->processLoadingScreen(1, L"Loading Font");
 
-	irr::gui::IGUIFont* font = device->getGUIEnvironment()->getFont("content/myfont.xml");
+	irr::gui::IGUIFont* font = device->getGUIEnvironment()->getFont(
+			"content/myfont.xml");
 	irr::gui::IGUISkin* skin = device->getGUIEnvironment()->getSkin();
 	skin->setFont(font);
 	device->getGUIEnvironment()->setSkin(skin);
 
-
-	irr::core::stringw str;
-
-	//TODO: do some cashing
-	for(int i = 0; i<100;i++){
-		device->sleep(2);
-		str = L"init";
-		str += i;
-		drawer->processLoadingScreen(1,str.c_str());
-	}
+	drawer->processLoadingScreen(1, L"Loading Images");
+	driver->getTexture("content/live.bmp");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/loadscreen1.png");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/loadscreen2.png");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/portal1.bmp");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/portal2.bmp");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/portal3.bmp");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/portal4.bmp");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/portal5.bmp");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/portal6.bmp");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/portal7.bmp");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/portal8.bmp");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/portal9.bmp");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/punch.bmp");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/run.bmp");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/schleichen.bmp");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/sword.bmp");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/sword2 .bmp");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/walk.bmp");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/Layout.bmp");
+	drawer->processLoadingScreen(1,0);
+	driver->getTexture("content/kick.bmp");
+	drawer->processLoadingScreen(100,0);
 }
 
+int Game::run() {
 
-int Game::run(){
+	while (device->run()) {
 
-	while(device->run()){
-
-		switch(context){
+		switch (context) {
 
 		case Context_Game_Menu:
 			break;
@@ -205,8 +232,7 @@ int Game::run(){
 	return 0;
 }
 
-
-void Game::startGame(){
+void Game::startGame() {
 	switchContext(Context_Loadung_Screen);
 	drawer->resetProcess();
 	drawer->drawLoadingScreen();
@@ -217,65 +243,58 @@ void Game::startGame(){
 	switchContext(Context_Game_Run);
 }
 
-
-void Game::load(irr::c8* savegame){
-
-}
-
-
-void Game::closeGame(){
+void Game::load(irr::c8* savegame) {
 
 }
 
+void Game::closeGame() {
 
-void Game::switchContext(Game_Context context){
+}
+
+void Game::switchContext(Game_Context context) {
 	//! TODO: do real context switching
 	this->context = context;
 	ui->switchContext(context);
 	mastereventmgr->switchContext(context);
 }
 
-
-Game_Context Game::getContext(){
+Game_Context Game::getContext() {
 	return context;
 }
-
 
 Settings Game::getSettings() const {
 	return *settings;
 }
 
-
-void Game::setSettings(Settings s){
+void Game::setSettings(Settings s) {
 	My_Assert(context == Context_Main_Menu);
 	// TODO: do real settings setting xD
 	*settings = s;
 }
-Settings Game::readSettings(){
-		Settings rset;
-		std::ifstream fin("Settings.dat", std::ios::binary);
-		if(fin){
-			fin.read((char *)(&rset), sizeof(rset));
-			fin.close();
-		}
-		else{
-			rset = setStandartSettings();
-			writeSettings(rset);
-			return rset;
-		}
+Settings Game::readSettings() {
+	Settings rset;
+	std::ifstream fin("Settings.dat", std::ios::binary);
+	if (fin) {
+		fin.read((char *) (&rset), sizeof(rset));
+		fin.close();
+	} else {
+		rset = setStandartSettings();
+		writeSettings(rset);
 		return rset;
+	}
+	return rset;
 }
-bool Game::writeSettings(Settings s){
+bool Game::writeSettings(Settings s) {
 	std::ofstream fout("Settings.dat", std::ios::binary);
-	if(fout){
-		fout.write((char *)(&s), sizeof(s));
+	if (fout) {
+		fout.write((char *) (&s), sizeof(s));
 		fout.close();
 		return true;
 	}
 	fout.close();
 	return false;
 }
-Settings Game::setStandartSettings(){
+Settings Game::setStandartSettings() {
 	Settings s;
 	s.anti_aliasing = 8;
 	s.depth = 32;
@@ -284,8 +303,7 @@ Settings Game::setStandartSettings(){
 	s.grass = 100;
 	s.vsync = false;
 	s.shadow = true;
-	s.resolution = irr::core::dimension2du(1152,864);
+	s.resolution = irr::core::dimension2du(1152, 864);
 	return s;
 }
-
 
