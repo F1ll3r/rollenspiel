@@ -21,6 +21,8 @@ class Player : public Character, public irr::IEventReceiver {
 		bool				ctrl;
 	}irrEventSate;
 
+
+
 public:
 	Player(Sector* s,Game* game,irr::io::IXMLReader* xml);
 	Player(Sector*s,Game* game);
@@ -32,6 +34,10 @@ public:
 
 	virtual irr::s32 getID(){
 		return 1;
+	}
+
+	virtual Onject_Type getType(){
+		return Type_Player;
 	}
 };
 

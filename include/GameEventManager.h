@@ -37,7 +37,7 @@ public:
 
 	void registerForRunEvent(Object* o);
 
-	void triggerDeath(Object* o);
+	void triggerDeath(Character* killed,Character* by);
 
 };
 

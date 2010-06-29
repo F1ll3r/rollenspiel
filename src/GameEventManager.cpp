@@ -12,6 +12,7 @@
 #include "IrrlichtDevice.h"
 #include "GameEvent.h"
 #include "GameTrigger.h"
+#include "Character.h"
 
 GameEventManager::GameEventManager(Game* game) {
 	this->game 	 = game;
@@ -92,6 +93,7 @@ void GameEventManager::registerForRunEvent(Object* o){
 	runMap.insert(std::pair<irr::s32,IGameEventHandler*>(o->getID(),o));
 }
 
-void GameEventManager::triggerDeath(Object* o){
-
+void GameEventManager::triggerDeath(Character* killed,Character* by){
+	KillGameEvent k(killed->getHealthmax() * killed->getDefense() + killed->getExp(),killed,by);
+	by->handleEvent(k);
 }

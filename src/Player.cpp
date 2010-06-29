@@ -200,9 +200,7 @@ bool Player::OnEvent(const irr::SEvent& event){
 			irrEventSate.leftmouse = true;
 			irr::scene::ISceneCollisionManager* collisionManager = game->getSceneManager()->getSceneCollisionManager();
 			irr::core::line3d<float> line  = collisionManager->getRayFromScreenCoordinates(
-					 game->getIrrlichtDevice()->getCursorControl()->getPosition(),
-					 game->getSceneManager()->getActiveCamera()
-					);
+					 game->getIrrlichtDevice()->getCursorControl()->getPosition());
 
 			irr::core::vector3df tmpv;
 

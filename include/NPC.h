@@ -26,6 +26,9 @@ public:
 		return rotoffset;
 	}
 
+	virtual Onject_Type getType(){
+		return Type_NPC;
+	}
 
 	irr::s32 getID(){
 		return id;

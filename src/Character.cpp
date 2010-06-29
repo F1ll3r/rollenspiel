@@ -18,6 +18,8 @@ Character::Character(Sector* s, Game* game) :
 	clickable = true;
 	ground = false;
 	collidable = true;
+	exp = 0;
+	nextlevel = 250;
 }
 
 Character::~Character() {
@@ -49,8 +51,6 @@ void Character::die() {
 	clickable = false;
 	collidable = false;
 	ai->die();
-	game->getGameEventManager()->triggerDeath(this);
-
 }
 
 void Character::handleEvent(const GameEvent& e) {
@@ -58,6 +58,13 @@ void Character::handleEvent(const GameEvent& e) {
 	case Game_Event_Type_Run:
 		if (ai)
 			ai->run((static_cast<const RunGameEvent&> (e)).getDeltaTime());
+		if(exp>nextlevel){
+			floutingText(irr::video::SColor(255,255,219,89),L"Level Up");
+			nextlevel *= 1.5;
+			healthmax *= 1.3;
+			def += 10;
+			health = healthmax;
+		}
 		break;
 	case Game_Event_Type_Attack: {
 		const AttackGameEvent& a = static_cast<const AttackGameEvent&> (e);
@@ -88,11 +95,18 @@ void Character::handleEvent(const GameEvent& e) {
 			if (health <= 0) {
 				health = 0;
 				die();
+				game->getGameEventManager()->triggerDeath(this,(Character*)a.getSrc());
 			}
 			ai->takeHit(a);
 
 		}
 	}
+	break;
+	case Game_Event_Type_Kill:{
+		this->exp += (static_cast<const KillGameEvent&> (e)).getExp();
+	}
+	break;
+
 
 	}
 }
@@ -101,7 +115,7 @@ void Character::floutingText(const irr::video::SColor& c, const wchar_t* text){
 	irr::gui::IGUIFont* f =
 				game->getIrrlichtDevice()->getGUIEnvironment()->getSkin()->getFont();
 	irr::scene::IBillboardTextSceneNode* b = game->getSceneManager()->addBillboardTextSceneNode(f, text,
-			0, irr::core::dimension2df(50, 30),
+			0, irr::core::dimension2df(wcslen(text)*8, 30),
 			irr::core::vector3df(0, 10, 0), -1, c, c);
 	irr::scene::ISceneNodeAnimator* anim = game->getSceneManager()->createDeleteAnimator(700);
 	b->addAnimator(anim);
@@ -177,17 +191,17 @@ bool Character::isSneaky(const AttackGameEvent& a){
 
 	irr::core::vector3df ang = getAbsolutePosition()-a.getSrc()->getAbsolutePosition();
 	ang = ang.getHorizontalAngle();
-	if (ang.X > 180.f)
-		ang.X-=180.f;
+	if (ang.Y > 180.f)
+		ang.Y-=180.f;
 
-	irr::f32 ang2 = a.getSrc()->getRotation().X;
+	irr::f32 ang2 = a.getSrc()->getRotation().Y;
 	if (ang2 > 180.f)
 		ang2-=180.f;
 
-	if(irr::core::equals(ang.X,ang2,110.f)){
-		return false;
+	if(irr::core::equals(ang.Y,ang2,45.f)){
+		return true;
 	}
 
-	return true;
+	return false;
 
 }

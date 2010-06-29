@@ -134,6 +134,20 @@ void Drawer::draw(){
 				text->remove();
 			}
 
+			if(Player* p =game->getPlayer()){
+				drawHealthfor(p);
+				Object* o = p->getAi()->interactsWith();
+				if(o && o->getType() == Type_NPC){
+					drawHealthfor((Character*)o);
+				}
+				irr::core::vector3df t;
+				o = p->getSector()->getObjectFromScreenCoordinates(
+						device->getCursorControl()->getPosition().X,
+						device->getCursorControl()->getPosition().Y, t,p);
+				if(o && o->getType() == Type_NPC){
+					drawHealthfor((Character*)o);
+				}
+			}
 
 		}
 			break;
@@ -152,9 +166,25 @@ void Drawer::draw(){
 
 		}
 
-
 		default:
 			break;
 	}
+}
+
+void Drawer::drawHealthfor(Character* c){
+	irr::scene::ISceneCollisionManager* collisionManager = game->getSceneManager()->getSceneCollisionManager();
+	irr::video::IVideoDriver* driver = device->getVideoDriver();
+
+	irr::core::position2d<irr::s32> pos = collisionManager->getScreenCoordinatesFrom3DPosition(c->getAbsolutePosition());
+
+	driver->draw2DRectangleOutline(irr::core::recti(
+					pos.X-1,pos.Y-1,pos.X+50,pos.Y+5),
+					irr::video::SColor(255,255,255,255));
+
+	driver->draw2DRectangle(irr::video::SColor(255,255,14,14),irr::core::recti(
+			pos.X,pos.Y,(irr::s32) pos.X+50*(c->getHealth()/(irr::f32)c->getHealthmax()),pos.Y+5));
 
 }
+
+
+

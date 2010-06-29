@@ -128,7 +128,7 @@
 
 
 		<NPC>
-            <Health Max="600" Current="600" />
+            <Health Max="600" Current="6" />
             <Speed Sneak="0.10" Normal="0.20" Run="0.35" />
             <Defense Value="45" />
             <Mesh Value="content/beast/beast.b3d" />
@@ -148,7 +148,7 @@
                     <Attack Type="Bite" SFrame="196" EFrame="209" Speed="12" Loop="false"/>
                     <Attack Type="Bite2" SFrame="211" EFrame="229" Speed="12" Loop="false"/>
                     <Attack Type="Stomp" SFrame="231" EFrame="269" Speed="12" Loop="false"/>
-                    <Other Type="BlockHit" SFrame="121" EFrame="149" Speed="11" Loop="false"/>
+                    <Other Type="BlockHit" SFrame="125" EFrame="149" Speed="17" Loop="false"/>
                     <Other Type="TakeHit" SFrame="271" EFrame="287" Speed="17" Loop="false"/>
                     <Other Type="Die" SFrame="381" EFrame="399" Speed="17" Loop="false"/>
                 </Animation>

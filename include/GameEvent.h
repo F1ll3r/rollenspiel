@@ -14,7 +14,8 @@ enum Game_Event_Type {
 	Game_Event_Type_Run,
 	Game_Event_Type_Attack,
 	Game_Event_Type_CreateObject,
-	Game_Event_Type_Aggressive
+	Game_Event_Type_Aggressive,
+	Game_Event_Type_Kill
 };
 
 class GameEvent {
@@ -113,6 +114,25 @@ public:
 	irr::s32 getDowntime() const {
 		return downtime;
 	}
+};
+
+class KillGameEvent: public GameEvent {
+	irr::s32 exp;
+public:
+	KillGameEvent(irr::s32 exp,Object* src,Object*dest) :
+		GameEvent(src, dest) {
+		this->exp = exp;
+	}
+
+	virtual Game_Event_Type getEventType() const{
+		return Game_Event_Type_Kill;
+	}
+
+	irr::s32 getExp() const {
+		return exp;
+	}
+
+
 };
 
 #endif /* GAMEEVENT_H_ */

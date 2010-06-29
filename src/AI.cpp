@@ -179,15 +179,17 @@ void AI::run(irr::s32 dtime){
 			}else if(dist <= 4000 && wcscmp(game->getPlayer()->getMode(),L"Run") == 0){
 				interactWith(game->getPlayer(),Interaction_Attake);
 			}else if(dist <= 1000 && wcscmp(game->getPlayer()->getMode(),L"Sneak") == 0){
-				irr::f32 ang = (character->getAbsolutePosition()-game->getPlayer()->getAbsolutePosition()).getHorizontalAngle().X;
+				irr::f32 ang = (character->getAbsolutePosition()-game->getPlayer()->getAbsolutePosition()).getHorizontalAngle().Y;
 				if (ang > 180.f)
 					ang-=180.f;
-				irr::f32 ang2 = character->getRotation().X;
+				irr::f32 ang2 = character->getRotation().Y;
 				if (ang2 > 180.f)
 					ang2-=180.f;
 
-				if(irr::core::equals(ang,ang2,70.f)){
-					interactWith(game->getPlayer(),Interaction_Attake);
+				if(!irr::core::equals(ang,ang2,70.f)){
+					irr::core::vector3df t;
+					if(0 == sector->collidesWithObject(irr::core::line3df(character->getAbsolutePosition(),game->getPlayer()->getAbsolutePosition()),t,character))
+						interactWith(game->getPlayer(),Interaction_Attake);
 				}
 			}
 
@@ -248,7 +250,7 @@ void AI::run(irr::s32 dtime){
 		if(AL.timer <=0){
 			AL.timer = 0;
 			doRandomStuff();
-			AL.timer = (rand()+1000) % 10000;
+			AL.timer = (rand()+1000) % 13000;
 		}
 	}
 }

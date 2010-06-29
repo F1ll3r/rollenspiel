@@ -77,6 +77,9 @@ protected:
 	irr::s32 healthmax;
 	const wchar_t* mode;
 
+	irr::s32 exp;
+	irr::s32 nextlevel;
+
 	void parsInventory(irr::io::IXMLReader* xml);
 
 	std::map<irr::core::stringw, Attacks*> attacks;
@@ -100,7 +103,7 @@ public:
 
 	virtual irr::f32 getSpeed() const;
 
-	irr::s32 getTeam(){
+	irr::s32 getTeam() {
 		return ai->getTeam();
 	}
 
@@ -110,6 +113,17 @@ public:
 	irr::s32 getDefense();
 
 	virtual AttackGameEvent *attack() =0;
+	irr::s32 getExp() const {
+		return exp;
+	}
+
+	irr::s32 getNextlevel() const {
+		return nextlevel;
+	}
+
+	void setNextlevel(irr::s32 nextlevel) {
+		this->nextlevel = nextlevel;
+	}
 
 	const wchar_t *getMode() const {
 		return mode;

@@ -20,6 +20,9 @@ class Drawer {
 	irr::core::stringw 		msg;
 	bool					debuginfo;
 	wchar_t*				debugtext;
+
+	void drawHealthfor(Character*);
+
 public:
 	Drawer(Game* game);
 	virtual ~Drawer();
@@ -33,13 +36,12 @@ public:
 	//!		(more than 100 has no effect)
 	//! and displays msg or if msg is Null displays the old message
 	//! update == true will course a call of drawLoadingScreen()
-	void processLoadingScreen(irr::f32 p,const wchar_t* msg,bool update = true);
+	void processLoadingScreen(irr::f32 p,const wchar_t* msg = 0,bool update = true);
 
 	//! This function is intended to be called by game->run()
 	void draw();
 
 	//! returns the current process in percent
-	//! value is undefined
 	irr::f32 getProcess(){
 		return process;
 	}
