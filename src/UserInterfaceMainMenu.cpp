@@ -48,8 +48,9 @@ bool UserInterfaceMainMenu::OnEvent(const irr::SEvent& event){
 
 			break;
 		case UI_Button_Main_New:
+
 			UI_Manager->switchContext(Context_Game_Run);
-			//UI_Magager->switchWindow(UI_IngameGUI);
+			UI_Manager->switchWindow(UI_IngameGUI);
 			game->startGame();
 			break;
 		case UI_Button_Main_Options:

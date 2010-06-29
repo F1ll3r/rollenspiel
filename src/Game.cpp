@@ -184,7 +184,7 @@ int Game::run(){
 			scenemgr->drawAll();
 			gameeventmgr->triggerDrawEvent();
 			drawer->draw();
-			//ui->draw();
+			ui->draw();
 			driver->endScene();
 			break;
 
