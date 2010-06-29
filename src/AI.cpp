@@ -102,6 +102,9 @@ void AI::parseAnimation(irr::io::IXMLReader* xml){
 							std::make_pair<irr::core::stringw,Animation*>(anim->getType(),anim)
 							);
 
+				}else if(wcscmp(xml->getNodeName(),L"Team") == 0){
+					state.team = xml->getAttributeValueAsInt(L"Value");
+
 				}
 
 				break;
