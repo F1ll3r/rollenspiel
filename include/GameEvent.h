@@ -11,7 +11,10 @@
 #include "GlobalSettings.h"
 
 enum Game_Event_Type {
-	Game_Event_Type_Run, Game_Event_Type_Attack
+	Game_Event_Type_Run,
+	Game_Event_Type_Attack,
+	Game_Event_Type_CreateObject,
+	Game_Event_Type_Aggressive
 };
 
 class GameEvent {

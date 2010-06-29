@@ -10,10 +10,13 @@
 
 #include "GlobalSettings.h"
 
+
 enum Game_Trigger_Type {
 	Game_Trigger_Unknown,
 	Game_Trigger_Clock,
-	Game_Trigger_Attack
+	Game_Trigger_Attack,
+	Game_Trigger_Death,
+	Game_Trigger_ObjectEnter
 };
 
 
@@ -65,4 +68,24 @@ public:
 	}
 };
 
+class GameTriggerAttack : public GameTrigger{
+	GameTriggerAttack(): GameTrigger(0){
+
+	}
+
+};
+
+class GameTriggerDeath : public GameTrigger{
+	GameTriggerDeath():GameTrigger(0){
+
+	}
+
+};
+
+class GameTriggerObjectEnter : public GameTrigger{
+	GameTriggerObjectEnter(): GameTrigger(0){
+
+	}
+
+};
 #endif /* GAMETRIGGER_H_ */
