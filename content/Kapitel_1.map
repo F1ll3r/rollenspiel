@@ -18,7 +18,7 @@
 			<Texture Value="content/Kapitel_1/terrain-texture.jpg" />
 			<Detailtexture Value="content/Kapitel_1/detailtex.jpg" />
 
-			<Grass Density="800">
+			<Grass Density="700">
 				<Grassmap Value="content/Kapitel_1/terrain-grassmap.png" />
 				<Texture Value="content/Kapitel_1/grass.png" />
 				<Colormap Value="content/Kapitel_1/terrain-grasscol.bmp" />
@@ -69,7 +69,7 @@
 					-Talk:
 
 			-->
-        <Loading_Screen points="15" text="Parse Events" />
+        <Loading_Screen points="1" text="Parse Events" />
 
         <Event>
 			<Trigger Type="Enter" Actor="Player">
@@ -82,7 +82,6 @@
 
 		<Loading_Screen points="1" text="Lade Objekte" />
 
-		<Loading_Screen points="5"/>
 
 		<MapObject>
 			<Mesh Value="content/proprietary/chapel_obj.obj" />
@@ -114,8 +113,6 @@
 			<Collision Ground="false" Click="false" Collide="true">
 		</MapObject>
 
-		<Loading_Screen points="10"/>
-
         <!--
             Team:
                 0 Non
@@ -124,7 +121,7 @@
         -->
 
 
-        <Loading_Screen points="20" text="Erzeuge NPC" />
+        <Loading_Screen points="10" text="Erzeuge NPC" />
 
 
 		<NPC>
@@ -195,8 +192,871 @@
 		</NPC>
 
 
+		<NPC>
+		<Health Max="50" Current="50" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="60" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="1012.915405" Y="504.708466" Z="4097.375000" />
+		<Rotation X="0" Y="141" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="10" Attack="80" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="11" Attack="90" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="7" Attack="100" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
 
-		<Loading_Screen points="12" text="Erzeuge Spieler" />
+				<NPC>
+		<Health Max="52" Current="51" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="60" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="4820.104004" Y="219.658966" Z="4795.710938" />
+		<Rotation X="0" Y="288" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="10" Attack="80" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="11" Attack="91" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="7" Attack="100" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="51" Current="50" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="62" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="2350.348145" Y="146.528076" Z="6489.438477" />
+		<Rotation X="0" Y="99" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="10" Attack="82" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="11" Attack="92" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="7" Attack="101" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="52" Current="52" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="64" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="2365.057861" Y="109.798233" Z="8101.022461" />
+		<Rotation X="0" Y="277" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="10" Attack="80" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="11" Attack="95" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="7" Attack="104" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="57" Current="57" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="62" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="5209.546387" Y="113.626366" Z="7786.565430" />
+		<Rotation X="0" Y="80" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="10" Attack="80" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="11" Attack="93" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="7" Attack="107" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="54" Current="50" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="68" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="6678.783691" Y="305.234314" Z="6107.048828" />
+		<Rotation X="0" Y="279" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="10" Attack="81" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="11" Attack="98" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="7" Attack="100" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="58" Current="53" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="71" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="5104.195313" Y="523.369019" Z="10989.126953" />
+		<Rotation X="0" Y="81" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="10" Attack="81" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="11" Attack="95" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="8" Attack="108" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="62" Current="53" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="73" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="5237.458984" Y="579.689453" Z="11368.165039" />
+		<Rotation X="0" Y="252" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="10" Attack="90" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="11" Attack="96" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="7" Attack="106" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="53" Current="52" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="75" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="5425.416016" Y="567.134338" Z="11235.671875" />
+		<Rotation X="0" Y="308" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="10" Attack="89" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="12" Attack="102" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="7" Attack="104" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="67" Current="64" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="77" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="4999.207031" Y="303.960358" Z="14080.940430" />
+		<Rotation X="0" Y="168" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="10" Attack="96" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="11" Attack="98" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="8" Attack="105" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="71" Current="66" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="76" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="4302.666504" Y="254.192551" Z="16466.517578" />
+		<Rotation X="0" Y="77" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="10" Attack="85" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="12" Attack="98" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="8" Attack="106" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="74" Current="56" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="73" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="6216.751465" Y="150.547333" Z="17470.947266" />
+		<Rotation X="0" Y="118" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="12" Attack="88" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="11" Attack="105" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="7" Attack="107" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="66" Current="54" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="80" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="9595.644531" Y="259.443481" Z="17386.263672" />
+		<Rotation X="0" Y="182" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="12" Attack="103" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="12" Attack="101" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="8" Attack="107" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="74" Current="61" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="65" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="10418.638672" Y="529.581482" Z="17702.050781" />
+		<Rotation X="0" Y="73" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="10" Attack="97" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="11" Attack="109" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="7" Attack="112" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="65" Current="58" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="68" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="12409.341797" Y="289.733429" Z="15565.330078" />
+		<Rotation X="0" Y="271" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="11" Attack="107" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="11" Attack="114" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="9" Attack="107" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="63" Current="50" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="82" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="13540.905273" Y="6.954742" Z="16148.624023" />
+		<Rotation X="0" Y="190" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="10" Attack="105" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="13" Attack="91" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="7" Attack="111" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="72" Current="50" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="82" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="13982.514648" Y="3.000000" Z="17498.914063" />
+		<Rotation X="0" Y="164" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="12" Attack="88" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="11" Attack="111" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="8" Attack="112" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="94" Current="82" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="61" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="15308.812500" Y="107.228638" Z="18433.474609" />
+		<Rotation X="0" Y="206" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="13" Attack="106" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="11" Attack="120" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="8" Attack="126" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="54" Current="50" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="61" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="17050.964844" Y="93.000000" Z="18140.220703" />
+		<Rotation X="0" Y="61" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="10" Attack="109" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="13" Attack="107" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="7" Attack="134" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="95" Current="70" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="81" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="17922.328125" Y="75.000000" Z="18946.123047" />
+		<Rotation X="0" Y="314" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="12" Attack="108" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="13" Attack="102" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="7" Attack="133" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="78" Current="64" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="76" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="18367.273438" Y="66.000000" Z="20749.744141" />
+		<Rotation X="0" Y="88" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="13" Attack="93" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="12" Attack="95" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="8" Attack="106" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="90" Current="50" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="98" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="18700.460938" Y="63.000000" Z="21857.376953" />
+		<Rotation X="0" Y="84" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="11" Attack="98" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="11" Attack="93" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="10" Attack="138" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="76" Current="55" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="69" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="19180.648438" Y="75.000000" Z="23160.718750" />
+		<Rotation X="0" Y="226" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="13" Attack="100" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="14" Attack="130" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="9" Attack="112" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="77" Current="60" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="63" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="20608.679688" Y="121.280556" Z="25856.933594" />
+		<Rotation X="0" Y="345" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="11" Attack="83" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="15" Attack="117" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="7" Attack="130" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="97" Current="71" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="85" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="25866.621094" Y="126.000000" Z="26607.966797" />
+		<Rotation X="0" Y="286" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="13" Attack="129" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="11" Attack="123" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="8" Attack="103" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="90" Current="85" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="91" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="26366.347656" Y="130.682617" Z="26690.597656" />
+		<Rotation X="0" Y="40" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="11" Attack="85" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="15" Attack="101" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="11" Attack="127" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="5"/>
+		<NPC>
+		<Health Max="139" Current="106" />
+		<Speed Sneak="0.05" Normal="0.1" Run="0.25" />
+		<Mesh Value="content/zombie/zombie.b3d" />
+		<Defense Value="107" />
+		<RotationOffset X="0" Y="180" Z="0" />
+		<Scale X="7" Y="7" Z="7" />
+			<Position X="26819.701172" Y="126.000000" Z="26761.882813" />
+		<Rotation X="0" Y="3" Z="0" />
+		<AI>
+		<Animation>
+			<Walk Type="Normal" SFrame="1" EFrame="19" Speed="15" Loop="true" />
+			<Walk Type="Run" SFrame="1" EFrame="19" Speed="25" Loop="true" />
+			<Walk Type="Stealth" SFrame="21" EFrame="35" Speed="15" Loop="true" />
+			<Idle Type="Exhausted" SFrame="169" EFrame="199" Speed="15" Loop="true" />
+			<Idle Type="Normal" SFrame="136" EFrame="168" Speed="15" Loop="true" />
+			<Attack Type="HeadButt" SFrame="128" EFrame="135" Speed="12" Loop="false"/>
+			<Attack Type="Kick" SFrame="105" EFrame="114" Speed="12" Loop="false"/>
+			<Attack Type="Punch" SFrame="116" EFrame="127" Speed="12" Loop="false"/>
+			<Other Type="BlockHit" SFrame="47" EFrame="56" Speed="11" Loop="false"/>
+			<Other Type="TakeHit" SFrame="37" EFrame="46" Speed="17" Loop="false"/>
+			<Other Type="Die" SFrame="90" EFrame="102" Speed="17" Loop="false"/>
+			</Animation>
+		<Team Value="1" />
+		</AI>
+		<Attacks>
+		<Attack Name="HeadButt" Label="" Dmg="13" Attack="104" Time="3000" TimeOffset="500"/>
+		<Attack Name="Kick" Label="" Dmg="12" Attack="126" Time="2000" TimeOffset="300"/>
+		<Attack Name="Punch" Label="" Dmg="9" Attack="155" Time="1800" TimeOffset="300"/>
+		</Attacks>
+		</NPC>
+		<Loading_Screen points="0" text="Erzeuge Spieler" />
 
 		<Player>
             <Health Max="250" Current="250" />
