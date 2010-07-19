@@ -261,7 +261,9 @@ void Game::closeGame() {
 
 	scenemgr->clear();
 	switchContext(Context_Main_Menu);
-
+	ui->switchContext(Context_Main_Menu);
+	ui->createWindows();
+	device->closeDevice();
 }
 
 void Game::switchContext(Game_Context context) {

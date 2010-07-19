@@ -383,7 +383,7 @@ void AI::doRandomStuff(){
 		if(rand()%5 == 0){
 			dest.rotateXZBy((rand()%3600)/10.);
 		}else{
-			dest.rotateXZBy((rand()%200)/10. + character->getRotation().X);
+			dest.rotateXZBy((rand()%200)/10. + character->getRotation().Y);
 		}
 		irr::core::vector3df f;
 		dest += character->getAbsolutePosition();
