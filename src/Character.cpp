@@ -63,7 +63,7 @@ void Character::handleEvent(const GameEvent& e) {
 		if(exp>nextlevel){
 			floutingText(irr::video::SColor(255,255,219,89),L"Level Up");
 			nextlevel *= 2;
-			healthmax *= 1.2;
+			healthmax = (irr::s32) (healthmax*1.2);
 
 			def += 5;
 			dmgmulti += 0.05;

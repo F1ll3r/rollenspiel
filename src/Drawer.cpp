@@ -25,8 +25,6 @@ Drawer::Drawer(Game* game) {
 	debuginfo = false;
 #endif
 
-	debuginfo = true;
-
 	debugtext = new wchar_t[255];
 }
 
@@ -183,7 +181,7 @@ void Drawer::drawHealthfor(Character* c){
 					irr::video::SColor(255,255,255,255));
 
 	driver->draw2DRectangle(irr::video::SColor(255,255,14,14),irr::core::recti(
-			pos.X,pos.Y,(irr::s32) pos.X+50*(c->getHealth()/(irr::f32)c->getHealthmax()),pos.Y+5));
+			pos.X,pos.Y,(irr::s32) (pos.X+50*(c->getHealth()/(irr::f32)c->getHealthmax())),pos.Y+5));
 
 }
 

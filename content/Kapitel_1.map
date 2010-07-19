@@ -25,9 +25,6 @@
 				<Wind Strength="30" Regularity="3" />
 			</Grass>
 
-			<Passable_Surface>
-				<Triangle X1="" Z1="" X2="" Z2="" X3="" Z3="" />
-			</Passable_Surface>
 		</Terrain>
 
         <Loading_Screen points="15" text="Parse Light Sources" />
@@ -42,43 +39,6 @@
         </LightObject>
 
 
-			<!--
-			Trigger:
-				type:
-                    -Time
-					-Enter:     actor enters a polygon
-					-Leave:       "   leaves "    "
-					-Attack:    somone attacks actor
-					-Talk:	    player says sothing to actor
-					-Dies:      character actor dies
-					-Meta: 	    this Trigger is supposed to be triggert by other Events
-                                and can be use to implement boolen algebra with events
-				actor:
-					an ID or one of the following keywords:
-						-Enemy
-						-Player
-
-			Effect:
-				type:
-					-SectorChange:
-					-Damage:
-					-Heal:
-					-Trigger:       triggers metatrigger
-					-Move:
-					-Rotate:
-					-Talk:
-
-			-->
-        <Loading_Screen points="1" text="Parse Events" />
-
-        <Event>
-			<Trigger Type="Enter" Actor="Player">
-				<Box X1="" Y1="" Z1="" X2="" Y2="" Z2="" />
-			</Trigger>
-			<Effect Type="SectorChange">
-				<EntyPoint SectorID="" X="" Y="" Z="" />
-			</Effect>
-		</Event>
 
 		<Loading_Screen points="1" text="Lade Objekte" />
 

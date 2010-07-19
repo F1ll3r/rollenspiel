@@ -13,7 +13,7 @@
 LightObject::LightObject(Sector* s,Game* game,irr::io::IXMLReader* xml):Object(s,game)  {
 	irr::core::vector3df		pos;
 	irr::video::SColorf			color;
-	irr::f32					radius;
+	irr::f32					radius = 1;
 	while(xml->read()){
 			switch (xml->getNodeType()) {
 				case irr::io::EXN_ELEMENT:

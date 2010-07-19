@@ -178,11 +178,11 @@ void Game::init(int argc, const char* argv[]) {
 	drawer->processLoadingScreen(1,0);
 	driver->getTexture("content/run.bmp");
 	drawer->processLoadingScreen(1,0);
-	driver->getTexture("content/schleichen.bmp");
+	driver->getTexture("content/sneak.bmp");
 	drawer->processLoadingScreen(1,0);
 	driver->getTexture("content/sword.bmp");
 	drawer->processLoadingScreen(1,0);
-	driver->getTexture("content/sword2 .bmp");
+	driver->getTexture("content/sword2.bmp");
 	drawer->processLoadingScreen(1,0);
 	driver->getTexture("content/walk.bmp");
 	drawer->processLoadingScreen(1,0);
@@ -261,7 +261,9 @@ void Game::closeGame() {
 
 	scenemgr->clear();
 	switchContext(Context_Main_Menu);
-
+	ui->switchContext(Context_Main_Menu);
+	ui->createWindows();
+	device->closeDevice();
 }
 
 void Game::switchContext(Game_Context context) {

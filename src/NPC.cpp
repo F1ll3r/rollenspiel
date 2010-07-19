@@ -141,7 +141,7 @@ AttackGameEvent* NPC::attack(){
 
 	Attacks* a = i->second;
 
-	AttackGameEvent* ret = new AttackGameEvent(a->getAttack()*attackmulti,a->getDmg()*dmgmulti,a->getDowntime(),a->getName(),this);
+	AttackGameEvent* ret = new AttackGameEvent(a->getAttack()*attackmulti,(irr::s32)(a->getDmg()*dmgmulti),a->getDowntime(),a->getName(),this);
 	ret->setTrigger(new ClockGameTrigger(a->getTimeoffset(),ret));
 	return ret;
 }

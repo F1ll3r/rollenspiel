@@ -15,6 +15,7 @@ enum UI_GUI_Element_Options{
 	UI_GUI_Element_Close,
 	UI_GUI_Element_Save,
 	UI_GUI_Element_Resolution,
+	UI_GUI_Element_Resolution_Text,
 	UI_GUI_Element_Depth,
 	UI_GUI_Element_Depth_Text,
 	UI_GUI_Element_Fullscreen,
@@ -24,7 +25,9 @@ enum UI_GUI_Element_Options{
 	UI_GUI_Element_Grass,
 	UI_GUI_Element_Grass_Text,
 	UI_GUI_Element_Filtering,
+	UI_GUI_Element_Filtering_Text,
 	UI_GUI_Element_Anti_Aliasing,
+	UI_GUI_Element_Anti_Aliasing_Text,
 	UI_GUI_Element_Shadow,
 	UI_GUI_Element_Shadow_Text
 };
@@ -34,6 +37,7 @@ class UserInterfaceOptions: public UserInterfaceManager {
 private:
 	bool setSettings(Settings s);
 	Settings getSettings();
+	irr::gui::IGUIWindow* window;
 public:
 	void draw();
 	bool OnEvent(const irr::SEvent& event);

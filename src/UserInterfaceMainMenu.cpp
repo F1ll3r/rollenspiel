@@ -27,7 +27,7 @@ void UserInterfaceMainMenu::draw(){
 	case Context_Main_Menu:
 		Buttons[UI_Button_Main_New	  - 100]->draw();
 		Buttons[UI_Button_Main_Options- 100]->draw();
-		Buttons[UI_Button_Main_Load	  - 100]->draw();
+//		Buttons[UI_Button_Main_Load	  - 100]->draw();
 		Buttons[UI_Button_Main_Exit	  - 100]->draw();
 		break;
 	default:
