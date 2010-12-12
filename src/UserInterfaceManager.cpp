@@ -55,26 +55,27 @@ bool UserInterfaceManager::OnEvent(const irr::SEvent& event) {
 	}
 }
 void UserInterfaceManager::draw(){
-	switch (context) {
-	case Context_Main_Menu:
-		switch (windowid){
-		case UI_W_Main:
-			WindowMainMenu->draw();
-			break;
-		case UI_W_Option:
-			WindowOptions->draw();
-			break;
-		default:
-			break;
-		}
-		case Context_Game_Menu:
-			break;
-		case Context_Game_Run:
-			IngameGUI->draw();
-			break;
-		default:
-			break;
-	}
+//	switch (context) {
+//	case Context_Main_Menu:
+//		switch (windowid){
+//		case UI_W_Main:
+//			WindowMainMenu->draw();
+//			break;
+//		case UI_W_Option:
+//			WindowOptions->draw();
+//			break;
+//		default:
+//			break;
+//		}
+//		case Context_Game_Menu:
+//			break;
+//		case Context_Game_Run:
+//			IngameGUI->draw();
+//			break;
+//		default:
+//			break;
+//	}
+	guienv->drawAll();
 }
 UserInterfaceManager::~UserInterfaceManager() {
 	// TODO Auto-generated destructor stub

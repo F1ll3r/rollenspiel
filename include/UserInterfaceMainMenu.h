@@ -14,6 +14,7 @@ enum UI_Button_Main{
 	UI_Button_Main_New = 100,
 	UI_Button_Main_Options,
 	UI_Button_Main_Load,
+	UI_Button_Main_Multiplayer,
 	UI_Button_Main_Exit
 };
 
