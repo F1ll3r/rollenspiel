@@ -13,7 +13,6 @@
 class UserInterfaceIngameMenu: public UserInterfaceManager {
 
 public:
-public:
 	void draw();
 	bool OnEvent(const irr::SEvent& event);
 	void createButtons();
