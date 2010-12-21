@@ -13,6 +13,7 @@
 #include "irrlicht.h"
 #include "Game.h"
 #include "Player.h"
+#include "Animation.h"
 
 AI::AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml) {
 	state.iswalking = false;
@@ -23,6 +24,8 @@ AI::AI(Character* c,Sector* s,Game* game,irr::io::IXMLReader* xml) {
 	state.time_until_next=0;
 	state.dead = false;
 	AL.timer = 0;
+
+	lua = luaL_newstate();
 
 	while(xml->read()){
 		switch (xml->getNodeType()) {
@@ -121,7 +124,7 @@ void AI::parseAnimation(irr::io::IXMLReader* xml){
 }
 
 AI::~AI() {
-	// TODO Auto-generated destructor stub
+	lua_close(lua);
 }
 
 void AI::die(){

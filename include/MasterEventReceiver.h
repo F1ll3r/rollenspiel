@@ -12,14 +12,14 @@
 #include "IEventReceiver.h"
 
 class MasterEventReceiver : public irr::IEventReceiver{
-	Game* 				game;
+	Game* 					game;
 
-	UserInterfaceManager* 		ui;
-	Player*				player;
-	CameraHandler* 		cam;
+	UserInterfaceManager* 	ui;
+	Player*					player;
+	CameraHandler* 			cam;
 
-	irr::IrrlichtDevice* device;
-	Game_Context context;
+	irr::IrrlichtDevice*	device;
+	Game_Context 			context;
 public:
 	MasterEventReceiver(Game* game);
 	virtual ~MasterEventReceiver();

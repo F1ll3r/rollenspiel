@@ -13,6 +13,7 @@
 #include <map>
 #include "irrString.h"
 #include "IAnimatedMeshSceneNode.h"
+#include "lua.hpp"
 
 
 enum AI_Animation{
@@ -37,9 +38,10 @@ class AI : public irr::scene::IAnimationEndCallBack{
 
 	std::map<irr::core::stringw,Animation*>		animations[AI_Animation_Count];
 
-	Game*									game;
-	Character* 								character;
-	Sector* 								sector;
+	Game*						game;
+	Character* 					character;
+	Sector* 					sector;
+	lua_State*					lua;
 
 
 	//! struct used to bottle up the data determining the state of
@@ -105,41 +107,7 @@ public:
 };
 
 
-class Animation{
-	irr::s32			sFrame;
-	irr::s32			eFrame;
-	irr::f32			speed;
-	irr::core::stringw	type;
-	bool				loop;
-public:
-	Animation(irr::s32 sframe,irr::s32 eframe,irr::f32 Speed,const wchar_t* Type,bool Loop = false) : type(Type){
-		sFrame = sframe;
-		eFrame = eframe;
-		speed  = Speed;
-		loop   = Loop;
-	}
 
-	irr::s32 getStartFrame() const {
-		return sFrame;
-	}
-
-	irr::s32 getEndFrame() const {
-		return eFrame;
-	}
-
-	irr::f32 getSpeed() const {
-		return speed;
-	}
-
-	const wchar_t* getType() const {
-		return type.c_str();
-	}
-
-	bool getLoop() const {
-		return loop;
-	}
-
-};
 
 #endif /* AI_H_ */
 

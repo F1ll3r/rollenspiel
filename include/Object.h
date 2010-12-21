@@ -25,8 +25,8 @@ enum Onject_Type{
 
 class Object : public IGameEventHandler{
 protected:
-	Sector*					sector;
-	Game*					game;
+	Sector*				sector;
+	Game*				game;
 
 public:
 	Object(Sector* s,Game* game);

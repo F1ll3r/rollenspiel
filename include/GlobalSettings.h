@@ -10,15 +10,14 @@
 //! Uncommented the line below to use release settings
 //#define __release__
 
-//! Uncommented this if you want to couse the debugger to stop on failed Assertions
-//! atm only for Linux
-//#define STOP_ON_ERROR
-
 //! if you choose neither the macro below will set debug
 #if( !defined __release__ && !defined __debug__ )
 	#define __debug__
 #endif
 
+//! Uncommented this if you want to cause the debugger to stop on failed Assertions
+//! atm only for Linux
+//#define STOP_ON_ERROR
 
 #if( !defined __debug__ && !defined __release__ )
     #error "please define __debug__ or __release__"

@@ -9,8 +9,8 @@
 #define MAP_H_
 
 
-#define DYNAMIC_ID_RANGE_START 	0x00010000
-#define DYNAMIC_ID_RANGE_END 	0x7fffffff
+const irr::u32 DYNAMIC_ID_RANGE_START =	0x00010000;
+const irr::u32 DYNAMIC_ID_RANGE_END   = 0x7fffffff;
 
 #include "GlobalSettings.h"
 #include "IrrlichtDevice.h"
@@ -81,17 +81,18 @@ public:
 
 	irr::s32 getFreeID(){
 		//srand(device->getTimer()->getRealTime());
-		while(true){
+		do{
+
 #if ((RAND_MAX+RAND_MAX+DYNAMIC_ID_RANGE_START) > DYNAMIC_ID_RANGE_END)
+
 			irr::s32 r = rand()%(DYNAMIC_ID_RANGE_END-DYNAMIC_ID_RANGE_START) + DYNAMIC_ID_RANGE_START;
 #else
 			irr::s32 r = rand() + rand() + DYNAMIC_ID_RANGE_START;
 #endif
-			if(!containsObject(r)){
-				return r;
-			}
-		}
 
+		}while(containsObject(r));
+
+		return r;
 	}
 
 	void load(irr::c8* file);

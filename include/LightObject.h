@@ -36,7 +36,7 @@ public:
 		return false;
 	}
 
-	virtual bool isCollidable() const{
+	virtual bool isCollidable() const {
 		return false;
 	}
 };
