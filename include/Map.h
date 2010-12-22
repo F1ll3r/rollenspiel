@@ -18,9 +18,6 @@
 #include "Sector.h"
 
 
-const irr::u32 DYNAMIC_ID_RANGE_START =	0x00010000;
-const irr::u32 DYNAMIC_ID_RANGE_END   = 0x7fffffff;
-
 
 class Map {
 	std::map<irr::s32,Sector*> 	sectors;
@@ -40,62 +37,22 @@ public:
 	void run();
 
 
-	const wchar_t* getName(){
-		return name.c_str();
-	}
+	const wchar_t* getName();
 
-
-	irr::s32 getObjectCount(){
-		return Masterdatabase.size();
-	}
-
+	irr::s32 getObjectCount();
 
 	//! adds Object to Database with o->getID() as key
 	//! returns true an success and false if id is already used
-	inline bool addObject(Object* o){
-		if(Masterdatabase.count(o->getID())){
-			return false;
-		}
-		Masterdatabase.insert(
-				std::pair<irr::s32,std::map<irr::s32,Object*>*>(o->getID(),&o->getSector()->database)
-		);
-
-		o->getSector()->addObject(o);
-		return true;
-	}
-
+	bool addObject(Object* o);
 
 	//! tests whether or not an Object is in the Database based on id
 	//! returns true if database contains the object and false if not
-	inline bool containsObject(irr::s32 id){
-		return Masterdatabase.count(id) != 0;
-	}
-
+	bool containsObject(irr::s32 id);
 
 	//! returns the Object with based on the id
-	inline Object* getObject(irr::s32 id){
-#ifdef __debug__
-		My_Assert(Masterdatabase.count(id));
-#endif
-		return Masterdatabase.find(id)->second->find(id)->second;
-	}
+	Object* getObject(irr::s32 id);
 
-	irr::s32 getFreeID(){
-		//srand(device->getTimer()->getRealTime());
-		irr::s32 r;
-		do{
-
-#if ((RAND_MAX+RAND_MAX+DYNAMIC_ID_RANGE_START) > DYNAMIC_ID_RANGE_END)
-
-			r = rand()%(DYNAMIC_ID_RANGE_END-DYNAMIC_ID_RANGE_START) + DYNAMIC_ID_RANGE_START;
-#else
-			r = rand() + rand() + DYNAMIC_ID_RANGE_START;
-#endif
-
-		}while(containsObject(r));
-
-		return r;
-	}
+	irr::s32 getFreeID();
 
 	void load(irr::c8* file);
 

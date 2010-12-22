@@ -62,3 +62,7 @@ void MasterEventReceiver::switchContext(Game_Context context){
 Game_Context MasterEventReceiver::getContext(){
 	return context;
 }
+
+void MasterEventReceiver::setPlayer(Player* p){
+	player = p;
+}

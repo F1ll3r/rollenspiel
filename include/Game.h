@@ -54,51 +54,29 @@ public:
 	Settings setStandartSettings();
 	void setSettings(Settings s);
 
-	Importer*	getImporter() const {
-		return importer;
-	}
+	Importer*	getImporter() const;
 
-	Exporter* getExporter() const {
-		return exporter;
-	}
+	Exporter* getExporter() const;
 
-	Player* getPlayer() const {
-		return player;
-	}
+	Player* getPlayer() const;
 
-	CameraHandler* getCameraHandler() const {
-		return camerahandler;
-	}
+	CameraHandler* getCameraHandler() const;
 
-	Drawer* getDrawer() const {
-		return drawer;
-	}
-	UserInterfaceManager*	getUserInterface() const {
-		return ui;
-	}
+	Drawer* getDrawer() const;
 
-	GameEventManager* getGameEventManager() const {
-		return gameeventmgr;
-	}
-	MasterEventReceiver* getMasterEventReceiver() const {
-		return mastereventmgr;
-	}
+	UserInterfaceManager*	getUserInterface() const;
 
-	irr::IrrlichtDevice* getIrrlichtDevice() const {
-		return device;
-	}
+	GameEventManager* getGameEventManager() const;
 
-	irr::video::IVideoDriver* getVideoDriver() const {
-		return driver;
-	}
+	MasterEventReceiver* getMasterEventReceiver() const;
 
-	irr::scene::ISceneManager* getSceneManager() const {
-		return scenemgr;
-	}
+	irr::IrrlichtDevice* getIrrlichtDevice() const;
 
-	Map* getMap() const {
-		return map;
-	}
+	irr::video::IVideoDriver* getVideoDriver() const;
+
+	irr::scene::ISceneManager* getSceneManager() const;
+
+	Map* getMap() const;
 
 };
 

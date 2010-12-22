@@ -94,19 +94,13 @@ public:
 
 	void die();
 
-	irr::s32 getTeam(){
-		return state.team;
-	}
+	irr::s32 getTeam();
 
-	Object* interactsWith(){
-		return state.wantsToInteractWith;
-	}
+	Object* interactsWith();
 
 	virtual void OnAnimationEnd(irr::scene::IAnimatedMeshSceneNode* node);
 
 };
-
-
 
 
 #endif /* AI_H_ */

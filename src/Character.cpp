@@ -209,5 +209,60 @@ bool Character::isSneaky(const AttackGameEvent& a){
 	}
 
 	return false;
+}
 
+irr::s32 Character::getTeam() {
+	return ai->getTeam();
+}
+
+irr::s32 Character::getExp() const {
+	return exp;
+}
+
+irr::s32 Character::getNextlevel() const {
+	return nextlevel;
+}
+
+void Character::setNextlevel(irr::s32 nextlevel) {
+	this->nextlevel = nextlevel;
+}
+
+const wchar_t * Character::getMode() const {
+	return mode.c_str();
+}
+
+void Character::setMode(const wchar_t * m){
+	mode = m;
+}
+
+irr::s32 Character::getHealthmax() const {
+	return healthmax;
+}
+
+void Character::setHealthmax(irr::s32 healthmax) {
+	this->healthmax = healthmax;
+}
+
+void Character::setHealth(irr::s32 health) {
+	this->health = health;
+}
+
+AI * Character::getAi() const {
+	return ai;
+}
+
+bool  Character::isClickable() const {
+	return clickable;
+}
+
+bool  Character::isGround() const {
+	return ground;
+}
+
+bool  Character::isCollidable() const {
+	return collidable;
+}
+
+irr::s32  Character::getHealth() {
+	return health;
 }

@@ -146,3 +146,16 @@ AttackGameEvent* NPC::attack(){
 	return ret;
 }
 
+irr::core::vector3df NPC::getRotationOffset(){
+	return rotoffset;
+}
+
+Object_Type NPC::getType(){
+	return Type_NPC;
+}
+
+irr::s32 NPC::getID(){
+	return id;
+}
+
+

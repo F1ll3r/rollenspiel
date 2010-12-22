@@ -42,20 +42,14 @@ public:
 	void draw();
 
 	//! returns the current process in percent
-	irr::f32 getProcess(){
-		return process;
-	}
+	irr::f32 getProcess();
 
 	//! sets loadingbar back to 0%
 	void resetProcess();
 
-	bool getDrawDebugInfo(){
-		return debuginfo;
-	}
+	bool getDrawDebugInfo();
 
-	void getDrawDebugInfo(bool b){
-		debuginfo = b;
-	}
+	void getDrawDebugInfo(bool b);
 };
 
 #endif /* DRAWER_H_ */

@@ -185,5 +185,15 @@ void Drawer::drawHealthfor(Character* c){
 
 }
 
+irr::f32 Drawer::getProcess(){
+	return process;
+}
 
+bool Drawer::getDrawDebugInfo(){
+	return debuginfo;
+}
+
+void Drawer::getDrawDebugInfo(bool b){
+	debuginfo = b;
+}
 

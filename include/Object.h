@@ -13,7 +13,7 @@
 #include "IGameEventHandler.h"
 
 
-enum Onject_Type{
+enum Object_Type{
 	Type_Map_Object,
 	Type_Terrain_Map_Object,
 	Type_NPC,
@@ -58,25 +58,15 @@ public:
 	//! be equal to getNode()->getID()
 	virtual irr::s32 getID() = 0;
 
-	virtual Onject_Type getType(){
-		return Type_Unknown;
-	}
+	virtual Object_Type getType();
 
-	Sector* getSector(){
-		return sector;
-	}
+	Sector* getSector();
 
-	virtual bool isClickable() const {
-		return false;
-	}
+	virtual bool isClickable() const;
 
-	virtual bool isGround() const {
-		return false;
-	}
+	virtual bool isGround() const;
 
-	virtual bool isCollidable() const{
-		return false;
-	}
+	virtual bool isCollidable() const;
 
 };
 

@@ -21,24 +21,16 @@ public:
 	LightObject(Sector* s,Game* game);
 	virtual ~LightObject();
 
-	virtual irr::scene::ISceneNode* getNode(){
-		return (irr::scene::ISceneNode*)node;
-	}
+	virtual irr::scene::ISceneNode* getNode();
 
 	irr::s32 getID();
 	void remove();
 
-	virtual bool isClickable() const {
-		return false;
-	}
+	virtual bool isClickable() const;
 
-	virtual bool isGround() const {
-		return false;
-	}
+	virtual bool isGround() const;
 
-	virtual bool isCollidable() const {
-		return false;
-	}
+	virtual bool isCollidable() const;
 };
 
 #endif /* LIGHTOBJECT_H_ */

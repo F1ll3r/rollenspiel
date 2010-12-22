@@ -24,9 +24,7 @@ public:
 
 	void parsePassable_Surface(irr::io::IXMLReader* xml);
 
-	virtual irr::scene::ISceneNode* getNode(){
-			return node;
-		}
+	virtual irr::scene::ISceneNode* getNode();
 
 
 	virtual void remove();
@@ -38,17 +36,11 @@ public:
 	//! be equal to getNode()->getID()
 	virtual irr::s32 getID();
 
-	virtual bool isClickable() const {
-		return false;
-	}
+	virtual bool isClickable() const;
 
-	virtual bool isGround() const {
-		return true;
-	}
+	virtual bool isGround() const;
 
-	virtual bool isCollidable() const{
-		return false;
-	}
+	virtual bool isCollidable() const;
 };
 
 #endif /* TERRAINMAPOBJECT_H_ */

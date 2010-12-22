@@ -39,42 +39,25 @@ public:
 	virtual ~Sector();
 
 
-	irr::s32 getSectorID() const {
-		return id;
-	}
+	irr::s32 getSectorID() const;
 
-	irr::s32 getObjectCount(){
-		return database.size();
-	}
+	irr::s32 getObjectCount();
 
 	Object* createObject(irr::io::IXMLReader* xml);
 
 
 	//! adds Object to Database with o->getID() as key
 	//! returns true an success and false if id is already used
-	inline bool addObject(Object* o){
-		if(database.count(o->getID())){
-			return false;
-		}
-		database.insert(std::pair<irr::s32,Object*>(o->getID(),o));
-		return true;
-	}
+	 bool addObject(Object* o);
 
 
 	//! tests whether or not an Object is in the Database based on id
 	//! returns true if database contains the object and false if not
-	inline bool containsObject(irr::s32 id){
-		return database.count(id) != 0;
-	}
+	 bool containsObject(irr::s32 id);
 
 
 	//! returns the Object with based on the id
-	inline Object* getObject(irr::s32 id){
-#ifdef __debug__
-		My_Assert(database.count(id));
-#endif
-		return database.find(id)->second;
-	}
+	 Object* getObject(irr::s32 id);
 
 
 

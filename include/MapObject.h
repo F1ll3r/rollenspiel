@@ -24,24 +24,17 @@ public:
 	MapObject(Sector* s,Game* game,irr::io::IXMLReader* xml);
 	virtual ~MapObject();
 
-	virtual irr::scene::ISceneNode* getNode(){
-		return (irr::scene::ISceneNode*)node;
-	}
+	virtual irr::scene::ISceneNode* getNode();
 
 	irr::s32 getID();
+
 	void remove();
 
-	virtual bool isClickable() const {
-		return clickable;
-	}
+	virtual bool isClickable() const;
 
-	virtual bool isGround() const {
-		return ground;
-	}
+	virtual bool isGround() const;
 
-	virtual bool isCollidable() const{
-		return collidable;
-	}
+	virtual bool isCollidable() const;
 
 };
 

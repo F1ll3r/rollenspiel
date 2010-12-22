@@ -123,3 +123,20 @@ irr::s32 MapObject::getID(){
 void MapObject::remove(){
 
 }
+irr::scene::ISceneNode*  MapObject::getNode(){
+	return (irr::scene::ISceneNode*)node;
+}
+
+
+
+bool  MapObject::isClickable() const {
+	return clickable;
+}
+
+bool  MapObject::isGround() const {
+	return ground;
+}
+
+bool  MapObject::isCollidable() const{
+	return collidable;
+}

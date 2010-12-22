@@ -44,3 +44,23 @@ void Object::setPosition(irr::core::vector3df v){
 void Object::setRotation(irr::core::vector3df v){
 	getNode()->setRotation(v+getRotationOffset());
 }
+
+ Object_Type Object::getType(){
+	return Type_Unknown;
+}
+
+Sector* Object::getSector(){
+	return sector;
+}
+
+ bool Object::isClickable() const {
+	return false;
+}
+
+ bool Object::isGround() const {
+	return false;
+}
+
+ bool Object::isCollidable() const{
+	return false;
+}

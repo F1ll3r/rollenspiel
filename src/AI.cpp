@@ -402,3 +402,11 @@ void AI::OnAnimationEnd(irr::scene::IAnimatedMeshSceneNode* node){
 	if(!state.dead)
 		setAnimation(getAnimation(AI_Animation_Idle,L"Normal"));
 }
+
+Object* AI::interactsWith(){
+	return state.wantsToInteractWith;
+}
+
+irr::s32 AI::getTeam(){
+	return state.team;
+}

@@ -145,6 +145,39 @@ Object* Sector::createObject(irr::io::IXMLReader* xml){
 
 }
 
+irr::s32 Sector::getSectorID() const {
+	return id;
+}
+
+irr::s32 Sector::getObjectCount(){
+	return database.size();
+}
+
+//! adds Object to Database with o->getID() as key
+//! returns true an success and false if id is already used
+bool Sector::addObject(Object* o){
+	if(database.count(o->getID())){
+		return false;
+	}
+	database.insert(std::pair<irr::s32,Object*>(o->getID(),o));
+	return true;
+}
+
+
+//! tests whether or not an Object is in the Database based on id
+//! returns true if database contains the object and false if not
+bool Sector::containsObject(irr::s32 id){
+	return database.count(id) != 0;
+}
+
+
+//! returns the Object with based on the id
+Object* Sector::getObject(irr::s32 id){
+#ifdef __debug__
+	My_Assert(database.count(id));
+#endif
+	return database.find(id)->second;
+}
 
 Object* Sector::getObjectFromScreenCoordinates(irr::u32 X, irr::u32 Y,irr::core::vector3df& vout,Object* except){
 	irr::core::triangle3df tmpt;

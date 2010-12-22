@@ -64,9 +64,7 @@ public:
 
 	virtual irr::f32 getSpeed() const;
 
-	irr::s32 getTeam() {
-		return ai->getTeam();
-	}
+	irr::s32 getTeam();
 
 	virtual void die();
 
@@ -74,57 +72,32 @@ public:
 	irr::s32 getDefense();
 
 	virtual AttackGameEvent *attack() =0;
-	irr::s32 getExp() const {
-		return exp;
-	}
 
-	irr::s32 getNextlevel() const {
-		return nextlevel;
-	}
+	irr::s32 getExp() const;
 
-	void setNextlevel(irr::s32 nextlevel) {
-		this->nextlevel = nextlevel;
-	}
+	irr::s32 getNextlevel() const;
 
-	const wchar_t *getMode() const {
-		return mode.c_str();
-	}
+	void setNextlevel(irr::s32 nextlevel);
 
-	void setMode(const wchar_t * m){
-		mode = m;
-	}
+	const wchar_t *getMode() const ;
 
-	irr::s32 getHealthmax() const {
-		return healthmax;
-	}
+	void setMode(const wchar_t * m);
 
-	void setHealthmax(irr::s32 healthmax) {
-		this->healthmax = healthmax;
-	}
+	irr::s32 getHealthmax() const;
 
-	void setHealth(irr::s32 health) {
-		this->health = health;
-	}
+	void setHealthmax(irr::s32 healthmax);
 
-	AI *getAi() const {
-		return ai;
-	}
+	void setHealth(irr::s32 health);
 
-	bool isClickable() const {
-		return clickable;
-	}
+	AI *getAi() const;
 
-	bool isGround() const {
-		return ground;
-	}
+	bool isClickable() const;
 
-	bool isCollidable() const {
-		return collidable;
-	}
+	bool isGround() const;
 
-	irr::s32 getHealth() {
-		return health;
-	}
+	bool isCollidable() const;
+
+	irr::s32 getHealth();
 };
 
 #endif /* CHARACTER_H_ */

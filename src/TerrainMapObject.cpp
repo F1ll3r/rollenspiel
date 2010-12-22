@@ -147,6 +147,21 @@ void TerrainMapObject::remove(){
 	}
 }
 
+ irr::scene::ISceneNode* TerrainMapObject::getNode(){
+		return node;
+}
+
+ bool TerrainMapObject::isClickable() const {
+	return false;
+}
+
+ bool TerrainMapObject::isGround() const {
+	return true;
+}
+
+ bool TerrainMapObject::isCollidable() const{
+	return false;
+}
 
 irr::s32 TerrainMapObject::getID(){
 	return id;

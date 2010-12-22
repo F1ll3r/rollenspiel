@@ -22,17 +22,11 @@ public:
 
 	virtual AttackGameEvent* attack();
 
-	virtual irr::core::vector3df getRotationOffset(){
-		return rotoffset;
-	}
+	virtual irr::core::vector3df getRotationOffset();
 
-	virtual Onject_Type getType(){
-		return Type_NPC;
-	}
+	virtual Object_Type getType();
 
-	irr::s32 getID(){
-		return id;
-	}
+	irr::s32 getID();
 
 };
 

@@ -323,3 +323,21 @@ bool Player::OnEvent(const irr::SEvent& event){
 	}
 	return false;
 }
+
+void Player::setAttackMode(const wchar_t* mode){
+	attackmode = mode;
+}
+
+const wchar_t* Player::getAttackMode(){
+	return attackmode.c_str();
+}
+
+bool Player::OnEvent(const irr::SEvent& event);
+
+ irr::s32 Player::getID(){
+	return 1;
+}
+
+ Object_Type Player::getType(){
+	return Type_Player;
+}

@@ -322,3 +322,50 @@ Settings Game::setStandartSettings() {
 	return s;
 }
 
+Importer*	Game::getImporter() const {
+	return importer;
+}
+
+Exporter* Game::getExporter() const {
+	return exporter;
+}
+
+Player* Game::getPlayer() const {
+	return player;
+}
+
+CameraHandler* Game::getCameraHandler() const {
+	return camerahandler;
+}
+
+Drawer* Game::getDrawer() const {
+	return drawer;
+}
+UserInterfaceManager*	Game::getUserInterface() const {
+	return ui;
+}
+
+GameEventManager* Game::getGameEventManager() const {
+	return gameeventmgr;
+}
+MasterEventReceiver* Game::getMasterEventReceiver() const {
+	return mastereventmgr;
+}
+
+irr::IrrlichtDevice* Game::getIrrlichtDevice() const {
+	return device;
+}
+
+irr::video::IVideoDriver* Game::getVideoDriver() const {
+	return driver;
+}
+
+irr::scene::ISceneManager* Game::getSceneManager() const {
+	return scenemgr;
+}
+
+Map* Game::getMap() const {
+	return map;
+}
+
+

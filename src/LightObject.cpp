@@ -61,3 +61,19 @@ void LightObject::remove(){
 	node->remove();
 	delete this;
 }
+
+irr::scene::ISceneNode* LightObject::getNode(){
+	return (irr::scene::ISceneNode*)node;
+}
+
+bool LightObject::isClickable() const {
+	return false;
+}
+
+bool LightObject::isGround() const {
+	return false;
+}
+
+bool LightObject::isCollidable() const {
+	return false;
+}

@@ -31,23 +31,15 @@ public:
 
 	virtual AttackGameEvent* attack();
 
-	void setAttackMode(const wchar_t* mode){
-		attackmode = mode;
-	}
+	void setAttackMode(const wchar_t* mode);
 
-	const wchar_t* getAttackMode(){
-		return attackmode.c_str();
-	}
+	const wchar_t* getAttackMode();
 
 	bool OnEvent(const irr::SEvent& event);
 
-	virtual irr::s32 getID(){
-		return 1;
-	}
+	virtual irr::s32 getID();
 
-	virtual Onject_Type getType(){
-		return Type_Player;
-	}
+	virtual Object_Type getType();
 };
 
 #endif /* PLAYER_H_ */
